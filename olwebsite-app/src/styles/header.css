@@ -1,5 +1,5 @@
 header {
-    background-color: #F9F9F3;
+    background-color: #ffffff;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -11,4 +11,8 @@ header > h1 {
     font-size: 1.2em;
     color: #16341c;
     margin-left: 2%;
+}
+
+.app-logo-header {
+    height: 4vmin;
 }

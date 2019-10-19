@@ -1,0 +1,8 @@
+.carousel-custom {
+    text-align: center;
+  }
+  
+.carousel.carousel-slider {
+display: inline-block;
+border-radius: 16px;
+}
