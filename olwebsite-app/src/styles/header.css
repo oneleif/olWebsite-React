@@ -7,13 +7,6 @@ header {
     height: 60px;
 }
 
-header > h1 {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: #16341c;
-    margin-left: 2%;
-}
-
 header > img {
     cursor: pointer;
     height: calc(10px + 4vmin);
