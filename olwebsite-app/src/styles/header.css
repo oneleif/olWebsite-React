@@ -16,12 +16,16 @@ header > div {
     border-top: 5px solid white;
     cursor: pointer;
     font-family: 'Open Sans', sans-serif;
-    height: inherit;
+    height: 55px;
     text-align: center;
     vertical-align: middle;
-    line-height: 58px;  
+    line-height: 53px;  
 }
 
 header > div:hover {
+    border-top: 5px solid #16341c;
+}
+
+header > div:focus {
     border-top: 5px solid #16341c;
 }
