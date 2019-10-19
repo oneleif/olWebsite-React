@@ -1,9 +1,10 @@
 import React from 'react';
+import homeLogo from '../images/homeLogo.png';
 
 function Header() {
   return (
     <header>
-      <h1>oneleif</h1>
+      <img src={homeLogo} className="app-logo-header" alt="logo" />
     </header>
   )
 }
