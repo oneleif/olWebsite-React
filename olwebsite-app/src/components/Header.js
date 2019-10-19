@@ -4,7 +4,12 @@ import homeLogo from '../images/homeLogo.png';
 function Header() {
   return (
     <header>
-      <img src={homeLogo} className="app-logo-header" alt="logo" />
+      <img src={homeLogo} alt="logo" />
+      <div>Meet the team</div>
+      <div>DevDocs</div>
+      <div>Blogs</div>
+      <div>Resources</div>
+      <div>Login</div>
     </header>
   )
 }

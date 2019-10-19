@@ -2,6 +2,7 @@ header {
     background-color: #ffffff;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     height: 60px;
 }
@@ -13,6 +14,21 @@ header > h1 {
     margin-left: 2%;
 }
 
-.app-logo-header {
-    height: 4vmin;
+header > img {
+    cursor: pointer;
+    height: calc(10px + 4vmin);
+}
+
+header > div {
+    border-top: 5px solid white;
+    cursor: pointer;
+    font-family: 'Open Sans', sans-serif;
+    height: inherit;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 58px;  
+}
+
+header > div:hover {
+    border-top: 5px solid #16341c;
 }
