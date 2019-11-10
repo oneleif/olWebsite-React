@@ -7,23 +7,26 @@ header {
     height: 60px;
 }
 
-.logo {
+.top-nav {
+    &-logo {
     cursor: pointer;
     height: calc(10px + 4vmin);
-}
+    }
 
-.link {
-    border-bottom: 5px solid white;
-    cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
-    height: 55px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 65px;
-    text-decoration: none;
-    color: black;
-
-    &:hover, &:focus{
-        border-bottom: 5px solid #16341c;
+    &-link {
+        border-bottom: 5px solid white;
+        cursor: pointer;
+        font-family: 'Open Sans', sans-serif;
+        height: 55px;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 65px;
+        text-decoration: none;
+        color: black;
+    
+        &:hover, &:focus{
+            border-bottom: 5px solid #16341c;
+        }
     }
 }
+
