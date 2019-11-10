@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./style-sheets/index.scss";
 import OlWebsiteApp from "./OlWebsiteApp";
 import * as serviceWorker from "./serviceWorker";
 

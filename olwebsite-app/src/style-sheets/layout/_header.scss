@@ -22,12 +22,8 @@ header {
     line-height: 53px;
     text-decoration: none;
     color: black;
-}
 
-.link:hover {
-    border-top: 5px solid #16341c;
-}
-
-.link:focus {
-    border-top: 5px solid #16341c;
+    &:hover, &:focus{
+        border-top: 5px solid #16341c;
+    }
 }
