@@ -13,17 +13,17 @@ header {
 }
 
 .link {
-    border-top: 5px solid white;
+    border-bottom: 5px solid white;
     cursor: pointer;
     font-family: 'Open Sans', sans-serif;
     height: 55px;
     text-align: center;
     vertical-align: middle;
-    line-height: 53px;
+    line-height: 65px;
     text-decoration: none;
     color: black;
 
     &:hover, &:focus{
-        border-top: 5px solid #16341c;
+        border-bottom: 5px solid #16341c;
     }
 }
