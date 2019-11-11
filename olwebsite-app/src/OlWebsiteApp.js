@@ -6,7 +6,7 @@ import "./style-sheets/main.scss";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import LandingView from "./components/LandingView";
+import LandingView from "./pages/LandingView";
 
 export default function OlWebsiteApp() {
   return (

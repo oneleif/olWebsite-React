@@ -1,0 +1,37 @@
+.landing-view {
+    &-container{
+        display: flex;
+        flex-direction: column;
+        width: 74%;
+        margin-left: 13%;
+        margin-top: 3%;
+    }
+
+    &-header {
+        font-size: 24pt;
+    }
+}
+
+.about-us {
+    &-container{
+        align-items: flex-start;
+        border-top: 1px solid #7F8892;
+    }
+}
+
+.join-us {
+    &-container {
+        align-items: center;
+        border: 1px solid #7F8892;
+        margin-bottom: 3%;
+        padding-bottom: 1%;
+    }
+}
+
+.img-place-holder {
+    min-width: 100%;
+    min-height: 150px;
+    border: 1px solid #7F8892;
+    margin-bottom: 3%;
+    border-radius: 4px;
+}
