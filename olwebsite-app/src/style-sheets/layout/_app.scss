@@ -1,0 +1,14 @@
+
+.app {
+    text-align: center;
+  
+    .app-body {
+        background-color: #1B1B1B;
+        min-height: 100vh;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        padding-top: 2%;
+      }
+}
+
