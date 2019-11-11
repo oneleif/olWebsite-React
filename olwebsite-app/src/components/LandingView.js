@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import CarouselWrapper from './CarouselWrapper';
+import CarouselWrapper from "./CarouselWrapper";
 
-function LandingView() {
-  return (
-    <CarouselWrapper/>
-  )
+export default function LandingView() {
+  return <CarouselWrapper />;
 }
-
-export default LandingView;

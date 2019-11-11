@@ -1,17 +1,29 @@
-import React from 'react';
-import homeLogo from '../images/homeLogo.png';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
+
+import homeLogo from "../images/homeLogo.png";
 
 function Header() {
   return (
     <header>
-      <img src={homeLogo} alt="logo" tabIndex={0} />
-      <div tabIndex={0}>Meet the team</div>
-      <div tabIndex={0}>DevDocs</div>
-      <div tabIndex={0}>Blogs</div>
-      <div tabIndex={0}>Resources</div>
-      <div tabIndex={0}>Login</div>
+      <Link to="/">
+        <img className="logo" src={homeLogo} alt="one leif logo" />
+      </Link>
+      <Link className="link" to="/Meet-the-team">
+        Meet the team
+      </Link>
+      <Link className="link" to="/Dev-Docs">
+        DevDocs
+      </Link>
+      <Link className="link" to="/Blogs">
+        Blogs
+      </Link>
+      <Link className="link" to="/Resources">
+        Resources
+      </Link>
+      <div className="link">Login</div>
     </header>
-  )
+  );
 }
 
-export default Header;
+export default withRouter(Header);

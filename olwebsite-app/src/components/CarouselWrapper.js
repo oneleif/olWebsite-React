@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import homeLogo from '../images/homeLogo.png';
+import homeLogo from "../images/homeLogo.png";
 
-import { Carousel } from 'react-responsive-carousel';
+import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
-function CarouselWrapper() {
+export default function CarouselWrapper() {
   const SHOW_THUMBS = false;
   const INFINITE_LOOP = true;
   const AUTO_PLAY = true;
@@ -15,18 +15,24 @@ function CarouselWrapper() {
 
   return (
     <div className="carousel-custom">
-        <Carousel showThumbs={SHOW_THUMBS}
+      <Carousel
+        showThumbs={SHOW_THUMBS}
         infiniteLoop={INFINITE_LOOP}
         autoPlay={AUTO_PLAY}
         interval={INTERVAL}
         width={WIDTH}
-        showStatus={SHOW_STATUS}>
-                <div><img src={homeLogo} alt="logo"/></div>
-                <div><img src={homeLogo} alt="logo"/></div>
-                <div><img src={homeLogo} alt="logo"/></div>
-        </Carousel>
+        showStatus={SHOW_STATUS}
+      >
+        <div>
+          <img src={homeLogo} alt="logo" />
+        </div>
+        <div>
+          <img src={homeLogo} alt="logo" />
+        </div>
+        <div>
+          <img src={homeLogo} alt="logo" />
+        </div>
+      </Carousel>
     </div>
-  )
+  );
 }
-
-export default CarouselWrapper;
