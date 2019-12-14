@@ -18,35 +18,35 @@ function Header() {
       </Link>
       <NavLink
         to="/Meet-the-team"
-        className="top-nav-link"
+        className="top-nav top-nav-link"
         activeClassName="top-nav-link-active"
       >
         Meet the team
       </NavLink>
       <NavLink
         to="/Dev-Docs"
-        className="top-nav-link"
+        className="top-nav top-nav-link"
         activeClassName="top-nav-link-active"
       >
         DevDocs
       </NavLink>
       <NavLink
         to="/Blogs"
-        className="top-nav-link"
+        className="top-nav top-nav-link"
         activeClassName="top-nav-link-active"
       >
         Blogs
       </NavLink>
       <NavLink
         to="/Resources"
-        className="top-nav-link"
+        className="top-nav top-nav-link"
         activeClassName="top-nav-link-active"
       >
         Resources
       </NavLink>
       <div className="icon-container">
-        <FaSearch tabIndex="0" className="top-nav-icon" />
-        <Link to="/Login" className="top-nav-icon">
+        <FaSearch tabIndex="0" className="top-nav top-nav-icon" />
+        <Link to="/Login" className="top-nav top-nav-icon">
           <FaUser />
         </Link>
       </div>

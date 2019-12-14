@@ -8,6 +8,13 @@
 }
 
 .top-nav {
+    cursor: pointer;
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: black;
+
     &-logo {
     cursor: pointer;
     height: calc(8px + 4vmin);
@@ -15,14 +22,8 @@
 
     &-link {
         border-bottom: 5px solid white;
-        cursor: pointer;
         font-family: 'Open Sans', sans-serif;
-        height: 35px;
-        text-align: center;
-        vertical-align: middle;
         line-height: 45px;
-        text-decoration: none;
-        color: black;
     
         &-active {
             border-bottom: 5px solid #16341c;
@@ -34,14 +35,7 @@
     }
 
     &-icon {
-        cursor: pointer;
-        font-family: 'Open Sans', sans-serif;
-        height: 35px;
-        text-align: center;
-        vertical-align: middle;
         line-height: 43px;
-        text-decoration: none;
-        color: black;
 
         &:hover{
             opacity: .7;
