@@ -2,7 +2,7 @@
 .app {
     text-align: center;
   
-    .app-body {
+    &-body {
         background-color: #242424;
         min-height: 100vh;
         color: white;
@@ -10,5 +10,12 @@
         flex-direction: column;
         padding-top: 2%;
       }
+}
+
+@media only screen and (max-width: 600px) {
+  /* For Mobile: */
+  .app-body {
+    width: 101%;
+  }
 }
 

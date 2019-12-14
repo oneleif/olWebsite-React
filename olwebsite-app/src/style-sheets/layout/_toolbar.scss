@@ -1,0 +1,62 @@
+.tool-bar {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 40px;
+}
+
+.top-nav {
+    cursor: pointer;
+    height: 35px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    color: black;
+
+    &-logo {
+    cursor: pointer;
+    height: 42px;
+    }
+
+    &-link {
+        border-bottom: 5px solid white;
+        font-family: 'Open Sans', sans-serif;
+        line-height: 45px;
+    
+        &-active {
+            border-bottom: 5px solid #16341c;
+        }
+
+        &:hover, &:focus{
+            border-bottom: 5px solid #16341c;
+        }
+    }
+
+    &-icon {
+        line-height: 43px;
+
+        &:hover{
+            opacity: .7;
+        }
+    }
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: row;
+    min-width: 75px;
+    justify-content: space-around;
+}
+
+@media only screen and (max-width: 600px) {
+    /* For mobile: */
+    .icon-container {
+        min-width: 55px;
+    }
+
+    .top-nav-link {
+        display: none;
+    }
+  }
