@@ -6,12 +6,20 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 export default function CarouselWrapper() {
+  /************************************
+   * Constants
+   ************************************/
+
   const SHOW_THUMBS = false;
   const INFINITE_LOOP = true;
   const AUTO_PLAY = true;
   const SHOW_STATUS = false;
   const INTERVAL = 6000;
   const WIDTH = "75%";
+
+  /************************************
+   * Render
+   ************************************/
 
   return (
     <div className="carousel-custom">

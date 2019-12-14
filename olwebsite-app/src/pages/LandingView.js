@@ -3,6 +3,10 @@ import React from "react";
 import CarouselWrapper from "../components/CarouselWrapper";
 
 export default function LandingView() {
+  /************************************
+   * Render
+   ************************************/
+
   return (
     <>
       <CarouselWrapper />
