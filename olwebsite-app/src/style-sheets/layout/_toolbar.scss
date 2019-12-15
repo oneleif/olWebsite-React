@@ -8,7 +8,6 @@
 }
 
 .top-nav {
-    cursor: pointer;
     height: 35px;
     text-align: center;
     vertical-align: middle;
@@ -16,8 +15,8 @@
     color: black;
 
     &-logo {
-    cursor: pointer;
-    height: 42px;
+        cursor: pointer;
+        height: 42px;
     }
 
     &-link {
@@ -35,7 +34,8 @@
     }
 
     &-icon {
-        line-height: 43px;
+        cursor: pointer;
+        line-height: 39px;
 
         &:hover{
             opacity: .7;
