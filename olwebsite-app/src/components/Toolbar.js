@@ -14,7 +14,7 @@ function Header() {
   return (
     <div className="tool-bar">
       <Link to="/">
-        <img className="top-nav-logo" src={homeLogo} alt="one leif logo" />
+        <img className="top-nav-logo" src={homeLogo} alt="oneleif logo" />
       </Link>
       <NavLink
         to="/Meet-the-team"
