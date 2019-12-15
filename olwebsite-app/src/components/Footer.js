@@ -53,7 +53,7 @@ function Footer() {
         </div>
         <div className="footer-column footer-column-right">
           <div className="footer-column-icon-container">
-            <FaSearch className="site-footer-icon" />
+            <FaSearch tabIndex="0" className="site-footer-icon" />
             <Link
               to="/Login"
               className="site-footer-icon site-footer-icon-link"
