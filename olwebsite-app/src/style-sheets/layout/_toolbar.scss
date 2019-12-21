@@ -1,62 +1,90 @@
-.tool-bar {
+header {
     background-color: #ffffff;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    height: 40px;
-}
-
-.top-nav {
-    height: 35px;
-    text-align: center;
-    vertical-align: middle;
-    text-decoration: none;
     color: black;
+    height: 50px;
 
-    &-logo {
-        cursor: pointer;
-        height: 42px;
-    }
-
-    &-link {
-        border-bottom: 5px solid white;
-        font-family: 'Open Sans', sans-serif;
-        line-height: 45px;
-    
-        &-active {
-            border-bottom: 5px solid #16341c;
-        }
-
-        &:hover, &:focus{
-            border-bottom: 5px solid #16341c;
-        }
-    }
-
-    &-icon {
-        cursor: pointer;
-        line-height: 39px;
-
-        &:hover{
-            opacity: .7;
-        }
-    }
-}
-
-.icon-container {
     display: flex;
     flex-direction: row;
-    min-width: 75px;
-    justify-content: space-around;
-}
+    align-items: center;
+    justify-content: space-between;
 
-@media only screen and (max-width: 600px) {
-    /* For mobile: */
-    .icon-container {
-        min-width: 55px;
+    & ul.icon-module {
+        width: 10%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: center;
+    }
+    
+    & li {
+        list-style: none;
     }
 
-    .top-nav-link {
-        display: none;
+    & ul.icon-module li svg {
+        cursor: pointer;
+        color: #000000;
+    }
+    
+    & ul.icon-module li a {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    & nav {
+        width: 70%;
+    
+        & ul {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between; 
+            align-items: center;
+        }
+    
+        & li.top-nav-logo {
+            margin-right: 24px;
+        }
+    
+        & li.top-nav-logo h1 a {
+            display: flex;
+            height: 100%;
+        }
+    
+        & li.top-nav-logo h1 img {
+            cursor: pointer;
+            height: 42px;
+        }
+    
+        & li a {
+            color:  #000000;
+            font-size: 18px;
+            text-decoration: none;
+        }
+    
+        & li {
+            margin-right: 20px;
+            list-style: none;
+        }
+    
+        & li:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+@media only screen and (max-width: 635px) {
+    header {
+        & ul.icon-module {
+            min-width: 65px;
+        }
+
+        & nav {
+            & ul {
+                padding-inline-start: 10px;
+            }
+    
+            & li a {
+                display: none;
+            }
+        }
     }
   }
