@@ -47,6 +47,10 @@ footer {
     & a {
         color: #ffffff;
         text-decoration: none;
+
+        &:hover {
+            opacity: 0.7;
+        }
     }
 }
 
