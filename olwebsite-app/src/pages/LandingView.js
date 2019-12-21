@@ -42,6 +42,24 @@ export default function LandingView() {
             oneleif uses GitHub for working as a team, click on the link below
             to check out our projects..
           </p>
+          <ul>
+            <li>
+              <a href="https://discord.gg/tv9UdJK">
+                <img
+                  src="https://img.shields.io/badge/oneleif-Discord-7284be.svg"
+                  alt="Join the Discord"
+                />
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/oneleif">
+                <img
+                  src="https://img.shields.io/badge/GitHub-oneleif-255e33.svg"
+                  alt="Check out our github"
+                />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </>
