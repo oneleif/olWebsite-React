@@ -15,28 +15,32 @@ export default function LandingView() {
           <h1 className="landing-view-header">About oneleif</h1>
           <div className="img-place-holder"></div>
           <p>
-            oneleif is a community of developers that want to be the best at
-            what they do and have fun while doing it.
+            oneleif is a project based group focused on learning and mentorship.
+            Our core tenet of becoming skilled professionals is to work on open
+            source projects. Open source simply means the work you are doing is
+            available to the public. This comes with the benefit that anyone can
+            help you on your project, and allows those without experience to see
+            how something is made.
           </p>
+          <br />
           <p>
-            To be a member all you need is to be interested in learning and a
-            passion for sharing your knowledge.
+            If you are looking to learn how to program, design, or even make
+            music, oneleif is a community that thrives on helping others. If are
+            already an expert, feel free to bring in a project of your own, or
+            join an already active project. Let oneleif help you find a team
+            based on your interests!
           </p>
         </div>
         <div className="join-us-container">
           <h1>Join Us Today!</h1>
-          <p>Click on the link below to join the Discord server.</p>
           <p>
-            You will start with limited permissions, in a text channel that only
-            moderators will see.
-          </p>
-          <p>
-            To get full access: read the rules, make an introduction in
-            #introductions, and add an appropriate username.
-          </p>
-          <p>
-            When you’re done with the above, shoot a message to the #start
-            channel to let us know, and we will give you full access.
+            Joining oneleif is available in a few forms. The main form of
+            communication for oneleif members is through the discord
+            application. You can download discord on your phone, computer, or
+            tablet to get access. The second form of communication, that is most
+            important for any open source developer is a version control system.
+            oneleif uses GitHub for working as a team, click on the link below
+            to check out our projects..
           </p>
         </div>
       </div>

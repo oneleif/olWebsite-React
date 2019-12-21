@@ -1,35 +1,33 @@
-.landing-view {
-    &-container{
+.landing-view-container{
+        width: 100%;
+
         display: flex;
         flex-direction: column;
-        width: 100%;
         justify-content: center;
         align-items: center;
-    }
 
-    &-header {
-        text-align: left;
-    }
+        & div {
+            width: 75%;
+            border-top: 1px solid #7F8892;
+        }
+
+        & h1, p {
+            text-align: left;
+        }
+
+        & div.join-us-container {
+            width: 75%;
+            margin-bottom: 3%;
+            padding-bottom: 1%;
+            border: 1px solid #7F8892;
+
+            & * {
+                margin: 1.5%;
+            }
+        }
 }
 
-.about-us {
-    &-container{
-        align-items: flex-start;
-        border-top: 1px solid #7F8892;
-        width: 75%;
-    }
-}
-
-.join-us {
-    &-container {
-        align-items: center;
-        border: 1px solid #7F8892;
-        margin-bottom: 3%;
-        padding-bottom: 1%;
-        width: 75%;
-    }
-}
-
+//TODO: Get rid of this place holder when mock ups are set
 .img-place-holder {
     min-width: 100%;
     min-height: 150px;
