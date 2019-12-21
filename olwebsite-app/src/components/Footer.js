@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 
 import homeLogo from "../images/homeLogo.png";
 
-import { FaSearch, FaUser, FaLeaf } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa";
 
 function Footer() {
   /************************************
@@ -11,61 +11,50 @@ function Footer() {
    ************************************/
 
   return (
-    <footer className="site-footer">
-      <div className="site-footer-container">
-        <div className="footer-column footer-column-left">
-          <Link to="/">
-            <img
-              className="site-footer-logo"
-              src={homeLogo}
-              alt="oneleif logo"
-            />
-          </Link>
-          <Link to="/" className="site-footer-leaf-icon site-footer-icon">
-            <FaLeaf />
-          </Link>
-
-          <p className="site-footer-text site-footer-text-left">
-            cool description
-            <br />
-            goes here very
-            <br />
-            cool text
-            <br />
-            More...
-          </p>
-        </div>
-        <div className="footer-column footer-column-center">
-          <div className="footer-column-link-container">
-            <Link to="/Meet-the-team" className="site-footer-nav-link">
-              Meet the team
-            </Link>
-            <Link to="/Dev-Docs" className="site-footer-nav-link">
-              DevDocs
-            </Link>
-            <Link to="/Blogs" className="site-footer-nav-link">
-              Blogs
-            </Link>
-            <Link to="/Resources" className="site-footer-nav-link">
-              Resources
-            </Link>
-          </div>
-        </div>
-        <div className="footer-column footer-column-right">
-          <div className="footer-column-icon-container">
-            <FaSearch tabIndex="0" className="site-footer-icon" />
-            <Link
-              to="/Login"
-              className="site-footer-icon site-footer-icon-link"
-            >
-              <FaUser />
-            </Link>
-          </div>
-          <p className="site-footer-text site-footer-text-right">Contact</p>
-          <p className="site-footer-text site-footer-text-right">Terms</p>
-          <p className="site-footer-text site-footer-text-right">X X X X X</p>
-        </div>
-      </div>
+    <footer>
+      <ul className="logo-module">
+        <li className="bottom-nav-logo">
+          <img src={homeLogo} alt="oneleif logo" />
+        </li>
+        <li>cool description</li>
+        <li>goes here very</li>
+        <li>cool text</li>
+        <li>More...</li>
+      </ul>
+      <nav>
+        <ul className="middle-module">
+          <li>
+            <Link to="/about-us">About Us</Link>
+          </li>
+          <li>
+            <Link to="/posts">Posts</Link>
+          </li>
+          <li>
+            <Link to="/partners">Partners</Link>
+          </li>
+        </ul>
+        <ul className="right-module">
+          <ul className="icon-module">
+            <li>
+              <FaSearch tabIndex="0" />
+            </li>
+            <li>
+              <Link to="/login">
+                <FaUser />
+              </Link>
+            </li>
+          </ul>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li>
+            <Link to="/terms">Terms</Link>
+          </li>
+          <li>
+            <Link to="/">X X X X X</Link>
+          </li>
+        </ul>
+      </nav>
     </footer>
   );
 }

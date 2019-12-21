@@ -6,52 +6,45 @@ import homeLogo from "../images/homeLogo.png";
 
 import { FaSearch, FaUser } from "react-icons/fa";
 
-function Header() {
+function Toolbar() {
   /************************************
    * Render
    ************************************/
 
   return (
-    <div className="tool-bar">
-      <Link to="/">
-        <img className="top-nav-logo" src={homeLogo} alt="oneleif logo" />
-      </Link>
-      <NavLink
-        to="/Meet-the-team"
-        className="top-nav top-nav-link"
-        activeClassName="top-nav-link-active"
-      >
-        Meet the team
-      </NavLink>
-      <NavLink
-        to="/Dev-Docs"
-        className="top-nav top-nav-link"
-        activeClassName="top-nav-link-active"
-      >
-        DevDocs
-      </NavLink>
-      <NavLink
-        to="/Blogs"
-        className="top-nav top-nav-link"
-        activeClassName="top-nav-link-active"
-      >
-        Blogs
-      </NavLink>
-      <NavLink
-        to="/Resources"
-        className="top-nav top-nav-link"
-        activeClassName="top-nav-link-active"
-      >
-        Resources
-      </NavLink>
-      <div className="icon-container">
-        <FaSearch tabIndex="0" className="top-nav top-nav-icon" />
-        <Link to="/Login" className="top-nav top-nav-icon">
-          <FaUser />
-        </Link>
-      </div>
-    </div>
+    <header>
+      <nav>
+        <ul>
+          <li className="top-nav-logo">
+            <h1>
+              <Link to="/">
+                <img src={homeLogo} alt="oneleif logo" />
+              </Link>
+            </h1>
+          </li>
+          <li>
+            <NavLink to="/about-us">About Us</NavLink>
+          </li>
+          <li>
+            <NavLink to="/posts">Posts</NavLink>
+          </li>
+          <li>
+            <NavLink to="/partners">Partners</NavLink>
+          </li>
+        </ul>
+      </nav>
+      <ul className="icon-module">
+        <li>
+          <FaSearch tabIndex="0" />
+        </li>
+        <li>
+          <Link to="/login">
+            <FaUser />
+          </Link>
+        </li>
+      </ul>
+    </header>
   );
 }
 
-export default withRouter(Header);
+export default withRouter(Toolbar);
