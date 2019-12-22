@@ -22,25 +22,24 @@ export default function CarouselWrapper() {
    ************************************/
 
   return (
-    <div className="carousel-custom">
-      <Carousel
-        showThumbs={SHOW_THUMBS}
-        infiniteLoop={INFINITE_LOOP}
-        autoPlay={AUTO_PLAY}
-        interval={INTERVAL}
-        width={WIDTH}
-        showStatus={SHOW_STATUS}
-      >
-        <div>
-          <img src={homeLogo} alt="logo" />
-        </div>
-        <div>
-          <img src={homeLogo} alt="logo" />
-        </div>
-        <div>
-          <img src={homeLogo} alt="logo" />
-        </div>
-      </Carousel>
-    </div>
+    <Carousel
+      showThumbs={SHOW_THUMBS}
+      infiniteLoop={INFINITE_LOOP}
+      autoPlay={AUTO_PLAY}
+      interval={INTERVAL}
+      width={WIDTH}
+      showStatus={SHOW_STATUS}
+      className="carousel-custom"
+    >
+      <div>
+        <img src={homeLogo} alt="logo" />
+      </div>
+      <div>
+        <img src={homeLogo} alt="logo" />
+      </div>
+      <div>
+        <img src={homeLogo} alt="logo" />
+      </div>
+    </Carousel>
   );
 }
