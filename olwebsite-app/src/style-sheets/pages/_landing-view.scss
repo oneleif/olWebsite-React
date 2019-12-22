@@ -21,8 +21,29 @@
             padding-bottom: 1%;
             border: 1px solid #7F8892;
 
-            & h1, p {
+            & h1 {
                 margin: 1.5%;
+            }
+
+            & p {
+                margin: 1.5% 1.5% 3%;
+            }
+
+            & ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
+
+                padding-inline-start: 0;
+
+                & li {
+                    list-style: none;
+                    width: 34%;
+                    
+                    & a img {
+                        width: 100%;
+                    }
+                }
             }
         }
 }
