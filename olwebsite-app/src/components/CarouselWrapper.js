@@ -1,45 +1,108 @@
 import React from "react";
-
 import homeLogo from "../images/homeLogo.png";
 
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+class CarouselWrapper extends React.Component {
+  state = {
+    currentIndex: 0,
+    arrayOfLogo: [homeLogo, homeLogo] //  Since these are same logo in this array, react show warning. Fix: add unique image
+  };
 
-export default function CarouselWrapper() {
-  /************************************
-   * Constants
-   ************************************/
+  componentDidMount() {
+    setInterval(
+      function() {
+        this.handleManageCurrentIndex();
+      }.bind(this),
+      6000
+    );
+  }
 
-  const SHOW_THUMBS = false;
-  const INFINITE_LOOP = true;
-  const AUTO_PLAY = true;
-  const SHOW_STATUS = false;
-  const INTERVAL = 6000;
-  const WIDTH = "75%";
+  handleManageCurrentIndex = function() {
+    if (this.state.currentIndex === this.state.arrayOfLogo.length - 1) {
+      this.setState({
+        currentIndex: 0
+      });
+    } else {
+      this.setState({
+        currentIndex: this.state.currentIndex + 1
+      });
+    }
+  }.bind(this);
 
-  /************************************
-   * Render
-   ************************************/
+  handleRouteToImage = function(payload) {
+    this.setState({
+      currentIndex: payload
+    });
+  }.bind(this);
 
-  return (
-    <Carousel
-      showThumbs={SHOW_THUMBS}
-      infiniteLoop={INFINITE_LOOP}
-      autoPlay={AUTO_PLAY}
-      interval={INTERVAL}
-      width={WIDTH}
-      showStatus={SHOW_STATUS}
-      className="carousel-custom"
-    >
-      <div>
-        <img src={homeLogo} alt="logo" />
+  handleRoutePrevImage = function() {
+    if (this.state.currentIndex === 0) {
+      this.setState({
+        currentIndex: this.state.arrayOfLogo.length - 1
+      });
+    } else {
+      this.setState({
+        currentIndex: this.state.currentIndex - 1
+      });
+    }
+  }.bind(this);
+
+  handleRouteNextImage = function() {
+    if (this.state.currentIndex === this.state.arrayOfLogo.length - 1) {
+      this.setState({
+        currentIndex: 0
+      });
+    } else {
+      this.setState({
+        currentIndex: this.state.currentIndex + 1
+      });
+    }
+  }.bind(this);
+
+  render() {
+    let renderDotIndicators = this.state.arrayOfLogo.map(
+      function(value, index) {
+        return (
+          <li
+            key={value}
+            style={{
+              color: this.state.currentIndex === index ? "#bbb" : "#717171",
+              listStyle: "none"
+            }}
+            onClick={function() {
+              this.handleRouteToImage(index);
+            }.bind(this, index)}
+          >
+            •
+          </li>
+        );
+      }.bind(this)
+    );
+
+    return (
+      <div className="carousel_container">
+        <div className="carousel_items">
+          <div className="arrow_container" onClick={this.handleRoutePrevImage}>
+            <i
+              className="left_arrow"
+              style={{ height: "10px", width: "10px" }}
+            ></i>
+          </div>
+          <img
+            style={{ width: "75%", height: "332px" }}
+            src={this.state.arrayOfLogo[this.state.currentIndex]}
+            alt="logo"
+          />
+          <div className="arrow_container" onClick={this.handleRouteNextImage}>
+            <i
+              className="right_arrow"
+              style={{ height: "10px", width: "10px" }}
+            ></i>
+          </div>
+        </div>
+        <div className="dot_indicators_container">{renderDotIndicators}</div>
       </div>
-      <div>
-        <img src={homeLogo} alt="logo" />
-      </div>
-      <div>
-        <img src={homeLogo} alt="logo" />
-      </div>
-    </Carousel>
-  );
+    );
+  }
 }
+
+export default CarouselWrapper;

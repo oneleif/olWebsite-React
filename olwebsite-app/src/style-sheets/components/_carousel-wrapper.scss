@@ -1,9 +1,42 @@
-.carousel-custom {
-  text-align: center;
-  margin-bottom: 3%;
-}
-  
-.carousel.carousel-slider {
-  display: inline-block;
-  border-radius: 16px;
+.carousel_container {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  .carousel_items {
+    display: flex;
+
+    .arrow_container {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+      &:hover {
+        background-color: #222121;
+      }
+
+      i {
+        border: solid white;
+        border-width: 0 3px 3px 0;
+      }
+
+      .left_arrow {
+        transform: rotate(135deg);
+      }
+
+      .right_arrow {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  .dot_indicators_container {
+    display: flex;
+    justify-content: space-around;
+    width: 10%;
+    align-self: center;
+    cursor: pointer;
+  }
 }
