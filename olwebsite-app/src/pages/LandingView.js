@@ -1,6 +1,7 @@
 import React from "react";
 
-import CarouselWrapper from "../components/CarouselWrapper";
+import Slides from "../components/Carousel/Slides";
+import Carousel from "../components/Carousel/Carousel";
 
 export default function LandingView() {
   /************************************
@@ -9,7 +10,7 @@ export default function LandingView() {
 
   return (
     <>
-      <CarouselWrapper />
+      <Carousel slides={Slides} />
       <div className="landing-view-container">
         <div className="about-us-container">
           <h1 className="landing-view-header">About oneleif</h1>
