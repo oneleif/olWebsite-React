@@ -7,6 +7,7 @@ import "./style-sheets/main.scss";
 import Toolbar from "./components/Toolbar";
 import Footer from "./components/Footer";
 import LandingView from "./pages/LandingView";
+import PostsView from "./pages/PostsView";
 
 export default function OlWebsiteApp() {
   /************************************
@@ -19,6 +20,7 @@ export default function OlWebsiteApp() {
         <Toolbar />
         <div className="app-body">
           <Switch>
+            <Route path="/posts" component={PostsView} />
             <Route path="/" component={LandingView} />
           </Switch>
         </div>
