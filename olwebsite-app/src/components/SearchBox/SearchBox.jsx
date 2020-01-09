@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { FaSearch } from "react-icons/fa";
 
 const SearchBox = ({ onSearch, placeholder }) => {
-  
+
   // If we decide to search on change, raise the state
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -25,7 +25,6 @@ const SearchBox = ({ onSearch, placeholder }) => {
           onClick={() => onSearch(searchQuery)}
         />
         <input
-          id="search"
           type="search"
           name="search-box"
           value={searchQuery}
