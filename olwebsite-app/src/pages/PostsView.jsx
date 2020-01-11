@@ -8,7 +8,7 @@ export default function PostsView() {
    ************************************/
 
   return (
-    <div className="posts-view-container">
+    <div>
       <h1>Posts View</h1>
       <CardContainer>
         //TODO: Pass Children/Cards in here
