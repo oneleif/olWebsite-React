@@ -11,7 +11,7 @@ export default function PostsView() {
     <div>
       <h1>Posts View</h1>
       <CardContainer>
-        //TODO: Pass Children/Cards in here
+        {/* //TODO: Pass Children/Cards in here */}
       </CardContainer>
     </div>
   );
