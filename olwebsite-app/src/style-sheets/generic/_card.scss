@@ -1,0 +1,14 @@
+.card-module {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #A4A4A4;
+    width: 18%;
+    margin: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .card-module {
+      width: 35%;
+    }
+  }
