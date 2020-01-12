@@ -26,6 +26,15 @@ export default function PostsView() {
        },
        {
            header: "Test Header"
+       },
+       {
+           header: "Test Header"
+       },
+       {
+           header: "Test Header"
+       },
+       {
+           header: "Test Header"
        }
     ];
   return (
