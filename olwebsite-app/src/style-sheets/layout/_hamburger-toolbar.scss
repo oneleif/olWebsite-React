@@ -1,0 +1,55 @@
+#hamburgerToolbar {
+    background-color: #ffffff;
+    color: black;
+
+    & nav {
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 1%;
+
+        & h1 {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+
+        & .top-nav-logo {
+            cursor: pointer;
+            height: 42px;
+            margin-left: 16px;
+        }
+
+        & .top-nav-icons {
+            margin-right: 3%;         
+            display: flex;
+            flex-direction: row;
+            width: 17%;
+
+            & svg {
+                padding: 0 6%;
+            }
+        }
+
+        & #myLinks {
+            display: none;
+            background-color: #555555;
+            width: 100%;
+
+            & a {
+                color: white;
+                padding: 14px 16px;
+                text-decoration: none;
+                font-size: 17px;
+                display: block;
+                background-color: #555555;
+                &:hover {
+                    background-color: #ddd;
+                    color: black;
+                  }
+              }
+          }          
+    }
+}
