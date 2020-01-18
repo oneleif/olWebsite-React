@@ -3,12 +3,18 @@
     padding: 16px;
     text-align: center;
     background-color: #A4A4A4;
-    width: 18%;
-    margin: 10px;
+    width: 19%;
+    margin: 0 0 10px 10px;
 }
 
-@media screen and (max-width: 935px) {
+@media screen and (max-width: 1041px) {
     .card-module {
       width: 35%;
+    }
+  }
+
+@media screen and (max-width: 652px) {
+    .card-module {
+      width: 70%;
     }
   }
