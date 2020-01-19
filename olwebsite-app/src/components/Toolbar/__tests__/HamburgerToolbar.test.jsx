@@ -8,7 +8,6 @@ describe("Hamburger Toolbar Component Tests", function() {
 
     beforeEach(() => {
         renderedComponent = renderWithRouter(<HamburgerToolbar/>);
-        global.innerWidth = 350;
     });
 
     test("initial render, dropdown should not be shown", () => {
