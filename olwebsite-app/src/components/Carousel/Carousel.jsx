@@ -9,14 +9,23 @@ import DotIndicator from "../DotIndicator/DotIndicator";
  ************************************/
 
 const SLIDE_SIZE = 100;
-const INITIAL_POSITION = 0;
 
-export default function Carousel ({slides, interval }) {
+export default function Carousel ({
+  slides,
+  interval,
+  arrowSize,
+  arrowColor,
+  isAutomatic, 
+  initialPosition,
+  includeDotIndicators,
+  includeNavigationArrows 
+}) {
 
   /************************************
    * State
    ************************************/
-  const [position, setPosition] = useState(INITIAL_POSITION);
+  const [autoRun, setAutoRun] = useState(isAutomatic);
+  const [position, setPosition] = useState(initialPosition);
 
   /************************************
    * Callbacks
@@ -26,23 +35,20 @@ export default function Carousel ({slides, interval }) {
     const lastSlide = -SLIDE_SIZE * (slides.length - 1);
 
     position ===  lastSlide
-      ? setPosition(INITIAL_POSITION)
+      ? setPosition(initialPosition)
       : setPosition(position - SLIDE_SIZE);
-  }, [position, slides.length]); 
+  }, [initialPosition, position, slides.length]); 
 
   /************************************
-   * Lifecycle Hooks
+   * Life Cycle Hooks
    ************************************/
 
   useEffect(() => {
-    const msInterval = setInterval(() => {
-      handleNext();
-    }, interval);
-
-    return function cleanup() {
-      clearInterval(msInterval);
-    };
-  }, [handleNext, interval]);
+    if(autoRun) {
+      const id = setInterval(handleNext, interval);
+      return () => clearInterval(id);
+    }
+  }, [handleNext, interval, autoRun]);
  
   /************************************
    * Functions
@@ -51,7 +57,7 @@ export default function Carousel ({slides, interval }) {
   function handlePrevious() {
     const lastSlide = -SLIDE_SIZE * (slides.length - 1);
 
-    position === INITIAL_POSITION
+    position === initialPosition
       ? setPosition(lastSlide)
       : setPosition(position + SLIDE_SIZE);
   }
@@ -59,36 +65,73 @@ export default function Carousel ({slides, interval }) {
   /************************************
    * Render
    ************************************/
-  
+  const arrowStyles = {
+    size: arrowSize,
+    color: arrowColor
+  }
+
   const carouselSlides = slides.map((slide, index) => (
-      <div 
-        key={index} 
-        className="slide"
-        style={{transform:`translateX(${position}%)`}}
-      >
-       {slide}
-      </div>  
+    <div 
+      key={index} 
+      className="slide"
+      style={{transform:`translateX(${position}%)`}}>
+      {slide}
+    </div> 
   ));
 
   return (
     <div className="carousel">
-        {carouselSlides}
-        <FaChevronLeft className="arrow-left" onClick={handlePrevious} />
-        <FaChevronRight className="arrow-right" onClick={handleNext} />
+      {carouselSlides}
+      {includeNavigationArrows &&
+        <>
+          <button 
+            className="arrow-left"
+            onClick={handlePrevious}
+            onBlur={() => setAutoRun(true)}
+            onFocus={() => setAutoRun(false)}
+            onMouseLeave={() => setAutoRun(true)}
+            onMouseEnter={() => setAutoRun(false)}>
+            <FaChevronLeft {...arrowStyles}/>
+          </button>
+          <button 
+            className="arrow-right"
+            onClick={handleNext}
+            onBlur={() => setAutoRun(true)}
+            onFocus={() => setAutoRun(false)}
+            onMouseLeave={() => setAutoRun(true)}
+            onMouseEnter={() => setAutoRun(false)}>
+            <FaChevronRight {...arrowStyles}/>
+          </button>
+        </> 
+      }
+      {includeDotIndicators && 
         <DotIndicator 
           slides={slides}
           onDotClicked={index => setPosition(index * -SLIDE_SIZE)}
-          currentIndex={Math.abs(position) / 100}
-        />
+          currentIndex={Math.abs(position) / 100}/>
+      }
     </div>
   );
 };
 
 Carousel.defaultProps = {
-  interval: 5000
+  slides: [],
+  interval: 6000,
+  arrowSize: 20,
+  arrowColor: "white",
+  isAutomatic: true,
+  initialPosition: 0,
+  includeDotIndicators: true,
+  includeNavigationArrows: true,
 };
 
 Carousel.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.any).isRequired,
-  interval: PropTypes.number
+  slides: PropTypes.arrayOf(PropTypes.any),
+  interval: PropTypes.number,
+  arrowSize: PropTypes.number,
+  arrowColor: PropTypes.string,
+  isAutomatic: PropTypes.bool,
+  initialPosition: PropTypes.number,
+  includeDotIndicators: PropTypes.bool,
+  includeNavigationArrows: PropTypes.bool,
 };
