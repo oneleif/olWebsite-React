@@ -55,7 +55,8 @@ function HamburgerToolbar() {
             <NavLink to="/partners">Partners</NavLink>
           </li>
         </ul>
-      </nav>}
+      </nav>
+    }
     </header>
   );
 }
