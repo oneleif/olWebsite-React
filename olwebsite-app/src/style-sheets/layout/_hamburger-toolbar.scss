@@ -1,4 +1,5 @@
 #hamburgerToolbar {
+    width: 101%;
     background-color: #ffffff;
     color: black;
 
@@ -35,8 +36,7 @@
             }
         }
 
-        & #myLinks {
-            display: none;
+        & .link-dropdown {
             background-color: #555555;
             width: 100%;
           }          

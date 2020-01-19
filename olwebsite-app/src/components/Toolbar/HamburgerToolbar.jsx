@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
@@ -8,27 +8,10 @@ import { FaSearch, FaUser, FaBars } from "react-icons/fa";
 
 function HamburgerToolbar() {
   /************************************
-   * Hooks
-  ************************************/
-
-  const myRef = useRef(null);
-
-  /************************************
-   * Helper Functions
-  ************************************/
-
-  /*
-  * Used to toggle the horizontal navigation dropdown when the
-  * user is viewing from mobile
-  */
-  function toggleNavigvation() {
-    let navigation = myRef.current;
-    if (navigation.style.display === "block") {
-      navigation.style.display = "none";
-    } else {
-      navigation.style.display = "block";
-    }
-  }
+   * State
+   ************************************/
+  
+   const [showNavigation, setShowNavigation] = useState(false);
 
   /************************************
    * Render
@@ -50,14 +33,15 @@ function HamburgerToolbar() {
             <FaUser tabIndex="0"/>
           </li>
           <li>
-            <FaBars tabIndex="0" 
-              onClick={(() => toggleNavigvation())} 
-              onKeyPress={(() => toggleNavigvation())}/>
+            <FaBars aria-label="Hamburger Button" tabIndex="0" 
+              onClick={(() => setShowNavigation(!showNavigation))} 
+              onKeyPress={(() => setShowNavigation(!showNavigation))}/>
           </li>
         </ul>
       </nav>
+      { showNavigation && 
       <nav>
-        <ul id="myLinks" ref={myRef}>
+        <ul className="link-dropdown">
           <li>
             <NavLink to="/join">Join</NavLink>
           </li>
@@ -71,7 +55,7 @@ function HamburgerToolbar() {
           < NavLink to="/partners">Partners</NavLink>
           </li>
         </ul>
-      </nav>
+      </nav>}
     </header>
   );
 }
