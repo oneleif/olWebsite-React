@@ -1,7 +1,7 @@
 import React from 'react';
 
 import HamburgerToolbar from '../HamburgerToolbar';
-import { renderWithRouter, getComponentFromDOM, clickEventByLabelText} from "../../../utils/test-utils";
+import { renderWithRouter, getComponentFromDOM, clickEventByLabelText} from "test-utils";
 
 describe("Hamburger Toolbar Component Tests", function() {
     let renderedComponent;
@@ -12,23 +12,23 @@ describe("Hamburger Toolbar Component Tests", function() {
 
     test("initial render, dropdown should not be shown", () => {
         const links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
-        expect(links).toBeNull();
+        expect(links).not.toBeInTheDocument();
     });
 
     test("Hamburger button clicked, link dropdown is defined/undefined when toggled", () => {        
         let links;   
         links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
-        expect(links).toBeNull();
+        expect(links).not.toBeInTheDocument();
 
         clickEventByLabelText(renderedComponent.container, 'Hamburger Button');
 
         links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
-        expect(links).toBeDefined();
+        expect(links).toBeInTheDocument();
 
         clickEventByLabelText(renderedComponent.container,'Hamburger Button');
 
         links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
-        expect(links).toBeNull();
+        expect(links).not.toBeInTheDocument();
     });
 
 });
