@@ -23,13 +23,15 @@
         }
 
         & .top-nav-icons {
-            margin-right: 3%;         
+            margin-right: 3%;
+            width: 30%;
+      
             display: flex;
             flex-direction: row;
-            width: 17%;
-
-            & svg {
-                padding: 0 6%;
+            justify-content: center;
+            
+            & li {
+                margin: 0 8%;
             }
         }
 
@@ -37,6 +39,16 @@
             display: none;
             background-color: #555555;
             width: 100%;
+          }          
+    }
+
+    & ul {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding-inline-start: 0;
+
+        & li {
+            list-style: none;
 
             & a {
                 color: white;
@@ -45,11 +57,12 @@
                 font-size: 17px;
                 display: block;
                 background-color: #555555;
+                
                 &:hover {
                     background-color: #ddd;
                     color: black;
-                  }
-              }
-          }          
+                }
+            }
+        }
     }
 }

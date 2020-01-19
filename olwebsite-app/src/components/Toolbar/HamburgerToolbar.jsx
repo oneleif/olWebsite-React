@@ -42,21 +42,35 @@ function HamburgerToolbar() {
             <img className="top-nav-logo" src={homeLogo} alt="oneleif logo" />
           </Link>
         </h1>
-        <div className="top-nav-icons">
+        <ul className="top-nav-icons">
+          <li>
             <FaSearch tabIndex="0" />
+          </li>
+          <li>
             <FaUser tabIndex="0"/>
+          </li>
+          <li>
             <FaBars tabIndex="0" 
               onClick={(() => toggleNavigvation())} 
               onKeyPress={(() => toggleNavigvation())}/>
-        </div>
+          </li>
+        </ul>
       </nav>
       <nav>
-        <div id="myLinks" ref={myRef}>
-          <NavLink to="/join">Join</NavLink>
-          <NavLink to="/about-us">About</NavLink>
-          <NavLink to="/posts">Posts</NavLink>
-          <NavLink to="/partners">Partners</NavLink>
-        </div>
+        <ul id="myLinks" ref={myRef}>
+          <li>
+            <NavLink to="/join">Join</NavLink>
+          </li>
+          <li>
+            <NavLink to="/about-us">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/posts">Posts</NavLink>
+          </li>
+          <li>
+          < NavLink to="/partners">Partners</NavLink>
+          </li>
+        </ul>
       </nav>
     </header>
   );
