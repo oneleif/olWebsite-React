@@ -52,7 +52,7 @@ function HamburgerToolbar() {
             <NavLink to="/posts">Posts</NavLink>
           </li>
           <li>
-          < NavLink to="/partners">Partners</NavLink>
+            < NavLink to="/partners">Partners</NavLink>
           </li>
         </ul>
       </nav>}
