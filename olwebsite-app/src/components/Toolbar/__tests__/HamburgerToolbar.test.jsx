@@ -1,14 +1,14 @@
 import React from 'react';
 
 import { render, fireEvent, getByLabelText } from '@testing-library/react';
-import ToolbarContainer from '../ToolbarContainer.jsx';
+import HamburgerToolbar from '../HamburgerToolbar';
 import {  BrowserRouter as Router } from "react-router-dom";
 
 describe("Hamburger Toolbar Component Tests", function() {
     let renderedComponent;
 
     beforeEach(() => {
-        renderedComponent = render(<Router><ToolbarContainer/></Router>);
+        renderedComponent = render(<Router><HamburgerToolbar/></Router>);
         global.innerWidth = 350;
     });
 

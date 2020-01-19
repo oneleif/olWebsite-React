@@ -11,10 +11,10 @@ export default function ToolbarContainer() {
   return (
     <>
         <div className="toolbar-container">
-            <Toolbar></Toolbar>
+            <Toolbar/>
         </div>
         <div className="hamburger-toolbar-container">
-            <HamburgerToolBar></HamburgerToolBar>
+            <HamburgerToolBar/>
         </div>
     </>
   );
