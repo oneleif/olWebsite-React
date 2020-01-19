@@ -1,32 +1,35 @@
 import React from 'react';
 
-import { render, fireEvent, getByLabelText } from '@testing-library/react';
 import HamburgerToolbar from '../HamburgerToolbar';
-import {  BrowserRouter as Router } from "react-router-dom";
+import { renderWithRouter, getComponentFromDOM, clickEventByLabelText} from "../../../utils/test-utils";
 
 describe("Hamburger Toolbar Component Tests", function() {
     let renderedComponent;
 
     beforeEach(() => {
-        renderedComponent = render(<Router><HamburgerToolbar/></Router>);
+        renderedComponent = renderWithRouter(<HamburgerToolbar/>);
         global.innerWidth = 350;
     });
 
     test("initial render, dropdown should not be shown", () => {
-        const links = renderedComponent.container.querySelector('.link-dropdown');
+        const links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
         expect(links).toBeNull();
     });
 
-    test("Hamburger button clicked, link dropdown is defined", () => {            
-        fireEvent(
-            getByLabelText(renderedComponent.container, 'Hamburger Button'),
-            new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-            })
-        );
+    test("Hamburger button clicked, link dropdown is defined/undefined when toggled", () => {        
+        let links;   
+        links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
+        expect(links).toBeNull();
 
-        const links = renderedComponent.container.querySelector('.link-dropdown');
+        clickEventByLabelText(renderedComponent.container, 'Hamburger Button');
+
+        links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
         expect(links).toBeDefined();
+
+        clickEventByLabelText(renderedComponent.container,'Hamburger Button');
+
+        links = getComponentFromDOM(renderedComponent.container, '.link-dropdown');
+        expect(links).toBeNull();
     });
+
 });
