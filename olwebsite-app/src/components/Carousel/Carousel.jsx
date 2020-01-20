@@ -30,14 +30,18 @@ export default function Carousel ({
   /************************************
    * Callbacks
    ************************************/
+  
+  const getLastSlide = useCallback(() => {
+    return -SLIDE_SIZE * (slides.length - 1);
+  }, [slides.length]);
 
   const handleNext = useCallback(() => {
-    const lastSlide = -SLIDE_SIZE * (slides.length - 1);
+    const lastSlide = getLastSlide();
 
     position ===  lastSlide
       ? setPosition(initialPosition)
       : setPosition(position - SLIDE_SIZE);
-  }, [initialPosition, position, slides.length]); 
+  }, [getLastSlide, initialPosition, position]); 
 
   /************************************
    * Life Cycle Hooks
@@ -55,7 +59,7 @@ export default function Carousel ({
    ************************************/
 
   function handlePrevious() {
-    const lastSlide = -SLIDE_SIZE * (slides.length - 1);
+    const lastSlide = getLastSlide();
 
     position === initialPosition
       ? setPosition(lastSlide)
@@ -108,7 +112,7 @@ export default function Carousel ({
         <DotIndicator 
           slides={slides}
           onDotClicked={index => setPosition(index * -SLIDE_SIZE)}
-          currentIndex={Math.abs(position) / 100}/>
+          currentIndex={Math.abs(position) / SLIDE_SIZE}/>
       }
     </div>
   );
