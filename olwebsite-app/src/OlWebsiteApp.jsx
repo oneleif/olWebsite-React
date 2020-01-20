@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import "./style-sheets/main.scss";
 
-import Toolbar from "./components/Toolbar";
+import ToolbarContainer from "./components/Toolbar/ToolbarContainer";
 import Footer from "./components/Footer";
 import LandingView from "./pages/LandingView";
 import PostsView from "./pages/PostsView";
@@ -17,7 +17,7 @@ export default function OlWebsiteApp() {
   return (
     <div className="app">
       <Router basename={process.env.PUBLIC_URL}>
-        <Toolbar />
+        <ToolbarContainer />
         <div className="app-body">
           <Switch>
             <Route path="/posts" component={PostsView} />

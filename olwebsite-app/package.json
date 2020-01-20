@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jsdom-fourteen",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,13 +34,15 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/jest-dom": "^4.2.2",
     "@testing-library/react": "^9.4.0",
+    "@types/jest": "^24.0.18",
     "eslint": "^6.5.1",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.2.0",
     "eslint-plugin-html": "^6.0.0",
     "husky": "^3.0.5",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
     "lint-staged": "^9.2.5",
     "prettier": "^1.18.2"
   },
