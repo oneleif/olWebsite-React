@@ -41,7 +41,7 @@ function HamburgerToolbar() {
       </nav>
       { showNavigation && 
       <nav>
-        <ul className="link-dropdown">
+        <ul data-testid='link-dropdown' className="link-dropdown">
           <li>
             <NavLink to="/join">Join</NavLink>
           </li>

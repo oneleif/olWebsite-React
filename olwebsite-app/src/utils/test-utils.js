@@ -22,16 +22,6 @@ export function renderWithRouter(
   };
 }
 
-/* Grabs the wanted JSX from the Component Passed in.
- *
- * @param container - the DOM of the rendered component
- * @param className - className of the JSX to search for
- * @returns {@link JSX}
- */
-export function getComponentFromDOM(container, className) {
-  return container.querySelector(className);
-}
-
 /* Fires mouse click event to click on value
  * with Label/Aria Label passed in
  *
