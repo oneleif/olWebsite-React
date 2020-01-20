@@ -1,4 +1,4 @@
-header {
+#toolBar {
     background-color: #ffffff;
     color: black;
     height: 50px;
@@ -92,21 +92,3 @@ header {
         }
     }
 }
-
-@media only screen and (max-width: 635px) {
-    header {
-        & ul.icon-module {
-            min-width: 65px;
-        }
-
-        & nav {
-            & ul {
-                padding-inline-start: 10px;
-            }
-    
-            & li a {
-                display: none;
-            }
-        }
-    }
-  }

@@ -2,7 +2,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
-import homeLogo from "../images/homeLogo.png";
+import homeLogo from "../../images/homeLogo.png";
 
 import { FaSearch } from "react-icons/fa";
 
@@ -12,7 +12,7 @@ function Toolbar() {
    ************************************/
 
   return (
-    <header>
+    <header id="toolBar">
       <nav>
         <ul>
           <li className="top-nav-logo">
