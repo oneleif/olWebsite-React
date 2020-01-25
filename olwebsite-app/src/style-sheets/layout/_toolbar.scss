@@ -8,6 +8,11 @@
     align-items: center;
     justify-content: space-between;
 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
     & ul.icon-module {
         width: 14%;
         display: flex;
