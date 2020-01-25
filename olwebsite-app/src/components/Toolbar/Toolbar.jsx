@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 
 import homeLogo from "../../images/homeLogo.png";
 
@@ -23,13 +22,13 @@ function Toolbar() {
             </h1>
           </li>
           <li>
-            <NavLink to="/about-us">About Us</NavLink>
+            <NavLink to="/about-us" activeClassName="active-link">About Us</NavLink>
           </li>
           <li>
-            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/posts" activeClassName="active-link">Posts</NavLink>
           </li>
           <li>
-            <NavLink to="/partners">Partners</NavLink>
+            <NavLink to="/partners" activeClassName="active-link">Partners</NavLink>
           </li>
         </ul>
       </nav>
@@ -38,9 +37,9 @@ function Toolbar() {
           <FaSearch tabIndex="0" />
         </li>
         <li>
-          <Link to="/login">
+          <NavLink to="/login" activeClassName="active-link">
             <FaUser />
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </header>
