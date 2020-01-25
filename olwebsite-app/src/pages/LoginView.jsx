@@ -1,10 +1,9 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
 
 import Input from '../components/Objects/Input/Input';
 import homeLogo from "../images/homeLogo.png";
 
-function RegisterView() {
+export default function LoginView() {
   /************************************
    * Render
    ************************************/
@@ -16,17 +15,12 @@ function RegisterView() {
             <form>
                 <Input className={'auth'} label={'Email'}/>
                 <Input className={'auth'} label={'Password'} type={"password"}/>
-                <Input className={'auth'} label={'Reenter Password'} type={"password"}/>
                 <div className="authentication-actions-module">
-                  <Link to="/login">
-                    Already have an account?
-                  </Link>
-                  <button>Sign up</button>
+                  <span>Forgot your password?</span>
+                  <button>Log in</button>
                 </div>
             </form>
         </div>
     </div>
   );
 };
-
-export default withRouter(RegisterView);
