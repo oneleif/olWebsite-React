@@ -2,6 +2,7 @@
     width: 101%;
     background-color: #ffffff;
     color: black;
+    border-bottom: 2pt solid #296C37;
 
     & nav {
         overflow: hidden;
@@ -49,6 +50,10 @@
 
         & li {
             list-style: none;
+            
+            & svg {
+                color: #296C37;
+            }
 
             & a {
                 color: white;

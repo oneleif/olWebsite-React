@@ -22,13 +22,13 @@ function Toolbar() {
             </h1>
           </li>
           <li>
-            <NavLink to="/about-us">About Us</NavLink>
+            <NavLink to="/about-us" activeClassName="active-link">About Us</NavLink>
           </li>
           <li>
-            <NavLink to="/posts">Posts</NavLink>
+            <NavLink to="/posts" activeClassName="active-link">Posts</NavLink>
           </li>
           <li>
-            <NavLink to="/partners">Partners</NavLink>
+            <NavLink to="/partners" activeClassName="active-link">Partners</NavLink>
           </li>
         </ul>
       </nav>
@@ -37,7 +37,7 @@ function Toolbar() {
           <FaSearch tabIndex="0" />
         </li>
         <li>
-          <NavLink to="/sign-up">
+          <NavLink to="/sign-up" activeClassName="active-link">
             Sign Up
           </NavLink>
         </li>

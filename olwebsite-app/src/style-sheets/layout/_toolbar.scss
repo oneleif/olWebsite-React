@@ -1,5 +1,6 @@
 #toolBar {
     background-color: #ffffff;
+    border-bottom: 2pt solid #296C37;
     color: black;
     height: 50px;
 
@@ -29,7 +30,7 @@
         
         & svg {
             cursor: pointer;
-            color: #000000;
+            color: #296C37;
             padding: 20%;
             
             &:hover {
@@ -96,4 +97,9 @@
             }
         }
     }
+
+    .active-link {
+        font-weight: bold;
+    }
 }
+
