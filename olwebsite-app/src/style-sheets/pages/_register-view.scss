@@ -4,7 +4,6 @@
     justify-content: flex-start;
     align-items: center;
 
-    overflow: scroll;
     min-height: 76vh;
     margin-top: 6%;
     
@@ -27,7 +26,7 @@
             align-items: flex-start;
             width: 75%;
 
-            & input[type="submit"] {
+            & button {
                 align-self: flex-end;
                 
                 font-size: 18px;

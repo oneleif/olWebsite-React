@@ -38,9 +38,9 @@ function Toolbar() {
           <FaSearch tabIndex="0" />
         </li>
         <li>
-          <Link to="/sign-up">
+          <NavLink to="/sign-up">
             Sign Up
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </header>

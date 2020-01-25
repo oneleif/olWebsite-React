@@ -16,7 +16,7 @@ export default function RegisterView() {
                 <Input className={'auth'} label={'Email'}/>
                 <Input className={'auth'} label={'Password'} type={"password"}/>
                 <Input className={'auth'} label={'Reenter Password'} type={"password"}/>
-                <input type="submit" value="Sign up" />
+                <button type="submit">Sign up</button>
             </form>
         </div>
     </div>
