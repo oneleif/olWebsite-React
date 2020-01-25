@@ -4,11 +4,13 @@
 @import "./layout/toolbar";
 @import "./layout/toolbar-container";
 
+@import "./generic/authentication-input";
 @import "./generic/card";
 @import "./generic/card-container";
 
 @import "./components/carousel";
 @import "./components/filter";
 
+@import "./pages/authentication-view";
 @import "./pages/landing-view";
 @import "./pages/posts-view";

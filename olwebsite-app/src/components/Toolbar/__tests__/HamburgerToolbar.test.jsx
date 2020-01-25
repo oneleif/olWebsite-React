@@ -1,9 +1,7 @@
 import React from 'react';
 
 import HamburgerToolbar from '../HamburgerToolbar';
-import { renderWithRouter, clickEventByLabelText} from "test-utils";
-
-import { queryByTestId } from '@testing-library/react';
+import { queryByTestId, renderWithRouter, clickEventByLabelText} from "test-utils";
 
 describe("Hamburger Toolbar Component Tests", function() {
     let renderedComponent;

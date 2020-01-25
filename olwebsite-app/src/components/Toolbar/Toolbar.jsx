@@ -3,7 +3,7 @@ import { Link, NavLink, withRouter } from "react-router-dom";
 
 import homeLogo from "../../images/homeLogo.png";
 
-import { FaSearch, FaUser } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 
 function Toolbar() {
   /************************************
@@ -37,8 +37,8 @@ function Toolbar() {
           <FaSearch tabIndex="0" />
         </li>
         <li>
-          <NavLink to="/login" activeClassName="active-link">
-            <FaUser />
+          <NavLink to="/sign-up" activeClassName="active-link">
+            Sign Up
           </NavLink>
         </li>
       </ul>
