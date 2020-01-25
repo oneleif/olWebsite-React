@@ -1,6 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, withRouter } from "react-router-dom";
 
 import homeLogo from "../../images/homeLogo.png";
 
