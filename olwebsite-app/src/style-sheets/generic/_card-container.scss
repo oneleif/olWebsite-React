@@ -1,0 +1,10 @@
+.card-container {
+    max-width: 80%;
+    margin-bottom: 0.67em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    flex: 13;
+    overflow: scroll;
+}
