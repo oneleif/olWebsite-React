@@ -1,6 +1,6 @@
 import React from "react";
 
-import Slides from "../components/Carousel/Slides";
+import Slides from "../slides";
 import Carousel from "../components/Carousel/Carousel";
 
 export default function LandingView() {
