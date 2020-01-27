@@ -1,12 +1,17 @@
 import React from "react";
 
 import ol from "./images/homeLogo.png";
-import Slide from "./components/Slide/Slide.jsx";
+
+const imageStyles = {
+  width: "100%",
+  height: "100%",
+  objectFit: "fill"
+};
 
 export default [
-  <Slide image={ol} alt="logo" />,
-  <Slide image={ol} alt="logo" />,
-  <Slide image={ol} alt="logo" />,
-  <Slide image={ol} alt="logo" />,
-  <Slide image={ol} alt="logo" />
+  <img style={imageStyles} src={ol} alt="logo" />,
+  <img style={imageStyles} src={ol} alt="logo" />,
+  <img style={imageStyles} src={ol} alt="logo" />,
+  <img style={imageStyles} src={ol} alt="logo" />,
+  <img style={imageStyles} src={ol} alt="logo" />
 ];
