@@ -1,0 +1,70 @@
+.carousel-container {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+  
+.carousel_items {
+  display: flex;
+  justify-content: center;
+
+  .arrow_container {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #222121;
+    }
+
+    i {
+      border: solid white;
+      border-width: 0 3px 3px 0;
+    }
+
+    .left_arrow {
+      transform: rotate(135deg);
+    }
+
+    .right_arrow {
+      transform: rotate(-40deg);
+    }
+  }
+
+  .slide {
+    width: 80%;
+    height: 50vh;
+    object-fit: cover;
+  }
+}
+
+.dot_indicators_container {
+  width: 80%;
+  height: 10%;
+  top: 54.5%;
+  cursor: pointer;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background-color: #25252580;
+
+  .dot_indicator {
+    margin: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    transition: background-color 1s ease-in-out;
+  }
+}
+
+
+.white {
+  background-color: #fff;
+}
+
+.gray {
+  background-color: #ffffff80;
+}

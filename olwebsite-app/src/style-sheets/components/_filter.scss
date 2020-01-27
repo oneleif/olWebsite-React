@@ -1,0 +1,20 @@
+.filter-container {
+    flex: 1;
+    padding: 100px;
+    border: 1px solid #A4A4A4;
+    margin-left: 5%;
+    margin-right: 1%;
+    margin-bottom: 0.67em;
+}
+
+@media screen and (max-width: 600px) {
+    .filter-container {
+        padding: 50px;
+    }
+  }
+
+@media screen and (max-width: 415px) {
+    .filter-container {
+        padding: 35px;
+    }
+  }

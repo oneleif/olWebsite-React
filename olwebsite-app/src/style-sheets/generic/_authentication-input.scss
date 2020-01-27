@@ -1,0 +1,25 @@
+.auth-input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    
+    width: 100%;
+    margin-bottom: 3%;
+
+    & p {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-weight: bold;
+    }
+
+    & input {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 635px) {
+    .auth-input-container p {
+        font-size: 13px;
+    }
+}

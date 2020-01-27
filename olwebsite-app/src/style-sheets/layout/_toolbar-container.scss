@@ -1,0 +1,17 @@
+.toolbar-container {
+    display: block;
+}
+
+.hamburger-toolbar-container {
+    display: none;
+}
+
+@media only screen and (max-width: 635px) {
+    .toolbar-container {
+        display: none;
+    }
+    
+    .hamburger-toolbar-container {
+        display: block;
+    } 
+  }

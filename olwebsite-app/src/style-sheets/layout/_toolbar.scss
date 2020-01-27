@@ -1,5 +1,6 @@
-header {
+#toolBar {
     background-color: #ffffff;
+    border-bottom: 2pt solid #296C37;
     color: black;
     height: 50px;
 
@@ -8,8 +9,13 @@ header {
     align-items: center;
     justify-content: space-between;
 
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
     & ul.icon-module {
-        width: 10%;
+        width: 14%;
         display: flex;
         flex-direction: row;
         justify-content: space-evenly;
@@ -21,10 +27,12 @@ header {
     }
 
     & ul.icon-module li {
+        
         & svg {
             cursor: pointer;
-            color: #000000;
-
+            color: #296C37;
+            padding: 20%;
+            
             &:hover {
                 opacity: 0.7;
             }
@@ -89,22 +97,9 @@ header {
             }
         }
     }
+
+    .active-link {
+        font-weight: bold;
+    }
 }
 
-@media only screen and (max-width: 635px) {
-    header {
-        & ul.icon-module {
-            min-width: 65px;
-        }
-
-        & nav {
-            & ul {
-                padding-inline-start: 10px;
-            }
-    
-            & li a {
-                display: none;
-            }
-        }
-    }
-  }
