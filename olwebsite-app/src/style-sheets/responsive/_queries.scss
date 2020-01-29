@@ -1,0 +1,103 @@
+// Small devices
+@mixin small($identifier: "up") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-sm}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-sm}) {
+      @content;
+    }
+  }
+}
+
+// Medium devices
+@mixin medium($identifier: "up") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-md}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-md}) {
+      @content;
+    }
+  }
+}
+// Large devices
+@mixin large($identifier: "up") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-lg}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-lg}) {
+      @content;
+    }
+  }
+}
+
+// Extra large devices
+@mixin xlarge($identifier: "up") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-xl}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-xl}) {
+      @content;
+    }
+  }
+}
+
+@mixin xxlarge($identifier: "up", $range: "") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-xxl}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-xxl}) {
+      @content;
+    }
+  }
+}
+
+/*
+- This query is the most dynamic, in case you might need a range or a custom screen size
+- The third parameter by default uses up which includes media for the $size parameter and "up"
+- use "down" to include the media $size and down but don't forget to set the second parameter to 0, if you don't want a range
+usage: 
+.posts-container {
+    @include query($screen-sm, $screen-lg) { 
+        flex-direction: column;
+    }
+}
+this query translates to:
+@media only screen and (min-width: 576px and (max-width: 992px)) {
+  .posts-container {
+    flex-direction: column;
+  }
+}
+
+*/
+@mixin query($size, $range: 0, $identifier: "up") {
+  @if ($identifier == "down") {
+      //
+    @if ($range != 0) {
+      @media (max-width: $size and (min-width: $range)) {
+        @content;
+      }
+    }
+    @media (max-width: $size) {
+      @content;
+    }
+  } @else {
+    @if ($range != 0) {
+      @media (min-width: $size and (max-width: $range)) {
+        @content;
+      }
+    }
+    @media (min-width: $size) {
+      @content;
+    }
+  }
+}
