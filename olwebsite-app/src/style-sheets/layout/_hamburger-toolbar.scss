@@ -1,8 +1,8 @@
 #hamburgerToolbar {
     width: 101%;
-    background-color: #ffffff;
+    background-color: $white;
     color: black;
-    border-bottom: 2pt solid #296C37;
+    border-bottom: 2pt solid $olGreen;
 
     & nav {
         overflow: hidden;
@@ -52,7 +52,7 @@
             list-style: none;
             
             & svg {
-                color: #296C37;
+                color: $olGreen;
             }
 
             & a {

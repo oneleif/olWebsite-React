@@ -1,5 +1,5 @@
 footer {
-    background-color: #16341c;
+    background-color: $olDarkGreen;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -45,7 +45,7 @@ footer {
     }
 
     & a {
-        color: #ffffff;
+        color: $white;
         text-decoration: none;
 
         &:hover {
@@ -61,7 +61,7 @@ ul ul {
 
     & li svg {
         cursor: pointer;
-        color: #ffffff;
+        color: $white;
     }
 }
 

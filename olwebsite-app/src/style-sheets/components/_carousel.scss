@@ -82,7 +82,7 @@
     }
 
     &:focus {
-      border: 1px solid #ffffff;
+      border: 1px solid $white;
       box-shadow: 0 0 0 2px Highlight;
     }
   }
