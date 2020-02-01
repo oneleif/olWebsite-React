@@ -10,6 +10,7 @@ import LandingView from "./pages/LandingView";
 import PostsView from "./pages/PostsView";
 import RegisterView from "./pages/RegisterView";
 import LoginView from "./pages/LoginView";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function OlWebsiteApp() {
   /************************************
@@ -20,14 +21,16 @@ export default function OlWebsiteApp() {
     <div className="app">
       <Router basename={process.env.PUBLIC_URL}>
         <ToolbarContainer />
-        <div className="app-body">
-          <Switch>
-            <Route path="/login" component={LoginView} />
-            <Route path="/posts" component={PostsView} />
-            <Route path="/sign-up" component={RegisterView} />
-            <Route path="/" component={LandingView} />
-          </Switch>
-        </div>
+        <ScrollToTop>
+          <div className="app-body">
+            <Switch>
+              <Route path="/login" component={LoginView} />
+              <Route path="/posts" component={PostsView} />
+              <Route path="/sign-up" component={RegisterView} />
+              <Route path="/" component={LandingView} />
+            </Switch>
+          </div>
+        </ScrollToTop>
         <Footer />
       </Router>
     </div>
