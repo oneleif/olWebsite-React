@@ -10,7 +10,7 @@
     & .error-message {
         margin-block-start: 0;
         margin-block-end: 0;
-        color: #FF0000;
+        color: $olErrorMessage;
     }
 
     & .authentication-input-container {
