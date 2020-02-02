@@ -1,6 +1,6 @@
 #toolBar {
-    background-color: #ffffff;
-    border-bottom: 2pt solid #296C37;
+    background-color: $white;
+    border-bottom: 2pt solid $olGreen;
     color: black;
     height: 50px;
 
@@ -30,7 +30,7 @@
         
         & svg {
             cursor: pointer;
-            color: #296C37;
+            color: $olGreen;
             padding: 20%;
             
             &:hover {
@@ -40,7 +40,7 @@
 
         & a {
             text-decoration: none;
-            color: #000000;
+            color: $black;
 
             &:hover {
                 opacity: 0.7;
@@ -87,7 +87,7 @@
             }
 
             & a {
-                color:  #000000;
+                color:  $black;
                 font-size: 18px;
                 text-decoration: none;
 
