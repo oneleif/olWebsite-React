@@ -1,17 +1,24 @@
+// Modules
+@import './responsive/queries';
+@import './modules/colors';
+
+// Layout
 @import "./layout/app";
 @import "./layout/footer";
 @import "./layout/hamburger-toolbar";
 @import "./layout/toolbar";
 @import "./layout/toolbar-container";
 
+// Generic
 @import "./generic/authentication-input";
 @import "./generic/card";
 @import "./generic/card-container";
 
-@import './responsive/queries';
+// Components
 @import "./components/carousel";
 @import "./components/filter";
 
+// Pages
 @import "./pages/authentication-view";
 @import "./pages/landing-view";
 @import "./pages/posts-view";
