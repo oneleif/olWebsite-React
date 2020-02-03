@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  aws-s3: circleci/aws-s3@1.0.11
+
 defaults: &defaults
   working_directory: ~/repo
   docker:
@@ -61,6 +64,20 @@ jobs:
           command: npm run build
       - store_artifacts:
           path: ./build
+      - persist_to_workspace:
+          root: ~/repo
+          paths:
+            - .
+
+  deploy_production:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - aws-s3/sync:
+          from: ./build
+          to: $S3_BUCKET_URL_PROD
+          overwrite: true
 
 workflows:
   build-and-deploy:
@@ -75,3 +92,6 @@ workflows:
       - build:
           requires:
             - test
+      - deploy_production:
+          requires:
+            - build
