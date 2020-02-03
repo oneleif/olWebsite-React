@@ -78,6 +78,9 @@ jobs:
           from: ./build
           to: $S3_BUCKET_URL_PROD
           overwrite: true
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"
 
 workflows:
   build-and-deploy:
