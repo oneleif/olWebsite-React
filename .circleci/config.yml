@@ -46,7 +46,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
-          name: Build website
+          name: Run tests
           command: npm run test
 
   build:
@@ -93,5 +93,6 @@ workflows:
           requires:
             - test
       - deploy_production:
+          context: oneleif-aws
           requires:
             - build
