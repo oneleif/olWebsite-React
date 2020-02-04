@@ -20,7 +20,7 @@ To see the oneleif iOS app please see the following repository: https://github.c
 To see the oneleif Android app please see the following repository: https://github.com/oneleif/olgo-android
 
 
-![](Public/images/oneleif.png)
+![](https://github.com/oneleif/olWebsite/blob/master/Public/images/oneleif.png)
 This project is a oneleif active project, meaning it is open sourced and ran by members of oneleif, with support of other oneleif members.
 
 [![](https://img.shields.io/badge/oneleif-Twitter-blue.svg)](https://twitter.com/oneleifdev)
