@@ -21,6 +21,7 @@
     align-items: center;
     justify-content: flex-end;
     padding-inline-start: 0px;
+    margin-right: 3%;
   }
 
   & li {
@@ -29,7 +30,7 @@
 
   & ul.icon-module li {
     height: 24px;
-    padding: 0 5px;
+    padding: 0 3px;
 
     & svg {
       cursor: pointer;

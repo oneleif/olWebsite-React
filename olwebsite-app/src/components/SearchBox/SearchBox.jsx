@@ -67,7 +67,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
    * Render
    ************************************/
 
-  const inputStyle = { width: isCollapsed ? "0" : "95%" };
+  const inputStyle = { width: isCollapsed ? "0" : "100%" };
 
   return (
     <div className="search-box">

@@ -2,23 +2,23 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  align-self: baseline;
-  border: 1px solid red;
 
   &-icon {
     width: 16px;
     height: 16px;
-    padding: 4px 4px 4px 0px;
+    padding: 0 5px;
     border: none;
     outline: none;
   }
 
   & input {
-    margin-top: 3px;
     cursor: auto;
+    height: 20px;
     border: none;
     outline: none;
     font-size: 16px;
+    padding-left: 2px;
+    margin: 3px 1px 1px 1px;
     transition: width 1s;
   }
 }
