@@ -9,7 +9,7 @@ const currentIndex = 1;
 
 describe("DotIndicator", () => {
   function setUp() {
-    const { getByTestId, debug } = render(
+    const { getByTestId } = render(
       <DotIndicator
         slides={slides}
         onDotClicked={handleClick}
@@ -18,7 +18,7 @@ describe("DotIndicator", () => {
     );
 
     const dotIndicator = getByTestId(/dot-indicator/i);
-    return { dotIndicator, debug };
+    return { dotIndicator };
   }
 
   test("number of dots should be the same as slides", () => {

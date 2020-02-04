@@ -25,7 +25,11 @@ export default function Carousel({
    ************************************/
 
   const [autoRun, setAutoRun] = useState(isAutomatic);
-  const [position, setPosition] = useState(initialPosition);
+  const [position, setPosition] = useState(() => {
+    return initialPosition >= 0 && initialPosition < slides.length
+      ? initialPosition * -SLIDE_SIZE
+      : 0;
+  });
 
   /************************************
    * Callbacks
@@ -74,17 +78,20 @@ export default function Carousel({
     color: arrowColor
   };
 
+  const currentIndex = Math.abs(position) / SLIDE_SIZE;
   const carouselSlides = slides.map((slide, index) => (
     <div
       key={index}
+      current_slide={currentIndex === index ? "true" : undefined}
       className="slide"
+      data-testid="slide"
       style={{ transform: `translateX(${position}%)` }}>
       {slide}
     </div>
   ));
 
   return (
-    <div className="carousel">
+    <div className="carousel" data-testid="carousel">
       {carouselSlides}
       {includeNavigationArrows && (
         <>
@@ -114,7 +121,7 @@ export default function Carousel({
         <DotIndicator
           slides={slides}
           onDotClicked={index => setPosition(index * -SLIDE_SIZE)}
-          currentIndex={Math.abs(position) / SLIDE_SIZE}
+          currentIndex={currentIndex}
         />
       )}
     </div>
