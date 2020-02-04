@@ -26,9 +26,10 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
    * Functions
    ************************************/
 
-  function SubmitSearch(query) {
-    console.log("Searching");
-    if (query.trim() !== "") {
+  function SubmitSearch(searchQuery) {
+    const query = searchQuery.trim();
+
+    if (query !== "") {
       onSearch(query);
     }
   }
@@ -75,6 +76,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
         tabIndex="0"
         onFocus={handleIconFocus}
         className="search-box-icon"
+        data-testid="search-box-icon"
         onMouseDown={handleIconMouseDown}
       />
       <input
