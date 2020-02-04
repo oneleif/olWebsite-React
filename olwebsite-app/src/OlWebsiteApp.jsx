@@ -10,6 +10,7 @@ import LandingView from "./pages/LandingView";
 import PostsView from "./pages/PostsView";
 import RegisterView from "./pages/RegisterView";
 import LoginView from "./pages/LoginView";
+import { UserProvider } from "./contexts/UserContext";
 
 export default function OlWebsiteApp() {
   /************************************
@@ -17,19 +18,21 @@ export default function OlWebsiteApp() {
    ************************************/
 
   return (
-    <div className="app">
-      <Router basename={process.env.PUBLIC_URL}>
-        <ToolbarContainer />
-        <div className="app-body">
-          <Switch>
-            <Route path="/login" component={LoginView} />
-            <Route path="/posts" component={PostsView} />
-            <Route path="/sign-up" component={RegisterView} />
-            <Route path="/" component={LandingView} />
-          </Switch>
-        </div>
-        <Footer />
-      </Router>
-    </div>
+    <UserProvider>
+      <div className="app">
+        <Router basename={process.env.PUBLIC_URL}>
+          <ToolbarContainer />
+          <div className="app-body">
+            <Switch>
+              <Route path="/login" component={LoginView} />
+              <Route path="/posts" component={PostsView} />
+              <Route path="/sign-up" component={RegisterView} />
+              <Route path="/" component={LandingView} />
+            </Switch>
+          </div>
+          <Footer />
+        </Router>
+      </div>
+    </UserProvider>
   );
 }
