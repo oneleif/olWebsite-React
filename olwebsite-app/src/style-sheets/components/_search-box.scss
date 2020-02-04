@@ -1,0 +1,24 @@
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: baseline;
+  border: 1px solid red;
+
+  &-icon {
+    width: 16px;
+    height: 16px;
+    padding: 4px 4px 4px 0px;
+    border: none;
+    outline: none;
+  }
+
+  & input {
+    margin-top: 3px;
+    cursor: auto;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    transition: width 1s;
+  }
+}

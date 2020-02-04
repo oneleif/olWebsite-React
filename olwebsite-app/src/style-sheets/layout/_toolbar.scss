@@ -1,105 +1,106 @@
 #toolBar {
-    background-color: $white;
-    border-bottom: 2pt solid $olGreen;
-    color: black;
-    height: 50px;
+  background-color: $white;
+  border-bottom: 2pt solid $olGreen;
+  color: black;
+  height: 50px;
 
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  & ul.icon-module {
+    width: 30%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding-inline-start: 0px;
+  }
 
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1;
+  & li {
+    list-style: none;
+  }
 
-    & ul.icon-module {
-        width: 14%;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-content: center;
+  & ul.icon-module li {
+    height: 24px;
+    padding: 0 5px;
+
+    & svg {
+      cursor: pointer;
+      color: $olGreen;
+
+      &:hover {
+        opacity: 0.7;
+      }
     }
-    
+
+    & a {
+      text-decoration: none;
+      color: $black;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  & nav {
+    width: 70%;
+
+    & ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
     & li {
-        list-style: none;
-    }
+      margin-right: 20px;
+      list-style: none;
 
-    & ul.icon-module li {
-        
-        & svg {
-            cursor: pointer;
-            color: $olGreen;
-            padding: 20%;
-            
-            &:hover {
-                opacity: 0.7;
-            }
-        }
+      &:last-child {
+        margin-right: 0;
+      }
 
-        & a {
-            text-decoration: none;
-            color: $black;
+      &.top-nav-logo {
+        margin-right: 24px;
 
-            &:hover {
-                opacity: 0.7;
-            }
-        }
-    }
-
-    & nav {
-        width: 70%;
-    
-        & ul {
+        & h1 {
+          & a {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between; 
-            align-items: center;
+            height: 100%;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+
+          & img {
+            cursor: pointer;
+            height: 42px;
+          }
         }
-    
-        & li {
-            margin-right: 20px;
-            list-style: none;
+      }
 
-            &:last-child {
-                margin-right: 0;
-            }
+      & a {
+        color: $black;
+        font-size: 18px;
+        text-decoration: none;
 
-            &.top-nav-logo {
-                margin-right: 24px;
-
-                & h1 {
-                    & a {
-                        display: flex;
-                        height: 100%;
-
-                        &:hover {
-                            opacity: 1;
-                        }
-                    }
-
-                    & img {
-                        cursor: pointer;
-                        height: 42px;
-                    }
-                }
-            }
-
-            & a {
-                color:  $black;
-                font-size: 18px;
-                text-decoration: none;
-
-                &:hover {
-                    opacity: 0.7;
-                }
-            }
+        &:hover {
+          opacity: 0.7;
         }
+      }
     }
+  }
 
-    .active-link {
-        font-weight: bold;
-    }
+  .active-link {
+    font-weight: bold;
+  }
 }
-

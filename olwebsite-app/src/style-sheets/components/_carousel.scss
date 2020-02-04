@@ -1,6 +1,6 @@
 .carousel {
   display: flex;
-  align-items: center; 
+  align-items: center;
   position: relative;
   overflow: hidden;
   left: 12.5%;
@@ -19,7 +19,7 @@
   }
 }
 
-.arrow{
+.arrow {
   position: absolute;
   top: 50%;
   width: 7%;
@@ -32,10 +32,11 @@
   transform: translateY(-50%);
   cursor: pointer;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background: rgba(0, 0, 0, 0.5);
   }
-  
+
   &:active {
     background: none;
   }
@@ -71,14 +72,14 @@
     background: #ececec;
     transition: background-color 0.5s ease-in;
     cursor: pointer;
-    
+
     &:hover {
-        background-color: #b2b2b2;        
-    } 
+      background-color: #b2b2b2;
+    }
 
     &-active {
       @extend .dot;
-      background-color: #b2b2b2;     
+      background-color: #b2b2b2;
     }
 
     &:focus {
