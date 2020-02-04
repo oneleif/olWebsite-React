@@ -20,6 +20,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
   /************************************
    * References
    ************************************/
+
   const inputRef = useRef(null);
 
   /************************************

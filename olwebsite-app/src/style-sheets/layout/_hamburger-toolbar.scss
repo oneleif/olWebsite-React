@@ -38,7 +38,7 @@
     }
 
     & .link-dropdown {
-      background-color: #555555;
+      background-color: $gray;
       width: 100%;
 
       & div.search-box-wrapper {
@@ -51,16 +51,16 @@
           background: $white;
 
           & svg {
-            background: #555555;
+            width: 16px;
+            height: 16px;
             padding: 5px;
             color: $white;
-            height: 16px;
-            width: 16px;
+            background: $gray;
           }
         }
 
         &:hover {
-          outline: 1px solid highlight;
+          outline: 1px solid Highlight;
           transform: scale(1.05);
         }
       }
@@ -80,16 +80,16 @@
       }
 
       & a {
-        color: white;
+        color: $white;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
         display: block;
-        background-color: #555555;
+        background-color: $gray;
 
         &:hover {
-          background-color: #ddd;
-          color: black;
+          background-color: $lightGray;
+          color: $black;
         }
       }
     }
