@@ -1,19 +1,8 @@
 import React from "React";
-import {
-  render,
-  screen,
-  debug,
-  fireEvent,
-  wait,
-  waitForDomChange,
-  waitForElement,
-  act
-} from "test-utils";
+import { render, screen, fireEvent, act } from "test-utils";
 import Carousel from "../Carousel";
 
 const slides = ["1", "2", "3", "4", "5"];
-const lastPosition = slides.length - 1;
-const intervalTick = 2;
 const firstPosition = 0;
 const defaultSlideInterval = 100;
 
