@@ -1,4 +1,4 @@
-# oneleif Website React front-end
+# oneleif website React front-end
 
 
 ### Project Info
