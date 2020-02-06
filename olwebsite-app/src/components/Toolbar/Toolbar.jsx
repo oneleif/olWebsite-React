@@ -39,7 +39,11 @@ function Toolbar() {
       </nav>
       <ul className="icon-module">
         <li>
-          <SearchBox isCollapsible={true}/>
+          <SearchBox
+            onSearch={() => {}}
+            placeholder="Search onelief..."
+            isCollapsible={true}
+          />
         </li>
         <li>
           <NavLink to="/sign-up" activeClassName="active-link">

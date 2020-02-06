@@ -45,7 +45,7 @@ function HamburgerToolbar() {
               <div className="search-box-wrapper">
                 <SearchBox
                   placeholder="Search onelief..."
-                  isCollapsible={false}
+                  onSearch={() => {}}
                 />
               </div>
             </li>

@@ -93,7 +93,6 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
 }
 
 SearchBox.defaultProps = {
-  onSearch: () => {},
   placeholder: "Search...",
   isCollapsible: false
 };
