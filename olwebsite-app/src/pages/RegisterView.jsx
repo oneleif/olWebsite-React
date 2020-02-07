@@ -7,7 +7,7 @@ import {
   validateReenteredPassword 
 } from '../utils/authentication-utils';
 import { SUCCESS } from '../constants/authentication-constants';
-import { REGISTER_PATH } from '../constants/rest-constants';
+import { registerUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
 import homeLogo from "../images/homeLogo.png";
@@ -35,33 +35,14 @@ function RegisterView() {
   */
   async function registerClicked() {
     if (validateInput()) {
-      await registerUser();
-    }
-  }
+      const response = await registerUser(email, password);
 
- /* Makes REST request to register user, based on response status will 
-  * redirect to the landing view or display and error message
-  */
-  async function registerUser() {
-    //TODO: Set up a reverse proxy so the backend/frontend can be reached on same port
-    // const url = "http://localhost:8080/api/register";  //will need to use this ran locally
-    const response = await fetch(REGISTER_PATH, {
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({ username: email, password: password }),
-      method: 'POST'
-    });
-
-    if (response.status >= 200 && response.status < 300) {
-      //user registered successfully 
-      setIsRegistered(true);
-    } 
-    else if (response.status === 400) {
-      setErrorMessage("An account already exists for this email address.");
-    }
-    else {
-      //TODO: Errors to handle invalid passwords entered
-      //handling a 404 or 500 server error
-      setErrorMessage("An error has occured while registering.");
+      if (response === SUCCESS) {
+        setIsRegistered(true);
+      }
+      else {
+        setErrorMessage(response);
+      } 
     }
   }
 

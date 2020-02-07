@@ -6,7 +6,7 @@ import {
   validatePassword
 } from '../utils/authentication-utils';
 import { SUCCESS } from '../constants/authentication-constants';
-import { LOGIN_PATH } from '../constants/rest-constants';
+import { loginUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
 import homeLogo from "../images/homeLogo.png";
@@ -32,34 +32,14 @@ function LoginView() {
   */
   async function loginClicked() {
     if (validateInput()) {
-      await loginUser();
-    }
-  }
+      const response = await loginUser(email, password);
 
- /* Makes REST request to log in user, based on response status will 
-  * redirect to the landing view or display and error message
-  */
-  async function loginUser() {
-    //TODO: Set up a reverse proxy so the backend/frontend can be reached on same port
-    // const url = "http://localhost:8080/api/login"; //will need to use this ran locally
-    const response = await fetch(LOGIN_PATH, {
-      headers: { "Content-Type": "application/json"},
-      body: JSON.stringify({ username: email, password: password }),
-      method: 'POST'
-    });
-
-    if (response.status >= 200 && response.status < 300) {
-      //user registered successfully 
-      //TODO: store authentication values
-      setIsLoggedIn(true);
-    } 
-    else if (response.status === 400) {
-      setErrorMessage('Invalid username or password.');
-    }
-    else {
-      //TODO: Errors to handle invalid passwords entered
-      //handling a 404 or 500 server error
-      setErrorMessage("An error has occured while logging in.");
+      if (response === SUCCESS) {
+        setIsLoggedIn(true);
+      }
+      else {
+        setErrorMessage(response);
+      } 
     }
   }
 
