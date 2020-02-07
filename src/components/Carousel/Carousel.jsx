@@ -10,27 +10,31 @@ import DotIndicator from "../DotIndicator/DotIndicator";
 
 const SLIDE_SIZE = 100;
 
-export default function Carousel ({
+export default function Carousel({
   slides,
   interval,
   arrowSize,
   arrowColor,
-  isAutomatic, 
+  isAutomatic,
   initialPosition,
   includeDotIndicators,
-  includeNavigationArrows 
+  includeNavigationArrows
 }) {
-
   /************************************
    * State
    ************************************/
+
   const [autoRun, setAutoRun] = useState(isAutomatic);
-  const [position, setPosition] = useState(initialPosition);
+  const [position, setPosition] = useState(() => {
+    return initialPosition >= 0 && initialPosition < slides.length
+      ? initialPosition * -SLIDE_SIZE
+      : 0;
+  });
 
   /************************************
    * Callbacks
    ************************************/
-  
+
   const getLastSlide = useCallback(() => {
     return -SLIDE_SIZE * (slides.length - 1);
   }, [slides.length]);
@@ -38,22 +42,22 @@ export default function Carousel ({
   const handleNext = useCallback(() => {
     const lastSlide = getLastSlide();
 
-    position ===  lastSlide
+    position === lastSlide
       ? setPosition(initialPosition)
       : setPosition(position - SLIDE_SIZE);
-  }, [getLastSlide, initialPosition, position]); 
+  }, [getLastSlide, initialPosition, position]);
 
   /************************************
    * Life Cycle Hooks
    ************************************/
 
   useEffect(() => {
-    if(autoRun) {
+    if (autoRun) {
       const id = setInterval(handleNext, interval);
       return () => clearInterval(id);
     }
   }, [handleNext, interval, autoRun]);
- 
+
   /************************************
    * Functions
    ************************************/
@@ -72,51 +76,57 @@ export default function Carousel ({
   const arrowStyles = {
     size: arrowSize,
     color: arrowColor
-  }
+  };
 
+  const currentIndex = Math.abs(position) / SLIDE_SIZE;
   const carouselSlides = slides.map((slide, index) => (
-    <div 
-      key={index} 
+    <div
+      key={index}
+      current_slide={currentIndex === index ? "true" : undefined}
       className="slide"
-      style={{transform:`translateX(${position}%)`}}>
+      data-testid="slide"
+      style={{ transform: `translateX(${position}%)` }}>
       {slide}
-    </div> 
+    </div>
   ));
 
   return (
-    <div className="carousel">
+    <div className="carousel" data-testid="carousel">
       {carouselSlides}
-      {includeNavigationArrows &&
+      {includeNavigationArrows && (
         <>
-          <button 
+          <button
             className="arrow-left"
             onClick={handlePrevious}
             onBlur={() => setAutoRun(true)}
             onFocus={() => setAutoRun(false)}
+            data-testid="arrow-left"
             onMouseLeave={() => setAutoRun(true)}
             onMouseEnter={() => setAutoRun(false)}>
-            <FaChevronLeft {...arrowStyles}/>
+            <FaChevronLeft {...arrowStyles} />
           </button>
-          <button 
+          <button
             className="arrow-right"
             onClick={handleNext}
             onBlur={() => setAutoRun(true)}
             onFocus={() => setAutoRun(false)}
+            data-testid="arrow-right"
             onMouseLeave={() => setAutoRun(true)}
             onMouseEnter={() => setAutoRun(false)}>
-            <FaChevronRight {...arrowStyles}/>
+            <FaChevronRight {...arrowStyles} />
           </button>
-        </> 
-      }
-      {includeDotIndicators && 
-        <DotIndicator 
+        </>
+      )}
+      {includeDotIndicators && (
+        <DotIndicator
           slides={slides}
           onDotClicked={index => setPosition(index * -SLIDE_SIZE)}
-          currentIndex={Math.abs(position) / SLIDE_SIZE}/>
-      }
+          currentIndex={currentIndex}
+        />
+      )}
     </div>
   );
-};
+}
 
 Carousel.defaultProps = {
   slides: [],
@@ -126,7 +136,7 @@ Carousel.defaultProps = {
   isAutomatic: true,
   initialPosition: 0,
   includeDotIndicators: true,
-  includeNavigationArrows: true,
+  includeNavigationArrows: true
 };
 
 Carousel.propTypes = {
@@ -137,5 +147,5 @@ Carousel.propTypes = {
   isAutomatic: PropTypes.bool,
   initialPosition: PropTypes.number,
   includeDotIndicators: PropTypes.bool,
-  includeNavigationArrows: PropTypes.bool,
+  includeNavigationArrows: PropTypes.bool
 };
