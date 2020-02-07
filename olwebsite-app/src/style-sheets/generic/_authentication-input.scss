@@ -14,12 +14,44 @@
     }
 
     & input {
-        width: 100%;
+        width: 99%;
+    }
+
+    & .label-text-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: baseline;
+
+        width: inherit;
+
+        & span {
+            font-size: 12px;
+            color: $olErrorMessage;
+        }
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .auth-input-container .label-text-container {
+        display: flex;
+        flex-direction: column;
+
+        & span {
+            font-size: 10px;
+        }
     }
 }
 
 @media only screen and (max-width: 635px) {
-    .auth-input-container p {
-        font-size: 13px;
+    .auth-input-container {
+        & p {
+            font-size: 13px;
+        }
+
+        & .label-text-container span {
+            font-size: 9px;
+            margin-bottom: 3%;
+        }
     }
 }
