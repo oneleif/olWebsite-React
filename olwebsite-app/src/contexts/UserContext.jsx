@@ -3,7 +3,15 @@ import  React, { useContext, useEffect, useState } from 'react';
 const UserContext = React.createContext([undefined, undefined]);
 
 function UserProvider ({ children }) {
+    /************************************
+    * State
+    ************************************/
+
     const [user, setUser] = useState(null);
+
+    /************************************
+    * Life Cycle Hooks
+    ************************************/
 
     useEffect(() => {
         //TODO Jacob J: Don't use localStorage, very unsecure
@@ -23,6 +31,10 @@ function UserProvider ({ children }) {
         </UserContext.Provider>
     )
 }
+
+/************************************
+* Custom Hooks
+************************************/
 
 /**
  * Gives the current user and a function to set the user
