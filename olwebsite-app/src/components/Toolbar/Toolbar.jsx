@@ -41,7 +41,7 @@ function Toolbar() {
         <li>
           <SearchBox
             onSearch={() => {}}
-            placeholder="Search onelief..."
+            placeholder="Search oneleif..."
             isCollapsible={true}
           />
         </li>

@@ -44,7 +44,7 @@ function HamburgerToolbar() {
             <li>
               <div className="search-box-wrapper">
                 <SearchBox
-                  placeholder="Search onelief..."
+                  placeholder="Search oneleif..."
                   onSearch={() => {}}
                 />
               </div>

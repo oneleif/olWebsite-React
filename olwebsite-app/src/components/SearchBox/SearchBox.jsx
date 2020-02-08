@@ -27,7 +27,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
    * Functions
    ************************************/
 
-  function SubmitSearch(searchQuery) {
+  function submitSearch(searchQuery) {
     const query = searchQuery.trim();
 
     if (query !== "") {
@@ -49,7 +49,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
    */
   function handleIconMouseDown() {
     if (!isCollapsed) {
-      SubmitSearch(inputRef.current.value);
+      submitSearch(inputRef.current.value);
     }
   }
 
@@ -61,7 +61,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
 
   function handleInputKeyPress({ key, target }) {
     if (key === "Enter") {
-      SubmitSearch(target.value);
+      submitSearch(target.value);
     }
   }
 
