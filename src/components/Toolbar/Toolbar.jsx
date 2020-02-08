@@ -1,11 +1,16 @@
 import React from "react";
 import { Link, NavLink, withRouter } from "react-router-dom";
-
 import homeLogo from "../../images/homeLogo.png";
-
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaUser } from "react-icons/fa";
+import { useUser } from "../../contexts/UserContext";
 
 function Toolbar() {
+  /************************************
+    * State
+    ************************************/
+
+  const [user] = useUser();
+
   /************************************
    * Render
    ************************************/
@@ -37,9 +42,16 @@ function Toolbar() {
           <FaSearch tabIndex="0" />
         </li>
         <li>
-          <NavLink to="/sign-up" activeClassName="active-link">
-            Sign Up
-          </NavLink>
+        {user? (
+              <Link to="/profile">
+                <FaUser />
+              </Link>
+            ) : (
+              <NavLink to="/sign-up" activeClassName="active-link">
+                Sign Up
+              </NavLink>
+            )
+          }
         </li>
       </ul>
     </header>
