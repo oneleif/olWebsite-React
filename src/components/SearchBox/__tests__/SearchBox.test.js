@@ -12,6 +12,7 @@ describe("SearchBox", () => {
     return { getByTestId, getByPlaceholderText, searchHandler };
   }
 
+  // TODO - remove
   test("should transfer focus from icon to input", () => {
     const { getByPlaceholderText, getByTestId } = setUp();
 
@@ -28,6 +29,7 @@ describe("SearchBox", () => {
       expect(parseInt(input.style.width)).toBe(0);
     });
 
+    // TODO-modify to icon click
     test("should expand input when icon focused", () => {
       const { getByPlaceholderText, getByTestId } = setUp();
       const input = getByPlaceholderText(/search/i);
