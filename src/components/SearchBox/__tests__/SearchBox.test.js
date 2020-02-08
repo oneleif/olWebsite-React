@@ -1,92 +1,108 @@
 import React from "react";
+
 import SearchBox from "../SearchBox";
 import { render, fireEvent } from "test-utils";
 
-const searchHandler = jest.fn();
-
 describe("SearchBox", () => {
+  const placeholderText = "abc";
+
   function setUp(isCollapsible = true) {
+    const searchHandler = jest.fn();
     const { getByPlaceholderText, getByTestId } = render(
-      <SearchBox onSearch={searchHandler} isCollapsible={isCollapsible} />
+      <SearchBox
+        onSearch={searchHandler}
+        placeholder={placeholderText}
+        isCollapsible={isCollapsible}
+      />
     );
-    return { getByTestId, getByPlaceholderText, searchHandler };
+
+    const getIcon = () => getByTestId(/search-box-icon/i);
+    const getInput = () => getByPlaceholderText(placeholderText);
+    return { getIcon, getInput, searchHandler };
   }
 
-  // TODO - remove
-  test("should transfer focus from icon to input", () => {
-    const { getByPlaceholderText, getByTestId } = setUp();
+  test("should transfer focus to input when icon is clicked", () => {
+    const { getIcon, getInput } = setUp();
 
-    getByTestId(/search-box-icon/).focus();
+    fireEvent.click(getIcon());
 
-    expect(document.activeElement).toBe(getByPlaceholderText(/search/i));
+    expect(document.activeElement).toBe(getInput());
   });
 
   describe("Collapsible", () => {
-    test("should collapse input by default", () => {
-      const { getByPlaceholderText } = setUp();
-      const input = getByPlaceholderText(/search/i);
+    test("input should be collapsed by default", () => {
+      const { getInput } = setUp();
 
-      expect(parseInt(input.style.width)).toBe(0);
+      expect(parseInt(getInput().style.width)).toBe(0);
     });
 
-    // TODO-modify to icon click
-    test("should expand input when icon focused", () => {
-      const { getByPlaceholderText, getByTestId } = setUp();
-      const input = getByPlaceholderText(/search/i);
-      expect(parseInt(input.style.width)).toBe(0);
+    test("should expand input when icon is clicked", () => {
+      const { getIcon, getInput } = setUp();
+      const input = getInput();
 
-      getByTestId(/search-box-icon/).focus();
+      expect(parseInt(input.style.width)).toBe(0);
+      fireEvent.click(getIcon());
 
       expect(parseInt(input.style.width)).toBeGreaterThan(0);
     });
 
     test("should collapse input when blurred", () => {
-      const { getByPlaceholderText, getByTestId } = setUp();
-      const input = getByPlaceholderText(/search/i);
+      const { getInput } = setUp();
+      const input = getInput();
 
-      getByTestId(/search-box-icon/).focus();
+      input.focus();
       expect(parseInt(input.style.width)).toBeGreaterThan(0);
 
       input.blur();
       expect(parseInt(input.style.width)).toBe(0);
     });
+
+    test("icon click should only submit when input is expanded", () => {
+      const { getIcon, getInput, searchHandler } = setUp();
+      const icon = getIcon();
+
+      // Collapsed input
+      fireEvent.change(getInput(), { target: { value: "abc" } });
+      fireEvent.click(icon);
+
+      expect(searchHandler).not.toHaveBeenCalled();
+
+      // Expanded input
+      fireEvent.click(icon);
+
+      expect(searchHandler).toHaveBeenCalled();
+    });
   });
 
   describe("Expanded", () => {
-    test("should expand input by default", () => {
-      const { getByPlaceholderText } = setUp(false);
-      const input = getByPlaceholderText(/search/i);
+    test("input should be expanded by default", () => {
+      const { getInput } = setUp(false);
 
-      expect(parseInt(input.style.width)).toBeGreaterThan(0);
+      expect(parseInt(getInput().style.width)).toBeGreaterThan(0);
     });
 
     test("should not submit search when input value is empty", () => {
-      const { getByTestId, getByPlaceholderText, searchHandler } = setUp(false);
-      const input = getByPlaceholderText(/search/i);
-      const icon = getByTestId(/search-box-icon/);
+      const { getIcon, searchHandler } = setUp(false);
 
-      fireEvent.mouseDown(icon);
-      fireEvent.keyPress(input);
+      fireEvent.click(getIcon());
 
       expect(searchHandler).not.toHaveBeenCalled();
     });
 
     test("should submit search with trimmed value when icon clicked", () => {
-      const { getByTestId, getByPlaceholderText, searchHandler } = setUp(false);
+      const { getIcon, getInput, searchHandler } = setUp(false);
       const value = "abc ";
 
-      fireEvent.change(getByPlaceholderText(/search/i), {
-        target: { value }
-      });
-      fireEvent.mouseDown(getByTestId(/search-box-icon/));
+      fireEvent.change(getInput(), { target: { value } });
+      fireEvent.click(getIcon());
 
       expect(searchHandler).toHaveBeenCalledTimes(1);
       expect(searchHandler).toHaveBeenCalledWith(value.trim());
     });
 
     test("should submit search on Enter keypress", () => {
-      const { getByPlaceholderText, searchHandler } = setUp(false);
-      const input = getByPlaceholderText(/search/i);
+      const { getInput, searchHandler } = setUp(false);
+      const input = getInput();
       const value = "abc";
 
       fireEvent.change(input, { target: { value } });

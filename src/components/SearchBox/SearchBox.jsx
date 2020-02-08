@@ -35,33 +35,45 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
     }
   }
 
-  function handleIconFocus() {
-    if (isCollapsible) {
-      setIsCollapsed(false);
-    }
-    inputRef.current.focus();
+  function handleIconMouseDown(event) {
+    /**
+     * Preventing the default behavior will stop whatever element
+     * that is currently in focus from being blurred. In this case
+     * the input will NOT be blurred (isCollapsed will remain false)
+     * event order: mouseDown => blur => click
+     */
+    event.preventDefault();
   }
 
-  /**
-   * MouseDown is used instead of click because of
-   * the order in which the events are called. The value of
-   * isExpanded is needed *before* the focus event is triggered.
-   */
-  function handleIconMouseDown() {
+  function handleIconClick() {
     if (!isCollapsed) {
       submitSearch(inputRef.current.value);
     }
+
+    inputRef.current.focus();
   }
 
-  function handleInputBlur() {
+  function handleIconKeyPress({ key }) {
+    if (key === "Enter") {
+      inputRef.current.focus();
+    }
+  }
+
+  function handleInputFocus() {
     if (isCollapsible) {
-      setIsCollapsed(true);
+      setIsCollapsed(false);
     }
   }
 
   function handleInputKeyPress({ key, target }) {
     if (key === "Enter") {
       submitSearch(target.value);
+    }
+  }
+
+  function handleInputBlur() {
+    if (isCollapsible) {
+      setIsCollapsed(true);
     }
   }
 
@@ -74,10 +86,11 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
   return (
     <div className="search-box">
       <FaSearch
+        onClick={handleIconClick}
         tabIndex="0"
-        onFocus={handleIconFocus}
         className="search-box-icon"
         data-testid="search-box-icon"
+        onKeyPress={handleIconKeyPress}
         onMouseDown={handleIconMouseDown}
       />
       <input
@@ -85,6 +98,7 @@ export default function SearchBox({ isCollapsible, onSearch, placeholder }) {
         ref={inputRef}
         style={inputStyle}
         onBlur={handleInputBlur}
+        onFocus={handleInputFocus}
         onKeyPress={handleInputKeyPress}
         placeholder={placeholder}
       />

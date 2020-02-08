@@ -9,6 +9,10 @@
     padding: 0 5px;
     border: none;
     outline: none;
+
+    &:focus {
+      outline: auto highlight;
+    }
   }
 
   & input {
