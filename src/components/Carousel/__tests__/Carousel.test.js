@@ -1,13 +1,13 @@
-import React from "React";
-import { render, screen, fireEvent, act } from "test-utils";
+import React from 'react';
+import { render, screen, fireEvent, act } from 'test-utils';
 
-import Carousel from "../Carousel";
+import Carousel from '../Carousel';
 
-const slides = ["1", "2", "3", "4", "5"];
+const slides = ['1', '2', '3', '4', '5'];
 const firstPosition = 0;
 const defaultSlideInterval = 1;
 
-describe("Carousel", () => {
+describe('Carousel', () => {
   beforeAll(() => {
     jest.useFakeTimers();
   });
@@ -21,9 +21,7 @@ describe("Carousel", () => {
   }
 
   function getCurrentSlide() {
-    return screen
-      .getAllByTestId(/slide/i)
-      .find(node => node.hasAttribute("current_slide") === true).textContent;
+    return screen.getAllByTestId(/slide/i).find(node => node.hasAttribute('current_slide') === true).textContent;
   }
 
   function getNextArrow() {
@@ -37,19 +35,17 @@ describe("Carousel", () => {
   const initialPositionTests = [
     {
       options: { initialPosition: 3, isAutomatic: false },
-      description: "should start at given slide",
+      description: 'should start at given slide',
       expectedPosition: 3
     },
     {
       options: { initialPosition: -5, isAutomatic: false },
-      description:
-        "should default to first slide when given negative initialPosition",
+      description: 'should default to first slide when given negative initialPosition',
       expectedPosition: firstPosition
     },
     {
       options: { initialPosition: slides.length + 1, isAutomatic: false },
-      description:
-        "should default to first slide when given initialPosition greater than slide number",
+      description: 'should default to first slide when given initialPosition greater than slide number',
       expectedPosition: firstPosition
     }
   ];
@@ -64,44 +60,35 @@ describe("Carousel", () => {
     });
   });
 
-  test("current slide index should match active dot index", () => {
+  test('current slide index should match active dot index', () => {
     const options = { initialPosition: firstPosition, isAutomatic: false };
     setUp(options);
 
-    expect(
-      screen.getByTestId(/dot-indicator/).children[firstPosition].className
-    ).toMatch(/active/);
+    expect(screen.getByTestId(/dot-indicator/).children[firstPosition].className).toMatch(/active/);
 
     expect(getCurrentSlide()).toBe(slides[firstPosition]);
   });
 
-  describe("Navigation", () => {
+  describe('Navigation', () => {
     const navigationByArrowTests = [
       {
         expectedPosition: firstPosition + 1,
         getElementUnderTest: getNextArrow,
         testEvent: element => fireEvent.click(element),
         options: { initialPosition: firstPosition, isAutomatic: false },
-        description: "should navigate to next slide when next arrow is clicked"
+        description: 'should navigate to next slide when next arrow is clicked'
       },
       {
         expectedPosition: firstPosition,
         getElementUnderTest: getPreviousArrow,
         testEvent: element => fireEvent.click(element),
         options: { initialPosition: firstPosition + 1, isAutomatic: false },
-        description:
-          "should navigate to previous slide when previous arrow is clicked"
+        description: 'should navigate to previous slide when previous arrow is clicked'
       }
     ];
 
     navigationByArrowTests.map(testCase => {
-      const {
-        options,
-        description,
-        testEvent,
-        expectedPosition,
-        getElementUnderTest
-      } = testCase;
+      const { options, description, testEvent, expectedPosition, getElementUnderTest } = testCase;
 
       test(description, () => {
         setUp(options);
@@ -112,19 +99,17 @@ describe("Carousel", () => {
       });
     });
 
-    test("should navigate to corresponding slide when dot clicked", () => {
+    test('should navigate to corresponding slide when dot clicked', () => {
       const options = { initialPosition: firstPosition, isAutomatic: false };
       setUp(options);
       const newPosition = 3;
 
-      fireEvent.click(
-        screen.getByTestId(/dot-indicator/).children[newPosition]
-      );
+      fireEvent.click(screen.getByTestId(/dot-indicator/).children[newPosition]);
 
       expect(getCurrentSlide()).toBe(slides[newPosition]);
     });
 
-    test("should start navigating automatically", () => {
+    test('should start navigating automatically', () => {
       const options = {
         interval: defaultSlideInterval,
         initialPosition: firstPosition
@@ -138,7 +123,7 @@ describe("Carousel", () => {
       expect(getCurrentSlide()).toBe(slides[firstPosition + 1]);
     });
 
-    test("should navigate at given interval", () => {
+    test('should navigate at given interval', () => {
       const options = {
         interval: defaultSlideInterval,
         initialPosition: firstPosition
@@ -159,7 +144,7 @@ describe("Carousel", () => {
      * because this way it's easier to determine with a glance exactly
      * what is failing without needing to wade through the actual test.
      */
-    describe("Pause navigation", () => {
+    describe('Pause navigation', () => {
       const pauseNavigationTests = [
         {
           ticks: 2,
@@ -170,7 +155,7 @@ describe("Carousel", () => {
             initialPosition: firstPosition
           },
           testEvent: element => fireEvent.mouseOver(element),
-          description: "should pause navigation when mouse hovers on next arrow"
+          description: 'should pause navigation when mouse hovers on next arrow'
         },
         {
           ticks: 2,
@@ -181,8 +166,7 @@ describe("Carousel", () => {
             initialPosition: firstPosition
           },
           testEvent: element => fireEvent.mouseOver(element),
-          description:
-            "should pause navigation when mouse hovers on previous arrow"
+          description: 'should pause navigation when mouse hovers on previous arrow'
         },
         {
           ticks: 2,
@@ -193,7 +177,7 @@ describe("Carousel", () => {
             initialPosition: firstPosition
           },
           testEvent: element => element.focus(),
-          description: "should pause navigation when next arrow is focused"
+          description: 'should pause navigation when next arrow is focused'
         },
         {
           ticks: 2,
@@ -204,19 +188,12 @@ describe("Carousel", () => {
             initialPosition: firstPosition
           },
           testEvent: element => element.focus(),
-          description: "should pause navigation when previous arrow is focused"
+          description: 'should pause navigation when previous arrow is focused'
         }
       ];
 
       pauseNavigationTests.map(testCase => {
-        const {
-          ticks,
-          options,
-          testEvent,
-          description,
-          expectedPosition,
-          getElementUnderTest
-        } = testCase;
+        const { ticks, options, testEvent, description, expectedPosition, getElementUnderTest } = testCase;
 
         test(description, () => {
           setUp(options);
@@ -231,7 +208,7 @@ describe("Carousel", () => {
       });
     });
 
-    describe("Restart navigation", () => {
+    describe('Restart navigation', () => {
       const restartNavigationTests = [
         {
           ticks: 2,
@@ -243,7 +220,7 @@ describe("Carousel", () => {
           },
           stopEvent: element => fireEvent.mouseOver(element),
           startEvent: element => fireEvent.mouseLeave(element),
-          description: "should restart navigation when mouse leaves next arrow"
+          description: 'should restart navigation when mouse leaves next arrow'
         },
         {
           ticks: 2,
@@ -255,8 +232,7 @@ describe("Carousel", () => {
           },
           stopEvent: element => fireEvent.mouseOver(element),
           startEvent: element => fireEvent.mouseLeave(element),
-          description:
-            "should restart navigation when mouse leaves previous arrow"
+          description: 'should restart navigation when mouse leaves previous arrow'
         },
         {
           ticks: 2,
@@ -268,7 +244,7 @@ describe("Carousel", () => {
           },
           stopEvent: element => element.focus(),
           startEvent: element => element.blur(),
-          description: "should restart navigation when next arrow loses focus"
+          description: 'should restart navigation when next arrow loses focus'
         },
         {
           ticks: 2,
@@ -280,21 +256,12 @@ describe("Carousel", () => {
           },
           stopEvent: element => element.focus(),
           startEvent: element => element.blur(),
-          description:
-            "should restart navigation when previous arrow loses focus"
+          description: 'should restart navigation when previous arrow loses focus'
         }
       ];
 
       restartNavigationTests.map(testCase => {
-        const {
-          ticks,
-          options,
-          stopEvent,
-          startEvent,
-          description,
-          expectedPosition,
-          getElementUnderTest
-        } = testCase;
+        const { ticks, options, stopEvent, startEvent, description, expectedPosition, getElementUnderTest } = testCase;
 
         test(description, () => {
           setUp(options);
