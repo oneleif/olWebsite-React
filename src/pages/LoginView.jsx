@@ -49,23 +49,40 @@ function LoginView() {
     const emailResponse = validateEmail(email);
     const passwordResponse = validatePassword(password);
 
-    if (emailResponse !== SUCCESS) {
-      setEmailErrorMessage(emailResponse);
-    }
-    else {
-      setEmailErrorMessage(null);
-    }
-
-    if (passwordResponse !== SUCCESS) {
-      setPasswordErrorMessage(passwordResponse);
-    }
-    else {
-      setPasswordErrorMessage(null);
-    }
+    handleEmailValidationResponse(emailResponse);
+    handlePasswordValidationResponse(passwordResponse);
 
     return (emailResponse === SUCCESS) && (passwordResponse === SUCCESS);
   }
   
+  function emailValidationCheck(email) {
+    setEmail(email);
+    handleEmailValidationResponse(validateEmail(email));
+  }
+
+  function passwordValidationCheck(password) {
+    setPassword(password);
+    handlePasswordValidationResponse(validatePassword(password));
+  }
+ 
+ /* Takes in validation response of email and sets based on success or not
+  *
+  * @param response
+  */
+  function handleEmailValidationResponse(response) {
+    const message = (response !== SUCCESS) ? response : null;
+    setEmailErrorMessage(message);
+  }
+
+ /* Takes in validation response of password and sets based on success or not
+  *
+  * @param response
+  */
+  function handlePasswordValidationResponse(response) {
+    const message = (response !== SUCCESS) ? response : null;
+    setPasswordErrorMessage(message);
+  }
+
   /************************************
    * Render
    ************************************/
@@ -78,13 +95,13 @@ function LoginView() {
               <Input 
                 className='auth'
                 label='Email'
-                onValueChange={(email) => setEmail(email)} 
+                onValueChange={(email) => emailValidationCheck(email)} 
                 errorMessage={emailErrorMessage}/>
               <Input 
                 className='auth'
                 label='Password'
                 type='password'
-                onValueChange={(password) => setPassword(password)} 
+                onValueChange={(password) => passwordValidationCheck(password)} 
                 errorMessage={passwordErrorMessage}/>
               <div className='authentication-actions-module'>
                 <span>Forgot your password?</span>
