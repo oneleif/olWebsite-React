@@ -1,4 +1,4 @@
-import React from "React";
+import React from "react";
 import { render, screen, fireEvent, act } from "test-utils";
 
 import Carousel from "../Carousel";
