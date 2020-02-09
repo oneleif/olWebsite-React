@@ -19,7 +19,7 @@ function UserProvider ({ children }) {
         if (sessionUser && !user) {
             setUser(sessionUser);
         }
-    });
+    }, [user]);
 
     useEffect(() => {
         window.localStorage.setItem('user', user);
