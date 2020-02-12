@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import homeLogo from "../../images/homeLogo.png";
 import { FaSearch, FaUser } from "react-icons/fa";
+import SearchBox from "../SearchBox/SearchBox";
 import { useUser } from "../../contexts/UserContext";
 
 function Toolbar() {
@@ -27,19 +28,29 @@ function Toolbar() {
             </h1>
           </li>
           <li>
-            <NavLink to="/about-us" activeClassName="active-link">About Us</NavLink>
+            <NavLink to="/about-us" activeClassName="active-link">
+              About Us
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/posts" activeClassName="active-link">Posts</NavLink>
+            <NavLink to="/posts" activeClassName="active-link">
+              Posts
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/partners" activeClassName="active-link">Partners</NavLink>
+            <NavLink to="/partners" activeClassName="active-link">
+              Partners
+            </NavLink>
           </li>
         </ul>
       </nav>
       <ul className="icon-module">
         <li>
-          <FaSearch tabIndex="0" />
+          <SearchBox
+            onSearch={() => {}}
+            placeholder="Search oneleif..."
+            isCollapsible={true}
+          />
         </li>
         <li>
         {user? (

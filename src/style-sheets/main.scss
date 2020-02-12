@@ -1,6 +1,6 @@
 // Modules
-@import './responsive/queries';
-@import './modules/colors';
+@import "./responsive/queries";
+@import "./modules/colors";
 
 // Layout
 @import "./layout/app";
@@ -17,6 +17,7 @@
 // Components
 @import "./components/carousel";
 @import "./components/filter";
+@import "./components/search-box";
 
 // Pages
 @import "./pages/authentication-view";
