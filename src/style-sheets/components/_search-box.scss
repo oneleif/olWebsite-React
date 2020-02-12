@@ -1,0 +1,27 @@
+.search-box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &-icon {
+    width: 16px;
+    height: 16px;
+    padding: 0 5px;
+    border: none;
+    outline: none;
+
+    &:focus {
+      outline: auto highlight;
+    }
+  }
+
+  & input {
+    cursor: auto;
+    height: 20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding-left: 2px;
+    transition: width 1s;
+  }
+}
