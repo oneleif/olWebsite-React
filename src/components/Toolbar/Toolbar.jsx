@@ -1,10 +1,17 @@
 import React from "react";
 import { Link, NavLink, withRouter } from "react-router-dom";
-
 import homeLogo from "../../images/homeLogo.png";
+import { FaSearch, FaUser } from "react-icons/fa";
 import SearchBox from "../SearchBox/SearchBox";
+import { useUser } from "../../contexts/UserContext";
 
 function Toolbar() {
+  /************************************
+    * State
+    ************************************/
+
+  const [user] = useUser();
+
   /************************************
    * Render
    ************************************/
@@ -46,9 +53,16 @@ function Toolbar() {
           />
         </li>
         <li>
-          <NavLink to="/sign-up" activeClassName="active-link">
-            Sign Up
-          </NavLink>
+        {user? (
+              <Link to="/profile">
+                <FaUser />
+              </Link>
+            ) : (
+              <NavLink to="/sign-up" activeClassName="active-link">
+                Sign Up
+              </NavLink>
+            )
+          }
         </li>
       </ul>
     </header>

@@ -22,7 +22,7 @@ function UserProvider ({ children }) {
     }, [user]);
 
     useEffect(() => {
-        window.localStorage.setItem('user', user);
+        window.localStorage.setItem('user', JSON.stringify(user));
     }, [user]);
 
     return (
