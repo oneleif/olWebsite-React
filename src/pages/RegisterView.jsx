@@ -62,17 +62,20 @@ function RegisterView() {
 
   function emailValidationCheck(email) {
     setEmail(email);
-    handleEmailValidationResponse(validateEmail(email));
+    const response = validateEmail(email);
+    handleEmailValidationResponse(response);
   }
 
   function passwordValidationCheck(password) {
     setPassword(password);
-    handlePasswordValidationResponse(validatePassword(password));
+    const response = validatePassword(password);
+    handlePasswordValidationResponse(validatePassword(response));
   }
 
   function reenteredPasswordValidationCheck(reenteredPassword) {
     setReenteredPassword(reenteredPassword);
-    handleReenteredPasswordValidationResponse(validateReenteredPassword(password, reenteredPassword));
+    const response = validateReenteredPassword(password, reenteredPassword);
+    handleReenteredPasswordValidationResponse(response);
   }
 
  /* Takes in validation response of email and sets based on success or not

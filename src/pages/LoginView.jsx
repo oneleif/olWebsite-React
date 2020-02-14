@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 
 import { 
-  validateEmail, 
-  validatePassword
-} from '../utils/authentication-utils';
-import { SUCCESS } from '../constants/authentication-constants';
+  SUCCESS, 
+  ERROR_EMPTY_EMAIL,
+  ERROR_EMPTY_PASSWORD
+} from '../constants/authentication-constants';
 import { loginUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
@@ -46,31 +46,28 @@ function LoginView() {
  /* Validates inputs, if invalid then it will display an error message
   */
   function validateInput() {
-    const emailResponse = validateEmail(email);
-    const passwordResponse = validatePassword(password);
+    handleEmailValidationResponse(email);
+    handlePasswordValidationResponse(password);
 
-    handleEmailValidationResponse(emailResponse);
-    handlePasswordValidationResponse(passwordResponse);
-
-    return (emailResponse === SUCCESS) && (passwordResponse === SUCCESS);
+    return (email !== '') && (password !== '');
   }
   
   function emailValidationCheck(email) {
     setEmail(email);
-    handleEmailValidationResponse(validateEmail(email));
+    handleEmailValidationResponse(email);
   }
 
   function passwordValidationCheck(password) {
     setPassword(password);
-    handlePasswordValidationResponse(validatePassword(password));
+    handlePasswordValidationResponse(password);
   }
  
  /* Takes in validation response of email and sets based on success or not
   *
   * @param response
   */
-  function handleEmailValidationResponse(response) {
-    const message = (response !== SUCCESS) ? response : null;
+  function handleEmailValidationResponse(input) {
+    const message = (input === '') ? ERROR_EMPTY_EMAIL : null;
     setEmailErrorMessage(message);
   }
 
@@ -78,8 +75,8 @@ function LoginView() {
   *
   * @param response
   */
-  function handlePasswordValidationResponse(response) {
-    const message = (response !== SUCCESS) ? response : null;
+  function handlePasswordValidationResponse(input) {
+    const message = (input === '') ? ERROR_EMPTY_PASSWORD : null;
     setPasswordErrorMessage(message);
   }
 
