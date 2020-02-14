@@ -7,15 +7,21 @@ export default function ProtectedRoute({ component: Component, ...rest }) {
   const [user] = useUser();
 
   /************************************
+   * Helper Functions
+   ************************************/
+
+  function getRenderedComponent(props) {
+    if (user) {
+      return <Component {...props} />;
+    }
+
+    const { location } = props;
+    return <Redirect to={{ pathname: '/login', state: { referer: location } }} />;
+  }
+
+  /************************************
    * Render
    ************************************/
 
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        user ? <Component {...props} /> : <Redirect to={{ pathname: '/login', state: { referer: props.location } }} />
-      }
-    />
-  );
+  return <Route {...rest} render={getRenderedComponent} />;
 }

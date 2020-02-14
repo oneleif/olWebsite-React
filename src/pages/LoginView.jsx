@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { Redirect, withRouter } from "react-router-dom";
+import React, { useState } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
-import { 
-  SUCCESS, 
-  ERROR_EMPTY_EMAIL,
-  ERROR_EMPTY_PASSWORD
-} from '../constants/authentication-constants';
+import { SUCCESS, ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../constants/authentication-constants';
 import { loginUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
-import homeLogo from "../images/homeLogo.png";
+import homeLogo from '../images/homeLogo.png';
 
-function LoginView() {
+function LoginView(props) {
   /************************************
    * State
    ************************************/
@@ -28,30 +24,29 @@ function LoginView() {
    * Helper Functions
    ************************************/
 
- /* Handler for log in button clicked, if valid inputs logs in user
-  */
+  /* Handler for log in button clicked, if valid inputs logs in user
+   */
   async function loginClicked() {
     if (validateInput()) {
       const response = await loginUser(email, password);
 
       if (response === SUCCESS) {
         setIsLoggedIn(true);
-      }
-      else {
+      } else {
         setErrorMessage(response);
-      } 
+      }
     }
   }
 
- /* Validates inputs, if invalid then it will display an error message
-  */
+  /* Validates inputs, if invalid then it will display an error message
+   */
   function validateInput() {
     handleEmailValidationResponse(email);
     handlePasswordValidationResponse(password);
 
-    return (email !== '') && (password !== '');
+    return email !== '' && password !== '';
   }
-  
+
   function emailValidationCheck(email) {
     setEmail(email);
     handleEmailValidationResponse(email);
@@ -61,22 +56,22 @@ function LoginView() {
     setPassword(password);
     handlePasswordValidationResponse(password);
   }
- 
- /* Takes in validation response of email and sets based on success or not
-  *
-  * @param response
-  */
+
+  /* Takes in validation response of email and sets based on success or not
+   *
+   * @param response
+   */
   function handleEmailValidationResponse(input) {
-    const message = (input === '') ? ERROR_EMPTY_EMAIL : null;
+    const message = input === '' ? ERROR_EMPTY_EMAIL : null;
     setEmailErrorMessage(message);
   }
 
- /* Takes in validation response of password and sets based on success or not
-  *
-  * @param response
-  */
+  /* Takes in validation response of password and sets based on success or not
+   *
+   * @param response
+   */
   function handlePasswordValidationResponse(input) {
-    const message = (input === '') ? ERROR_EMPTY_PASSWORD : null;
+    const message = input === '' ? ERROR_EMPTY_PASSWORD : null;
     setPasswordErrorMessage(message);
   }
 
@@ -86,30 +81,32 @@ function LoginView() {
 
   return (
     <div className='authentication-view-body'>
-        <div className='authentication-input-container'> 
-            <img src={homeLogo} alt="oneleif logo" />
-            <div className="form-container">
-              <Input 
-                className='auth'
-                label='Email'
-                onValueChange={(email) => emailValidationCheck(email)} 
-                errorMessage={emailErrorMessage}/>
-              <Input 
-                className='auth'
-                label='Password'
-                type='password'
-                onValueChange={(password) => passwordValidationCheck(password)} 
-                errorMessage={passwordErrorMessage}/>
-              <div className='authentication-actions-module'>
-                <span>Forgot your password?</span>
-                <button onClick={() => loginClicked()}>Log in</button>
-              </div>
-            </div>
-            {errorMessage && <p className='error-message'>{errorMessage}</p>}
+      <div className='authentication-input-container'>
+        <img src={homeLogo} alt='oneleif logo' />
+        <div className='form-container'>
+          <Input
+            className='auth'
+            label='Email'
+            onValueChange={email => emailValidationCheck(email)}
+            errorMessage={emailErrorMessage}
+          />
+          <Input
+            className='auth'
+            label='Password'
+            type='password'
+            onValueChange={password => passwordValidationCheck(password)}
+            errorMessage={passwordErrorMessage}
+          />
+          <div className='authentication-actions-module'>
+            <span>Forgot your password?</span>
+            <button onClick={() => loginClicked()}>Log in</button>
+          </div>
         </div>
-        {isLoggedIn && <Redirect to="/" />}
+        {errorMessage && <p className='error-message'>{errorMessage}</p>}
+      </div>
+      {isLoggedIn && <Redirect to={props.location.state?.referer || '/'} />}
     </div>
   );
-};
+}
 
 export default withRouter(LoginView);
