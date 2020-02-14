@@ -14,7 +14,7 @@ function UserProvider ({ children }) {
     ************************************/
 
     useEffect(() => {
-        //TODO Jacob J: Don't use localStorage, very unsecure
+        //TODO: Don't use localStorage, very unsecure
         const sessionUser = JSON.parse(window.localStorage.getItem('user'));
         if (sessionUser && !user) {
             setUser(sessionUser);

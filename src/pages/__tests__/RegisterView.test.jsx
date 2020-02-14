@@ -13,7 +13,8 @@ import RegisterView from '../RegisterView';
 import {
     ERROR_EMPTY_EMAIL, 
     ERROR_EMPTY_PASSWORD, 
-    ERROR_EMPTY_REENTERED_PASSWORD
+    ERROR_EMPTY_REENTERED_PASSWORD,
+    ERROR_INVALID_EMAIL
 } from '../../constants/authentication-constants';
 
 /************************************
@@ -22,6 +23,7 @@ import {
 
 const VALID_EMAIL = 'test1@gmail.com';
 const VALID_PASSWORD = 'Test123!';
+const INVALID_EMAIL = 'test';
 
 describe("Register View Component Tests", function() {
     let renderedComponent;
@@ -35,14 +37,23 @@ describe("Register View Component Tests", function() {
         expect(inputs).toBeInTheDocument();
     });
 
+    test("Invalid email typed, error message should be shown", () => {
+        const emailInput = queryByLabelText(renderedComponent.container, 'Email-input');
+
+        fireEvent.change(emailInput, { target: { value:  INVALID_EMAIL} });
+
+        const emailErrorMessage = queryByText(renderedComponent.container, ERROR_INVALID_EMAIL);
+        expect(emailErrorMessage).toBeInTheDocument();
+    });
+
     test("Valid inputs entered, fetch should be called", async () => {
         const emailInput = queryByLabelText(renderedComponent.container, 'Email-input');
         const passwordInput = queryByLabelText(renderedComponent.container, 'Password-input');
         const reenteredPasswordInput = queryByLabelText(renderedComponent.container, 'Reenter Password-input');
 
-        fireEvent.change(emailInput, { target: { value:  VALID_EMAIL} })
-        fireEvent.change(passwordInput, { target: { value: VALID_PASSWORD } })
-        fireEvent.change(reenteredPasswordInput, { target: { value: VALID_PASSWORD } })
+        fireEvent.change(emailInput, { target: { value:  VALID_EMAIL} });
+        fireEvent.change(passwordInput, { target: { value: VALID_PASSWORD } });
+        fireEvent.change(reenteredPasswordInput, { target: { value: VALID_PASSWORD } });
 
         const mockSuccessResponse = {};
         const mockJsonPromise = Promise.resolve(mockSuccessResponse);

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink, withRouter } from "react-router-dom";
 import homeLogo from "../../images/homeLogo.png";
-import { FaSearch, FaUser } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import SearchBox from "../SearchBox/SearchBox";
 import { useUser } from "../../contexts/UserContext";
 
