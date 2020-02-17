@@ -53,30 +53,58 @@ function RegisterView() {
     const passwordResponse = validatePassword(password);
     const reenteredPasswordResponse = validateReenteredPassword(password, reenteredPassword);
 
-    if (emailResponse !== SUCCESS) {
-      setEmailErrorMessage(emailResponse);
-    }
-    else {
-      setEmailErrorMessage(null);
-    }
-
-    if (passwordResponse !== SUCCESS) {
-      setPasswordErrorMessage(passwordResponse);
-    }
-    else {
-      setPasswordErrorMessage(null);
-    }
-
-    if (reenteredPasswordResponse !== SUCCESS) {
-      setReenteredPasswordErrorMessage(reenteredPasswordResponse);
-    }
-    else {
-      setReenteredPasswordErrorMessage(null);
-    }
+    handleEmailValidationResponse(emailResponse);
+    handlePasswordValidationResponse(passwordResponse);
+    handleReenteredPasswordValidationResponse(reenteredPasswordResponse);
 
     return (emailResponse === SUCCESS) && (passwordResponse === SUCCESS) && (reenteredPasswordResponse === SUCCESS);
   }
 
+  function emailValidationCheck(email) {
+    setEmail(email);
+    const response = validateEmail(email);
+    handleEmailValidationResponse(response);
+  }
+
+  function passwordValidationCheck(password) {
+    setPassword(password);
+    const response = validatePassword(password);
+    handlePasswordValidationResponse(validatePassword(response));
+  }
+
+  function reenteredPasswordValidationCheck(reenteredPassword) {
+    setReenteredPassword(reenteredPassword);
+    const response = validateReenteredPassword(password, reenteredPassword);
+    handleReenteredPasswordValidationResponse(response);
+  }
+
+ /* Takes in validation response of email and sets based on success or not
+  *
+  * @param response
+  */
+  function handleEmailValidationResponse(response) {
+    const message = (response !== SUCCESS) ? response : null;
+    setEmailErrorMessage(message);
+  }
+
+ /* Takes in validation response of password and sets based on success or not
+  *
+  * @param response
+  */
+  function handlePasswordValidationResponse(response) {
+    const message = (response !== SUCCESS) ? response : null;
+    setPasswordErrorMessage(message);
+  }
+
+ /* Takes in validation response of reentered password and sets based on success or not
+  *
+  * @param response
+  */
+  function handleReenteredPasswordValidationResponse(response) {
+    const message = (response !== SUCCESS) ? response : null;
+    setReenteredPasswordErrorMessage(message);
+  }
+  
   /************************************
    * Render
    ************************************/
@@ -89,19 +117,19 @@ function RegisterView() {
                 <Input 
                 className='auth' 
                 label='Email'
-                onValueChange={(email) => setEmail(email)} 
+                onValueChange={(email) => emailValidationCheck(email)} 
                 errorMessage={emailErrorMessage}/>
                 <Input 
                 className='auth'
                 label='Password'
                 type='password'
-                onValueChange={(password) => setPassword(password)} 
+                onValueChange={(password) => passwordValidationCheck(password)} 
                 errorMessage={passwordErrorMessage}/>
                 <Input 
                 className='auth'
                 label='Reenter Password'
                 type='password'
-                onValueChange={(password) => setReenteredPassword(password)} 
+                onValueChange={(password) => reenteredPasswordValidationCheck(password)} 
                 errorMessage={reenteredPasswordErrorMessage}/>
                 <div className='authentication-actions-module'>
                   <Link to="/login">

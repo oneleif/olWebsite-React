@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 
 import { 
-  validateEmail, 
-  validatePassword
-} from '../utils/authentication-utils';
-import { SUCCESS } from '../constants/authentication-constants';
+  SUCCESS, 
+  ERROR_EMPTY_EMAIL,
+  ERROR_EMPTY_PASSWORD
+} from '../constants/authentication-constants';
 import { loginUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
@@ -46,26 +46,40 @@ function LoginView() {
  /* Validates inputs, if invalid then it will display an error message
   */
   function validateInput() {
-    const emailResponse = validateEmail(email);
-    const passwordResponse = validatePassword(password);
+    handleEmailValidationResponse(email);
+    handlePasswordValidationResponse(password);
 
-    if (emailResponse !== SUCCESS) {
-      setEmailErrorMessage(emailResponse);
-    }
-    else {
-      setEmailErrorMessage(null);
-    }
-
-    if (passwordResponse !== SUCCESS) {
-      setPasswordErrorMessage(passwordResponse);
-    }
-    else {
-      setPasswordErrorMessage(null);
-    }
-
-    return (emailResponse === SUCCESS) && (passwordResponse === SUCCESS);
+    return (email !== '') && (password !== '');
   }
   
+  function emailValidationCheck(email) {
+    setEmail(email);
+    handleEmailValidationResponse(email);
+  }
+
+  function passwordValidationCheck(password) {
+    setPassword(password);
+    handlePasswordValidationResponse(password);
+  }
+ 
+ /* Takes in validation response of email and sets based on success or not
+  *
+  * @param response
+  */
+  function handleEmailValidationResponse(input) {
+    const message = (input === '') ? ERROR_EMPTY_EMAIL : null;
+    setEmailErrorMessage(message);
+  }
+
+ /* Takes in validation response of password and sets based on success or not
+  *
+  * @param response
+  */
+  function handlePasswordValidationResponse(input) {
+    const message = (input === '') ? ERROR_EMPTY_PASSWORD : null;
+    setPasswordErrorMessage(message);
+  }
+
   /************************************
    * Render
    ************************************/
@@ -78,13 +92,13 @@ function LoginView() {
               <Input 
                 className='auth'
                 label='Email'
-                onValueChange={(email) => setEmail(email)} 
+                onValueChange={(email) => emailValidationCheck(email)} 
                 errorMessage={emailErrorMessage}/>
               <Input 
                 className='auth'
                 label='Password'
                 type='password'
-                onValueChange={(password) => setPassword(password)} 
+                onValueChange={(password) => passwordValidationCheck(password)} 
                 errorMessage={passwordErrorMessage}/>
               <div className='authentication-actions-module'>
                 <span>Forgot your password?</span>
