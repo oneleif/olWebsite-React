@@ -79,7 +79,9 @@ function LoginView(props) {
    * Render
    ************************************/
 
-  return (
+  return isLoggedIn ? (
+    <Redirect to={props.location.state?.referer || '/'} />
+  ) : (
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
@@ -104,7 +106,6 @@ function LoginView(props) {
         </div>
         {errorMessage && <p className='error-message'>{errorMessage}</p>}
       </div>
-      {isLoggedIn && <Redirect to={props.location.state?.referer || '/'} />}
     </div>
   );
 }
