@@ -1,8 +1,8 @@
-import  React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 const UserContext = React.createContext([undefined, undefined]);
 
-function UserProvider ({ children }) {
+function UserProvider({ children }) {
     /************************************
     * State
     ************************************/
@@ -22,7 +22,9 @@ function UserProvider ({ children }) {
     }, [user]);
 
     useEffect(() => {
-        window.localStorage.setItem('user', JSON.stringify(user));
+        if (user) {
+            window.localStorage.setItem('user', JSON.stringify(user));
+        }
     }, [user]);
 
     return (

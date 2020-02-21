@@ -1,0 +1,39 @@
+.profile-view-body {
+    display: flex;
+    flex-direction: row;
+
+    // TODO: Replace with (100% - (header + footer))
+    min-height: 75.85vh;
+}
+
+.user-info {
+    padding-left: 40px;
+    flex-direction: column;
+}
+
+.user-icon {
+    height: 240px;
+    width: 240px;
+}
+
+.user-full-name {
+    margin-top: 10px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.user-location {
+    font-size: small;
+}
+
+.user-social-info {
+    margin-top: 20px;
+    border: 1px solid white;
+    padding: 12px;
+}
+
+.user-bio-header {
+    font-size: 1.17em;
+    font-weight: bold;
+    margin-bottom: 1em;
+}
