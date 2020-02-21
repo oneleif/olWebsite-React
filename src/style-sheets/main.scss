@@ -1,4 +1,5 @@
 // Modules
+@import "./responsive/screens";
 @import "./responsive/queries";
 @import "./modules/colors";
 
@@ -23,3 +24,4 @@
 @import "./pages/authentication-view";
 @import "./pages/landing-view";
 @import "./pages/posts-view";
+@import "./pages/404";
