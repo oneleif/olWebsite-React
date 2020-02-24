@@ -27,11 +27,11 @@ export default function OlWebsiteApp() {
             <ScrollToTop>
               <div className="app-body">
                 <Switch>
+                  <Route exact path="/" component={LandingView} />
                   <Route path="/login" component={LoginView} />
                   <Route path="/posts" component={PostsView} />
                   <Route path="/sign-up" component={RegisterView} />
-                  <Route exact path="/" component={LandingView} />
-                  <Route component={PageNotFound404} />
+                  <Route path="*" component={PageNotFound404} />
                 </Switch>
               </div>
             </ScrollToTop>
