@@ -17,7 +17,15 @@ import IconPlaceholder from '../images/insert-profile-picture-here.png';
 import { useUser } from '../contexts/UserContext';
 
 export default function ProfileView() {
+    /************************************
+     * State
+     ************************************/
+
     const [user] = useUser();
+
+    /************************************
+     * Render
+     ************************************/
 
     return (
         <div className="profile-view-body">
