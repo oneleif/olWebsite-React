@@ -10,6 +10,7 @@ import LandingView from "./pages/LandingView";
 import PostsView from "./pages/PostsView";
 import RegisterView from "./pages/RegisterView";
 import LoginView from "./pages/LoginView";
+import PageNotFoundView from "./pages/PageNotFoundView";
 import { UserProvider } from "./contexts/UserContext";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -26,10 +27,11 @@ export default function OlWebsiteApp() {
             <ScrollToTop>
               <div className="app-body">
                 <Switch>
+                  <Route exact path="/" component={LandingView} />
                   <Route path="/login" component={LoginView} />
                   <Route path="/posts" component={PostsView} />
                   <Route path="/sign-up" component={RegisterView} />
-                  <Route path="/" component={LandingView} />
+                  <Route path="*" component={PageNotFoundView} />
                 </Switch>
               </div>
             </ScrollToTop>
