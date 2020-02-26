@@ -1,15 +1,16 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-export default function PageNotFound404() {
+export default function PageNotFoundView() {
+  const location = useLocation();
+
   /************************************
    * Render
    ************************************/
-  let location = useLocation();
 
   return (
-    <div className="container-404">
-      <div className="body-404">
+    <div className="page-not-found-view-container">
+      <div className="page-not-found-view-body">
         <h1>404</h1>
         <code>{location.pathname}</code>
         <h3>Page Not Found</h3>
