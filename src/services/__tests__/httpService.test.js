@@ -2,12 +2,11 @@ import _ from 'lodash';
 
 import * as http from '../httpService';
 
-describe('Http Service', () => {
-  //
-  fetch = jest.fn().mockRejectedValue('error');
-  const defaultHeaders = { abc: 'def' };
-  const httpMethods = [http.remove, http.patch, http.post, http.put, http.get];
+const defaultHeaders = { abc: 'def' };
+fetch = jest.fn().mockRejectedValue('error');
+const httpMethods = [http.remove, http.patch, http.post, http.put, http.get];
 
+describe('Http Service', () => {
   afterEach(() => {
     fetch.mockReset();
     http.resetHeaders();
