@@ -1,5 +1,6 @@
-const json = 'application/json; charset=utf-8';
-const DEFAULT_HEADERS = { 'content-type': json };
+import _ from 'lodash';
+
+const DEFAULT_HEADERS = {};
 const DEFAULT_OPTIONS = {
   headers: DEFAULT_HEADERS,
   credentials: 'same-origin'
@@ -12,6 +13,15 @@ const DEFAULT_OPTIONS = {
  */
 function setDefaultHeaders(headers) {
   Object.assign(DEFAULT_HEADERS, headers);
+}
+
+/**
+ * Clear default headers
+ */
+function resetHeaders() {
+  for (const key in DEFAULT_HEADERS) {
+    delete DEFAULT_HEADERS[key];
+  }
 }
 
 /**
@@ -43,6 +53,8 @@ function getError(response, jsonResponse) {
  */
 async function handleResponse(response) {
   const jsonResponse = await parseJson(response);
+
+  // TODO: It might be a good idea to handle all 500 errors here
   if (!response.ok) {
     return Promise.reject(getError(response, jsonResponse));
   }
@@ -63,7 +75,7 @@ async function sendData(url, method, data, options = {}) {
     body: JSON.stringify(data)
   };
 
-  const response = await fetch(url, Object.assign(params, options));
+  const response = await fetch(url, _.merge(params, options));
   return handleResponse(response);
 }
 
@@ -74,7 +86,7 @@ async function sendData(url, method, data, options = {}) {
  */
 async function get(url, options = {}) {
   const params = { ...DEFAULT_OPTIONS, method: 'GET' };
-  const response = await fetch(url, Object.assign(params, options));
+  const response = await fetch(url, _.merge(params, options));
   return handleResponse(response);
 }
 
@@ -115,8 +127,8 @@ function put(url, data, options = {}) {
  */
 async function remove(url, options = {}) {
   const params = { ...DEFAULT_OPTIONS, method: 'DELETE' };
-  const response = await fetch(url, Object.assign(params, options));
+  const response = await fetch(url, _.merge(params, options));
   return handleResponse(response);
 }
 
-export { get, put, post, patch, remove, setDefaultHeaders };
+export { get, put, post, patch, remove, resetHeaders, setDefaultHeaders };
