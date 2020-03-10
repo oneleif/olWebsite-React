@@ -2,11 +2,16 @@ import _ from 'lodash';
 
 import * as http from '../httpService';
 
-const defaultHeaders = { abc: 'def' };
 fetch = jest.fn().mockRejectedValue('error');
-const httpMethods = [http.remove, http.patch, http.post, http.put, http.get];
+
+const DEFAULT_HEADERS = { abc: 'def' };
+const HTTP_DELETE_VERB = 'DELETE';
+const HTTP_SERVICE_GET_METHOD = 'get';
+const HTTP_SERVICE_DELETE_METHOD = 'remove';
 
 describe('Http Service', () => {
+  const httpServiceMethods = [http.remove, http.patch, http.post, http.put, http.get];
+
   afterEach(() => {
     fetch.mockReset();
     http.resetHeaders();
@@ -17,10 +22,10 @@ describe('Http Service', () => {
   }
 
   function isUpdateMethod(method) {
-    return !(method.name === 'remove' || method.name === 'get');
+    return !(method.name === HTTP_SERVICE_DELETE_METHOD || method.name === HTTP_SERVICE_GET_METHOD);
   }
 
-  httpMethods.map(method => {
+  httpServiceMethods.map(method => {
     test(`should set proper http method on ${method.name.toUpperCase()}`, async () => {
       try {
         await method();
@@ -28,8 +33,8 @@ describe('Http Service', () => {
 
       // NOTE: proper verb for remove is DELETE. Method is named remove instead
       // because delete is a reserved keyword
-      method.name === 'remove'
-        ? expect(getRequestOptions().method).toBe('DELETE')
+      method.name === HTTP_SERVICE_DELETE_METHOD
+        ? expect(getRequestOptions().method).toBe(HTTP_DELETE_VERB)
         : expect(getRequestOptions().method).toBe(method.name.toUpperCase());
     });
 
@@ -45,13 +50,13 @@ describe('Http Service', () => {
 
     test(`should set and clear default headers on ${method.name.toUpperCase()}`, async () => {
       // Set default headers
-      http.setDefaultHeaders(defaultHeaders);
+      http.setDefaultHeaders(DEFAULT_HEADERS);
 
       try {
         await method();
       } catch (error) {}
 
-      expect(getRequestOptions().headers).toEqual(defaultHeaders);
+      expect(getRequestOptions().headers).toEqual(DEFAULT_HEADERS);
 
       // Reset default headers
       http.resetHeaders();
@@ -66,7 +71,7 @@ describe('Http Service', () => {
     test(`should merge given headers with default ones on ${method.name.toUpperCase()}`, async () => {
       const header = { xyz: 'lmn' };
 
-      http.setDefaultHeaders(defaultHeaders);
+      http.setDefaultHeaders(DEFAULT_HEADERS);
 
       try {
         if (isUpdateMethod(method)) {
@@ -76,7 +81,7 @@ describe('Http Service', () => {
         }
       } catch (error) {}
 
-      expect(getRequestOptions().headers).toEqual(_.merge(header, defaultHeaders));
+      expect(getRequestOptions().headers).toEqual(_.merge(header, DEFAULT_HEADERS));
     });
   });
 });

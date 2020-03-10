@@ -3,7 +3,7 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 
 import { validateEmail, validatePassword, validateReenteredPassword } from '../utils/authentication-utils';
 import { SUCCESS } from '../constants/authentication-constants';
-import { registerUser } from '../rest/authentication-rest';
+import { register } from '../services/authService.js';
 
 import Input from '../components/Objects/Input/Input';
 import homeLogo from '../images/homeLogo.png';
@@ -31,12 +31,11 @@ function RegisterView() {
    */
   async function registerClicked() {
     if (validateInput()) {
-      const response = await registerUser(email, password);
-
-      if (response === SUCCESS) {
+      try {
+        await register(email, password);
         setIsRegistered(true);
-      } else {
-        setErrorMessage(response);
+      } catch (error) {
+        setErrorMessage(error.message);
       }
     }
   }

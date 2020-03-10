@@ -9,22 +9,22 @@ jest.mock('../httpService.js', () => {
   };
 });
 
-const email = 'abc';
-const password = 'cde';
-const urlEndpoint = apiUrl + '/login';
+const EMAIL = 'ABC';
+const PASSWORD = 'CDE';
+const URL_ENDPOINT = apiUrl + '/login';
 
 describe('Authentication Service', () => {
   test('should send form data to login endpoint when logging in', async () => {
-    await authService.login(email, password);
+    await authService.login(EMAIL, PASSWORD);
 
-    expect(httpService.post).toHaveBeenCalledWith(urlEndpoint, { password, username: email }, {});
+    expect(httpService.post).toHaveBeenCalledWith(URL_ENDPOINT, { password: PASSWORD, username: EMAIL }, {});
   });
 
   test('should return user information when successful', async () => {
-    const expectedValue = { username: email };
+    const expectedValue = { username: EMAIL };
     httpService.post.mockResolvedValueOnce(expectedValue);
 
-    const value = await authService.login(email, password);
+    const value = await authService.login(EMAIL, PASSWORD);
 
     expect(value).toBe(expectedValue);
   });

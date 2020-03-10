@@ -1,5 +1,11 @@
 import _ from 'lodash';
 
+/**
+ * @typedef {Object} CustomError
+ * @property {string} message - Error message
+ * @property {Response} response - Original http response
+ */
+
 const DEFAULT_HEADERS = {};
 const DEFAULT_OPTIONS = {
   headers: DEFAULT_HEADERS,
@@ -9,7 +15,7 @@ const DEFAULT_OPTIONS = {
 /**
  * Sets the default headers to be used with each request.
  * This function should be called at the start of the application.
- * @param {*} headers object containing headers
+ * @param {Object} headers object containing headers
  */
 function setDefaultHeaders(headers) {
   Object.assign(DEFAULT_HEADERS, headers);
@@ -25,8 +31,8 @@ function resetHeaders() {
 }
 
 /**
- * Returns a JavaScript object if the response is not empty
- * @param {*} response original http response
+ * @param {Response} response original http response
+ * @returns {Object} Parsed response
  */
 function parseJson(response) {
   return response.text().then(text => {
@@ -35,10 +41,11 @@ function parseJson(response) {
 }
 
 /**
- * Returns an error. The reason property indicates a server error,
- * whereas using statusText for the error message indicates a network error
- * @param {*} response original http response
- * @param {*} jsonResponse parsed response
+ * The reason property indicates a server error, whereas using
+ * statusText for the error message indicates a network error
+ * @param {Response} response original http response
+ * @param {Object} jsonResponse parsed response
+ * @returns {CustomError} An error with the original response appended
  */
 function getError(response, jsonResponse) {
   const error = new Error(jsonResponse.reason || response.statusText);
@@ -50,6 +57,8 @@ function getError(response, jsonResponse) {
  * Rejects whole promise when the status code is not OK.
  * Resolves with parsed JSON data.
  * @param {Response} response
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 async function handleResponse(response) {
   const jsonResponse = await parseJson(response);
@@ -63,10 +72,12 @@ async function handleResponse(response) {
 
 /**
  * Sends data to the server using the given http request method
- * @param {String} url api endpoint
- * @param {String} method http request method
- * @param {*} data  data to be sent to the server
- * @param {*} options
+ * @param {string} url api endpoint
+ * @param {string} method http request method
+ * @param {Object} data  JavaScript data to be sent to the server
+ * @param {Object} options request parameters
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 async function sendData(url, method, data, options = {}) {
   const params = {
@@ -81,8 +92,10 @@ async function sendData(url, method, data, options = {}) {
 
 /**
  * GET request
- * @param {String} url url endpoint
- * @param {*} options request parameters
+ * @param {string} url url endpoint
+ * @param {Object} options request parameters
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 async function get(url, options = {}) {
   const params = { ...DEFAULT_OPTIONS, method: 'GET' };
@@ -92,9 +105,11 @@ async function get(url, options = {}) {
 
 /**
  * PATCH request
- * @param {String} url url endpoint
- * @param {*} data data to be sent to the server
- * @param {*} options request parameters
+ * @param {string} url url endpoint
+ * @param {Object} data  JavaScript data to be sent to the server
+ * @param {Object} options request parameters
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 function patch(url, data, options = {}) {
   return sendData(url, 'PATCH', data, options);
@@ -103,8 +118,10 @@ function patch(url, data, options = {}) {
 /**
  * POST request
  * @param {String} url url endpoint
- * @param {*} data data to be sent to the server
- * @param {*} options request parameters
+ * @param {Object} data  JavaScript data to be sent to the server
+ * @param {Object} options request parameters
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 function post(url, data, options = {}) {
   return sendData(url, 'POST', data, options);
@@ -112,9 +129,11 @@ function post(url, data, options = {}) {
 
 /**
  * PUT request
- * @param {String} url url endpoint
- * @param {*} data data to be sent to the server
- * @param {*} options request parameters
+ * @param {string} url url endpoint
+ * @param {Object} data  JavaScript data to be sent to the server
+ * @param {Object} options request parameters
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 function put(url, data, options = {}) {
   return sendData(url, 'PUT', data, options);
@@ -122,8 +141,10 @@ function put(url, data, options = {}) {
 
 /**
  * DELETE request
- * @param {*} url url endpoint
- * @param {*} options request parameters
+ * @param {string} url url endpoint
+ * @param {Object} options request parameters
+ * @returns {Object} Parsed data from response
+ * @returns {Promise} Rejected Promise when request status is not OK
  */
 async function remove(url, options = {}) {
   const params = { ...DEFAULT_OPTIONS, method: 'DELETE' };

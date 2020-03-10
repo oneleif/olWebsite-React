@@ -9,7 +9,9 @@ const registerEndpoint = apiUrl + '/register';
  * Log in user
  * @param {string} username
  * @param {string} password
- * @param {*} options request parameters
+ * @param {Object} options request parameters
+ * @returns {Object} user data
+ * @returns {Promise} Rejected Promise on unsuccessful login
  */
 async function login(username, password, options = {}) {
   // TODO: set token or cookie; Note that context CANNOT be set
@@ -18,7 +20,8 @@ async function login(username, password, options = {}) {
 
 /**
  * Log out user
- * @param {*} options request parameters
+ * @param {Object} options request parameters
+ * @returns {Promise} Rejected Promise on unsuccessful logout
  */
 async function logout(options) {
   // TODO: remove token or cookie
@@ -29,7 +32,8 @@ async function logout(options) {
  * Register user
  * @param {string} username
  * @param {string} password
- * @param {*} options request parameters
+ * @param {Object} options request parameters
+ * @returns {Promise} Rejected Promise on unsuccessful register
  */
 async function register(username, password, options) {
   await post(registerEndpoint, { username, password }, options);
