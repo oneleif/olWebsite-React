@@ -38,10 +38,10 @@ function HamburgerToolbar() {
         <nav>
           <ul data-testid='link-dropdown' className='link-dropdown'>
             <li>
-              <NavLink to='/contact-us'>Active Projects</NavLink>
+              <NavLink to='/contact-us'>Contact Us</NavLink>
             </li>
             <li>
-              <NavLink to='/active-projects'>Contact Us</NavLink>
+              <NavLink to='/active-projects'>Active Projects</NavLink>
             </li>
             <li>
               <NavLink to='/meet-the-team'>Meet the Team</NavLink>

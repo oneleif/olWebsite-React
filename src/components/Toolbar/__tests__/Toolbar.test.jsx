@@ -21,4 +21,36 @@ describe('Hamburger Toolbar Component Tests', function() {
     expect(queryByText('Active Projects')).toBeInTheDocument();
     expect(queryByText('Meet the Team')).toBeInTheDocument();
   });
+
+  test.skip('initial render, without a user, sign up should be shown', () => {
+    useUser.mockReturnValue([null, null]);
+    const { queryAllByRole, queryByText } = renderWithRouter(
+      <UserProvider>
+        <Toolbar />
+      </UserProvider>
+    );
+
+    // 5 links (home, about us, posts, partners, sign up)
+    expect(queryAllByRole('link').length).toBe(5);
+    expect(queryByText('About Us')).toBeInTheDocument();
+    expect(queryByText('Posts')).toBeInTheDocument();
+    expect(queryByText('Partners')).toBeInTheDocument();
+    expect(queryByText('Sign Up')).toBeInTheDocument();
+  });
+
+  test.skip('Show profile link and not sign up when a user exists in the context', () => {
+    useUser.mockReturnValue([{ something: 'anything' }]);
+    const { queryAllByRole, queryByText } = renderWithRouter(
+      <UserProvider>
+        <Toolbar />
+      </UserProvider>
+    );
+
+    // 5 links (home, about us, posts, partners, profile)
+    expect(queryAllByRole('link').length).toBe(5);
+    expect(queryByText('About Us')).toBeInTheDocument();
+    expect(queryByText('Posts')).toBeInTheDocument();
+    expect(queryByText('Partners')).toBeInTheDocument();
+    expect(queryByText('Sign Up')).not.toBeInTheDocument();
+  });
 });
