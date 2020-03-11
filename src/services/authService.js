@@ -1,9 +1,5 @@
-import { apiUrl } from '../config.json';
 import { post, get } from './httpService';
-
-const loginEndpoint = apiUrl + '/login';
-const logoutEndpoint = apiUrl + '/logout';
-const registerEndpoint = apiUrl + '/register';
+import * as endpoints from '../constants/rest-constants';
 
 /**
  * Log in user
@@ -15,7 +11,7 @@ const registerEndpoint = apiUrl + '/register';
  */
 async function login(username, password, options = {}) {
   // TODO: set token or cookie; Note that context CANNOT be set
-  return await post(loginEndpoint, { username, password }, options);
+  return await post(endpoints.LOGIN, { username, password }, options);
 }
 
 /**
@@ -25,7 +21,7 @@ async function login(username, password, options = {}) {
  */
 async function logout(options) {
   // TODO: remove token or cookie
-  await get(logoutEndpoint, options);
+  await get(endpoints.LOGOUT, options);
 }
 
 /**
@@ -36,7 +32,7 @@ async function logout(options) {
  * @returns {Promise} Rejected Promise on unsuccessful register
  */
 async function register(username, password, options) {
-  await post(registerEndpoint, { username, password }, options);
+  await post(endpoints.REGISTER, { username, password }, options);
 }
 
 export { register, login, logout };

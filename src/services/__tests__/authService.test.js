@@ -1,4 +1,4 @@
-import { apiUrl } from '../../config.json';
+import { LOGIN } from '../../constants/rest-constants';
 import httpService from '../httpService';
 import * as authService from '../authService';
 
@@ -11,13 +11,12 @@ jest.mock('../httpService.js', () => {
 
 const EMAIL = 'ABC';
 const PASSWORD = 'CDE';
-const URL_ENDPOINT = apiUrl + '/login';
 
 describe('Authentication Service', () => {
   test('should send form data to login endpoint when logging in', async () => {
     await authService.login(EMAIL, PASSWORD);
 
-    expect(httpService.post).toHaveBeenCalledWith(URL_ENDPOINT, { password: PASSWORD, username: EMAIL }, {});
+    expect(httpService.post).toHaveBeenCalledWith(LOGIN, { password: PASSWORD, username: EMAIL }, {});
   });
 
   test('should return user information when successful', async () => {
