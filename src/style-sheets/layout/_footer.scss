@@ -65,7 +65,7 @@ ul ul {
     }
 }
 
-@media only screen and (max-width: 759px) {
+@include medium("down") {
     footer {
         & ul {
             width: 25%;
@@ -73,7 +73,7 @@ ul ul {
     }
 }
 
-@media only screen and (max-width: 635px) {
+@include small("down") {
     /* For mobile: */
     footer {
         width: 101%;
