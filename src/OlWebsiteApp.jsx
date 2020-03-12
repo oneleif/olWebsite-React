@@ -2,16 +2,13 @@ import React from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
+import Footer from './components/Footer';
+import * as Views from './pages';
+import ScrollToTop from './components/ScrollToTop';
+import ToolbarContainer from './components/Toolbar/ToolbarContainer';
+import { UserProvider } from './contexts/UserContext';
 import './style-sheets/main.scss';
 
-import ToolbarContainer from './components/Toolbar/ToolbarContainer';
-import Footer from './components/Footer';
-import LandingView from './pages/LandingView';
-import PostsView from './pages/PostsView';
-import RegisterView from './pages/RegisterView';
-import LoginView from './pages/LoginView';
-import { UserProvider } from './contexts/UserContext';
-import ScrollToTop from './components/ScrollToTop';
 export default function OlWebsiteApp() {
   /************************************
    * Render
@@ -25,10 +22,10 @@ export default function OlWebsiteApp() {
           <ScrollToTop>
             <div className='app-body'>
               <Switch>
-                <Route path='/login' component={LoginView} />
-                <Route path='/posts' component={PostsView} />
-                <Route path='/sign-up' component={RegisterView} />
-                <Route path='/' component={LandingView} />
+                <Route path='/login' component={Views.Login} />
+                <Route path='/posts' component={Views.Posts} />
+                <Route path='/sign-up' component={Views.Register} />
+                <Route path='/' component={Views.Landing} />
               </Switch>
             </div>
           </ScrollToTop>
