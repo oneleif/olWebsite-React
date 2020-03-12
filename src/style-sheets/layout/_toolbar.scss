@@ -16,7 +16,8 @@
 
   & ul.icon-module {
     width: 30%;
-    display: flex;
+    // TODO: v-2 display: flex;
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
@@ -55,7 +56,8 @@
   }
 
   & nav {
-    width: 70%;
+    // TODO: v-2 width: 70%;
+    width: 80%;
 
     & ul {
       display: flex;

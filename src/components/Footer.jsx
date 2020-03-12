@@ -1,9 +1,9 @@
-import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
 
-import homeLogo from "../images/homeLogo.png";
+import homeLogo from '../images/homeLogo.png';
 
-import { FaSearch, FaUser } from "react-icons/fa";
+// TODO: v-2 import { FaSearch, FaUser } from 'react-icons/fa';
 
 function Footer() {
   /************************************
@@ -12,9 +12,9 @@ function Footer() {
 
   return (
     <footer>
-      <ul className="logo-module">
-        <li className="bottom-nav-logo">
-          <img src={homeLogo} alt="oneleif logo" />
+      <ul className='logo-module'>
+        <li className='bottom-nav-logo'>
+          <img src={homeLogo} alt='oneleif logo' />
         </li>
         <li>cool description</li>
         <li>goes here very</li>
@@ -22,36 +22,36 @@ function Footer() {
         <li>More...</li>
       </ul>
       <nav>
-        <ul className="middle-module">
+        <ul className='middle-module'>
           <li>
-            <Link to="/about-us">About Us</Link>
+            <Link to='/'>About Us</Link>
           </li>
           <li>
-            <Link to="/posts">Posts</Link>
+            <Link to='/active-projects'>Active Projects</Link>
           </li>
           <li>
-            <Link to="/partners">Partners</Link>
+            <Link to='/meet-the-team'>Meet the Team</Link>
           </li>
         </ul>
-        <ul className="right-module">
-          <ul className="icon-module">
+        <ul className='right-module'>
+          {/* TODO: v-2 <ul className='icon-module'>
             <li>
-              <FaSearch tabIndex="0" />
+              <FaSearch tabIndex='0' />
             </li>
             <li>
-              <Link to="/login">
+              <Link to='/login'>
                 <FaUser />
               </Link>
             </li>
-          </ul>
+          </ul> */}
           <li>
-            <Link to="/contact">Contact</Link>
+            <Link to='/contact-us'>Contact</Link>
           </li>
           <li>
-            <Link to="/terms">Terms</Link>
+            <Link to='/terms'>Terms</Link>
           </li>
           <li>
-            <Link to="/">X X X X X</Link>
+            <Link to='/'>X X X X X</Link>
           </li>
         </ul>
       </nav>

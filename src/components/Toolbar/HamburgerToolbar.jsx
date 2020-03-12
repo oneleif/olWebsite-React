@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import { Link, NavLink, withRouter } from "react-router-dom";
-import { FaUser, FaBars } from "react-icons/fa";
+import React, { useState } from 'react';
+import { Link, NavLink, withRouter } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
 
-import SearchBox from "../SearchBox/SearchBox";
-import homeLogo from "../../images/homeLogo.png";
+import homeLogo from '../../images/homeLogo.png';
 
 function HamburgerToolbar() {
   /************************************
@@ -17,21 +16,18 @@ function HamburgerToolbar() {
    ************************************/
 
   return (
-    <header id="hamburgerToolbar">
+    <header id='hamburgerToolbar'>
       <nav>
         <h1>
-          <Link to="/">
-            <img className="top-nav-logo" src={homeLogo} alt="oneleif logo" />
+          <Link to='/'>
+            <img className='top-nav-logo' src={homeLogo} alt='oneleif logo' />
           </Link>
         </h1>
-        <ul className="top-nav-icons">
-          <li>
-            <FaUser tabIndex="0" />
-          </li>
+        <ul className='top-nav-icons'>
           <li>
             <FaBars
-              aria-label="Hamburger Button"
-              tabIndex="0"
+              aria-label='Hamburger Button'
+              tabIndex='0'
               onClick={() => setShowNavigation(!showNavigation)}
               onKeyPress={() => setShowNavigation(!showNavigation)}
             />
@@ -40,26 +36,15 @@ function HamburgerToolbar() {
       </nav>
       {showNavigation && (
         <nav>
-          <ul data-testid="link-dropdown" className="link-dropdown">
+          <ul data-testid='link-dropdown' className='link-dropdown'>
             <li>
-              <div className="search-box-wrapper">
-                <SearchBox
-                  placeholder="Search oneleif..."
-                  onSearch={() => {}}
-                />
-              </div>
+              <NavLink to='/contact-us'>Contact Us</NavLink>
             </li>
             <li>
-              <NavLink to="/join">Join</NavLink>
+              <NavLink to='/active-projects'>Active Projects</NavLink>
             </li>
             <li>
-              <NavLink to="/about-us">About</NavLink>
-            </li>
-            <li>
-              <NavLink to="/posts">Posts</NavLink>
-            </li>
-            <li>
-              <NavLink to="/partners">Partners</NavLink>
+              <NavLink to='/meet-the-team'>Meet the Team</NavLink>
             </li>
           </ul>
         </nav>
