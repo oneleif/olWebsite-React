@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 
-import { SUCCESS, ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../constants/authentication-constants';
-import { loginUser } from '../rest/authentication-rest';
-
 import Input from '../components/Objects/Input/Input';
 import homeLogo from '../images/homeLogo.png';
+import { login } from '../services/authService';
+import { useUser } from '../contexts/UserContext';
+import { ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../constants/authentication-constants';
 
 function LoginView(props) {
   /************************************
    * State
    ************************************/
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useUser();
   const [errorMessage, setErrorMessage] = useState(null);
 
   const [email, setEmail] = useState('');
@@ -28,12 +28,18 @@ function LoginView(props) {
    */
   async function loginClicked() {
     if (validateInput()) {
-      const response = await loginUser(email, password);
+      try {
+        // Ideally login should handle setting the user
+        const userData = await login(email, password);
+        setUser(userData);
 
-      if (response === SUCCESS) {
-        setIsLoggedIn(true);
-      } else {
-        setErrorMessage(response);
+        // Make sure that userData is safely stored since this
+        // does a *full* reload
+        window.location = props.location.state?.referer || '/';
+      } catch (error) {
+        // This assumes that the server returns custom validation errors
+        // 500 errors should be handled and "prettied" in the httpService
+        setErrorMessage(error.message);
       }
     }
   }
@@ -79,9 +85,8 @@ function LoginView(props) {
    * Render
    ************************************/
 
-  return isLoggedIn ? (
-    <Redirect to={props.location.state?.referer || '/'} />
-  ) : (
+  if (user) return <Redirect to='/' />;
+  return (
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />

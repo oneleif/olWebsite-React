@@ -1,2 +1,5 @@
-export const LOGIN_PATH = "/api/login";
-export const REGISTER_PATH = "/api/register";
+import { apiUrl } from '../config.json';
+
+export const LOGIN = apiUrl + '/login';
+export const LOGOUT = apiUrl + '/logout';
+export const REGISTER = apiUrl + '/register';
