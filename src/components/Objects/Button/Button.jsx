@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Card({ children, theme = 'primary', handleClick }) {
+export default function Button({ children, theme = 'primary', handleClick }) {
   /************************************
    * Render
    ************************************/
