@@ -1,0 +1,41 @@
+.feature-container {
+    margin: 8% 0;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-evenly;
+
+    & div.feature-image-container {
+        align-items: center;
+    }
+
+    & div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        width: 40%;
+        font-family: Assistant;
+
+        & h1 {
+            font-size: 3.2em;
+            color: $olLTHeader;
+            margin-block-end: 0;
+        }
+
+        & p {
+            font-size: 1.6em;
+            color: $olLTCopy;
+            margin-block-start: 0;
+            margin-block-end: .5em;
+        }
+    }
+}
+
+.normal {
+    flex-direction: row;
+}
+
+.inverted {
+    flex-direction: row-reverse;
+}

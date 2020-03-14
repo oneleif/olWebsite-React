@@ -1,0 +1,16 @@
+.copy-link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    color: $olLTAccent;
+    font-size: 16pt;
+    font-family: Assistant;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.copy-icon {
+    color: $olLTAccent;
+    margin-left: 5px;
+}

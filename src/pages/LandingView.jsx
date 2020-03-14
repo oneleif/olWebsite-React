@@ -1,7 +1,13 @@
 import React from "react";
 
-import Slides from "../slides";
-import Carousel from "../components/Carousel/Carousel";
+import FeatureContainer from "../components/FeatureContainer/FeatureContainer";
+import PlaceholderSVG from "../components/Objects/PlaceholderSVG/PlaceholderSVG";
+import Placeholder from '../images/placeholders/placeholder-lady.png';
+
+import Button from '../components/Objects/Button/Button';
+import FeatureLink from '../components/Objects/FeatureLink/FeatureLink';
+import TestimonialContainer from "../components/TestimonialContainer/TestimonialContainer";
+import SupportersContainer from "../components/SupportersContainer/SupportersContainer";
 
 export default function LandingView() {
   /************************************
@@ -9,60 +15,50 @@ export default function LandingView() {
    ************************************/
 
   return (
-    <>
-      <Carousel slides={Slides} />
       <div className="landing-view-container">
-        <div className="about-us-container">
-          <h1 className="landing-view-header">About oneleif</h1>
-          <div className="img-place-holder"></div>
+        <FeatureContainer image={<PlaceholderSVG/>}>
+          <h1>Tagline</h1>
           <p>
-            oneleif is a project based group focused on learning and mentorship.
-            Our core tenet of becoming skilled professionals is to work on open
-            source projects. Open source simply means the work you are doing is
-            available to the public. This comes with the benefit that anyone can
-            help you on your project, and allows those without experience to see
-            how something is made.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <br />
-          <p>
-            If you are looking to learn how to program, design, or even make
-            music, oneleif is a community that thrives on helping others. If are
-            already an expert, feel free to bring in a project of your own, or
-            join an already active project. Let oneleif help you find a team
-            based on your interests!
-          </p>
+          <Button>Join our Discord</Button>
+        </FeatureContainer>
+        <div className='call-to-action-container'>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?</p>
         </div>
-        <div className="join-us-container">
-          <h1>Join Us Today!</h1>
+        <FeatureContainer image={<PlaceholderSVG/>}>
+          <h1>Community Feature #1</h1>
           <p>
-            Joining oneleif is available in a few forms. The main form of
-            communication for oneleif members is through the discord
-            application. You can download discord on your phone, computer, or
-            tablet to get access. The second form of communication, that is most
-            important for any open source developer is a version control system.
-            oneleif uses GitHub for working as a team, click on the link below
-            to check out our projects..
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
-          <ul>
-            <li>
-              <a href="https://discord.gg/tv9UdJK">
-                <img
-                  src="https://img.shields.io/badge/oneleif-Discord-7284be.svg"
-                  alt="Join the Discord"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/oneleif">
-                <img
-                  src="https://img.shields.io/badge/GitHub-oneleif-255e33.svg"
-                  alt="Check out our github"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
+          <FeatureLink>Learn More</FeatureLink>
+        </FeatureContainer>
+        <FeatureContainer image={<PlaceholderSVG/>} invert>
+          <h1>Community Feature #2</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <FeatureLink>Learn More</FeatureLink>
+        </FeatureContainer>
+        <FeatureContainer image={<PlaceholderSVG/>}>
+          <h1>Community Feature #3</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <FeatureLink>Learn More</FeatureLink>
+        </FeatureContainer>
+        <TestimonialContainer name='NAME' location='Country' image={Placeholder}>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        </TestimonialContainer>
+        <SupportersContainer />
       </div>
-    </>
   );
 }
