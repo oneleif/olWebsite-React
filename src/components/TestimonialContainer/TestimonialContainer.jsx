@@ -12,7 +12,7 @@ export default function TestimonialContainer({ children, name, location, image})
           </div>
           <div className='featured-person-module'>
             <div>
-              <h3>{name}</h3>
+              <h4>{name}</h4>
               <p>{location}</p>
             </div>
             <img src={image} alt='NAME'/>
