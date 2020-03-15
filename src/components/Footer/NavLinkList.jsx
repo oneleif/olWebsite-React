@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
-function BottomNavLinks({ header, links }) {
+function NavLinkList({ header, links }) {
   /************************************
    * Render
    ************************************/
 
   return (
-    <div className='bottom-nav-container'>
+    <div className='nav-link-list-container'>
         <h5>{header}</h5>
         <ul>
             {links?.map((link) => (
@@ -18,4 +18,4 @@ function BottomNavLinks({ header, links }) {
   );
 }
 
-export default withRouter(BottomNavLinks);
+export default withRouter(NavLinkList);

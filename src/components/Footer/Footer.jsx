@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 
 import SocialMediaContainer from './SocialMediaContainer';
-import BottomNavLinks from './BottomNavLinks';
+import NavLinkList from './NavLinkList';
 import footerLinks from './js/footerLinks';
 
 function Footer() {
@@ -20,7 +20,7 @@ function Footer() {
         <div className='right-navigation'>
           {
             footerLinks.map((object, index) => (
-              <BottomNavLinks key={index} header={object.header} links={object.links} />
+              <NavLinkList key={index} header={object.header} links={object.links} />
             ))
           }
         </div>
