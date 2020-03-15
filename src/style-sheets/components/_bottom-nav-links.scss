@@ -21,7 +21,10 @@
             line-height: 25px;
             text-decoration: none;
             margin-bottom: 3%;
+
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }
-
