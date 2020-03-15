@@ -2,7 +2,7 @@ import React from "react";
 
 import FeatureContainer from "../components/FeatureContainer/FeatureContainer";
 import PlaceholderSVG from "../components/Objects/PlaceholderSVG/PlaceholderSVG";
-import Placeholder from '../images/placeholders/placeholder-lady.png';
+import Placeholder from '../assets/placeholders/placeholder-lady.png';
 
 import Button from '../components/Objects/Button/Button';
 import FeatureLink from '../components/Objects/FeatureLink/FeatureLink';

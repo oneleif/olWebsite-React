@@ -5,7 +5,7 @@ import { SUCCESS, ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../constants/a
 import { loginUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
-import homeLogo from '../images/homeLogo.png';
+import homeLogo from '../assets/homeLogo.png';
 
 function LoginView(props) {
   /************************************

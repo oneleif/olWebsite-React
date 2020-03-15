@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
-import homeLogo from '../../images/homeLogo.png';
+import homeLogo from '../../assets/homeLogo.png';
 
 function HamburgerToolbar() {
   /************************************

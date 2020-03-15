@@ -1,0 +1,14 @@
+div.social-media-icon-module {
+    width: 202px;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    & svg {
+        margin-bottom: 12%;
+        margin-right: 12%;
+    }
+}

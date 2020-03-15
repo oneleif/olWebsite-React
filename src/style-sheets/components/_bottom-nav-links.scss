@@ -1,0 +1,27 @@
+.bottom-nav-container {
+    & h5 {
+        color: $olLTHeader;
+        line-height: 26px;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 1.5rem;
+
+        margin-block-start: 0;
+        margin-block-end: .75em;
+    }
+
+    & ul {
+        margin-block-start: 0;
+        padding-inline-start: 0;
+    
+        & li a {
+            color: $olLTHeader;
+            font-size: 1.286em;
+            list-style: none;
+            line-height: 25px;
+            text-decoration: none;
+            margin-bottom: 3%;
+        }
+    }
+}
+
