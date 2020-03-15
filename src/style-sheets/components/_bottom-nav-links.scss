@@ -2,7 +2,6 @@
     & h5 {
         color: $olLTHeader;
         line-height: 26px;
-        font-style: normal;
         font-weight: bold;
         font-size: 1.5rem;
 
@@ -15,12 +14,13 @@
         padding-inline-start: 0;
     
         & li a {
+            margin-bottom: 3%;
+
             color: $olLTHeader;
             font-size: 1.286em;
-            list-style: none;
             line-height: 25px;
             text-decoration: none;
-            margin-bottom: 3%;
+            list-style: none;
 
             &:hover {
                 text-decoration: underline;

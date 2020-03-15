@@ -16,7 +16,7 @@
         & p {
             color: $olLTHeader;
             font-size: 1.6em;
-            font-family: Noto Sans;
+            font-family: $olNotoSansFont;
         }
     }
 
@@ -34,7 +34,7 @@
             flex-direction: column;
             
             & h4, p {
-                font-family: Assistant;
+                font-family: $olBaseFont;
                 color: $olLTHeader;
             }
 
@@ -45,7 +45,6 @@
 
             & h4  {
                 font-weight: 600;
-                font-style: normal;
                 margin-block-end: 0;
             }
         }

@@ -15,11 +15,12 @@
         justify-content: center;
 
         width: 40%;
-        font-family: Assistant;
+        font-family: $olBaseFont;
 
         & h1 {
             color: $olLTHeader;
             margin-block-end: 0;
+            font-size: 3.05rem;
         }
 
         & p {

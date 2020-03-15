@@ -1,7 +1,6 @@
 footer {
     background-color: $olLTPrimary;
-    min-height: 50px;
-    font-family: Assistant;
+    font-family: $olBaseFont;
     max-width: 1440px;
     margin: 0 auto;
 
@@ -28,8 +27,6 @@ footer {
 
             & h4 {
                 color: $olLTHeader;
-                font-style: normal;
-                font-weight: bold;
                 line-height: 37px;
                 letter-spacing: 0.02em;
                 text-transform: uppercase;
@@ -62,9 +59,7 @@ footer {
             & p {
                 color: $olLTHeader;
                 font-size: 0.857em;
-                font-family: Noto Sans;
-                font-style: normal;
-                font-weight: 300;
+                font-family: $olNotoSansFont;
 
                 margin-block-start: 1.5em;
                 margin-block-end: 1.5em;
@@ -82,7 +77,7 @@ footer {
             & li a {
                 color: $olLTHeader;
                 text-decoration: none;
-                font-family: Assistant;
+                font-family: $olBaseFont;
                 font-weight: 600;
             }
         }
