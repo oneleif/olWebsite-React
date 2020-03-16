@@ -15,20 +15,6 @@
         justify-content: center;
 
         width: 40%;
-        font-family: $olBaseFont;
-
-        & h1 {
-            color: $olLTHeader;
-            margin-block-end: 0;
-            font-size: 3.05rem;
-        }
-
-        & p {
-            font-size: 1.6rem;
-            color: $olLTCopy;
-            margin-block-start: 0;
-            margin-block-end: .5em;
-        }
     }
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 
 import FeatureContainer from "../components/FeatureContainer/FeatureContainer";
+import FeatureCopy from "../components/FeatureContainer/FeatureCopy";
 import PlaceholderSVG from "../components/Objects/PlaceholderSVG/PlaceholderSVG";
 import Placeholder from '../assets/placeholders/placeholder-lady.png';
 
@@ -17,38 +18,34 @@ export default function LandingView() {
   return (
       <div className="landing-view-container">
         <FeatureContainer image={<PlaceholderSVG/>}>
-          <h1>Tagline</h1>
-          <p>
+          <FeatureCopy header='Tagline'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          </FeatureCopy>
           <Button>Join our Discord</Button>
         </FeatureContainer>
         <div className='call-to-action-container'>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?</p>
         </div>
         <FeatureContainer image={<PlaceholderSVG/>}>
-          <h1>Community Feature #1</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          <FeatureCopy header='Community Feature #1'>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </FeatureCopy>
           <FeatureLink>Learn More</FeatureLink>
         </FeatureContainer>
         <FeatureContainer image={<PlaceholderSVG/>} invert>
-          <h1>Community Feature #2</h1>
-          <p>
+          <FeatureCopy header='Community Feature #2'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          </FeatureCopy>
           <FeatureLink>Learn More</FeatureLink>
         </FeatureContainer>
         <FeatureContainer image={<PlaceholderSVG/>}>
-          <h1>Community Feature #3</h1>
-          <p>
+          <FeatureCopy header='Community Feature #3'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
+          </FeatureCopy>
           <FeatureLink>Learn More</FeatureLink>
         </FeatureContainer>
         <TestimonialContainer name='NAME' location='Country' image={Placeholder}>

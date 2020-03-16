@@ -1,5 +1,9 @@
 import React from "react";
-
+/**
+* Component intented to display text, an image and information
+* about user being displayed
+*
+*/
 export default function TestimonialContainer({ children, name, location, image}) {
   /************************************
    * Render
