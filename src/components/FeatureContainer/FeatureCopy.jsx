@@ -3,7 +3,7 @@ import React from "react";
 /**
 * Component intented to displayed Featured text. Currently includes
 * children, aka text, and header being passed in. 
- * Designed to have text aligned left.
+* Designed to have text aligned left.
 *
 */
 export default function FeatureCopy({ children, header }) {
