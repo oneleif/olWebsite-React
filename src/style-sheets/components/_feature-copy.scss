@@ -1,0 +1,15 @@
+div.feature-copy-container {
+    width: 100%;
+
+    & h1 {
+        color: $olLTHeader;
+        margin-block-end: 0;
+    }
+
+    & p {
+        font-size: 1.6rem;
+        color: $olLTCopy;
+        margin-block-start: 0;
+        margin-block-end: .5em;
+    }
+}

@@ -1,7 +1,9 @@
 // Modules
+@import './modules/colors';
+@import './modules/font';
+@import './responsive/html-tags';
 @import './responsive/screens';
 @import './responsive/queries';
-@import './modules/colors';
 
 // Layout
 @import './layout/app';
@@ -10,13 +12,19 @@
 
 // Generic
 @import './generic/authentication-input';
+@import './generic//button';
 @import './generic/card';
 @import './generic/card-container';
+@import './generic/feature-link';
 
 // Components
 @import './components/carousel';
+@import './components/feature-container';
+@import './components/feature-copy';
 @import './components/filter';
 @import './components/search-box';
+@import './components/supporters-container';
+@import './components/testimonial-container';
 
 // Pages
 @import './pages/authentication-view';
