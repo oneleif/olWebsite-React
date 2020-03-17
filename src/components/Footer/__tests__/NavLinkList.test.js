@@ -5,10 +5,18 @@ import NavLinkList from '../NavLinkList';
 
 const TEST_HEADER = 'Test';
 
-const TEST_LINK = [
+const INTERNAL_TEST_LINK = [
   {
     label: 'test',
-    path: '/test'
+    path: '/test',
+    internal: true
+  }
+];
+const EXTERNAL_TEST_LINK = [
+  {
+    label: 'test',
+    path: 'https://discordapp.com/invite/2jepA3',
+    internal: false
   }
 ];
 
@@ -38,8 +46,8 @@ describe('Nav Link List Tests', () => {
       `);
   });
 
-  test('Expect Snapshot to container header and links', () => {
-    const container = buildContainer(TEST_HEADER, TEST_LINK);
+  test('Expect Snapshot to container header and internal link', () => {
+    const container = buildContainer(TEST_HEADER, INTERNAL_TEST_LINK);
     expect(container.container).toMatchInlineSnapshot(`
         <div>
           <div
@@ -51,9 +59,9 @@ describe('Nav Link List Tests', () => {
             <ul>
               <li>
                 <a
-                  href="${TEST_LINK[0].path}"
+                  href="${INTERNAL_TEST_LINK[0].path}"
                 >
-                  ${TEST_LINK[0].label}
+                  ${INTERNAL_TEST_LINK[0].label}
                 </a>
               </li>
             </ul>
@@ -62,10 +70,36 @@ describe('Nav Link List Tests', () => {
       `);
   });
 
-  test('Url path changes after link clicked', () => {
-    const { history, queryByText } = renderWithRouter(<NavLinkList header={TEST_HEADER} links={TEST_LINK} />);
-    fireEvent.click(queryByText(TEST_LINK[0].label));
+  test('Expect Snapshot to container header and external link', () => {
+    const container = buildContainer(TEST_HEADER, EXTERNAL_TEST_LINK);
+    expect(container.container).toMatchInlineSnapshot(`
+        <div>
+          <div
+            class="nav-link-list-container"
+          >
+            <h5>
+              ${TEST_HEADER}
+            </h5>
+            <ul>
+              <li>
+                <a
+                  href="${EXTERNAL_TEST_LINK[0].path}"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  ${EXTERNAL_TEST_LINK[0].label}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      `);
+  });
 
-    expect(history.location.pathname).toEqual(TEST_LINK[0].path);
+  test('Url path changes after internal link clicked', () => {
+    const { history, queryByText } = renderWithRouter(<NavLinkList header={TEST_HEADER} links={INTERNAL_TEST_LINK} />);
+    fireEvent.click(queryByText(INTERNAL_TEST_LINK[0].label));
+
+    expect(history.location.pathname).toEqual(INTERNAL_TEST_LINK[0].path);
   });
 });

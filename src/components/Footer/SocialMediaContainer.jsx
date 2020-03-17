@@ -1,5 +1,6 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
+import Icon from '../Objects/Icon/Icon';
 import SocialMediaIconsMap from '../../assets/SocialMediaIcons/SocialMediaIcons';
 
 const ICON_ARRAY = [ 
@@ -7,7 +8,7 @@ const ICON_ARRAY = [
   SocialMediaIconsMap.FACEBOOK,
   SocialMediaIconsMap.LINKEDIN,
   SocialMediaIconsMap.MEDIUM,
-  SocialMediaIconsMap.DRIBBLE,
+  SocialMediaIconsMap.DRIBBBLE,
   SocialMediaIconsMap.GITHUB,
   SocialMediaIconsMap.DISCORD,
   SocialMediaIconsMap.YOUTUBE
@@ -20,10 +21,14 @@ export default function SocialMediaContainer() {
 
   return (
     <div className='social-media-icon-module'>
-        {ICON_ARRAY.map((icon, index) => (
-            <Fragment key={index}>
-                {icon}
-            </Fragment>
+        {ICON_ARRAY.map((icon) => (
+          <Icon key={icon.label}
+                label={icon.label}
+                width={icon.width}
+                height={icon.height}
+                handleClick={()=> window.open(icon.url, '_blank')}>
+            {icon.path}
+          </Icon>
         ))}
     </div>
   );
