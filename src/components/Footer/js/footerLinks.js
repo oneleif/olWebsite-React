@@ -7,15 +7,18 @@ const footerLinks = [
     links: [
       {
         label: 'Blog',
-        path: '/blogs'
+        path: '/blogs',
+        internal: true
       },
       {
         label: 'Learn',
-        path: '/learn'
+        path: '/learn',
+        internal: true
       },
       {
         label: 'Support',
-        path: '/support'
+        path: '/support',
+        internal: true
       }
     ]
   },
@@ -24,15 +27,18 @@ const footerLinks = [
     links: [
       {
         label: 'Discord',
-        path: '/discord'
+        path: 'https://discordapp.com/invite/2jepA3',
+        internal: false
       },
       {
         label: 'Github',
-        path: '/github'
+        path: 'https://github.com/oneleif',
+        internal: false
       },
       {
         label: 'Dribble',
-        path: '/dribble'
+        path: '',
+        internal: false
       }
     ]
   },
@@ -41,15 +47,18 @@ const footerLinks = [
     links: [
       {
         label: 'Team',
-        path: '/meet-the-team'
+        path: '/meet-the-team',
+        internal: true
       },
       {
         label: 'About',
-        path: '/about-us'
+        path: '/about-us',
+        internal: true
       },
       {
         label: 'Contact Us',
-        path: '/contact-us'
+        path: '/contact-us',
+        internal: true
       }
     ]
   }

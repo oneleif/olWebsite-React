@@ -22,7 +22,7 @@ export default function LandingView() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </FeatureCopy>
-          <Button>Join our Discord</Button>
+          <Button handleClick={()=> window.open("https://discord.gg/2jepA3", "_blank")}>Join our Discord</Button>
         </FeatureContainer>
         <div className='call-to-action-container'>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?</p>

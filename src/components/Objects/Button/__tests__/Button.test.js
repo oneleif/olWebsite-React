@@ -15,7 +15,7 @@ describe('Button Tests', () => {
     expect(queryByText(TEST)).toBeTruthy();
   });
 
-  test('Parent function called when button clicked', () => {
+  test('Parent callback function called when button clicked', () => {
     const handleButtonClicked = jest.fn();
     const { queryByText } = render(
       <Button handleClick={handleButtonClicked}>
