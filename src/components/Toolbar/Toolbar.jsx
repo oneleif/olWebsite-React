@@ -7,21 +7,33 @@ import homeLogo from '../../assets/homeLogo.png';
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
 
 function Toolbar() {
+  /************************************
+   * State
+   ************************************/
+
   const [isOpen, setIsOpen] = useState(false);
   const [classes, setClasses] = useState(DEFAULT_CLASSES);
 
+  /************************************
+   * Functions
+   ************************************/
+
   function handleToggle() {
-    isOpen ? setClasses(DEFAULT_CLASSES) : getOpenClasses();
+    isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
     setIsOpen(!isOpen);
   }
 
-  function getOpenClasses() {
+  function generateOpenClasses() {
     setClasses(
       DEFAULT_CLASSES.map(className => {
         return `${className} open`;
       })
     );
   }
+
+  /************************************
+   * Render
+   ************************************/
 
   return (
     <header id='toolbar'>

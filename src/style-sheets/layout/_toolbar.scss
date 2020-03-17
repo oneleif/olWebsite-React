@@ -1,5 +1,11 @@
 .navbar {
+  width: 100%;
   padding: 0 5%;
+  background-color: $white;
+
+  position: fixed;
+  z-index: 1;
+  top: 0;
 
   & ul {
     margin: 0;
@@ -9,7 +15,7 @@
 
     & li {
       margin: 0 2vw;
-      font-size: 20px;
+      font-size: $olNavLinkSize;
       text-align: center;
       font-weight: 200;
       line-height: 25px;
@@ -18,7 +24,7 @@
 
       & a {
         color: $black;
-        font-family: Assistant;
+        font-family: $olAssistantFont;
         text-decoration: none;
 
         &:hover {
@@ -79,7 +85,7 @@
       & li {
         margin: 0;
         padding: 15px 0;
-        background-color: $gray;
+        background: $gray;
 
         & a {
           display: block;
