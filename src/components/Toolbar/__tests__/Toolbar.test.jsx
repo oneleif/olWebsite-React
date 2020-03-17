@@ -6,14 +6,20 @@ import { useUser } from '../../../contexts/UserContext';
 jest.mock('../../../contexts/UserContext');
 const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
 
-describe('Hamburger Toolbar Component Tests', function() {
-  test('should show navigation links', () => {
-    useUser.mockReturnValue([null, null]);
-    const { queryAllByRole, queryByText } = renderWithRouter(
+describe('Toolbar Component Tests', function() {
+  function setup(useUserValue = [null, null]) {
+    useUser.mockReturnValue(useUserValue);
+    const { queryAllByRole, queryByText, queryByTestId, debug } = renderWithRouter(
       <UserProvider>
         <Toolbar />
       </UserProvider>
     );
+
+    return { queryAllByRole, queryByText, queryByTestId, debug };
+  }
+
+  test('should show navigation links', () => {
+    const { queryAllByRole, queryByText } = setup();
 
     // 4 links (home, contact us, active projects, meet the team)
     expect(queryAllByRole('link').length).toBe(4);
@@ -23,12 +29,7 @@ describe('Hamburger Toolbar Component Tests', function() {
   });
 
   test.skip('initial render, without a user, sign up should be shown', () => {
-    useUser.mockReturnValue([null, null]);
-    const { queryAllByRole, queryByText } = renderWithRouter(
-      <UserProvider>
-        <Toolbar />
-      </UserProvider>
-    );
+    const { queryAllByRole, queryByText } = setup();
 
     // 5 links (home, about us, posts, partners, sign up)
     expect(queryAllByRole('link').length).toBe(5);

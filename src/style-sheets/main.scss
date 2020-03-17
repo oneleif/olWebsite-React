@@ -1,27 +1,25 @@
 // Modules
-@import "./responsive/screens";
-@import "./responsive/queries";
-@import "./modules/colors";
+@import './responsive/screens';
+@import './responsive/queries';
+@import './modules/colors';
 
 // Layout
-@import "./layout/app";
-@import "./layout/footer";
-@import "./layout/hamburger-toolbar";
-@import "./layout/toolbar";
-@import "./layout/toolbar-container";
+@import './layout/app';
+@import './layout/footer';
+@import './layout/toolbar';
 
 // Generic
-@import "./generic/authentication-input";
-@import "./generic/card";
-@import "./generic/card-container";
+@import './generic/authentication-input';
+@import './generic/card';
+@import './generic/card-container';
 
 // Components
-@import "./components/carousel";
-@import "./components/filter";
-@import "./components/search-box";
+@import './components/carousel';
+@import './components/filter';
+@import './components/search-box';
 
 // Pages
-@import "./pages/authentication-view";
-@import "./pages/landing-view";
-@import "./pages/page-not-found-view";
-@import "./pages/posts-view";
+@import './pages/authentication-view';
+@import './pages/landing-view';
+@import './pages/page-not-found-view';
+@import './pages/posts-view';
