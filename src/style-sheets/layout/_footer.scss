@@ -1,108 +1,132 @@
 footer {
-    background-color: $olDarkGreen;
+    background-color: $olLTPrimary;
+    font-family: $olBaseFont;
+    max-width: 1440px;
+    margin: 0 auto;
+
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    min-height: 50px;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
-    & ul {
-        width: 50%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        &.right-module {
-            align-items: flex-end;
-            margin-right: 94px;
-        }
-
-        &.logo-module {
-            width: 33%;
-            align-items: flex-start;
-            padding-inline-start: 94px;
-        }
-
-        & li.bottom-nav-logo img {
-            cursor: pointer;
-            height: 59px;
-        }
+    & hr {      
+        width: 100%;
+        border-width: 1px;
+        color:rgba(106, 106, 106, 0.8);
     }
 
-    & nav {
-        width: 67%;
+    & .footer-nav-module {
+        width: 81.5%;
+        margin-bottom: 2%;
+        
         display: flex;
         flex-direction: row;
-    
-        & ul li {
-            margin: 8px;
+
+        & .left-navigation, .right-navigation {
+            width: 50%;
+
+            & h4 {
+                color: $olLTHeader;
+                line-height: 37px;
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+
+                margin-block-start: 0;
+                margin-block-end: .75em;
+            }
         }
-        
-    }
 
-    & li {
-        list-style: none;
-    }
+        & .right-navigation {
+            min-width: 520px;
 
-    & a {
-        color: $white;
-        text-decoration: none;
-
-        &:hover {
-            opacity: 0.7;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
         }
     }
-}
 
-ul ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+    & .bottom-navigation {
+        width: 82%;
 
-    & li svg {
-        cursor: pointer;
-        color: $white;
-    }
-}
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
 
-@include medium("down") {
-    footer {
+        & div {
+            width: 42%;
+            min-width: 185px;
+
+            & p {
+                color: $olLTHeader;
+                font-size: 0.857em;
+                font-family: $olNotoSansFont;
+                line-height: 16px;
+
+                margin-block-start: 1.5em;
+                margin-block-end: 1.5em;
+            }
+        }
+
         & ul {
-            width: 25%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+
+            width: 29%;
+            min-width: 300px;
+
+            & li a {
+                color: $olLTHeader;
+                text-decoration: none;
+                font-family: $olBaseFont;
+                font-weight: 600;
+                line-height: 25px;
+            }
         }
     }
 }
 
-@include small("down") {
+@media only screen and (max-width: 800px) {
+    footer {
+        & .footer-nav-module {
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+
+            & .left-navigation {
+                width: 20%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            & .right-navigation {
+                min-width: 560px;
+            }
+        }
+    }
+}
+
+@include small('down') {
     /* For mobile: */
     footer {
         width: 101%;
 
-        & nav {
-            width: 50%;
+        & .footer-nav-module {
+            width: 75%;
 
-            & ul.middle-module {
-                display: none;
+            .left-navigation {
+                width: 100%;
+                
+                & h4 {
+                    text-align: center;
+                    margin-block-end: 1.5em;
+                }
             }
         }
 
-        & ul {
-            width: 25%;
-
-            &.logo-module {
-                width: 50%;
-                padding-inline-start: 35px;
-            }
-
-            &.right-module {
-                width: 100%;
-                margin-right: 10px;
-            }
-
-            & li.bottom-nav-logo img {
-                cursor: pointer;
-                height: 25px;
-            }
+        & .bottom-navigation, .footer-nav-module .right-navigation, hr  {
+            display: none;
         }
     }
 }

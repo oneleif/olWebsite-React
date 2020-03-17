@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import LandingView from './pages/LandingView';
 import ScrollToTop from './components/ScrollToTop';
 import PageNotFoundView from './pages/PageNotFoundView';

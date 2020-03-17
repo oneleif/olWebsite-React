@@ -2,6 +2,9 @@
   width: 100%;
   
     &-body {
+        max-width: 1440px;
+        margin: 0 auto;
+  
         background-color: $olLTPrimary;
         display: flex;
         flex-direction: column;
