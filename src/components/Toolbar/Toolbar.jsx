@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
-
-import homeLogo from '../../images/homeLogo.png';
 import { FaBars } from 'react-icons/fa';
+
+import homeLogo from '../../assets/homeLogo.png';
 
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
 

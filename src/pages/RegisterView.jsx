@@ -10,7 +10,7 @@ import { SUCCESS } from '../constants/authentication-constants';
 import { registerUser } from '../rest/authentication-rest';
 
 import Input from '../components/Objects/Input/Input';
-import homeLogo from "../images/homeLogo.png";
+import homeLogo from "../assets/homeLogo.png";
 
 function RegisterView() {
   /************************************

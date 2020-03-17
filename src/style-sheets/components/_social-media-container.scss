@@ -1,0 +1,27 @@
+div.social-media-icon-module {
+    width: 202px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    & svg {
+        margin-bottom: 12%;
+        margin-right: 12%;
+        cursor: pointer;
+
+        & :hover {
+            opacity: 0.5;
+        }
+    }
+}
+
+@include medium('down') {
+    /* For mobile: */
+    div.social-media-icon-module {
+        width: 244px;
+        margin-block-end: 1.5em;
+    }
+}
