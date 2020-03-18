@@ -1,21 +1,22 @@
 import React from 'react';
-import { renderWithRouter } from 'test-utils';
 import Toolbar from '../Toolbar';
 import { useUser } from '../../../contexts/UserContext';
+import { renderWithRouter } from 'test-utils';
 
-jest.mock('../../../contexts/UserContext');
-const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
+//  TODO: v-2
+// jest.mock('../../../contexts/UserContext');
+// const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
 
 describe('Toolbar Component Tests', function() {
   function setup(useUserValue = [null, null]) {
-    useUser.mockReturnValue(useUserValue);
-    const { queryAllByRole, queryByText, queryByTestId, debug } = renderWithRouter(
-      <UserProvider>
-        <Toolbar />
-      </UserProvider>
+    // TODO: v-2 useUser.mockReturnValue(useUserValue);
+    const { queryAllByRole, queryByText } = renderWithRouter(
+      // TODO: v-2 <UserProvider>
+      <Toolbar />
+      //  </UserProvider>
     );
 
-    return { queryAllByRole, queryByText, queryByTestId, debug };
+    return { queryAllByRole, queryByText };
   }
 
   test('should show navigation links', () => {

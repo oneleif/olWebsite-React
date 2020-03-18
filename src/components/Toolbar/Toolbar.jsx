@@ -36,11 +36,11 @@ function Toolbar() {
    ************************************/
 
   return (
-    <header id='toolbar'>
+    <header>
       <nav className='navbar'>
         <ul className='nav-links'>
           <span className='icons'>
-            <Link to='/' className='logo'>
+            <Link to='/'>
               <img src={homeLogo} alt='oneleif logo' />
             </Link>
             <FaBars className='toggle' onClick={handleToggle} />
