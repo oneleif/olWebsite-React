@@ -70,12 +70,18 @@ export default class Schema {
     return this;
   }
 
+  isEmail() {
+    this.#schema.email = true;
+    return this;
+  }
+
   /**
    * Must be called last to make sure schema is properly configured
    * @returns {object} created schema
    */
   validate() {
-    validateSchema(this.#schema);
+    // voodoo to get new cleared schema if email is set to true
+    this.#schema = validateSchema(this.#schema);
 
     return this.#schema;
   }
@@ -102,8 +108,15 @@ function validateLabel(value) {
 /**
  * Determine whether schema is properly configured
  * @param {Object} schema
+ * @returns new copy of schema reference
  */
 function validateSchema(schema) {
+  if (schema.email) {
+    schema = { ...DEFAULT_SCHEMA };
+    schema.email = true;
+    return schema;
+  }
+
   const { minimum, maximum } = schema;
 
   // min greater than max
@@ -117,6 +130,8 @@ function validateSchema(schema) {
   if (maximum < requiredCharacters || minimum < requiredCharacters) {
     throw new Error(Errors.INVALID_MIN_MAX);
   }
+
+  return schema;
 }
 
 /**

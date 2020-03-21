@@ -26,12 +26,13 @@ export const ERROR_MESSAGES = {
 };
 
 export const VALIDATION_ERROR_MESSAGES = {
-  DIGIT: 'must include at least one digit.',
-  SYMBOL: 'must include at least one special character.',
-  LOWERCASE: 'must include at least one lowercase character.',
-  UPPERCASE: 'must include at least one uppercase character.',
-  MIN_LENGTH: 'must be at least VALUE character(s) long.',
-  MAX_LENGTH: 'cannot be longer than VALUE character(s).',
+  EMAIL: 'must be a valid email address',
+  DIGIT: 'must include at least one digit',
+  SYMBOL: 'must include at least one special character',
+  LOWERCASE: 'must include at least one lowercase character',
+  UPPERCASE: 'must include at least one uppercase character',
+  MIN_LENGTH: 'must be at least VALUE character(s) long',
+  MAX_LENGTH: 'cannot be longer than VALUE character(s)',
   EMPTY_VALUE: 'Must provide a value'
 };
 

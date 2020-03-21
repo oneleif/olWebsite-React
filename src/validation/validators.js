@@ -30,7 +30,7 @@ function validateForm(form, schemas) {
       throw new Error(Errors.FORM_SCHEMA_MISMATCH);
     }
 
-    const { isValid, errors } = validate(form[key], schemas[key], schemas[key].label || key);
+    const { isValid, errors } = validateProperty(form[key], schemas[key], schemas[key].label || key);
 
     if (!isValid) {
       formErrors[key] = [...errors];
@@ -45,9 +45,9 @@ function validateForm(form, schemas) {
  * Runs input through list of validation rules on the schema
  * @param {string} input
  * @param {object} schema
- * @returns {ValidationResponse}
+ * @returns {ValidationResponse} isValid and errors array
  */
-function validate(input, schema, label) {
+function validateProperty(input, schema, label) {
   const errors = [];
 
   // Process empty input
@@ -127,4 +127,4 @@ function matchPatterns(label, value, rules, errors) {
   });
 }
 
-export { validate, validateForm };
+export { validateProperty, validateForm };
