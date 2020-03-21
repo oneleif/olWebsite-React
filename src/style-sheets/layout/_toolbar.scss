@@ -1,103 +1,31 @@
-#toolBar {
+.navbar {
+  width: 100%;
+  padding: 0 5%;
   background-color: $white;
-  border-bottom: 2pt solid $olGreen;
-  color: black;
-  height: 50px;
-
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
 
   position: fixed;
-  top: 0;
-  width: 100%;
   z-index: 1;
+  top: 0;
 
-  & ul.icon-module {
-    width: 30%;
-    // TODO: v-2 display: flex;
-    display: none;
-    flex-direction: row;
+  & ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
     align-items: center;
-    justify-content: flex-end;
-    padding-inline-start: 0px;
-    margin-right: 2%;
-  }
-
-  & li {
-    list-style: none;
-  }
-
-  & ul.icon-module li {
-    padding: 0 4px;
-
-    & div {
-      padding-top: 3px;
-    }
-
-    & svg {
-      cursor: pointer;
-      color: $olGreen;
-
-      &:hover {
-        opacity: 0.7;
-      }
-    }
-
-    & a {
-      text-decoration: none;
-      color: $black;
-
-      &:hover {
-        opacity: 0.7;
-      }
-    }
-  }
-
-  & nav {
-    // TODO: v-2 width: 70%;
-    width: 80%;
-
-    & ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
 
     & li {
-      margin-right: 20px;
-      list-style: none;
+      margin: 0 2vw;
+      font-size: $olNavLinkSize;
+      text-align: center;
+      line-height: 25px;
 
-      &:last-child {
-        margin-right: 0;
-      }
-
-      &.top-nav-logo {
-        margin-right: 24px;
-
-        & h1 {
-          & a {
-            display: flex;
-            height: 100%;
-
-            &:hover {
-              opacity: 1;
-            }
-          }
-
-          & img {
-            cursor: pointer;
-            height: 42px;
-          }
-        }
-      }
+      list-style-type: none;
 
       & a {
-        color: $black;
-        font-size: 18px;
+        color: $olNavLink;
+        font-family: $olAssistantFont;
         text-decoration: none;
+        font-weight: 600;
 
         &:hover {
           opacity: 0.7;
@@ -106,7 +34,100 @@
     }
   }
 
-  .active-link {
-    font-weight: bold;
+  & .nav-links {
+    width: 100%;
+    height: 100px;
+
+    & .icons {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      & img {
+        width: 148px;
+      }
+
+      & .toggle {
+        display: none;
+      }
+    }
+
+    & .main-nav {
+      @extend .desktop-only;
+
+      // TODO: v-2 flex: 2;
+      width: 60%;
+    }
+
+    & .user-actions {
+      @extend .desktop-only;
+
+      width: 20%;
+    }
   }
+
+  .desktop-only {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin-left: 5%;
+  }
+
+  @include medium('down') {
+    padding: 0;
+
+    & ul {
+      flex-direction: column;
+
+      & li {
+        margin: 0;
+        padding: 15px 0;
+        background: $gray;
+
+        & a {
+          display: block;
+          color: $white;
+        }
+      }
+    }
+
+    & .nav-links {
+      height: auto;
+
+      & .icons {
+        width: 95%;
+        padding: 10px 5% 10px 0;
+
+        align-items: center;
+        justify-content: space-between;
+
+        & .toggle {
+          color: $olNavLink;
+          display: block;
+        }
+      }
+
+      & .main-nav,
+      .user-actions {
+        @extend .mobile-dropdown;
+      }
+
+      .main-nav.open,
+      .user-actions.open {
+        display: block;
+      }
+    }
+
+    .mobile-dropdown {
+      display: none;
+      margin: 0;
+      width: 100%;
+      flex-direction: column;
+    }
+  }
+}
+
+.active-link {
+  font-weight: bold;
 }
