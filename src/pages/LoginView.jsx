@@ -5,7 +5,21 @@ import Input from '../components/Objects/Input/Input';
 import homeLogo from '../images/homeLogo.png';
 import { login } from '../services/authService';
 import { useUser } from '../contexts/UserContext';
-import { ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../constants/authentication-constants';
+import { Schema, validateProperty, validateForm } from '../validation';
+
+// TODO: Refactor to hook
+const PASSWORD_PROPERTY = 'password';
+const PASSWORD_SCHEMA = new Schema().validate();
+
+const EMAIL_PROPERTY = 'email';
+const EMAIL_SCHEMA = new Schema().validate();
+
+const FORM_SCHEMA = {
+  [EMAIL_PROPERTY]: EMAIL_SCHEMA,
+  [PASSWORD_PROPERTY]: PASSWORD_SCHEMA
+};
+const DEFAULT_STATE = { [EMAIL_PROPERTY]: '', [PASSWORD_PROPERTY]: '' };
+const DEFAULT_ERRORS = {};
 
 function LoginView(props) {
   /************************************
@@ -13,24 +27,21 @@ function LoginView(props) {
    ************************************/
 
   const [user, setUser] = useUser();
+  const [formData, setFormData] = useState(DEFAULT_STATE);
+  const [formErrors, setFormErrors] = useState(DEFAULT_ERRORS);
   const [errorMessage, setErrorMessage] = useState(null);
-
-  const [email, setEmail] = useState('');
-  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
-  const [password, setPassword] = useState('');
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
 
   /************************************
    * Helper Functions
    ************************************/
 
-  /* Handler for log in button clicked, if valid inputs logs in user
-   */
-  async function loginClicked() {
-    if (validateInput()) {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const { isValid: formIsValid, errors } = validateForm(formData, FORM_SCHEMA);
+
+    if (formIsValid) {
       try {
-        // Ideally login should handle setting the user
-        const userData = await login(email, password);
+        const userData = await login(formData[EMAIL_PROPERTY], formData[PASSWORD_PROPERTY]);
         setUser(userData);
 
         // Make sure that userData is safely stored since this
@@ -41,44 +52,22 @@ function LoginView(props) {
         // 500 errors should be handled and "prettied" in the httpService
         setErrorMessage(error.message);
       }
+    } else {
+      setFormErrors({ ...formErrors, ...errors });
     }
   }
 
-  /* Validates inputs, if invalid then it will display an error message
-   */
-  function validateInput() {
-    handleEmailValidationResponse(email);
-    handlePasswordValidationResponse(password);
+  function handleInputChange(event) {
+    const { name: propertyName, value } = event.target;
 
-    return email !== '' && password !== '';
+    setFormData({ ...formData, [propertyName]: value });
+    setFormErrors({ ...formErrors, ...validate(propertyName, value) });
   }
 
-  function emailValidationCheck(email) {
-    setEmail(email);
-    handleEmailValidationResponse(email);
-  }
+  function validate(propertyName, value) {
+    const { errors } = validateProperty(value, FORM_SCHEMA[propertyName]);
 
-  function passwordValidationCheck(password) {
-    setPassword(password);
-    handlePasswordValidationResponse(password);
-  }
-
-  /* Takes in validation response of email and sets based on success or not
-   *
-   * @param response
-   */
-  function handleEmailValidationResponse(input) {
-    const message = input === '' ? ERROR_EMPTY_EMAIL : null;
-    setEmailErrorMessage(message);
-  }
-
-  /* Takes in validation response of password and sets based on success or not
-   *
-   * @param response
-   */
-  function handlePasswordValidationResponse(input) {
-    const message = input === '' ? ERROR_EMPTY_PASSWORD : null;
-    setPasswordErrorMessage(message);
+    return { [propertyName]: [...errors] };
   }
 
   /************************************
@@ -90,25 +79,27 @@ function LoginView(props) {
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
-        <div className='form-container'>
+        <form onSubmit={handleSubmit} className='form-container'>
           <Input
-            className='auth'
+            name={EMAIL_PROPERTY}
             label='Email'
-            onValueChange={email => emailValidationCheck(email)}
-            errorMessage={emailErrorMessage}
+            className='auth'
+            errorMessage={formErrors[EMAIL_PROPERTY]}
+            onValueChange={handleInputChange}
           />
           <Input
-            className='auth'
-            label='Password'
             type='password'
-            onValueChange={password => passwordValidationCheck(password)}
-            errorMessage={passwordErrorMessage}
+            name={PASSWORD_PROPERTY}
+            label='Password'
+            className='auth'
+            errorMessage={formErrors[PASSWORD_PROPERTY]}
+            onValueChange={handleInputChange}
           />
           <div className='authentication-actions-module'>
             <span>Forgot your password?</span>
-            <button onClick={() => loginClicked()}>Log in</button>
+            <button type='submit'>Log in</button>
           </div>
-        </div>
+        </form>
         {errorMessage && <p className='error-message'>{errorMessage}</p>}
       </div>
     </div>

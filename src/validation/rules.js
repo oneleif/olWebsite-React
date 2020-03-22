@@ -6,7 +6,7 @@ import { VALIDATION_ERROR_MESSAGES as ValidationMessages } from './constants';
  */
 
 // This regex pattern was gotten from: https://www.w3resource.com/javascript/form/email-validation.php
-const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+const emailPattern = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
 
 export const EMAIL = {
   pattern: emailPattern,
