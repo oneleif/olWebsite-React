@@ -106,6 +106,7 @@ function RegisterView() {
           />
           <div className='authentication-actions-module'>
             <Link to='/login'>Already have an account?</Link>
+            {/* TODO: Disable button if there is an error in form */}
             <button type='submit'>Sign up</button>
           </div>
         </form>
