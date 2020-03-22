@@ -112,7 +112,7 @@ function validateLabel(value) {
  */
 function validateSchema(schema) {
   if (schema.email) {
-    schema = { ...DEFAULT_SCHEMA };
+    schema = {};
     schema.email = true;
     return schema;
   }

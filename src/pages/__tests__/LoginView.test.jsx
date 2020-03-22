@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { act, clickEventByText, fireChangeEvent, fireEvent, queryByLabelText, queryByText, renderWithRouter } from 'test-utils';
-
 import LoginView from '../LoginView';
-import { ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../../constants/authentication-constants';
+import { act, fireChangeEvent, fireEvent, renderWithRouter } from 'test-utils';
 
 /************************************
  * Constants

@@ -39,7 +39,7 @@ describe('Schema', () => {
       .isEmail()
       .validate();
 
-    const expectedSchema = { ...DEFAULT_SCHEMA, email: true };
+    const expectedSchema = { email: true };
     expect(schema).toStrictEqual(expectedSchema);
   });
 
