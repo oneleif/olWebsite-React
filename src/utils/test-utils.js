@@ -1,25 +1,17 @@
-import React from "react";
-import { Router } from "react-router-dom";
-import { createMemoryHistory } from "history";
-import {
-  render,
-  getByLabelText,
-  fireEvent,
-  getByText
-} from "@testing-library/react";
+import React from 'react';
+import { Router } from 'react-router-dom';
+import { createMemoryHistory } from 'history';
+import { render, getByLabelText, fireEvent, getByText } from '@testing-library/react';
 
 // Including this to get extended Jest matchers for expect
-import "@testing-library/jest-dom/extend-expect";
+import '@testing-library/jest-dom/extend-expect';
 
-const defaultRoute = "/";
+const defaultRoute = '/';
 const defaultOptions = {};
 
 export function renderWithRouter(
   ui,
-  {
-    route = defaultRoute,
-    history = createMemoryHistory({ initialEntries: [route] })
-  } = defaultOptions
+  { route = defaultRoute, history = createMemoryHistory({ initialEntries: [route] }) } = defaultOptions
 ) {
   return {
     ...render(<Router history={history}>{ui}</Router>),
@@ -36,7 +28,7 @@ export function renderWithRouter(
 export function clickEventByLabelText(container, label) {
   fireEvent(
     getByLabelText(container, label),
-    new MouseEvent("click", {
+    new MouseEvent('click', {
       bubbles: true,
       cancelable: true
     })
@@ -52,11 +44,21 @@ export function clickEventByLabelText(container, label) {
 export function clickEventByText(container, label) {
   fireEvent(
     getByText(container, label),
-    new MouseEvent("click", {
+    new MouseEvent('click', {
       bubbles: true,
       cancelable: true
     })
   );
 }
 
-export * from "@testing-library/react";
+/**
+ * Wrapper for triggering a change event
+ * @param {Element} element
+ * @param {*} value
+ */
+
+export function fireChangeEvent(element, value) {
+  fireEvent.change(element, { target: { value } });
+}
+
+export * from '@testing-library/react';
