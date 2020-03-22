@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { act, clickEventByText, fireEvent, queryByLabelText, queryByText, renderWithRouter } from 'test-utils';
+import { act, clickEventByText, fireChangeEvent, fireEvent, queryByLabelText, queryByText, renderWithRouter } from 'test-utils';
 
 import LoginView from '../LoginView';
 import { ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../../constants/authentication-constants';
@@ -12,24 +12,30 @@ import { ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../../constants/authent
 const VALID_EMAIL = 'test1@gmail.com';
 const VALID_PASSWORD = 'Test123!';
 
-describe.skip('Login View Component Tests', function() {
-  let renderedComponent;
+describe('Login View Component Tests', function() {
+  function setup() {
+    return renderWithRouter(<LoginView />);
+  }
 
-  beforeEach(() => {
-    renderedComponent = renderWithRouter(<LoginView />);
-  });
+  test('initial render, login inputs should be in view', () => {
+    const { getAllByLabelText } = setup();
 
-  test('initial render, registration inputs should be in view', () => {
-    const inputs = queryByLabelText(renderedComponent.container, 'Email');
-    expect(inputs).toBeInTheDocument();
+    const inputs = getAllByLabelText(/input/i);
+    expect(inputs.length).toBe(2);
+
+    inputs.forEach(element => {
+      expect(element).toBeInTheDocument();
+    });
   });
 
   test('Valid inputs entered, fetch should be called', async () => {
-    const emailInput = queryByLabelText(renderedComponent.container, 'Email-input');
-    const passwordInput = queryByLabelText(renderedComponent.container, 'Password-input');
+    const { getByLabelText, getByText } = setup();
 
-    fireEvent.change(emailInput, { target: { value: VALID_EMAIL } });
-    fireEvent.change(passwordInput, { target: { value: VALID_PASSWORD } });
+    const emailInput = getByLabelText(/email/i);
+    const passwordInput = getByLabelText(/^password$/i);
+
+    fireChangeEvent(emailInput, VALID_EMAIL);
+    fireChangeEvent(passwordInput, VALID_PASSWORD);
 
     const mockSuccessResponse = {};
     const mockJsonPromise = Promise.resolve(mockSuccessResponse);
@@ -40,18 +46,24 @@ describe.skip('Login View Component Tests', function() {
     jest.spyOn(global, 'fetch').mockImplementation(() => mockFetchPromise);
 
     await act(async () => {
-      clickEventByText(renderedComponent.container, 'Log in');
+      fireEvent.click(getByText(/log in/i));
     });
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
   });
 
   test('Inputs not entered, error messages should be displayed', () => {
-    clickEventByText(renderedComponent.container, 'Log in');
-    const emailErrorMessage = queryByText(renderedComponent.container, ERROR_EMPTY_EMAIL);
-    const passwordErrorMessage = queryByText(renderedComponent.container, ERROR_EMPTY_PASSWORD);
+    const { getAllByText, getByText } = setup();
 
-    expect(emailErrorMessage).toBeInTheDocument();
-    expect(passwordErrorMessage).toBeInTheDocument();
+    fireEvent.click(getByText(/log in/i));
+
+    // TODO: should setup actual messages to be used;
+    // every time the error messages change, the tests have
+    // to be modified. Flimsy
+    const errorMessages = getAllByText(/value/i);
+    expect(errorMessages.length).toBe(2);
+    errorMessages.forEach(message => {
+      expect(message).toBeInTheDocument();
+    });
   });
 });

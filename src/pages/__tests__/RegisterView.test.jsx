@@ -65,7 +65,7 @@ describe('Register View Component Tests', function() {
   });
 
   test('Inputs not entered, error messages should be displayed', () => {
-    const { getAllByText, getByText, debug } = setup();
+    const { getAllByText, getByText } = setup();
 
     fireEvent.click(getByText(/sign up/i));
 
