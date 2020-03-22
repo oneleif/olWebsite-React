@@ -1,102 +1,100 @@
 import React, { useState } from 'react';
 import { Link, Redirect, withRouter } from 'react-router-dom';
 
-import { validateEmail, validatePassword, validateReenteredPassword } from '../utils/authentication-utils';
-import { SUCCESS } from '../constants/authentication-constants';
-import { register } from '../services/authService.js';
-
 import Input from '../components/Objects/Input/Input';
 import homeLogo from '../images/homeLogo.png';
+import { register } from '../services/authService.js';
+import { ERROR_MISMATCH_PASSWORDS } from '../constants/authentication-constants';
+import { Schema, validateProperty, validateForm } from '../validation';
+
+/************************************
+ * Constants
+ ************************************/
+
+const REQUIRED_PASSWORD_LENGTH = 8;
+const CONFIRMED_PASSWORD_SCHEMA = new Schema().validate();
+const CONFIRMED_PASSWORD_PROPERTY = 'confirmedPassword';
+
+const EMAIL_SCHEMA = new Schema().isEmail().validate();
+const EMAIL_PROPERTY = 'email';
+
+const PASSWORD_PROPERTY = 'password';
+const PASSWORD_SCHEMA = new Schema()
+  .hasDigit()
+  .hasSymbol()
+  .hasLowercase()
+  .hasUppercase()
+  .min(REQUIRED_PASSWORD_LENGTH)
+  .validate();
+
+const FORM_SCHEMA = {
+  [EMAIL_PROPERTY]: EMAIL_SCHEMA,
+  [PASSWORD_PROPERTY]: PASSWORD_SCHEMA,
+  [CONFIRMED_PASSWORD_PROPERTY]: CONFIRMED_PASSWORD_SCHEMA
+};
+const DEFAULT_STATE = { [EMAIL_PROPERTY]: '', [PASSWORD_PROPERTY]: '', [CONFIRMED_PASSWORD_PROPERTY]: '' };
+const DEFAULT_ERRORS = {};
 
 function RegisterView() {
   /************************************
    * State
    ************************************/
 
-  const [isRegistered, setIsRegistered] = useState(false);
+  const [formData, setFormData] = useState(DEFAULT_STATE);
+  const [formErrors, setFormErrors] = useState(DEFAULT_ERRORS);
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const [email, setEmail] = useState('');
-  const [emailErrorMessage, setEmailErrorMessage] = useState(null);
-  const [password, setPassword] = useState('');
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState(null);
-  const [reenteredPassword, setReenteredPassword] = useState('');
-  const [reenteredPasswordErrorMessage, setReenteredPasswordErrorMessage] = useState(null);
+  const [isRegistered, setIsRegistered] = useState(false);
 
   /************************************
-   * Private Functions
+   * Helper Functions
    ************************************/
 
-  /* Handler for sign up button clicked, if valid inputs registers user
-   */
-  async function registerClicked() {
-    if (validateInput()) {
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const { isValid: formIsValid, errors } = validateForm(formData, FORM_SCHEMA);
+
+    if (formIsValid) {
       try {
-        await register(email, password);
+        await register(formData[EMAIL_PROPERTY], formData[PASSWORD_PROPERTY]);
         setIsRegistered(true);
       } catch (error) {
         setErrorMessage(error.message);
       }
+    } else {
+      setFormErrors({ ...formErrors, ...errors });
     }
   }
 
-  /* Validates inputs, if invalid then it will display an error message
-   */
-  function validateInput() {
-    const emailResponse = validateEmail(email);
-    const passwordResponse = validatePassword(password);
-    const reenteredPasswordResponse = validateReenteredPassword(password, reenteredPassword);
+  // TODO: remove properties on schema when email is true
+  function handleInputChange(event) {
+    const { name: propertyName, value } = event.target;
 
-    handleEmailValidationResponse(emailResponse);
-    handlePasswordValidationResponse(passwordResponse);
-    handleReenteredPasswordValidationResponse(reenteredPasswordResponse);
-
-    return emailResponse === SUCCESS && passwordResponse === SUCCESS && reenteredPasswordResponse === SUCCESS;
+    setFormData({ ...formData, [propertyName]: value });
+    setFormErrors({ ...formErrors, ...validate(propertyName, value) });
   }
 
-  function emailValidationCheck(email) {
-    setEmail(email);
-    const response = validateEmail(email);
-    handleEmailValidationResponse(response);
+  function validate(propertyName, value) {
+    const { errors } = validateProperty(value, FORM_SCHEMA[propertyName]);
+    const allErrors = { [propertyName]: [...errors] };
+
+    if (propertyName === PASSWORD_PROPERTY) {
+      if (value !== formData[CONFIRMED_PASSWORD_PROPERTY] && inputHasBeenTouched(CONFIRMED_PASSWORD_PROPERTY)) {
+        allErrors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
+      }
+    }
+
+    if (propertyName === CONFIRMED_PASSWORD_PROPERTY) {
+      if (value !== formData[PASSWORD_PROPERTY]) {
+        allErrors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
+      }
+    }
+
+    return allErrors;
   }
 
-  function passwordValidationCheck(password) {
-    setPassword(password);
-    const response = validatePassword(password);
-    handlePasswordValidationResponse(validatePassword(response));
-  }
-
-  function reenteredPasswordValidationCheck(reenteredPassword) {
-    setReenteredPassword(reenteredPassword);
-    const response = validateReenteredPassword(password, reenteredPassword);
-    handleReenteredPasswordValidationResponse(response);
-  }
-
-  /* Takes in validation response of email and sets based on success or not
-   *
-   * @param response
-   */
-  function handleEmailValidationResponse(response) {
-    const message = response !== SUCCESS ? response : null;
-    setEmailErrorMessage(message);
-  }
-
-  /* Takes in validation response of password and sets based on success or not
-   *
-   * @param response
-   */
-  function handlePasswordValidationResponse(response) {
-    const message = response !== SUCCESS ? response : null;
-    setPasswordErrorMessage(message);
-  }
-
-  /* Takes in validation response of reentered password and sets based on success or not
-   *
-   * @param response
-   */
-  function handleReenteredPasswordValidationResponse(response) {
-    const message = response !== SUCCESS ? response : null;
-    setReenteredPasswordErrorMessage(message);
+  function inputHasBeenTouched(property) {
+    return Array.isArray(formErrors[property]);
   }
 
   /************************************
@@ -107,32 +105,35 @@ function RegisterView() {
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
-        <div className='form-container'>
+        <form onSubmit={handleSubmit} className='form-container'>
           <Input
-            className='auth'
+            name={EMAIL_PROPERTY}
             label='Email'
-            onValueChange={email => emailValidationCheck(email)}
-            errorMessage={emailErrorMessage}
+            className='auth'
+            errorMessage={formErrors[EMAIL_PROPERTY]}
+            onValueChange={handleInputChange}
           />
           <Input
-            className='auth'
+            type='password'
+            name={PASSWORD_PROPERTY}
             label='Password'
-            type='password'
-            onValueChange={password => passwordValidationCheck(password)}
-            errorMessage={passwordErrorMessage}
+            className='auth'
+            errorMessage={formErrors[PASSWORD_PROPERTY]?.[0]} // TODO: change display
+            onValueChange={handleInputChange}
           />
           <Input
-            className='auth'
-            label='Reenter Password'
             type='password'
-            onValueChange={password => reenteredPasswordValidationCheck(password)}
-            errorMessage={reenteredPasswordErrorMessage}
+            name={CONFIRMED_PASSWORD_PROPERTY}
+            label='Reenter Password'
+            className='auth'
+            errorMessage={formErrors[CONFIRMED_PASSWORD_PROPERTY]?.[0]} // TODO: change display
+            onValueChange={handleInputChange}
           />
           <div className='authentication-actions-module'>
             <Link to='/login'>Already have an account?</Link>
-            <button onClick={() => registerClicked()}>Sign up</button>
+            <button type='submit'>Sign up</button>
           </div>
-        </div>
+        </form>
         {errorMessage && <p className='error-message'>{errorMessage}</p>}
       </div>
       {isRegistered && <Redirect to='/login' />}

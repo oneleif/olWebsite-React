@@ -2,16 +2,14 @@ import { VALIDATION_ERROR_MESSAGES as ValidationMessages } from './constants';
 
 /**
  * This file exports different validation rules, each
- * with it's specific pattern and custom error.
+ * with its specific pattern and custom error.
  */
 
-// This regex pattern was gotten from: https://html.form.guide/best-practices/validate-email-address-using-javascript.html
-const emailRegex = new RegExp(
-  /^(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/
-);
+// This regex pattern was gotten from: https://www.w3resource.com/javascript/form/email-validation.php
+const emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 export const EMAIL = {
-  pattern: new RegExp(emailRegex),
+  pattern: emailPattern,
   error: ValidationMessages.EMAIL
 };
 

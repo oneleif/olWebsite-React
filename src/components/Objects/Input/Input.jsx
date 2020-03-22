@@ -1,14 +1,6 @@
 import React from 'react';
 
-export default function Input({ className, label, onValueChange, errorMessage, type = 'text' }) {
-  /************************************
-   * Helper Functions
-   ************************************/
-
-  function handleChange(event) {
-    onValueChange(event.target.value, label);
-  }
-
+export default function Input({ className, label, onValueChange, errorMessage, type = 'text', ...rest }) {
   /************************************
    * Render
    ************************************/
@@ -20,7 +12,7 @@ export default function Input({ className, label, onValueChange, errorMessage, t
           <p>{label}</p>
           {errorMessage && <span>{errorMessage}</span>}
         </div>
-        <input aria-label={`${label}-input`} type={type} onChange={handleChange} />
+        <input {...rest} aria-label={`${label}-input`} type={type} onChange={onValueChange} />
       </label>
     </>
   );

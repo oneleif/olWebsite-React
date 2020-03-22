@@ -189,7 +189,7 @@ describe('Form Validator', () => {
       expectedOutput: {
         isValid: false,
         errors: {
-          username: [`username ${ValidationMessages.DIGIT}`]
+          username: [ValidationMessages.DIGIT]
         }
       },
       description: 'errors object with invalid properties and their corresponding errors'

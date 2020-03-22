@@ -1,8 +1,6 @@
-import { isObject, isString, isBoolean, validateType, isEmptyObject } from './utils';
-
-import { NO_ERRORS, EMPTY_INPUT, ERROR_MESSAGES as Errors, VALIDATION_ERROR_MESSAGES as ValidationMessages } from './constants';
-
 import * as ValidationRules from './rules';
+import { isObject, isString, isBoolean, validateType, isEmptyObject } from './utils';
+import { NO_ERRORS, EMPTY_INPUT, ERROR_MESSAGES as Errors, VALIDATION_ERROR_MESSAGES as ValidationMessages } from './constants';
 
 /**
  * @typedef {Object} ValidationResponse
@@ -10,18 +8,22 @@ import * as ValidationRules from './rules';
  * @property {array} errors - validation errors
  */
 
+const DEFAULT_OPTIONS = { includePropName: false };
+
 /**
  * Validates an array of form elements
  * @param {Object} form all form elements
  * @param {Object} schemas schemas corresponding to each form element
- * @returns {array} validation response
+ * @param {object} options options for customizing validation response
+ * @returns {Object} object with isValid and errors object
  */
-function validateForm(form, schemas) {
+function validateForm(form, schemas, options = DEFAULT_OPTIONS) {
   validateParams(form, isObject, Errors.INVALID_FORM);
   validateParams(schemas, isObject, Errors.INVALID_SCHEMA);
 
-  const formErrors = {};
   let formIsValid = true;
+  const formErrors = {};
+  const { includePropName } = options;
 
   // Check that form property has corresponding schema
   // before validating
@@ -30,7 +32,8 @@ function validateForm(form, schemas) {
       throw new Error(Errors.FORM_SCHEMA_MISMATCH);
     }
 
-    const { isValid, errors } = validateProperty(form[key], schemas[key], schemas[key].label || key);
+    const label = includePropName ? schemas[key].label || key : null;
+    const { isValid, errors } = validateProperty(form[key], schemas[key], label);
 
     if (!isValid) {
       formErrors[key] = [...errors];

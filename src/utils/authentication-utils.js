@@ -4,8 +4,8 @@ import {
   ERROR_INVALID_EMAIL,
   ERROR_EMPTY_PASSWORD,
   ERROR_EMPTY_REENTERED_PASSWORD,
-  ERROR_PASSWORDS_DONT_MATCH
-} from "../constants/authentication-constants";
+  ERROR_MISMATCH_PASSWORDS
+} from '../constants/authentication-constants';
 
 /* Validates passed in email, makes sure input wasn't empty
  * or the string matches an email format
@@ -14,7 +14,7 @@ import {
  * @return {String} - SUCCESS or error message
  */
 export function validateEmail(email) {
-  if (email === "") {
+  if (email === '') {
     return ERROR_EMPTY_EMAIL;
   } else if (/^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/.test(email)) {
     return SUCCESS;
@@ -29,7 +29,7 @@ export function validateEmail(email) {
  * @return {String} - SUCCESS or error message
  */
 export function validatePassword(password) {
-  if (password === "") {
+  if (password === '') {
     return ERROR_EMPTY_PASSWORD;
   } else {
     return SUCCESS;
@@ -44,11 +44,11 @@ export function validatePassword(password) {
  * @return {String} - SUCCESS or error message
  */
 export function validateReenteredPassword(password, reenteredPassword) {
-  if (reenteredPassword === "") {
+  if (reenteredPassword === '') {
     return ERROR_EMPTY_REENTERED_PASSWORD;
   } else if (password === reenteredPassword) {
     return SUCCESS;
-  } else if (password !== "") {
-    return ERROR_PASSWORDS_DONT_MATCH;
+  } else if (password !== '') {
+    return ERROR_MISMATCH_PASSWORDS;
   }
 }
