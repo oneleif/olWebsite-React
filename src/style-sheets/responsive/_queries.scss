@@ -62,18 +62,6 @@
   }
 }
 
-@mixin xxlarge($identifier: "up", $range: "") {
-  @if ($identifier == "down") {
-    @media (max-width: #{$screen-xxl}) {
-      @content;
-    }
-  } @else {
-    @media (min-width: #{$screen-xxl}) {
-      @content;
-    }
-  }
-}
-
 /*
 - This query is the most dynamic, in case you might need a range or a custom screen size
 - The third parameter by default uses up which includes media for the $size parameter and "up"
