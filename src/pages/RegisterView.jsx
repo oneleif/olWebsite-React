@@ -4,8 +4,8 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import Input from '../components/Objects/Input/Input';
 import useForm from '../hooks/useForm';
 import homeLogo from '../images/homeLogo.png';
-import { Schema } from '../validation';
 import { register } from '../services/authService.js';
+import { Schema, validate } from '../validation';
 import { ERROR_MISMATCH_PASSWORDS } from '../constants/authentication-constants';
 
 /************************************
@@ -38,7 +38,10 @@ function RegisterView() {
    * State
    ************************************/
 
-  const { formData, formErrors, handleSubmit, handleInputChange, submitErrorMessage } = useForm(FORM_SCHEMA, DEFAULT_STATE);
+  const { formData, formErrors, setFormErrors, handleSubmit, handleInputChange, submitErrorMessage } = useForm(
+    FORM_SCHEMA,
+    DEFAULT_STATE
+  );
   const [isRegistered, setIsRegistered] = useState(false);
 
   /************************************
@@ -50,26 +53,59 @@ function RegisterView() {
     setIsRegistered(true);
   }
 
-  function validate(propertyName, errors, value) {
-    const allErrors = { [propertyName]: [...errors] };
+  function validateForm(form, schema) {
+    const { isValid, errors } = validate(form, schema);
 
-    if (propertyName === PASSWORD_PROPERTY) {
-      if (value !== formData[CONFIRMED_PASSWORD_PROPERTY] && inputHasBeenTouched(CONFIRMED_PASSWORD_PROPERTY)) {
-        allErrors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
-      }
+    let formIsValid = isValid;
+
+    if (formIsValid && passwordsDiffer()) {
+      formIsValid = false;
+      errors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
     }
 
-    if (propertyName === CONFIRMED_PASSWORD_PROPERTY) {
-      if (value !== formData[PASSWORD_PROPERTY]) {
-        allErrors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
-      }
-    }
+    return formIsValid ? null : errors;
+  }
 
-    return allErrors;
+  function validateProperty(value, schema, propertyName) {
+    const { errors } = validate(value, schema);
+    const allErrors = { ...formErrors, [propertyName]: [...errors] };
+
+    // Deal with re-entering password:
+    validateConfirmedPassword(value, propertyName, allErrors);
+
+    setFormErrors({ ...allErrors });
   }
 
   function inputHasBeenTouched(property) {
     return Array.isArray(formErrors[property]);
+  }
+
+  function passwordsDiffer() {
+    return formData[PASSWORD_PROPERTY] !== formData[CONFIRMED_PASSWORD_PROPERTY];
+  }
+
+  function validateConfirmedPassword(value, propertyName, errors) {
+    // Could have easily just check if values are the same, but opted for
+    // more robust solution because function setting the state are asynchronous
+
+    // On password input change
+    if (propertyName === PASSWORD_PROPERTY) {
+      if (value !== formData[CONFIRMED_PASSWORD_PROPERTY] && inputHasBeenTouched(CONFIRMED_PASSWORD_PROPERTY)) {
+        errors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
+      }
+
+      // reset confirmed password
+      if (value === formData[CONFIRMED_PASSWORD_PROPERTY]) {
+        errors[CONFIRMED_PASSWORD_PROPERTY] = [];
+      }
+    }
+
+    // On confirmed password input change
+    if (propertyName === CONFIRMED_PASSWORD_PROPERTY) {
+      if (value !== formData[PASSWORD_PROPERTY]) {
+        errors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
+      }
+    }
   }
 
   /************************************
@@ -80,13 +116,13 @@ function RegisterView() {
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
-        <form onSubmit={event => handleSubmit(event, doSubmit)} className='form-container'>
+        <form onSubmit={event => handleSubmit(event, validateForm, doSubmit)} className='form-container'>
           <Input
             name={EMAIL_PROPERTY}
             label='Email'
             className='auth'
             errorMessage={formErrors[EMAIL_PROPERTY]}
-            onValueChange={event => handleInputChange(event, validate)}
+            onValueChange={event => handleInputChange(event, validateProperty)}
           />
           <Input
             type='password'
@@ -94,7 +130,7 @@ function RegisterView() {
             label='Password'
             className='auth'
             errorMessage={formErrors[PASSWORD_PROPERTY]?.[0]} // TODO: change display
-            onValueChange={event => handleInputChange(event, validate)}
+            onValueChange={event => handleInputChange(event, validateProperty)}
           />
           <Input
             type='password'
@@ -102,7 +138,7 @@ function RegisterView() {
             label='Reenter Password'
             className='auth'
             errorMessage={formErrors[CONFIRMED_PASSWORD_PROPERTY]?.[0]} // TODO: change display
-            onValueChange={event => handleInputChange(event, validate)}
+            onValueChange={event => handleInputChange(event, validateProperty)}
           />
           <div className='authentication-actions-module'>
             <Link to='/login'>Already have an account?</Link>

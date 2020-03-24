@@ -1,6 +1,5 @@
-import { EMPTY_INPUT, DEFAULT_SCHEMA, ERROR_MESSAGES as Errors } from './constants';
-
 import { validateType, isNumber, isString, isBoolean } from './utils';
+import { EMPTY_VALUE, DEFAULT_SCHEMA, ERROR_MESSAGES as Errors } from './constants';
 
 export default class Schema {
   #schema = { ...DEFAULT_SCHEMA };
@@ -100,7 +99,7 @@ function validateLabel(value) {
   validateType(value, isString);
 
   // Empty validation
-  if (value === EMPTY_INPUT) {
+  if (value === EMPTY_VALUE) {
     throw new Error(Errors.EMPTY_LABEL);
   }
 }

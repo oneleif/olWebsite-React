@@ -1,2 +1,2 @@
 export { default as Schema } from './schema';
-export { validateProperty, validateForm } from './validators';
+export { default as validate } from './validate';

@@ -1,7 +1,6 @@
-import { LABEL_TYPE, MIN_MAX_TYPE, ERROR_MESSAGES as Errors, DEFAULT_SCHEMA } from '../constants';
-
 import Schema from '../schema';
 import { generateTypeError } from '../utils';
+import { LABEL_TYPE, MIN_MAX_TYPE, ERROR_MESSAGES as Errors, DEFAULT_SCHEMA } from '../constants';
 
 const DEFAULT_MIN = 4;
 const DEFAULT_MAX = 9;

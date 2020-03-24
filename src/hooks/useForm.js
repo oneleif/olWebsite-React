@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { validateForm, validateProperty } from '../validation';
-
 /**
  * Hook to handle underlying form functionality such as setting input changes,
  * errors, form and property validation and form submission
@@ -25,13 +23,14 @@ export default function useForm(schema, defaultState, defaultErrors = {}) {
   /**
    * Handles validating form and calling submitCallback
    * @param {Event} event form submit event
+   * @param {Function} validateForm user validation function to be called
    * @param {Function} submitCallback async function that does actual submission
    */
-  async function handleSubmit(event, submitCallback) {
+  async function handleSubmit(event, validateForm, submitCallback) {
     event.preventDefault();
-    const { isValid: formIsValid, errors } = validateForm(formData, schema);
 
-    if (formIsValid) {
+    const errors = validateForm(formData, schema);
+    if (!errors) {
       try {
         await submitCallback();
       } catch (error) {
@@ -46,28 +45,21 @@ export default function useForm(schema, defaultState, defaultErrors = {}) {
    * Sets the appropriate state and errors. Validates the property
    * and allows user to run further validation
    * @param {Event} event onChange event
-   * @param {Function} userValidationCallback user function for further
-   * validation. Must return an object with property names and the
-   * corresponding errors set. Ex: {email: [...errors]}
+   * @param {Function} validateProperty user function for further
+   * validation. Must return an array of errors
    */
-  function handleInputChange(event, userValidationCallback) {
+  function handleInputChange(event, validateProperty) {
     const { name: propertyName, value } = event.target;
 
     setFormData({ ...formData, [propertyName]: value });
-
-    const { errors } = validateProperty(value, schema[propertyName]);
-    const validationErrors = userValidationCallback(propertyName, errors, value);
-
-    setFormErrors({
-      ...formErrors,
-      ...validationErrors
-    });
+    validateProperty(value, schema[propertyName], propertyName);
   }
 
   return {
     formData,
     formErrors,
     handleSubmit,
+    setFormErrors,
     handleInputChange,
     submitErrorMessage
   };

@@ -15,11 +15,14 @@ export const TYPES = {
 
 export const ERROR_MESSAGES = {
   EMPTY_LABEL: 'Label cannot be empty',
+  EMPTY_SCHEMA: 'Schema must not be an empty object',
   INVALID_FORM: 'Invalid form',
   INVALID_TYPE: 'Value must be of type TYPE',
   INVALID_INPUT: 'Invalid validation input',
   INVALID_SCHEMA: 'Invalid schema',
   INVALID_NUMBER: 'Length cannot be negative',
+  INVALID_VALUE_TYPE: 'Invalid value type',
+  INVALID_SCHEMA_TYPE: 'Invalid schema type',
   FORM_SCHEMA_MISMATCH: 'Schema and form do not match',
   INVALID_MIN_OVER_MAX: 'Minimum length cannot be greater than the maximum',
   INVALID_MIN_MAX: 'Minimum or maximum length cannot be less than the number of required characters'
@@ -40,6 +43,6 @@ export const NO_ERRORS = 0;
 export const FORM_TYPE = TYPES.OBJECT;
 export const INPUT_TYPE = TYPES.STRING;
 export const LABEL_TYPE = TYPES.STRING;
-export const EMPTY_INPUT = '';
+export const EMPTY_VALUE = '';
 export const SCHEMA_TYPE = TYPES.OBJECT;
 export const MIN_MAX_TYPE = TYPES.NUMBER;

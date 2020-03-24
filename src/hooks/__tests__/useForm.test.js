@@ -15,10 +15,8 @@ describe('useForm hook', () => {
   function setup(schema = DEFAULT_SCHEMA, state = DEFAULT_STATE) {
     const { result } = renderHook(() => useForm(schema, state));
 
-    const callback = jest.fn().mockImplementation((propertyName, errors) => {
-      return { [propertyName]: [...errors] };
-    });
-    return { result, callback };
+    const validateProperty = jest.fn();
+    return { result, validateProperty };
   }
 
   test('should set no errors by default and form data from state', () => {
@@ -28,45 +26,37 @@ describe('useForm hook', () => {
     expect(result.current.formData).toStrictEqual(DEFAULT_STATE);
   });
 
-  test('should handle proper element value and error onChange', () => {
-    const { result, callback } = setup();
+  test('should set proper element value and call validation function', () => {
+    const { result, validateProperty } = setup();
 
     act(() => {
-      result.current.handleInputChange(EVENT, callback);
+      result.current.handleInputChange(EVENT, validateProperty);
     });
+
+    const { value, name: propertyName } = EVENT.target;
+    const schema = DEFAULT_SCHEMA[propertyName];
 
     expect(result.current.formData[FIRST_NAME]).toBe(EVENT.target.value);
-    expect(result.current.formErrors[FIRST_NAME].length).toBeGreaterThan(0);
-  });
-
-  test('should set form errors when invalid form submitted', () => {
-    const { result } = setup();
-
-    act(() => {
-      result.current.handleSubmit(EVENT);
-    });
-
-    expect(result.current.submitErrorMessage).toBeNull();
-    expect(result.current.formErrors[FIRST_NAME].length).toBeGreaterThan(0);
+    expect(validateProperty).toHaveBeenCalledWith(value, schema, propertyName);
   });
 
   test('should call user submit callback when form is valid', () => {
-    const { result } = setup(undefined, VALID_FORM);
-    const callback = jest.fn().mockResolvedValue(true);
+    const { result, validateProperty: validateForm } = setup(undefined, VALID_FORM);
+    const doSubmit = jest.fn().mockResolvedValue(true);
 
     act(() => {
-      result.current.handleSubmit(EVENT, callback);
+      result.current.handleSubmit(EVENT, validateForm, doSubmit);
     });
 
-    expect(callback).toHaveBeenCalled();
+    expect(doSubmit).toHaveBeenCalled();
     expect(result.current.submitErrorMessage).toBeNull();
   });
 
   test('should set submitErrorMessage when error occurs while submitting valid form', () => {
-    const { result } = setup(undefined, VALID_FORM);
+    const { result, validateProperty: validateForm } = setup(undefined, VALID_FORM);
 
     act(() => {
-      result.current.handleSubmit(EVENT);
+      result.current.handleSubmit(EVENT, validateForm);
     });
 
     expect(result.current.submitErrorMessage).not.toBeNull();

@@ -1,4 +1,4 @@
-import { VALIDATION_ERROR_MESSAGES as ValidationMessages } from './constants';
+import { VALIDATION_ERROR_MESSAGES as Messages } from './constants';
 
 /**
  * This file exports different validation rules, each
@@ -10,39 +10,39 @@ const emailPattern = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
 
 export const EMAIL = {
   pattern: emailPattern,
-  error: ValidationMessages.EMAIL
+  error: Messages.EMAIL
 };
 
 export const DIGIT = {
   pattern: new RegExp('[0-9]'),
-  error: ValidationMessages.DIGIT
+  error: Messages.DIGIT
 };
 
 export const SYMBOL = {
   pattern: new RegExp('[!@#$%^&*]'),
-  error: ValidationMessages.SYMBOL
+  error: Messages.SYMBOL
 };
 
 export const LOWERCASE = {
   pattern: new RegExp('[a-z]'),
-  error: ValidationMessages.LOWERCASE
+  error: Messages.LOWERCASE
 };
 
 export const UPPERCASE = {
   pattern: new RegExp('[A-Z]'),
-  error: ValidationMessages.UPPERCASE
+  error: Messages.UPPERCASE
 };
 
 export function getMinLengthRule(value) {
   return {
     pattern: new RegExp(`^.{${value},}$`),
-    error: ValidationMessages.MIN_LENGTH.replace('VALUE', `${value}`)
+    error: Messages.MIN_LENGTH.replace('VALUE', `${value}`)
   };
 }
 
 export function getMaxLengthRule(value) {
   return {
     pattern: new RegExp(`^.{0,${value}}$`),
-    error: ValidationMessages.MAX_LENGTH.replace('VALUE', `${value}`)
+    error: Messages.MAX_LENGTH.replace('VALUE', `${value}`)
   };
 }
