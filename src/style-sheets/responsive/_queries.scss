@@ -1,4 +1,17 @@
 // Small devices
+@mixin xsmall($identifier: "up") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-xs}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-xs}) {
+      @content;
+    }
+  }
+}
+
+// Small devices
 @mixin small($identifier: "up") {
   @if ($identifier == "down") {
     @media (max-width: #{$screen-sm}) {

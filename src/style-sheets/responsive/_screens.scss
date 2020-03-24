@@ -1,14 +1,14 @@
-// Small tablets and large smartphones (landscape view)
-$screen-sm: 576px;
+// Smaller mobile devices and portrait phones
+$screen-xs: 0;
 
-// Small tablets (portrait view)
-$screen-md: 768px;
+// Modern mobile devices
+$screen-sm: 600px;
 
-// Tablets and small desktops
-$screen-lg: 992px;
+// Mobile landscape & tablet devices
+$screen-md: 960px;
 
-// Large tablets and desktops
-$screen-xl: 1200px;
+// Desktop
+$screen-lg: 1280px;
 
-// Very large desktops
-$screen-xxl: 1800px;
+// High res desktop & TVs
+$screen-xl: 1920px;
