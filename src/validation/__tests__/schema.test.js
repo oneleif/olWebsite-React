@@ -31,7 +31,7 @@ describe('Schema', () => {
     ).toStrictEqual(expectedSchema);
   });
 
-  test('should clear other schema properties when isEmail is set', () => {
+  test('should clear non-essential schema properties when isEmail is set', () => {
     const schema = new Schema()
       .hasDigit()
       .hasSymbol()
@@ -39,7 +39,7 @@ describe('Schema', () => {
       .validate();
 
     const expectedSchema = { email: true };
-    expect(schema).toStrictEqual(expectedSchema);
+    expect(schema).toEqual(expectedSchema);
   });
 
   test('should throw error when max length is less than the number of required characters', () => {

@@ -4,27 +4,37 @@ import { Link, Redirect, withRouter } from 'react-router-dom';
 import Input from '../components/Objects/Input/Input';
 import useForm from '../hooks/useForm';
 import homeLogo from '../images/homeLogo.png';
+import { Schema } from '../validation';
 import { register } from '../services/authService.js';
-import { Schema, validate } from '../validation';
-import { ERROR_MISMATCH_PASSWORDS } from '../constants/authentication-constants';
 
 /************************************
  * Constants
  ************************************/
 
-const EMAIL_SCHEMA = new Schema().isEmail().validate();
 const EMAIL_PROPERTY = 'email';
 const PASSWORD_PROPERTY = 'password';
 const REQUIRED_PASSWORD_LENGTH = 8;
-const CONFIRMED_PASSWORD_SCHEMA = new Schema().validate();
 const CONFIRMED_PASSWORD_PROPERTY = 'confirmedPassword';
+
 const DEFAULT_STATE = { [EMAIL_PROPERTY]: '', [PASSWORD_PROPERTY]: '', [CONFIRMED_PASSWORD_PROPERTY]: '' };
+
+const EMAIL_SCHEMA = new Schema()
+  .isEmail()
+  .isRequired()
+  .validate();
+
 const PASSWORD_SCHEMA = new Schema()
   .hasDigit()
   .hasSymbol()
   .hasLowercase()
   .hasUppercase()
+  .isRequired()
   .min(REQUIRED_PASSWORD_LENGTH)
+  .validate();
+
+const CONFIRMED_PASSWORD_SCHEMA = new Schema()
+  .isRequired()
+  .matches(PASSWORD_PROPERTY)
   .validate();
 
 const FORM_SCHEMA = {
@@ -38,74 +48,16 @@ function RegisterView() {
    * State
    ************************************/
 
-  const { formData, formErrors, setFormErrors, handleSubmit, handleInputChange, submitErrorMessage } = useForm(
-    FORM_SCHEMA,
-    DEFAULT_STATE
-  );
   const [isRegistered, setIsRegistered] = useState(false);
+  const { formData, formErrors, handleSubmit, handleInputChange, submitErrorMessage } = useForm(FORM_SCHEMA, DEFAULT_STATE);
 
   /************************************
    * Helper Functions
    ************************************/
 
-  async function doSubmit() {
+  async function submitForm() {
     await register(formData[EMAIL_PROPERTY], formData[PASSWORD_PROPERTY]);
     setIsRegistered(true);
-  }
-
-  function validateForm(form, schema) {
-    const { isValid, errors } = validate(form, schema);
-
-    let formIsValid = isValid;
-
-    if (formIsValid && passwordsDiffer()) {
-      formIsValid = false;
-      errors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
-    }
-
-    return formIsValid ? null : errors;
-  }
-
-  function validateProperty(value, schema, propertyName) {
-    const { errors } = validate(value, schema);
-    const allErrors = { ...formErrors, [propertyName]: [...errors] };
-
-    // Deal with re-entering password:
-    validateConfirmedPassword(value, propertyName, allErrors);
-
-    setFormErrors({ ...allErrors });
-  }
-
-  function inputHasBeenTouched(property) {
-    return Array.isArray(formErrors[property]);
-  }
-
-  function passwordsDiffer() {
-    return formData[PASSWORD_PROPERTY] !== formData[CONFIRMED_PASSWORD_PROPERTY];
-  }
-
-  function validateConfirmedPassword(value, propertyName, errors) {
-    // Could have easily just check if values are the same, but opted for
-    // more robust solution because function setting the state are asynchronous
-
-    // On password input change
-    if (propertyName === PASSWORD_PROPERTY) {
-      if (value !== formData[CONFIRMED_PASSWORD_PROPERTY] && inputHasBeenTouched(CONFIRMED_PASSWORD_PROPERTY)) {
-        errors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
-      }
-
-      // reset confirmed password
-      if (value === formData[CONFIRMED_PASSWORD_PROPERTY]) {
-        errors[CONFIRMED_PASSWORD_PROPERTY] = [];
-      }
-    }
-
-    // On confirmed password input change
-    if (propertyName === CONFIRMED_PASSWORD_PROPERTY) {
-      if (value !== formData[PASSWORD_PROPERTY]) {
-        errors[CONFIRMED_PASSWORD_PROPERTY] = [ERROR_MISMATCH_PASSWORDS];
-      }
-    }
   }
 
   /************************************
@@ -116,29 +68,32 @@ function RegisterView() {
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
-        <form onSubmit={event => handleSubmit(event, validateForm, doSubmit)} className='form-container'>
+        <form onSubmit={event => handleSubmit(event, submitForm)} className='form-container'>
           <Input
             name={EMAIL_PROPERTY}
             label='Email'
             className='auth'
+            autoComplete='email'
             errorMessage={formErrors[EMAIL_PROPERTY]}
-            onValueChange={event => handleInputChange(event, validateProperty)}
+            onValueChange={handleInputChange}
           />
           <Input
             type='password'
             name={PASSWORD_PROPERTY}
             label='Password'
             className='auth'
+            autoComplete='new-password'
             errorMessage={formErrors[PASSWORD_PROPERTY]?.[0]} // TODO: change display
-            onValueChange={event => handleInputChange(event, validateProperty)}
+            onValueChange={handleInputChange}
           />
           <Input
             type='password'
             name={CONFIRMED_PASSWORD_PROPERTY}
             label='Reenter Password'
             className='auth'
+            autoComplete='new-password'
             errorMessage={formErrors[CONFIRMED_PASSWORD_PROPERTY]?.[0]} // TODO: change display
-            onValueChange={event => handleInputChange(event, validateProperty)}
+            onValueChange={handleInputChange}
           />
           <div className='authentication-actions-module'>
             <Link to='/login'>Already have an account?</Link>

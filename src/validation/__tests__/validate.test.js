@@ -5,16 +5,25 @@ import validate from '../validate';
 const DEFAULT_VALUE = 'abc';
 const DEFAULT_FORM = { password: DEFAULT_VALUE, email: DEFAULT_VALUE };
 const DEFAULT_LENGTH = 4;
-const DEFAULT_SCHEMA = { isEmail: true };
+const DEFAULT_SCHEMA = new Schema()
+  .isEmail()
+  .isRequired()
+  .validate();
 const DEFAULT_FORM_SCHEMA = {
-  email: new Schema().isEmail().validate(),
-  password: new Schema().hasDigit().validate()
+  email: new Schema()
+    .isEmail()
+    .isRequired()
+    .validate(),
+  password: new Schema()
+    .hasDigit()
+    .isRequired()
+    .validate()
 };
 
 describe('validate', () => {
   test('should return object with isValid property set to false and corresponding error message when input is an empty string', () => {
     const { isValid, errors } = validate(EMPTY_VALUE, DEFAULT_SCHEMA);
-    const expectedResponse = [Messages.EMPTY_VALUE];
+    const expectedResponse = [Messages.REQUIRED];
 
     expect(isValid).toBe(false);
     expect(errors).toEqual(expectedResponse);
@@ -52,6 +61,7 @@ describe('validate', () => {
     const schema = new Schema()
       .label('def')
       .hasDigit()
+      .isRequired()
       .validate();
 
     const { errors } = validate(DEFAULT_VALUE, schema, options);
@@ -79,6 +89,7 @@ describe('validate', () => {
       const schema = new Schema()
         .hasDigit()
         .hasUppercase()
+        .isRequired()
         .validate();
 
       const { errors } = validate(DEFAULT_VALUE, schema, options);
@@ -88,49 +99,70 @@ describe('validate', () => {
 
   const validationResultTests = [
     {
-      schema: new Schema().isEmail().validate(),
+      schema: new Schema()
+        .isEmail()
+        .isRequired()
+        .validate(),
       ruleName: 'email',
       validValue: 'abc@def.com',
       invalidValue: DEFAULT_VALUE,
       validationError: [Messages.EMAIL]
     },
     {
-      schema: new Schema().hasDigit().validate(),
+      schema: new Schema()
+        .hasDigit()
+        .isRequired()
+        .validate(),
       ruleName: 'digit',
       validValue: DEFAULT_VALUE + '1',
       invalidValue: DEFAULT_VALUE,
       validationError: [Messages.DIGIT]
     },
     {
-      schema: new Schema().hasSymbol().validate(),
+      schema: new Schema()
+        .hasSymbol()
+        .isRequired()
+        .validate(),
       ruleName: 'symbol',
       validValue: DEFAULT_VALUE + '$',
       invalidValue: DEFAULT_VALUE,
       validationError: [Messages.SYMBOL]
     },
     {
-      schema: new Schema().hasLowercase().validate(),
+      schema: new Schema()
+        .hasLowercase()
+        .isRequired()
+        .validate(),
       ruleName: 'lowercase',
       validValue: DEFAULT_VALUE,
       invalidValue: DEFAULT_VALUE.toUpperCase(),
       validationError: [Messages.LOWERCASE]
     },
     {
-      schema: new Schema().hasUppercase().validate(),
+      schema: new Schema()
+        .hasUppercase()
+        .isRequired()
+        .validate(),
       ruleName: 'uppercase',
       validValue: DEFAULT_VALUE + 'S',
       invalidValue: DEFAULT_VALUE,
       validationError: [Messages.UPPERCASE]
     },
     {
-      schema: new Schema().min(DEFAULT_LENGTH).validate(),
+      schema: new Schema()
+        .min(DEFAULT_LENGTH)
+        .isRequired()
+        .validate(),
       ruleName: 'uppercase',
       validValue: DEFAULT_VALUE + 'S',
       invalidValue: DEFAULT_VALUE,
       validationError: [Messages.MIN_LENGTH.replace('VALUE', DEFAULT_LENGTH)]
     },
     {
-      schema: new Schema().max(DEFAULT_LENGTH).validate(),
+      schema: new Schema()
+        .max(DEFAULT_LENGTH)
+        .isRequired()
+        .validate(),
       ruleName: 'uppercase',
       validValue: DEFAULT_VALUE,
       invalidValue: DEFAULT_VALUE + DEFAULT_VALUE,

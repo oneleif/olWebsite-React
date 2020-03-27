@@ -33,6 +33,17 @@ export const UPPERCASE = {
   error: Messages.UPPERCASE
 };
 
+export const REQUIRED = {
+  error: Messages.REQUIRED
+};
+
+export function getMatchesRule(value, matchingProperty) {
+  return {
+    pattern: new RegExp(`^${value}$`),
+    error: Messages.MATCHING.replace('PROPERTY', matchingProperty)
+  };
+}
+
 export function getMinLengthRule(value) {
   return {
     pattern: new RegExp(`^.{${value},}$`),

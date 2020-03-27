@@ -35,7 +35,13 @@ function validateForm(form, schema, options) {
       throw new Error(Errors.FORM_SCHEMA_MISMATCH);
     }
 
-    const { isValid, errors } = validate(form[property], schema[property], options);
+    // Generate new schema if current one matches existing property
+    if (schema[property].matchingProperty) {
+      schema[property] = getMatchingSchema(schema[property], form);
+    }
+
+    // Validate the property based off of the schema
+    const { isValid, errors } = validateProperty(form[property], schema[property], options);
 
     if (!isValid) {
       formErrors[property] = [...errors];
@@ -46,18 +52,38 @@ function validateForm(form, schema, options) {
   return { isValid: formIsValid, errors: { ...formErrors } };
 }
 
-function validateProperty(value, schema, options) {
-  validateSchema(schema);
-  const errors = [];
+/**
+ * Return schema for matching properties
+ * @param {*} schema
+ * @param {*} form
+ */
+function getMatchingSchema(schema, form) {
+  const { required, matchingProperty } = schema;
+  const matchingValue = form[matchingProperty];
 
-  if (value === EMPTY_VALUE) {
-    errors.push(Messages.EMPTY_VALUE);
-    return { isValid: false, errors };
+  if (!isString(matchingValue)) {
+    throw new Error(Errors.NO_MATCHING_PROPERTY.replace('PROPERTY', matchingProperty));
   }
 
-  matchPatterns(value, getRules(schema), errors, getLabel(schema, options), options.abortEarly);
+  return { matchingProperty, matchingValue, required };
+}
 
-  return { isValid: errors.length === NO_ERRORS, errors };
+function validateProperty(value, schema, options) {
+  validateSchema(schema);
+
+  const errors = [];
+  if (schema.required) {
+    // Return immediately if required value is empty
+    if (value.trim() === EMPTY_VALUE) {
+      errors.push(Messages.REQUIRED);
+      return { isValid: false, errors };
+    }
+
+    matchPatterns(value, getRules(schema), errors, getLabel(schema, options), options.abortEarly);
+    return { isValid: errors.length === NO_ERRORS, errors };
+  }
+
+  return { isValid: true, errors };
 }
 
 /**
@@ -76,7 +102,7 @@ function validateSchema(schema) {
  */
 function getRules(schema) {
   const rules = [];
-  const { minimum, maximum } = schema;
+  const { minimum, maximum, matchingProperty, matchingValue } = schema;
 
   if (minimum) {
     rules.push(ValidationRules.getMinLengthRule(minimum));
@@ -84,6 +110,10 @@ function getRules(schema) {
 
   if (maximum) {
     rules.push(ValidationRules.getMaxLengthRule(maximum));
+  }
+
+  if (matchingProperty) {
+    rules.push(ValidationRules.getMatchesRule(matchingValue, matchingProperty));
   }
 
   // Get 'required' rules
@@ -116,7 +146,7 @@ function matchPatterns(value, rules, errors, label, abortEarly) {
   let rule;
   for (let index = 0; index < rules.length; index++) {
     rule = rules[index];
-    if (rule.pattern.test(value) === false) {
+    if (rule.pattern?.test(value) === false) {
       errors.push(label ? `${label} ${rule.error}` : rule.error);
     }
 

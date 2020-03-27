@@ -1,6 +1,7 @@
 import React from 'react';
 
 import LoginView from '../LoginView';
+import { VALIDATION_ERROR_MESSAGES as Messages } from '../../validation/constants';
 import { act, fireChangeEvent, fireEvent, renderWithRouter } from 'test-utils';
 
 /************************************
@@ -58,7 +59,7 @@ describe('Login View Component Tests', function() {
     // TODO: should setup actual messages to be used;
     // every time the error messages change, the tests have
     // to be modified. Flimsy
-    const errorMessages = getAllByText(/value/i);
+    const errorMessages = getAllByText(Messages.REQUIRED);
     expect(errorMessages.length).toBe(2);
     errorMessages.forEach(message => {
       expect(message).toBeInTheDocument();

@@ -59,18 +59,39 @@ export default class Schema {
   }
 
   /**
-   *
-   * @param {string} name label to use for custom errors
+   * label to use for custom errors
+   * @param {string} name
    */
   label(name) {
-    validateLabel(name);
+    validateStringInput(name, Errors.EMPTY_LABEL);
 
     this.#schema.label = name;
     return this;
   }
 
+  /**
+   * Specify whether property should be validated as an email
+   */
   isEmail() {
     this.#schema.email = true;
+    return this;
+  }
+
+  /**
+   * Set property to be required
+   */
+  isRequired() {
+    this.#schema.required = true;
+    return this;
+  }
+
+  /**
+   * Set property validation to match that of given property name
+   * @param {*} propertyName matching property name
+   */
+  matches(propertyName) {
+    validateStringInput(propertyName, Errors.EMPTY_MATCHING_PROPERTY);
+    this.#schema.matchingProperty = propertyName;
     return this;
   }
 
@@ -95,12 +116,12 @@ function validateSize(value) {
   }
 }
 
-function validateLabel(value) {
+function validateStringInput(value, message) {
   validateType(value, isString);
 
   // Empty validation
   if (value === EMPTY_VALUE) {
-    throw new Error(Errors.EMPTY_LABEL);
+    throw new Error(message);
   }
 }
 
@@ -110,13 +131,11 @@ function validateLabel(value) {
  * @returns new copy of schema reference
  */
 function validateSchema(schema) {
-  if (schema.email) {
-    schema = {};
-    schema.email = true;
-    return schema;
-  }
+  const { email, maximum, minimum, matchingProperty, required } = schema;
 
-  const { minimum, maximum } = schema;
+  if (email) {
+    return { email, required, matchingProperty };
+  }
 
   // min greater than max
   if (minimum > maximum) {
