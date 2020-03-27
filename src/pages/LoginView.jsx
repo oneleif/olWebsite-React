@@ -5,19 +5,14 @@ import Input from '../components/Objects/Input/Input';
 import useForm from '../hooks/useForm';
 import homeLogo from '../images/homeLogo.png';
 import { login } from '../services/authService';
-import { Schema } from '../validation';
 import { useUser } from '../contexts/UserContext';
+import { LOGIN_CONSTANTS } from '../constants/validation-constants';
 
 /************************************
  * Constants
  ************************************/
 
-const EMAIL_PROPERTY = 'email';
-const PASSWORD_PROPERTY = 'password';
-
-const EMAIL_SCHEMA = new Schema().isRequired().validate();
-const PASSWORD_SCHEMA = new Schema().isRequired().validate();
-
+const { EMAIL_PROPERTY, PASSWORD_PROPERTY, EMAIL_SCHEMA, PASSWORD_SCHEMA } = LOGIN_CONSTANTS;
 const DEFAULT_STATE = { [EMAIL_PROPERTY]: '', [PASSWORD_PROPERTY]: '' };
 
 const FORM_SCHEMA = {
