@@ -1,0 +1,117 @@
+.contact-us-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    .contact-us-content-container {
+        width: 81.5%;
+
+        display: flex;
+        flex-direction: row;
+        font-family: $olBaseFont;
+        justify-content: space-between;
+
+        .contact-us-copy-container {
+            margin: 8% 0;
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            
+            & h1 {
+                color: $olLTHeader;
+                margin-block-end: 0;
+                font-family: $olBaseFont;
+            }
+            
+            & div.feature-copy-container {
+                margin-bottom: 6%;
+            }
+
+            & p {
+                font-size: 1.6rem;
+                color: $olLTCopy;
+                margin-block-start: 0;
+                margin-block-end: .5em;
+            }
+
+            & a {
+                color: $olLTLink;
+            }
+
+            & svg {
+                margin-top: 12%;
+                width: 400px;
+            }
+        }
+
+        .contact-us-form-container {
+            margin: 8% 0;
+            padding-top: 2%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+
+            & .button {
+                width: 131px;
+                align-self: flex-end;
+            }
+        }
+    }
+}
+
+@include small('down') {
+    .contact-us-view-container {
+        & .contact-us-content-container {
+            flex-direction: column;
+            align-items: center;
+
+            & .contact-us-copy-container {
+                margin: 0;
+            }
+
+            & .contact-us-copy-container,
+            .contact-us-form-container {
+                width: 100%;
+
+                & h1 {
+                    order: -1;
+                    font-size: 1.4rem;
+                }
+
+                & p {
+                    font-size: 1.15rem;
+                }
+
+                & svg {
+                    margin: 9.8% 0;
+                    order: 0;
+                    align-self: center;
+                    width: 199px;
+                    height: 185px;
+
+                    & rect {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+
+                & .button {
+                    align-self: center;
+                    margin-bottom: 22%;
+                }
+
+                & * {
+                    order: 1;
+                }
+
+                & .input-container {
+                    margin-bottom: 5%;
+                }
+
+                & .textarea-container {
+                    margin-bottom: 12%;
+                }
+            }
+        }
+    }
+}

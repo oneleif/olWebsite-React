@@ -34,7 +34,7 @@ describe("Login View Component Tests", function() {
         expect(inputs).toBeInTheDocument();
     });
 
-    test("Valid inputs entered, fetch should be called", async () => {
+    test.skip("Valid inputs entered, fetch should be called", async () => {
         const emailInput = queryByLabelText(renderedComponent.container, 'Email-input');
         const passwordInput = queryByLabelText(renderedComponent.container, 'Password-input');
 
