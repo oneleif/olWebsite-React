@@ -6,7 +6,7 @@ import LandingView from './pages/LandingView';
 import ContactUsView from './pages/ContactUsView';
 import ScrollToTop from './components/ScrollToTop';
 import PageNotFoundView from './pages/PageNotFoundView';
-import ToolbarContainer from './components/Toolbar/ToolbarContainer';
+import Toolbar from './components/Toolbar/Toolbar';
 import { UserProvider } from './contexts/UserContext';
 import './style-sheets/main.scss';
 
@@ -19,7 +19,7 @@ export default function OlWebsiteApp() {
     <UserProvider>
       <div className='app'>
         <Router basename={process.env.PUBLIC_URL}>
-          <ToolbarContainer />
+          <Toolbar />
           <ScrollToTop>
             <div className='app-body'>
               <Switch>
