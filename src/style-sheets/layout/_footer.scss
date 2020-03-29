@@ -86,7 +86,7 @@ footer {
     }
 }
 
-@media only screen and (max-width: 800px) {
+@include medium('down') {
     footer {
         & .footer-nav-module {
             width: 100%;
