@@ -46,7 +46,7 @@
     }
   }
 
-  @include large() {
+  @include medium() {
     & .page-not-found-view-body {
       width: 91%;
       margin: 18% auto 16% auto;
@@ -67,7 +67,7 @@
     }
   }
 
-  @include xlarge() {
+  @include large() {
     & .page-not-found-view-body {
       width: 62.5%;
       margin: 14% auto 16% auto;
@@ -75,6 +75,12 @@
       & .page-not-found-view-image-container {
         width: 54%;
       }
+    }
+  }
+
+  @include xlarge() {
+    & .page-not-found-view-body {
+      width: 65%;
     }
   }
 }
