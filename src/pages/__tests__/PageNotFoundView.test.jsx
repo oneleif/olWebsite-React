@@ -7,7 +7,7 @@ const INTENDED_LOCATION = 'abc';
 const HOME = '/';
 
 describe('PageNotFoundView', () => {
-  function setup(route = '/') {
+  function setup(route = HOME) {
     return renderWithRouter(<PageNotFound />, { route });
   }
 
