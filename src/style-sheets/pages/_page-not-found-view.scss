@@ -1,36 +1,34 @@
 .page-not-found-view-container {
   width: 100%;
-  margin-bottom: 35%;
+  height: 100%;
 
   & .page-not-found-view-body {
-    height: 55vh;
-    margin: 10% 8% 30% 8%;
+    width: 83%;
+    height: 67%;
+    margin: 12.5% auto 21% auto;
 
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
 
     & .page-not-found-view-image-container {
-      width: 100%;
-      height: 67%;
-
       display: flex;
       align-items: center;
       justify-content: center;
 
       & img {
-        height: 100%;
+        width: 100%;
       }
     }
 
     & .page-not-found-view-text-container {
-      margin: 4% auto;
+      width: 51%;
+      margin: 5% auto 0;
       text-align: center;
 
       & p {
-        color: #777777;
+        color: $olLightCopy;
         font-size: $olH5Size;
-        font-weight: normal;
         line-height: 31px;
         font-family: $olBaseFont;
       }
@@ -44,6 +42,38 @@
           color: inherit;
           text-decoration: none;
         }
+      }
+    }
+  }
+
+  @include large() {
+    & .page-not-found-view-body {
+      width: 91%;
+      margin: 18% auto 16% auto;
+
+      align-items: center;
+
+      & .page-not-found-view-image-container {
+        order: 2;
+        width: 55%;
+      }
+
+      & .page-not-found-view-text-container {
+        order: 1;
+        margin: 0;
+        width: 45%;
+        text-align: left;
+      }
+    }
+  }
+
+  @include xlarge() {
+    & .page-not-found-view-body {
+      width: 62.5%;
+      margin: 14% auto 16% auto;
+
+      & .page-not-found-view-image-container {
+        width: 54%;
       }
     }
   }
