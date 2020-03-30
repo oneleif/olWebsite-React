@@ -3,7 +3,8 @@ import { renderWithRouter, fireEvent } from 'test-utils';
 
 import PageNotFound from '../PageNotFoundView';
 
-const intendedLocation = 'abc';
+const INTENDED_LOCATION = 'abc';
+const HOME = '/';
 
 describe('PageNotFoundView', () => {
   function setup(route = '/') {
@@ -11,16 +12,16 @@ describe('PageNotFoundView', () => {
   }
 
   test('should display intended location', () => {
-    const { getByText } = setup(intendedLocation);
+    const { getByText } = setup(INTENDED_LOCATION);
 
-    expect(getByText(intendedLocation)).toBeVisible();
+    expect(getByText(INTENDED_LOCATION)).toBeVisible();
   });
 
   test('should take user to home on button click', () => {
-    const { getByText, history } = setup(intendedLocation);
+    const { getByText, history } = setup(INTENDED_LOCATION);
 
     fireEvent.click(getByText(/take me home/i));
 
-    expect(history.location.pathname).toBe('/');
+    expect(history.location.pathname).toBe(HOME);
   });
 });
