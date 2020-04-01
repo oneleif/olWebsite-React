@@ -18,8 +18,7 @@ To get started working on this project, please see our wiki: https://github.com/
 ## Goals
 
 ### Roadmap
-#### MVP
-##### Version 1.0.0
+##### Version 1.0.0 - MVP
 * Landing View/Home Page
 * Contact Us Page
 * Active Projects Page
