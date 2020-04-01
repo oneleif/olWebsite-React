@@ -4,28 +4,29 @@ Repository for the oneleif website's front-end, written with the JavaScript Libr
 
 The oneleif website is aiming to serve as a central hub for oneleif members to find active projects, make posts, search for help/advice and communicate with recruiters for career advice/potential jobs.
 
-### Table of contents
+## Table of contents
 * [Contribution](#contribution)
 * [Goals & Roadmap](#goals)
 * [Associated Projects](#associated-projects)
 * [How to Join](#how-to-join-oneleif)
 * [Questions?](#questions)
 
-### Contribution
+## Contribution
 
 To get started working on this project, please see our wiki: https://github.com/oneleif/olWebsite-React/wiki
 
-### Goals
+## Goals
 
-#### Roadmap
-###### MVP (Version 1.0.0)
+### Roadmap
+#### MVP
+##### Version 1.0.0
 * Landing View/Home Page
 * Contact Us Page
 * Active Projects Page
 * Detailed Project View
 * Meet the team Page
 
-###### Version 2.0.0
+##### Version 2.0.0
 * Login/Register Functionality
 * User Profile View
   * User View (Self)
@@ -33,7 +34,7 @@ To get started working on this project, please see our wiki: https://github.com/
 * Create Posts Functionality
 * Search Functionality
 
-### Associated Projects
+## Associated Projects
 
 To see the Swift/Vapor back-end for the oneleif website, please see the following repository: https://github.com/oneleif/olWebsite
 
@@ -60,5 +61,5 @@ When you're done with the above, shoot a message to the #start channel to let us
 
 [![](https://img.shields.io/badge/oneleif-Discord-7284be.svg)](https://discord.gg/tv9UdJK)
 
-### Questions?
+## Questions?
 Feel free to email us at: oneleifdev@gmail.com or throw a question into the #oneleif-website channel in our discord server
