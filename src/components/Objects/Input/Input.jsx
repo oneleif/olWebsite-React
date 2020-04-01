@@ -5,30 +5,20 @@ export default function Input({
   label, 
   onValueChange, 
   errorMessage,
-  type='text'
+  type='text',
+  ...rest
 }) {
- 
-  /************************************
-   * Helper Functions
-   ************************************/
-
-  function handleChange(event) {
-    onValueChange(event.target.value);
-  }
-
   /************************************
    * Render
    ************************************/
 
   return (
-    <>
-      <label className={`${className}-input-container`}>
-          <div className='label-text-container'>
-            <p>{label}</p>
-            {errorMessage && <span>{errorMessage}</span>}
-          </div>
-          <input aria-label={`${label}-input`} type={type} onChange={handleChange}/>
-      </label>
-    </>
+    <label className={className ? `${className}-input-container` : 'input-container'}>
+        <div className='label-text-container'>
+          <h6>{label}</h6>
+          {errorMessage && <span>{errorMessage}</span>}
+        </div>
+        <input {...rest} aria-label={`${label}-input`} type={type} onChange={onValueChange}/>
+    </label>
   );
 };

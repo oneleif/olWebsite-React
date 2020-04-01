@@ -1,0 +1,36 @@
+.textarea-container {
+    width: 100%;    
+    margin: 3% 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: $olBaseFont;
+
+    & h6 {
+        color: $olLTHeader;
+        margin-block-start: 0;
+        margin-block-end: 0.42em;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    
+    & textarea {
+        border: 1.5px solid rgba(206, 212, 224, 0.7);
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 5px;
+        height: 189px;
+        padding-left: 3.5%;
+        padding-top: 1%;
+        resize: none;
+        font-size: 1.2rem;
+
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            font-size: 1.2rem;
+            color: $olLTPlaceholder;
+            opacity: 0.5;
+        }
+    }
+}
