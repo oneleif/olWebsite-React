@@ -19,12 +19,14 @@ export default function PageNotFoundView() {
         </div>
         <div className='page-not-found-view-text-container'>
           <p>
-            404 Page not found, <strong>{location.pathname}</strong>
+            404 Page not found, <strong>{location.pathname}</strong>.
           </p>
-          <p>Let's hurry; there is nothing to fear here</p>
-          <Button>
-            <Link to='/'>Take me home</Link>
-          </Button>
+          <p>Let's hurry; there is nothing to fear here.</p>
+          <Link to='/'>
+            <Button>
+              <span>Take me home</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </div>
