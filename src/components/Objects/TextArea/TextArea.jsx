@@ -15,7 +15,7 @@ export default function TextArea({
         <div className='label-text-container'>
             <h6>{label}</h6>
         </div>
-        <textarea {...rest} aria-label={`${label}-textarea`} onChange={(event) => onValueChange(event.target.value)}/>
+        <textarea {...rest} aria-label={`${label}-textarea`} onChange={onValueChange}/>
     </label>
   );
 };
