@@ -16,6 +16,8 @@
 @import './generic/card';
 @import './generic/card-container';
 @import './generic/feature-link';
+@import './generic/input';
+@import './generic/textarea';
 
 // Components
 @import './components/carousel';
@@ -30,6 +32,7 @@
 
 // Pages
 @import './pages/authentication-view';
+@import './pages/contact-us-view';
 @import './pages/landing-view';
 @import './pages/page-not-found-view';
 @import './pages/posts-view';
