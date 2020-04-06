@@ -69,14 +69,17 @@ jobs:
           paths:
             - ./build
 
-  deploy_production:
+  deploy:
     <<: *defaults
+    parameters:
+      bucket_url:
+        type: env_var_name
     steps:
       - attach_workspace:
           at: ~/repo
       - aws-s3/sync:
           from: ./build
-          to: $S3_BUCKET_URL_PROD
+          to: ${<< parameters.bucket_url >>}
           overwrite: true
           arguments: |
             --acl public-read \
@@ -98,9 +101,20 @@ workflows:
           filters:
             branches:
               only:
-                - develop
+                - develop-v1
                 - master
-      - deploy_production:
+      - deploy:
+          name: deploy_develop_v1
+          bucket_url: S3_BUCKET_URL_DEV
+          context: oneleif-aws
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop-v1
+      - deploy:
+          name: deploy_propuction
+          bucket_url: S3_BUCKET_URL_PROD
           context: oneleif-aws
           requires:
             - build
