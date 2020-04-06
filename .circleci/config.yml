@@ -69,14 +69,17 @@ jobs:
           paths:
             - ./build
 
-  deploy_production:
+  deploy:
     <<: *defaults
+    parameters:
+      bucket_url:
+        type: env_var_name
     steps:
       - attach_workspace:
           at: ~/repo
       - aws-s3/sync:
           from: ./build
-          to: $S3_BUCKET_URL_PROD
+          to: ${<< parameters.bucket_url >>}
           overwrite: true
           arguments: |
             --acl public-read \
