@@ -1,3 +1,5 @@
+import SocialMediaConstants from '../../../constants/social-media-constants';
+
 const footerLinks = [
   {
     header: 'Projects'
@@ -27,17 +29,17 @@ const footerLinks = [
     links: [
       {
         label: 'Discord',
-        path: 'https://discord.gg/Ay2A8kN',
+        path: SocialMediaConstants.DISCORD_LINK,
         internal: false
       },
       {
         label: 'Github',
-        path: 'https://github.com/oneleif',
+        path: SocialMediaConstants.GITHUB_LINK,
         internal: false
       },
       {
         label: 'Dribble',
-        path: '',
+        path: SocialMediaConstants.DRIBBLE_LINK,
         internal: false
       }
     ]

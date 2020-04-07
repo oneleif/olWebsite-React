@@ -9,6 +9,7 @@ import Button from '../components/Objects/Button/Button';
 import FeatureLink from '../components/Objects/FeatureLink/FeatureLink';
 import TestimonialContainer from "../components/TestimonialContainer/TestimonialContainer";
 import SupportersContainer from "../components/SupportersContainer/SupportersContainer";
+import SocialMediaConstants from "../constants/social-media-constants";
 
 export default function LandingView() {
   /************************************
@@ -22,7 +23,7 @@ export default function LandingView() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </FeatureCopy>
-          <Button handleClick={()=> window.open("https://discord.gg/Ay2A8kN", "_blank")}>Join our Discord</Button>
+          <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord</Button>
         </FeatureContainer>
         <div className='call-to-action-container'>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?</p>
