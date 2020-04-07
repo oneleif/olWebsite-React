@@ -27,7 +27,7 @@ const footerLinks = [
     links: [
       {
         label: 'Discord',
-        path: 'https://discordapp.com/invite/2jepA3',
+        path: 'https://discord.gg/Ay2A8kN',
         internal: false
       },
       {

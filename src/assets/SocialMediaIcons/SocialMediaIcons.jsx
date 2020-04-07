@@ -3,7 +3,7 @@ import React from 'react';
 const SocialMediaIconsMap = {
     DISCORD: {
         label: 'Discord',
-        url: 'https://discord.gg/2jepA3',
+        url: 'https://discord.gg/Ay2A8kN',
         width: '20',
         height: '22',
         path: (
