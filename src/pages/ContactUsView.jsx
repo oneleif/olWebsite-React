@@ -128,7 +128,7 @@ export default function ContactUsView() {
         <div className='contact-us-form-container'>
           <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' errorMessage={subjectError} onValueChange={handleSubjectInput}/>
           <TextArea id='messageInput' label='Message' placeholder='Write your message here' errorMessage={messageError} onValueChange={handleMessageInput}/>
-          <a data-testid='send' className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
+          <a data-testid='send' tabIndex={mailTo.length === 0 ? -1 : 0} className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
             <span>Send</span>
           </a>
         </div>
