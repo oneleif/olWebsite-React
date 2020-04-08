@@ -13,3 +13,11 @@
     color: $white;
     font-family: $olBaseFont;
 }
+
+.disabled {
+    background-color: $olLTDisabled;
+    color: $white;
+    font-family: $olBaseFont;
+    pointer-events: none;
+    cursor: none;
+}

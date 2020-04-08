@@ -1,21 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import FeatureCopy from "../components/FeatureContainer/FeatureCopy";
 import OlContactBean from '../assets/olLilBean/OlContactBean';
 import Input from '../components/Objects/Input/Input';
 import TextArea from '../components/Objects/TextArea/TextArea';
-import Button from '../components/Objects/Button/Button';
 
   /************************************
    * Constants
    ************************************/
 
-  const BODY_TEXT = 'body';
-  const MESSAGE_TEXT = 'Message';
-  const SUBJECT_TEXT = 'Subject';
   const TARGET_EMAIL = 'mailto:oneleifdev@gmail.com';
 
 export default function ContactUsView() {
+  /************************************
+  * State
+  ************************************/
+
+  const [mailTo, setMailTo] = useState('');
+  const [message, setMessage] = useState('');
+  const [subject, setSubject] = useState('');
+
+  /************************************
+  * Private Methods
+  ************************************/
+
+  function handleSubjectInput(subjectEvent) {
+    setSubject(subjectEvent.target.value);
+    handleEnteredInput(subjectEvent, message);
+  } 
+
+  function handleMessageInput(messageEvent) {
+    setMessage(messageEvent.target.value);
+    handleEnteredInput(messageEvent, subject);
+  } 
+
+  function handleEnteredInput(event, additionalInput) {
+    const input = event.target.value;
+    if (input === '') {
+      setMailTo('');
+      return;
+    }
+    
+    if (additionalInput.length > 0) {
+      (event.target.id === 'messageInput') ? parseAndApplyEmailInput(additionalInput, input) : parseAndApplyEmailInput(input, additionalInput);
+    }
+  }
+
+  function parseAndApplyEmailInput(subjectInput, messageInput) {
+    if (subjectInput.length > 0 && messageInput.length > 0) {
+      setMailTo(`${TARGET_EMAIL}?subject=${prepEmailString(subjectInput)}&body=${prepEmailString(messageInput)}`);
+    }
+  }
+
+  function prepEmailString(string) {
+    return string.replace(' ', '%20');
+  }
+
   /************************************
    * Render
    ************************************/
@@ -33,11 +73,13 @@ export default function ContactUsView() {
           <p>Call us: <a href="tel:1-402-536-0377">+1 (402) 536-0377</a></p>
           <OlContactBean />
         </div>
-        <form className='contact-us-form-container' action={TARGET_EMAIL} method="GET">
-          <Input name={SUBJECT_TEXT} label={SUBJECT_TEXT} placeholder='Enter the subject...' onValueChange={() => {/*do nothing*/}}/>
-          <TextArea name={BODY_TEXT} label={MESSAGE_TEXT} placeholder='Write your message here' onValueChange={() => {/*do nothing*/}}/>
-          <Button>Send</Button>
-        </form>
+        <div className='contact-us-form-container'>
+          <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' onValueChange={handleSubjectInput}/>
+          <TextArea id='messageInput' label='Message' placeholder='Write your message here' onValueChange={handleMessageInput}/>
+          <a className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
+            <span>Send</span>
+          </a>
+        </div>
       </div>
     </div>
   );
