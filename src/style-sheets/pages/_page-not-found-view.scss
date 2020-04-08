@@ -33,7 +33,7 @@
         font-family: $olBaseFont;
       }
 
-      & button {
+      & a.button {
         margin: 10px 0;
         font-size: 1.25rem;
         line-height: 1.56rem;
@@ -45,11 +45,6 @@
         width: 174px;
         height: 49px;
         border-radius: 50px;
-
-        & a {
-          color: inherit;
-          text-decoration: none;
-        }
       }
     }
   }

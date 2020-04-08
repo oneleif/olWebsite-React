@@ -21,3 +21,12 @@
     pointer-events: none;
     cursor: none;
 }
+
+a.button {
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
