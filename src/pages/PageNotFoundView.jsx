@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-import Button from '../components/Objects/Button/Button';
 import { ReactComponent as NotFoundLogo } from '../assets/OlNotFound/OlNotFound.svg';
 
 export default function PageNotFoundView() {
@@ -22,10 +21,8 @@ export default function PageNotFoundView() {
             404 Page not found, <strong>{location.pathname}</strong>.
           </p>
           <p>Let's hurry; there is nothing to fear here.</p>
-          <Link to='/'>
-            <Button>
+          <Link className='button primary' to='/'>
               <span>Take me home</span>
-            </Button>
           </Link>
         </div>
       </div>

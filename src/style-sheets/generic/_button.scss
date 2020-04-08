@@ -13,3 +13,12 @@
     color: $white;
     font-family: $olBaseFont;
 }
+
+a.button {
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
