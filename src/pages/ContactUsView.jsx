@@ -18,7 +18,9 @@ export default function ContactUsView() {
 
   const [mailTo, setMailTo] = useState('');
   const [message, setMessage] = useState('');
+  const [messageError, setMessageError] = useState('');
   const [subject, setSubject] = useState('');
+  const [subjectError, setSubjectError] = useState('');
 
   /************************************
   * Private Methods
@@ -52,10 +54,11 @@ export default function ContactUsView() {
    */
   function handleEnteredInput(event, additionalInput) {
     const input = event.target.value;
+    handleErrorMessage(event);
+
     //if value was entered an cleared then reset mailto
     if (input === '') {
       setMailTo('');
-      //TODO: Will need to set error message here based on input ID
       return;
     }
     
@@ -85,6 +88,26 @@ export default function ContactUsView() {
     return string.split(' ').join('%20');
   }
 
+  /* Handles error message when event of input change 
+   * If value in event target is empty then sets error message for element the event occured
+   * if not then error message is cleared
+   *
+   * @param event
+   */  
+  function handleErrorMessage(event) {
+    const value = event.target.value;
+    switch(event.target.id) {
+      case 'subjectInput':
+        setSubjectError(value === '' ? 'Please enter a subject' : '');
+        break;
+      case 'messageInput':
+        setMessageError(value === '' ? 'Please enter a message' : '');
+        break;
+      default:
+        console.warn('Unsupported Event ID');
+    }
+  }
+
   /************************************
    * Render
    ************************************/
@@ -103,8 +126,8 @@ export default function ContactUsView() {
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
-          <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' onValueChange={handleSubjectInput}/>
-          <TextArea id='messageInput' label='Message' placeholder='Write your message here' onValueChange={handleMessageInput}/>
+          <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' errorMessage={subjectError} onValueChange={handleSubjectInput}/>
+          <TextArea id='messageInput' label='Message' placeholder='Write your message here' errorMessage={messageError} onValueChange={handleMessageInput}/>
           <a data-testid='send' className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
             <span>Send</span>
           </a>

@@ -4,6 +4,7 @@ export default function TextArea({
   className, 
   label, 
   onValueChange,
+  errorMessage,
   ...rest
 }) {
   /************************************
@@ -12,10 +13,9 @@ export default function TextArea({
 
   return (
     <label className={className ? `${className}-textarea-container` : 'textarea-container'}>
-        <div className='label-text-container'>
-            <h6>{label}</h6>
-        </div>
-        <textarea {...rest} aria-label={`${label}-textarea`} onChange={onValueChange}/>
+        <h6>{label}</h6>
+        <textarea className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-textarea`} onChange={onValueChange}/>
+        {errorMessage && <span>{errorMessage}</span>}
     </label>
   );
 };

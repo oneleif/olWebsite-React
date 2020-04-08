@@ -9,6 +9,8 @@ const EXPECTED_OUTPUT = 'mailto:oneleifdev@gmail.com?subject=this%20is%20a%20tes
 const TEST_INPUT = 'this is a test';
 const MESSAGE_TEXTAREA = 'Message-textarea';
 const SUBJECT_INPUT = 'Subject-input';
+const SUBJECT_ERROR = 'Please enter a subject';
+const MESSAGE_ERROR = 'Please enter a message';
 
 describe('Contact Us View Tests', () => {
   function setUp() {
@@ -16,8 +18,8 @@ describe('Contact Us View Tests', () => {
     return { queryByText, queryByLabelText, queryByTestId };
   }
 
-  function fireChangeEvent(labelText, queryByLabelText) {
-    fireEvent.change(queryByLabelText(labelText), { target: { value: TEST_INPUT } });
+  function fireChangeEvent(labelText, queryByLabelText, testInput = TEST_INPUT) {
+    fireEvent.change(queryByLabelText(labelText), { target: { value: testInput } });
   }
 
   test('Initial render', () => {
@@ -54,5 +56,23 @@ describe('Contact Us View Tests', () => {
     fireChangeEvent(SUBJECT_INPUT, queryByLabelText);
 
     expect(queryByTestId(SEND).getAttribute('href')).toEqual(EXPECTED_OUTPUT);
+  });
+
+  test('Subject value set then erased, error message present', () => {
+    const { queryByLabelText, queryByText } = setUp();
+
+    fireChangeEvent(SUBJECT_INPUT, queryByLabelText);
+    fireChangeEvent(SUBJECT_INPUT, queryByLabelText, '');
+
+    expect(queryByText(SUBJECT_ERROR)).toBeTruthy();
+  });
+
+  test('Message value set then erased, error message present', () => {
+    const { queryByLabelText, queryByText } = setUp();
+
+    fireChangeEvent(MESSAGE_TEXTAREA, queryByLabelText);
+    fireChangeEvent(MESSAGE_TEXTAREA, queryByLabelText, '');
+
+    expect(queryByText(MESSAGE_ERROR)).toBeTruthy();
   });
 });

@@ -33,4 +33,17 @@
             opacity: 0.5;
         }
     }
+
+    & textarea.error-input {
+        border: 1.5px solid $olErrorMessage;
+
+    }
+
+    & span {
+        color: $olErrorMessage;
+        font-size: 0.85rem;
+        margin-left: 2%;
+        margin-left: 4%;
+        margin-top: 1%;
+    }
 }
