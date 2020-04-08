@@ -82,7 +82,7 @@ export default function ContactUsView() {
    * @returns {@link String} - with whitspace replaced with '%20'
    */
   function prepEmailString(string) {
-    return string.replace(' ', '%20');
+    return string.split(' ').join('%20');
   }
 
   /************************************
@@ -105,7 +105,7 @@ export default function ContactUsView() {
         <div className='contact-us-form-container'>
           <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' onValueChange={handleSubjectInput}/>
           <TextArea id='messageInput' label='Message' placeholder='Write your message here' onValueChange={handleMessageInput}/>
-          <a className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
+          <a data-testid='send' className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
             <span>Send</span>
           </a>
         </div>
