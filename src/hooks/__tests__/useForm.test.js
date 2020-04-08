@@ -5,17 +5,17 @@ import { Schema } from '../../validation';
 
 const LAST_NAME = 'last';
 const FIRST_NAME = 'first';
-const EVENT = { target: { name: FIRST_NAME, value: 'def' }, preventDefault: jest.fn() };
+const EVENT = {
+  target: { name: FIRST_NAME, value: 'def' },
+  preventDefault: jest.fn()
+};
 
 const VALID_FORM = { [FIRST_NAME]: 'abcd', [LAST_NAME]: 'abcd' };
 const DEFAULT_STATE = { [FIRST_NAME]: '', [LAST_NAME]: '' };
 
 const DEFAULT_SCHEMA = {
-  [FIRST_NAME]: new Schema()
-    .min(4)
-    .isRequired()
-    .validate(),
-  last: new Schema().validate()
+  [FIRST_NAME]: new Schema().min(4).isRequired(),
+  last: new Schema()
 };
 
 describe('useForm hook', () => {
@@ -28,8 +28,8 @@ describe('useForm hook', () => {
   test('should set no errors by default and form data from state', () => {
     const result = setup();
 
-    expect(result.current.formErrors).toStrictEqual({});
-    expect(result.current.formData).toStrictEqual(DEFAULT_STATE);
+    expect(result.current.errors).toStrictEqual({});
+    expect(result.current.form).toStrictEqual(DEFAULT_STATE);
   });
 
   test('should set proper element value', () => {
@@ -39,7 +39,7 @@ describe('useForm hook', () => {
       result.current.handleInputChange(EVENT);
     });
 
-    expect(result.current.formData[FIRST_NAME]).toBe(EVENT.target.value);
+    expect(result.current.form[FIRST_NAME]).toBe(EVENT.target.value);
   });
 
   test('should call user submit callback when form is valid', () => {
@@ -47,12 +47,12 @@ describe('useForm hook', () => {
     const submitCallback = jest.fn();
 
     act(() => {
-      result.current.handleSubmit(EVENT, submitCallback);
+      result.current.handleSubmit(submitCallback, EVENT);
     });
 
     expect(submitCallback).toHaveBeenCalled();
-    expect(result.current.formErrors).toEqual({});
-    expect(result.current.submitErrorMessage).toBeNull();
+    expect(result.current.errors).toEqual({});
+    expect(result.current.submitError).toBe('');
   });
 
   test('should set submitErrorMessage when error occurs while submitting valid form', () => {
@@ -60,9 +60,9 @@ describe('useForm hook', () => {
     const submitCallback = {}; // Will throw when called by handleSubmit
 
     act(() => {
-      result.current.handleSubmit(EVENT, submitCallback);
+      result.current.handleSubmit(submitCallback, EVENT);
     });
 
-    expect(result.current.submitErrorMessage).not.toBeNull();
+    expect(result.current.submitError).not.toBeNull();
   });
 });

@@ -20,8 +20,6 @@ const {
   CONFIRMED_PASSWORD_PROPERTY
 } = REGISTER_CONSTANTS;
 
-const DEFAULT_STATE = { [EMAIL_PROPERTY]: '', [PASSWORD_PROPERTY]: '', [CONFIRMED_PASSWORD_PROPERTY]: '' };
-
 const FORM_SCHEMA = {
   [EMAIL_PROPERTY]: EMAIL_SCHEMA,
   [PASSWORD_PROPERTY]: PASSWORD_SCHEMA,
@@ -34,14 +32,14 @@ function RegisterView() {
    ************************************/
 
   const [isRegistered, setIsRegistered] = useState(false);
-  const { formData, formErrors, handleSubmit, handleInputChange, submitErrorMessage } = useForm(FORM_SCHEMA, DEFAULT_STATE);
+  const { form, errors, handleSubmit, handleInputChange, submitError } = useForm(FORM_SCHEMA);
 
   /************************************
    * Helper Functions
    ************************************/
 
   async function submitForm() {
-    await register(formData[EMAIL_PROPERTY], formData[PASSWORD_PROPERTY]);
+    await register(form[EMAIL_PROPERTY], form[PASSWORD_PROPERTY]);
     setIsRegistered(true);
   }
 
@@ -53,13 +51,13 @@ function RegisterView() {
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
-        <form onSubmit={event => handleSubmit(event, submitForm)} className='form-container'>
+        <form onSubmit={event => handleSubmit(submitForm, event)} className='form-container'>
           <Input
             name={EMAIL_PROPERTY}
             label='Email'
             className='auth'
             autoComplete='email'
-            errorMessage={formErrors[EMAIL_PROPERTY]}
+            errorMessage={errors[EMAIL_PROPERTY]}
             onValueChange={handleInputChange}
           />
           <Input
@@ -68,7 +66,7 @@ function RegisterView() {
             label='Password'
             className='auth'
             autoComplete='new-password'
-            errorMessage={formErrors[PASSWORD_PROPERTY]?.[0]} // TODO: change display
+            errorMessage={errors[PASSWORD_PROPERTY]?.[0]} // TODO: change display
             onValueChange={handleInputChange}
           />
           <Input
@@ -77,7 +75,7 @@ function RegisterView() {
             label='Reenter Password'
             className='auth'
             autoComplete='new-password'
-            errorMessage={formErrors[CONFIRMED_PASSWORD_PROPERTY]?.[0]} // TODO: change display
+            errorMessage={errors[CONFIRMED_PASSWORD_PROPERTY]?.[0]} // TODO: change display
             onValueChange={handleInputChange}
           />
           <div className='authentication-actions-module'>
@@ -86,7 +84,7 @@ function RegisterView() {
             <button type='submit'>Sign up</button>
           </div>
         </form>
-        {submitErrorMessage && <p className='error-message'>{submitErrorMessage}</p>}
+        {submitError && <p className='error-message'>{submitError}</p>}
       </div>
       {isRegistered && <Redirect to='/login' />}
     </div>

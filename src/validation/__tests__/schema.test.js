@@ -1,6 +1,8 @@
 import Schema from '../schema';
-import { generateTypeError } from '../utils';
-import { LABEL_TYPE, MIN_MAX_TYPE, ERROR_MESSAGES as Errors, DEFAULT_SCHEMA } from '../constants';
+import { generateTypeError, capitalize } from '../utils';
+import { LABEL_TYPE, MIN_MAX_TYPE, ERROR_MESSAGES as Errors } from '../constants';
+
+import * as Rules from '../rules';
 
 const DEFAULT_MIN = 4;
 const DEFAULT_MAX = 9;
@@ -9,13 +11,16 @@ const DEFAULT_LABEL = 'ABC';
 describe('Schema', () => {
   test('should set schema properties', () => {
     const expectedSchema = {
-      digit: true,
       label: DEFAULT_LABEL,
-      minimum: DEFAULT_MIN,
-      maximum: DEFAULT_MAX,
-      symbol: true,
-      lowercase: true,
-      uppercase: true
+
+      rules: [
+        Rules.getMinLengthRule(DEFAULT_MIN),
+        Rules.getMaxLengthRule(DEFAULT_MAX),
+        Rules.DIGIT,
+        Rules.SYMBOL,
+        Rules.UPPERCASE,
+        Rules.LOWERCASE
+      ]
     };
 
     expect(
@@ -27,19 +32,8 @@ describe('Schema', () => {
         .hasSymbol()
         .hasUppercase()
         .hasLowercase()
-        .validate()
-    ).toStrictEqual(expectedSchema);
-  });
-
-  test('should clear non-essential schema properties when isEmail is set', () => {
-    const schema = new Schema()
-      .hasDigit()
-      .hasSymbol()
-      .isEmail()
-      .validate();
-
-    const expectedSchema = { email: true };
-    expect(schema).toEqual(expectedSchema);
+        .validateSchema()
+    ).toEqual(expectedSchema);
   });
 
   test('should throw error when max length is less than the number of required characters', () => {
@@ -50,7 +44,7 @@ describe('Schema', () => {
         .hasSymbol()
         .min(1)
         .max(2)
-        .validate()
+        .validateSchema()
     ).toThrow(Errors.INVALID_MAX);
   });
   describe('Min and max length', () => {
@@ -64,7 +58,7 @@ describe('Schema', () => {
       {
         max: 1,
         min: '2',
-        expected: generateTypeError(MIN_MAX_TYPE),
+        expected: generateTypeError(capitalize(MIN_MAX_TYPE)),
         description: 'given length is not a number'
       },
       {
@@ -82,7 +76,7 @@ describe('Schema', () => {
           new Schema()
             .min(min)
             .max(max)
-            .validate()
+            .validateSchema()
         ).toThrow(expected);
       });
     });
@@ -97,7 +91,7 @@ describe('Schema', () => {
       },
       {
         label: 1,
-        expected: generateTypeError(LABEL_TYPE),
+        expected: generateTypeError(capitalize(LABEL_TYPE)),
         description: 'given label is not a string'
       }
     ];

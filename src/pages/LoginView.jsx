@@ -13,7 +13,6 @@ import { LOGIN_CONSTANTS } from '../constants/validation-constants';
  ************************************/
 
 const { EMAIL_PROPERTY, PASSWORD_PROPERTY, EMAIL_SCHEMA, PASSWORD_SCHEMA } = LOGIN_CONSTANTS;
-const DEFAULT_STATE = { [EMAIL_PROPERTY]: '', [PASSWORD_PROPERTY]: '' };
 
 const FORM_SCHEMA = {
   [EMAIL_PROPERTY]: EMAIL_SCHEMA,
@@ -26,14 +25,14 @@ function LoginView(props) {
    ************************************/
 
   const [user, setUser] = useUser();
-  const { formData, formErrors, submitErrorMessage, handleSubmit, handleInputChange } = useForm(FORM_SCHEMA, DEFAULT_STATE);
+  const { form, errors, submitError, handleSubmit, handleInputChange } = useForm(FORM_SCHEMA);
 
   /************************************
    * Helper Functions
    ************************************/
 
   async function submitForm() {
-    const userData = await login(formData[EMAIL_PROPERTY], formData[PASSWORD_PROPERTY]);
+    const userData = await login(form[EMAIL_PROPERTY], form[PASSWORD_PROPERTY]);
     setUser(userData);
 
     // Make sure that userData is safely stored since this
@@ -50,13 +49,13 @@ function LoginView(props) {
     <div className='authentication-view-body'>
       <div className='authentication-input-container'>
         <img src={homeLogo} alt='oneleif logo' />
-        <form onSubmit={event => handleSubmit(event, submitForm)} className='form-container'>
+        <form onSubmit={event => handleSubmit(submitForm, event)} className='form-container'>
           <Input
             name={EMAIL_PROPERTY}
             label='Email'
             className='auth'
             autoComplete='username'
-            errorMessage={formErrors[EMAIL_PROPERTY]}
+            errorMessage={errors[EMAIL_PROPERTY]}
             onValueChange={handleInputChange}
           />
           <Input
@@ -65,7 +64,7 @@ function LoginView(props) {
             label='Password'
             className='auth'
             autoComplete='current-password'
-            errorMessage={formErrors[PASSWORD_PROPERTY]}
+            errorMessage={errors[PASSWORD_PROPERTY]}
             onValueChange={handleInputChange}
           />
           <div className='authentication-actions-module'>
@@ -73,7 +72,7 @@ function LoginView(props) {
             <button type='submit'>Log in</button>
           </div>
         </form>
-        {submitErrorMessage && <p className='error-message'>{submitErrorMessage}</p>}
+        {submitError && <p className='error-message'>{submitError}</p>}
       </div>
     </div>
   );

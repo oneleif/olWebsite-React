@@ -1,16 +1,8 @@
-export const DEFAULT_SCHEMA = {
-  label: '',
-  digit: false,
-  symbol: false,
-  lowercase: false,
-  uppercase: false
-};
-
 export const TYPES = {
-  STRING: 'String',
-  NUMBER: 'Number',
-  OBJECT: 'Object',
-  BOOLEAN: 'Boolean'
+  STRING: 'string',
+  NUMBER: 'number',
+  OBJECT: 'object',
+  BOOLEAN: 'boolean'
 };
 
 export const ERROR_MESSAGES = {
@@ -24,6 +16,7 @@ export const ERROR_MESSAGES = {
   FORM_SCHEMA_MISMATCH: 'Schema and form do not match',
   NO_MATCHING_PROPERTY: `No PROPERTY property to match`,
   INVALID_MIN_OVER_MAX: 'Minimum length cannot be greater than the maximum',
+  EMPTY_PROPERTY: 'PROPERTY cannot be empty',
   EMPTY_MATCHING_PROPERTY: 'Matching property cannot be empty',
   INVALID_MIN_MAX: 'Minimum or maximum length cannot be less than the number of required characters'
 };
@@ -38,6 +31,11 @@ export const VALIDATION_ERROR_MESSAGES = {
   UPPERCASE: 'must include at least one uppercase character',
   MIN_LENGTH: 'must be at least VALUE character(s) long',
   MAX_LENGTH: 'cannot be longer than VALUE character(s)'
+};
+
+export const SCHEMA = {
+  DEFAULT_MIN: 1,
+  DEFAULT_MAX: 255
 };
 
 export const NO_ERRORS = 0;

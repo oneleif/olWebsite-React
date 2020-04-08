@@ -1,76 +1,248 @@
-import { validateType, isNumber, isString, isBoolean } from './utils';
-import { EMPTY_VALUE, DEFAULT_SCHEMA, ERROR_MESSAGES as Errors } from './constants';
+import * as Rules from './rules';
+import { SCHEMA, ERROR_MESSAGES as Errors } from './constants';
+import { validateType, isNumber, isString, isEmptyString } from './utils';
 
+/************************************
+ *        Symbolic Constants
+ ************************************/
+const DEFAULT_RULES = {
+  minimum: {
+    value: SCHEMA.DEFAULT_MIN,
+    ...Rules.getMinLengthRule(SCHEMA.DEFAULT_MIN)
+  },
+  maximum: {
+    value: SCHEMA.DEFAULT_MAX,
+    ...Rules.getMaxLengthRule(SCHEMA.DEFAULT_MAX)
+  }
+};
+
+/************************************
+ *        Class Declaration
+ ************************************/
+
+/**
+ * Creates a new Schema
+ *
+ * @example
+ * const schema = new Schema();
+ */
 export default class Schema {
-  #schema = { ...DEFAULT_SCHEMA };
+  /**
+   * The object detailing the validation rules to be tested for.
+   * @private
+   * @static
+   * @type {object}
+   */
+  #schema = { rules: { ...DEFAULT_RULES } };
 
   /**
-   * Expect minimum length
-   * @param {number} minLength minimum length
+   * Set the minimum number of characters the property should contain.
+   * @param {number} value - The minimum length.
+   * @return {Schema} The current schema instance.
+   * @throws {TypeError} when value is not a number.
+   * @throws {RangeError} when value is negative.
+   *
+   * @example
+   * const schema = new Schema().min(4);
    */
-  min(minLength) {
-    validateSize(minLength);
+  min(value) {
+    validateLength(value);
 
-    this.#schema.minimum = minLength;
+    this.#schema.rules.minimum = {
+      value,
+      ...Rules.getMinLengthRule(value)
+    };
     return this;
   }
 
   /**
-   * Expect maximum length
-   * @param {number} maxLength maximum length
+   * Get the minimum number of characters the property should contain.
+   * @readonly
+   * @type {number}
+   *
+   * @example
+   * const schema = new Schema().min(4).max(7);
+   * const minLength = schema.minimum; // 4
    */
-  max(maxLength) {
-    validateSize(maxLength);
+  get minimum() {
+    return this.#schema.rules.minimum.value;
+  }
 
-    this.#schema.maximum = maxLength;
+  /**
+   * Set the maximum number of characters the property should contain.
+   * @param {number} value - The maximum length.
+   * @return {Schema} The current schema instance.
+   * @throws {TypeError} when value is not a number.
+   * @throws {RangeError} when value is negative.
+   *
+   * @example
+   * const schema = new Schema().max(4);
+   */
+  max(value) {
+    validateLength(value);
+
+    this.#schema.rules.maximum = {
+      value,
+      ...Rules.getMaxLengthRule(value)
+    };
     return this;
   }
 
   /**
-   * Expect at least one digit
+   * Get the maximum number of characters the property should contain.
+   * @readonly
+   * @type {number}
+   *
+   * @example
+   * const schema = new Schema().min(4).max(7);
+   * const maxLength = schema.maximum; // 7
+   */
+  get maximum() {
+    return this.#schema.rules.maximum.value;
+  }
+
+  /**
+   * Set property to contain at least one digit.
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().hasDigit();
    */
   hasDigit() {
-    this.#schema.digit = true;
+    this.#schema.rules.digit = Rules.DIGIT;
     return this;
   }
 
   /**
-   * Expect at least one special character
+   * Return whether property should contain at least one digit.
+   * @readonly
+   * @type {boolean}
+   *
+   * @example
+   * const schema = new Schema().min(4).hasDigit();
+   * const hasDigit = schema.digit; // true
+   */
+  get digit() {
+    return this.#schema.rules.digit ? true : false;
+  }
+
+  /**
+   * Set property to contain at least one special character.
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().hasSymbol();
    */
   hasSymbol() {
-    this.#schema.symbol = true;
+    this.#schema.rules.symbol = Rules.SYMBOL;
     return this;
   }
 
   /**
-   * Expect at least one uppercase character
+   * Return whether property should contain at least
+   * one special character.
+   *
+   * @readonly
+   * @type {boolean}
+   *
+   * @example
+   * const schema = new Schema().min(4).hasSymbol();
+   * const hasSpecialCharacter = schema.symbol; // true
+   */
+  get symbol() {
+    return this.#schema.rules.symbol ? true : false;
+  }
+
+  /**
+   * Set property to contain at least one uppercase character
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().hasUppercase();
    */
   hasUppercase() {
-    this.#schema.uppercase = true;
+    this.#schema.rules.uppercase = Rules.UPPERCASE;
     return this;
   }
 
   /**
-   * Expect at least one lowercase character
+   * Return whether property should contain at least
+   * one uppercase character.
+   *
+   * @readonly
+   * @type {boolean}
+   *
+   * @example
+   * const schema = new Schema().min(4).hasUppercase();
+   * const hasUppercase = schema.uppercase; // true
+   */
+  get uppercase() {
+    return this.#schema.rules.uppercase ? true : false;
+  }
+
+  /**
+   * Set property to contain at least one lowercase character
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().hasLowercase();
    */
   hasLowercase() {
-    this.#schema.lowercase = true;
+    this.#schema.rules.lowercase = Rules.LOWERCASE;
     return this;
   }
 
   /**
-   * label to use for custom errors
+   * Return whether property should contain at least
+   * one lowercase character.
+   *
+   * @readonly
+   * @type {boolean}
+   *
+   * @example
+   * const schema = new Schema().min(4).hasLowercase();
+   * const hasLowercase = schema.lowercase; // true
+   */
+  get lowercase() {
+    return this.#schema.rules.lowercase ? true : false;
+  }
+
+  /**
+   * Set label to be pre-appended to the property's
+   * validation error messages
+   *
    * @param {string} name
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().label("abc");
    */
   label(name) {
-    validateStringInput(name, Errors.EMPTY_LABEL);
+    validateStringInput(name, 'Label');
 
     this.#schema.label = name;
     return this;
   }
 
   /**
-   * Specify whether property should be validated as an email
+   * Get property label.
+   * @readonly
+   * @type {string}
+   *
+   * @example
+   * const schema = new Schema().min(4).label("def");
+   * const name = schema.alias; // def
+   */
+  get alias() {
+    return this.#schema.label;
+  }
+
+  /**
+   * Set property to be validated as an email address.
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().isEmail();
    */
   isEmail() {
     this.#schema.email = true;
@@ -78,7 +250,24 @@ export default class Schema {
   }
 
   /**
-   * Set property to be required
+   * Get whether property is an email.
+   * @readonly
+   * @type {boolean}
+   *
+   * @example
+   * const schema = new Schema().min(4).isEmail();
+   * const schemaIsEmail = schema.email; // true
+   */
+  get email() {
+    return this.#schema.email ? true : false;
+  }
+
+  /**
+   * Set property to be validated.
+   * @return {Schema} The current schema instance.
+   *
+   * @example
+   * const schema = new Schema().isRequired();
    */
   isRequired() {
     this.#schema.required = true;
@@ -86,82 +275,139 @@ export default class Schema {
   }
 
   /**
-   * Set property validation to match that of given property name
-   * @param {*} propertyName matching property name
+   * Return whether property should be validated.
+   * @readonly
+   * @type {boolean}
+   *
+   * @example
+   * const schema = new Schema().min(4).isRequired();
+   * const isRequired = schema.required; // true
    */
-  matches(propertyName) {
-    validateStringInput(propertyName, Errors.EMPTY_MATCHING_PROPERTY);
-    this.#schema.matchingProperty = propertyName;
+  get required() {
+    return this.#schema.required ? true : false;
+  }
+
+  /**
+   * Set property validation to match the value of given property name.
+   * @param {string} name - The matching property name.
+   * @return {Schema} The current schema instance.
+   * @throws {TypeError} When the name is not a string.
+   * @throws Throws an error the name is an empty string.
+   *
+   * @example
+   * const schema = new Schema().matches("password");
+   */
+  matches(name) {
+    validateStringInput(name, 'Matching property');
+    this.#schema.matchingProperty = name;
     return this;
   }
 
   /**
-   * Must be called last to make sure schema is properly configured
-   * @returns {object} created schema
+   * Get the name of the matching property.
+   * @readonly
+   * @type {string}
+   *
+   * @example
+   * const schema = new Schema().min(4).matches("abc");
+   * const property = schema.matchingProperty; // abc
    */
-  validate() {
-    // voodoo to get new cleared schema if email is set to true
-    this.#schema = validateSchema(this.#schema);
+  get matchingProperty() {
+    return this.#schema.matchingProperty;
+  }
 
-    return this.#schema;
+  /**
+   * Determines whether schema is configured properly and is called
+   * automatically by the validate function.
+   * @see {@link validation.js} for further information.
+   *
+   * @returns {object} New object containing the schema rules.
+   * @throws When minimum length is greater than maximum length
+   * @throws When minimum or maximum length is less than the number
+   *         of required characters.
+   */
+  validateSchema() {
+    const { email, label, rules, required, matchingProperty } = this.#schema;
+    const { minimum, maximum } = rules;
+
+    // Ignore everything else
+    if (matchingProperty) {
+      return { required, label, matchingProperty, rules: [] };
+    }
+
+    // Ignore everything else
+    if (email) {
+      return { required, label, rules: [Rules.EMAIL] };
+    }
+
+    // Get 'required characters' - ex: hasSymbol set to true means
+    // that the minimum value must be at least one in order to match the
+    // symbol rule.
+    // Note that min and max are included by default
+    const requiredChars = Object.keys(rules).length - Object.keys(DEFAULT_RULES).length;
+
+    // Set minimum to the least number of required characters if
+    // it was not set explicitly
+
+    if (minimum.value === SCHEMA.DEFAULT_MIN) {
+      const minRule = { ...Rules.getMinLengthRule(requiredChars) };
+      minimum.value = requiredChars;
+      minimum.error = minRule.error;
+      minimum.pattern = minRule.pattern;
+    }
+
+    // min greater than max
+    if (minimum.value > maximum.value) {
+      throw new Error(Errors.INVALID_MIN_OVER_MAX);
+    }
+
+    // more characters than min/max length
+    if (maximum.value < requiredChars || minimum.value < requiredChars) {
+      throw new Error(Errors.INVALID_MIN_MAX);
+    }
+
+    // values not needed anymore
+    delete rules.minimum.value;
+    delete rules.maximum.value;
+
+    // Return rules as array
+    return { ...this.#schema, rules: Object.values(rules) };
   }
 }
 
-function validateSize(value) {
+/************************************
+ *         Helper Functions
+ ************************************/
+
+/**
+ * Validate minimum and maximum number of characters.
+ * @param {number} value The value to be validated.
+ * @returns {void} Nothing.
+ * @throws {TypeError} When the given value is not a number.
+ * @throws {RangeError} When the length is negative.
+ */
+function validateLength(value) {
   validateType(value, isNumber);
 
   // Validate range
-  if (value < 0) {
+  if (value < SCHEMA.DEFAULT_MIN) {
     throw new RangeError(Errors.INVALID_NUMBER);
   }
 }
 
-function validateStringInput(value, message) {
+/**
+ * Validate property names.
+ * @param {string} value - The value to be validated.
+ * @param {string} propertyName - The property name being validated.
+ * @returns {void} Nothing.
+ * @throws Throws an error when the given value is an empty string.
+ * @throws {TypeError} When the given value is not a string.
+ */
+function validateStringInput(value, propertyName) {
   validateType(value, isString);
 
   // Empty validation
-  if (value === EMPTY_VALUE) {
-    throw new Error(message);
+  if (isEmptyString(value)) {
+    throw new Error(Errors.EMPTY_PROPERTY.replace('PROPERTY', propertyName));
   }
-}
-
-/**
- * Determine whether schema is properly configured
- * @param {Object} schema
- * @returns new copy of schema reference
- */
-function validateSchema(schema) {
-  const { email, maximum, minimum, matchingProperty, required } = schema;
-
-  if (email) {
-    return { email, required, matchingProperty };
-  }
-
-  // min greater than max
-  if (minimum > maximum) {
-    throw new Error(Errors.INVALID_MIN_OVER_MAX);
-  }
-
-  const requiredCharacters = getRequiredCharacters(schema);
-
-  // more characters than min/max length
-  if (maximum < requiredCharacters || minimum < requiredCharacters) {
-    throw new Error(Errors.INVALID_MIN_MAX);
-  }
-
-  return schema;
-}
-
-/**
- * Get the number of required characters
- * @param {Object} schema
- * @returns number of required characters
- */
-function getRequiredCharacters(schema) {
-  return Object.values(schema).reduce((acc, current) => {
-    if (isBoolean(current) && current) {
-      return acc + 1;
-    }
-    return acc;
-  }, 0);
 }

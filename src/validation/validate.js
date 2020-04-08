@@ -1,51 +1,92 @@
-import { NO_ERRORS, EMPTY_VALUE, ERROR_MESSAGES as Errors, VALIDATION_ERROR_MESSAGES as Messages } from './constants';
-import * as ValidationRules from './rules';
-import { isString, isObject, isEmptyObject, isBoolean } from './utils';
+import { NO_ERRORS, ERROR_MESSAGES as Errors, VALIDATION_ERROR_MESSAGES as Messages } from './constants';
+import { getMatchesRule } from './rules';
+import { isString, isObject, isEmptyString } from './utils';
 
+/**
+ * The validation configurations.
+ * @typedef {Object} ValidationOptions
+ * @property {boolean} [includeLabel=false] - Configuration for pre-appending label to the error messages.
+ * @property {boolean} [abortEarly=false] - Configuration indicating whether
+ *                                          to stop validation at the first invalid rule.
+ */
+
+/**
+ *  The response from validating a form.
+ * @typedef {Object} FormValidationResponse
+ * @property {boolean} isValid - Property detailing whether the form validated successfully.
+ * @property {Object<string,string[]>} errors - The errors present in the form.
+ */
+
+/**
+ * The response from validating a single property.
+ * @typedef {Object} PropertyValidationResponse
+ * @property {boolean} isValid - Property detailing whether the value was validated successfully.
+ * @property {string[]} errors - The errors present in the property.
+ */
+
+/************************************
+ *        Symbolic Constants
+ ************************************/
 const DEFAULT_OPTIONS = { includeLabel: false, abortEarly: false };
 
 /**
- * Validate a form or string value based on corresponding schema
- * @param {*} value string of form to validate
- * @param {Object} schema schema corresponding to value
- * @param {Object} options configuration options
+ * Validate a form or string value based on corresponding schema.
+ * @param {(string|Object<string,string>)} value - The string or form to validate.
+ * @param {Object<string,Function> | Function} schema - The corresponding schema.
+ * @param {ValidationOptions} [options] - The validation configurations.
+ * @returns {( FormValidationResponse | PropertyValidationResponse)} Object with validation results.
+ * @throws {TypeError} When given value is neither an object (form) nor a string (single property).
  */
 export default function validate(value, schema, options = DEFAULT_OPTIONS) {
-  if (!isObject(schema)) {
-    throw new TypeError(Errors.INVALID_SCHEMA_TYPE);
-  }
-
   if (isString(value)) {
-    return validateProperty(value, schema, options);
+    return validateProperty(value, validateSchema(schema), options);
   }
 
   if (isObject(value)) {
     return validateForm(value, schema, options);
   }
 
+  // Given value is neither a single value nor a form
   throw new TypeError(Errors.INVALID_VALUE_TYPE);
 }
 
-function validateForm(form, schema, options) {
+/************************************
+ *         Helper Functions
+ ************************************/
+
+/**
+ * Validate entire form based on given schema.
+ * @param {Object<string, string>} form - The form to validate.
+ * @param {Object<string, Function>} formSchema - The corresponding schema.
+ * @param {ValidationOptions} options - The validation configurations.
+ * @returns {...FormValidationResponse}
+ */
+function validateForm(form, formSchema, options) {
   let formIsValid = true;
+
   const formErrors = {};
 
+  // Check that schema matches form and validate
+  let schema, errors, isValid;
   Object.keys(form).forEach(property => {
-    if (!schema.hasOwnProperty(property)) {
+    // Throw error if property does not have corresponding schema
+    schema = formSchema[property];
+    if (!schema) {
       throw new Error(Errors.FORM_SCHEMA_MISMATCH);
     }
 
-    // Generate new schema if current one matches existing property
-    if (schema[property].matchingProperty) {
-      schema[property] = getMatchingSchema(schema[property], form);
+    // Check if current schema has corresponding property and
+    // set current schema to test for matching value
+    schema = validateSchema(schema);
+    if (schema.matchingProperty) {
+      schema = getMatchingSchema(schema, form);
     }
 
-    // Validate the property based off of the schema
-    const { isValid, errors } = validateProperty(form[property], schema[property], options);
-
+    // Validate properties and set errors
+    ({ isValid, errors } = validateProperty(form[property], schema, options));
     if (!isValid) {
-      formErrors[property] = [...errors];
       formIsValid = false;
+      formErrors[property] = [...errors];
     }
   });
 
@@ -53,113 +94,101 @@ function validateForm(form, schema, options) {
 }
 
 /**
- * Return schema for matching properties
- * @param {*} schema
- * @param {*} form
+ * Generate special schema for property that matches to another form property.
+ * @param {object} schema - The schema for the current property.
+ * @param {Object<string, string>} form - The form to validate.
+ * @returns {Object} New schema with the matching property's value as a rule.
+ * @throws Error when no matching property is found.
  */
 function getMatchingSchema(schema, form) {
-  const { required, matchingProperty } = schema;
+  const { matchingProperty } = schema;
   const matchingValue = form[matchingProperty];
 
   if (!isString(matchingValue)) {
     throw new Error(Errors.NO_MATCHING_PROPERTY.replace('PROPERTY', matchingProperty));
   }
 
-  return { matchingProperty, matchingValue, required };
-}
-
-function validateProperty(value, schema, options) {
-  validateSchema(schema);
-
-  const errors = [];
-  if (schema.required) {
-    // Return immediately if required value is empty
-    if (value.trim() === EMPTY_VALUE) {
-      errors.push(Messages.REQUIRED);
-      return { isValid: false, errors };
-    }
-
-    matchPatterns(value, getRules(schema), errors, getLabel(schema, options), options.abortEarly);
-    return { isValid: errors.length === NO_ERRORS, errors };
-  }
-
-  return { isValid: true, errors };
+  return {
+    ...schema,
+    rules: [getMatchesRule(matchingValue, matchingProperty)]
+  };
 }
 
 /**
- * Check whether schema is an empty object
- * @param {Object} schema
+ * Validate property value based on given schema.
+ * @param {string} value - The value to be validated.
+ * @param {object} schema - The corresponding schema.
+ * @param {ValidationOptions} options - The validation configurations.
+ * @returns {PropertyValidationResponse} An object with validation status and error messages.
+ */
+function validateProperty(value, schema, options) {
+  const errors = [];
+  if (!schema.required) {
+    return { isValid: true, errors };
+  }
+
+  // Return immediately if empty
+  if (isEmptyString(value.trim())) {
+    errors.push(Messages.REQUIRED);
+    return { isValid: false, errors };
+  }
+
+  testRules(value, schema, errors, options);
+  return { isValid: errors.length === NO_ERRORS, errors };
+}
+
+/**
+ * Check whether schema is valid.
+ * @param {object} schema - The schema to validate.
+ * @returns {object} The validated schema.
+ * @throws Error when schema is invalid.
+ * @throws {TypeError} When schema type is invalid
  */
 function validateSchema(schema) {
-  if (isEmptyObject(schema)) {
-    throw new Error(Errors.EMPTY_SCHEMA);
-  }
-}
-
-/**
- * Generate validation rules from schema
- * @param {Object} schema
- */
-function getRules(schema) {
-  const rules = [];
-  const { minimum, maximum, matchingProperty, matchingValue } = schema;
-
-  if (minimum) {
-    rules.push(ValidationRules.getMinLengthRule(minimum));
-  }
-
-  if (maximum) {
-    rules.push(ValidationRules.getMaxLengthRule(maximum));
-  }
-
-  if (matchingProperty) {
-    rules.push(ValidationRules.getMatchesRule(matchingValue, matchingProperty));
-  }
-
-  // Get 'required' rules
-  Object.entries(schema).forEach(rule => {
-    if (isRequiredRule(rule[1])) {
-      rules.push(ValidationRules[rule[0].toUpperCase()]);
+  try {
+    schema = schema.validateSchema();
+  } catch (error) {
+    if (error.name === TypeError.name) {
+      error.message = Errors.INVALID_SCHEMA_TYPE;
     }
-  });
-
-  return rules;
+    throw error;
+  }
+  return schema;
 }
 
 /**
- * Return label to pre-append to messages
- * @param {Object} schema
- * @param {Object} options
+ * Test value against all the validation rules in the schema.
+ * @param {string} value - The value to be validated.
+ * @param {object} schema - The schema with the rules to be validated against.
+ * @param {string[]} errors - The error messages for failed rules.
+ * @param {ValidationOptions} options - The validation configurations.
+ * @returns {void} Nothing.
  */
-function getLabel(schema, options) {
-  return schema.label && options.includeLabel ? schema.label : null;
-}
+function testRules(value, schema, errors, options) {
+  const { rules, label } = schema;
+  const { abortEarly, includeLabel } = options;
 
-/**
- * Execute each pattern/rule on given value
- * @param {object} value value to be validated
- * @param {array} rules validation rules to be tested for
- * @param {array} errors validation error messages for failed tests
- * @param {string} label property title to include in custom error message
- */
-function matchPatterns(value, rules, errors, label, abortEarly) {
-  let rule;
+  // Loop through testing each rule
+  let pattern, error;
   for (let index = 0; index < rules.length; index++) {
-    rule = rules[index];
-    if (rule.pattern?.test(value) === false) {
-      errors.push(label ? `${label} ${rule.error}` : rule.error);
-    }
+    ({ pattern, error } = rules[index]);
 
-    if (abortEarly) break;
+    // Add label if present and break if abortEarly set to true
+    if (pattern.test(value) === false) {
+      errors.push(getErrorMessage(label, error, includeLabel));
+
+      if (abortEarly) break;
+    }
   }
 }
 
 /**
- * Check if given rule is a 'required' rule and is true
- * @param {*} rule
+ * Get the appropriate error message.
+ * @param {string} label - The label to be pre-appended to the error message.
+ * @param {string} errorMessage - The error message.
+ * @param {boolean} includeLabel - Check determining whether the label should be included.
+ * @returns {string} Error message with label pre-appended if includeLabel is true.
  */
-function isRequiredRule(rule) {
-  // Checking for truthiness is somewhat overkill because
-  // required rules should never be set to false anyway
-  return isBoolean(rule) && rule;
+function getErrorMessage(label, errorMessage, includeLabel) {
+  return includeLabel && label ? `${label} ${errorMessage}` : errorMessage;
 }

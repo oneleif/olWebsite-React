@@ -1,5 +1,5 @@
 import { TYPES } from '../constants';
-import { isString, isObject, isNumber, isBoolean, validateType, isEmptyObject, generateTypeError } from '../utils';
+import { isString, isObject, isNumber, isBoolean, validateType, isEmptyObject, generateTypeError, capitalize } from '../utils';
 
 const DEFAULT_STRING = 'abc';
 const DEFAULT_NUMBER = 1;
@@ -15,9 +15,10 @@ describe('Utils', () => {
     const valid = DEFAULT_STRING;
     const invalid = DEFAULT_NUMBER;
     const callback = isString;
-    const customMessage = generateTypeError(TYPES.STRING);
+    const customMessage = generateTypeError(capitalize(TYPES.STRING));
 
     expect(() => validateType(valid, callback)).not.toThrow();
+
     expect(() => validateType(invalid, callback)).toThrow(customMessage);
   });
 

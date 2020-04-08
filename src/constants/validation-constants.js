@@ -8,8 +8,8 @@ const CONFIRMED_PASSWORD_PROPERTY = 'confirmedPassword';
 export const LOGIN_CONSTANTS = {
   EMAIL_PROPERTY,
   PASSWORD_PROPERTY,
-  EMAIL_SCHEMA: new Schema().isRequired().validate(),
-  PASSWORD_SCHEMA: new Schema().isRequired().validate()
+  EMAIL_SCHEMA: new Schema().isRequired(),
+  PASSWORD_SCHEMA: new Schema().isRequired()
 };
 
 export const REGISTER_CONSTANTS = {
@@ -18,10 +18,7 @@ export const REGISTER_CONSTANTS = {
   REQUIRED_PASSWORD_LENGTH,
   CONFIRMED_PASSWORD_PROPERTY,
 
-  EMAIL_SCHEMA: new Schema()
-    .isEmail()
-    .isRequired()
-    .validate(),
+  EMAIL_SCHEMA: new Schema().isEmail().isRequired(),
 
   PASSWORD_SCHEMA: new Schema()
     .hasDigit()
@@ -29,11 +26,6 @@ export const REGISTER_CONSTANTS = {
     .isRequired()
     .hasLowercase()
     .hasUppercase()
-    .min(REQUIRED_PASSWORD_LENGTH)
-    .validate(),
-
-  CONFIRMED_PASSWORD_SCHEMA: new Schema()
-    .isRequired()
-    .matches(PASSWORD_PROPERTY)
-    .validate()
+    .min(REQUIRED_PASSWORD_LENGTH),
+  CONFIRMED_PASSWORD_SCHEMA: new Schema().isRequired().matches(PASSWORD_PROPERTY)
 };
