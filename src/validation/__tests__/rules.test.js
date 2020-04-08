@@ -1,7 +1,15 @@
 import { EMAIL, DIGIT, SYMBOL, LOWERCASE, UPPERCASE, getMinLengthRule, getMaxLengthRule, getMatchesRule } from '../rules';
 
 const DEFAULT_LENGTH = 2;
-const Rules = { EMAIL, DIGIT, SYMBOL, LOWERCASE, UPPERCASE, getMaxLengthRule, getMinLengthRule, getMatchesRule };
+const Rules = {
+  EMAIL,
+  DIGIT,
+  SYMBOL,
+  LOWERCASE,
+  UPPERCASE,
+  getMaxLengthRule,
+  getMinLengthRule
+};
 
 describe('Validation Rules', () => {
   const testParams = {
@@ -10,7 +18,6 @@ describe('Validation Rules', () => {
     SYMBOL: { validInput: '$', invalidInput: 'a' },
     LOWERCASE: { validInput: 'a', invalidInput: 'A' },
     UPPERCASE: { validInput: 'A', invalidInput: 'a' },
-    getMatchesRule: { validInput: DEFAULT_LENGTH, invalidInput: 'a' },
     getMinLengthRule: { validInput: 'aa', invalidInput: 'a' },
     getMaxLengthRule: { validInput: 'aa', invalidInput: 'aaa' }
   };
@@ -26,11 +33,6 @@ describe('Validation Rules', () => {
     if (key === Rules.getMinLengthRule.name) {
       title = 'MIN LENGTH';
     }
-
-    if (key === Rules.getMatchesRule.name) {
-      title = 'MATCHES';
-    }
-
     return { pattern, title };
   }
 
@@ -44,4 +46,11 @@ describe('Validation Rules', () => {
       });
     }
   }
+
+  test('Matches regex pattern tests correctly', () => {
+    const matchingValue = 'abc';
+    const { pattern } = getMatchesRule(matchingValue);
+
+    expect(pattern.test(matchingValue)).toBe(true);
+  });
 });
