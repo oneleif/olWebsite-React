@@ -1,9 +1,10 @@
 import React from 'react';
+import SocialMediaConstants from '../../constants/social-media-constants';
 
 const SocialMediaIconsMap = {
     DISCORD: {
         label: 'Discord',
-        url: 'https://discord.gg/2jepA3',
+        url: SocialMediaConstants.DISCORD_LINK,
         width: '20',
         height: '22',
         path: (
@@ -38,7 +39,7 @@ const SocialMediaIconsMap = {
     },
     GITHUB: {
         label: 'Github',
-        url: 'https://github.com/oneleif',
+        url: SocialMediaConstants.GITHUB,
         width: '24',
         height: '20',
         path: (
@@ -47,7 +48,7 @@ const SocialMediaIconsMap = {
     },
     LINKEDIN: {
         label: 'LinkedIn',
-        url: 'https://www.linkedin.com/company/oneleif/',
+        url: SocialMediaConstants.LINKEDIN_LINK,
         width: '21',
         height: '20',
         path: (
@@ -56,7 +57,7 @@ const SocialMediaIconsMap = {
     },
     MEDIUM: {
         label: 'Medium',
-        url: 'https://medium.com/oneleif',
+        url: SocialMediaConstants.MEDIUM_LINK,
         width: '20',
         height: '17',
         path: (
@@ -65,7 +66,7 @@ const SocialMediaIconsMap = {
     },
     TWITTER: {
         label: 'Twitter',
-        url: 'https://twitter.com/oneleifdev',
+        url: SocialMediaConstants.TWITTER_LINK,
         width: '25',
         height: '20',
         path: (
@@ -74,7 +75,7 @@ const SocialMediaIconsMap = {
     },
     YOUTUBE: {
         label: 'Youtube',
-        url: 'https://www.youtube.com/channel/UC3HN0jID38K0Vb_WChvgQmA',
+        url: SocialMediaConstants.YOUTUBE_LINK,
         width: '24',
         height: '18',
         path: (
