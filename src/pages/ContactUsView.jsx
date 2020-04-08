@@ -24,34 +24,63 @@ export default function ContactUsView() {
   * Private Methods
   ************************************/
 
+  /* Takes in the value change event and sets the subject;
+   * Passes the event and other input into a function to be handled
+   *
+   * @param subjectEvent - value change event from the subject input
+   */
   function handleSubjectInput(subjectEvent) {
     setSubject(subjectEvent.target.value);
     handleEnteredInput(subjectEvent, message);
   } 
 
+  /* Takes in the value change event and sets the message;
+   * Passes the event and other input into a function to be handled
+   *
+   * @param messageEvent - value change event from the message textarea
+   */
   function handleMessageInput(messageEvent) {
     setMessage(messageEvent.target.value);
     handleEnteredInput(messageEvent, subject);
   } 
 
+
+  /* Takes in event and sets the mailto value if there is a value to be sent
+   *
+   * @param event - value change event
+   * @param additionalInput - input not being changed (could be subject or message)
+   */
   function handleEnteredInput(event, additionalInput) {
     const input = event.target.value;
+    //if value was entered an cleared then reset mailto
     if (input === '') {
       setMailTo('');
+      //TODO: Will need to set error message here based on input ID
       return;
     }
     
     if (additionalInput.length > 0) {
+      //if event comes from message then input will need to be in message param
       (event.target.id === 'messageInput') ? parseAndApplyEmailInput(additionalInput, input) : parseAndApplyEmailInput(input, additionalInput);
     }
   }
 
+  /* Sets the subject and message into the href target (mailto)
+   *
+   * @param subjectInput
+   * @param messageInput
+   */
   function parseAndApplyEmailInput(subjectInput, messageInput) {
     if (subjectInput.length > 0 && messageInput.length > 0) {
       setMailTo(`${TARGET_EMAIL}?subject=${prepEmailString(subjectInput)}&body=${prepEmailString(messageInput)}`);
     }
   }
 
+  /* Replaces whitespace so email body/messages appears correctly
+   *
+   * @param string
+   * @returns {@link String} - with whitspace replaced with '%20'
+   */
   function prepEmailString(string) {
     return string.replace(' ', '%20');
   }
