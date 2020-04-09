@@ -30,6 +30,11 @@ function Toolbar() {
       })
     );
   }
+  function closeNav(){
+    if (isOpen){ 
+      setClasses(DEFAULT_CLASSES) ;
+      setIsOpen(false)};
+  }
 
   /************************************
    * Render
@@ -40,7 +45,7 @@ function Toolbar() {
       <nav className='navbar'>
         <ul className='nav-links'>
           <span className='icons'>
-            <Link to='/'>
+            <Link to='/' onClick={closeNav}>
               <img src={homeLogo}  alt='oneleif logo' />
             </Link>
             <FaBars className='toggle' onClick={handleToggle} />
@@ -49,17 +54,17 @@ function Toolbar() {
           {/* Main links  */}
           <span className={classes[0]}>
             <li>
-              <NavLink to='/contact-us' activeClassName='active-link'>
+              <NavLink to='/contact-us' activeClassName='active-link' onClick={handleToggle}>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/active-projects' activeClassName='active-link'>
+              <NavLink to='/active-projects' activeClassName='active-link' onClick={handleToggle}>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/meet-the-team' activeClassName='active-link'>
+              <NavLink to='/meet-the-team' activeClassName='active-link'onClick={handleToggle}>
                 Meet the Team
               </NavLink>
             </li>
@@ -85,3 +90,4 @@ function Toolbar() {
 }
 
 export default withRouter(Toolbar);
+
