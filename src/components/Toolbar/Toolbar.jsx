@@ -68,11 +68,6 @@ function Toolbar() {
       })
     );
   }
-  function closeNav(){
-    if (isOpen){ 
-      setClasses(DEFAULT_CLASSES) ;
-      setIsOpen(false)};
-  }
 
   /************************************
    * Render
@@ -92,17 +87,17 @@ function Toolbar() {
           {/* Main links  */}
           <div data-testid='nav' className={classes[0]}>
             <li>
-              <NavLink to='/contact-us' activeClassName='active-link' onClick={handleToggle}>
+              <NavLink to='/contact-us' activeClassName='active-link'>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/active-projects' activeClassName='active-link' onClick={handleToggle}>
+              <NavLink to='/active-projects' activeClassName='active-link'>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/meet-the-team' activeClassName='active-link'onClick={handleToggle}>
+              <NavLink to='/meet-the-team' activeClassName='active-link'>
                 Meet the Team
               </NavLink>
             </li>
@@ -128,4 +123,3 @@ function Toolbar() {
 }
 
 export default withRouter(Toolbar);
-
