@@ -17,58 +17,44 @@ export default function ContactUsView() {
   ************************************/
 
   const [mailTo, setMailTo] = useState('');
-  const [message, setMessage] = useState('');
-  const [subject, setSubject] = useState('');
+  const [formData, setFormData] = useState({message: '', subject: ''});
 
   /************************************
   * Private Methods
   ************************************/
 
-  /* Takes in the value change event and sets the subject;
-   * Passes the event and other input into a function to be handled
-   *
-   * @param subjectEvent - value change event from the subject input
+  /**
+   * Takes in the value change event and sets the value based on the id
+   * Passes the id and value of the input into a function to be handled
+   * @param {Event} value change event from the message textarea
    */
-  function handleSubjectInput(subjectEvent) {
-    setSubject(subjectEvent.target.value);
-    handleEnteredInput(subjectEvent, message);
-  } 
+  function handleInput(event) {
+    const { id, value } = event.target;
+    setFormData({...formData, [id] : value});
+    handleEnteredInput(id, value);
+  }
 
-  /* Takes in the value change event and sets the message;
-   * Passes the event and other input into a function to be handled
-   *
-   * @param messageEvent - value change event from the message textarea
+  /**
+   * Takes in event and sets the mailto value if there is a value to be sent
+   * @param {String} id
+   * @param {String} value
    */
-  function handleMessageInput(messageEvent) {
-    setMessage(messageEvent.target.value);
-    handleEnteredInput(messageEvent, subject);
-  } 
-
-
-  /* Takes in event and sets the mailto value if there is a value to be sent
-   *
-   * @param event - value change event
-   * @param additionalInput - input not being changed (could be subject or message)
-   */
-  function handleEnteredInput(event, additionalInput) {
-    const input = event.target.value;
+  function handleEnteredInput(id, value) {
     //if value was entered an cleared then reset mailto
-    if (input === '') {
+    if (value === '') {
       setMailTo('');
       //TODO: Will need to set error message here based on input ID
       return;
     }
     
-    if (additionalInput.length > 0) {
-      //if event comes from message then input will need to be in message param
-      (event.target.id === 'messageInput') ? parseAndApplyEmailInput(additionalInput, input) : parseAndApplyEmailInput(input, additionalInput);
-    }
+    //if event comes from message then input will need to be in message param
+    (id === 'message') ? parseAndApplyEmailInput(formData.subject, value) : parseAndApplyEmailInput(value, formData.message);
   }
 
-  /* Sets the subject and message into the href target (mailto)
-   *
-   * @param subjectInput
-   * @param messageInput
+  /**
+   * Sets the subject and message into the href target (mailto)
+   * @param {String} subjectInput
+   * @param {String} messageInput
    */
   function parseAndApplyEmailInput(subjectInput, messageInput) {
     if (subjectInput.length > 0 && messageInput.length > 0) {
@@ -76,10 +62,10 @@ export default function ContactUsView() {
     }
   }
 
-  /* Replaces whitespace so email body/messages appears correctly
-   *
-   * @param string
-   * @returns {@link String} - with whitspace replaced with '%20'
+  /**
+   * Replaces whitespace so email body/messages appears correctly
+   * @param {String}
+   * @returns {String} with whitspace replaced with '%20'
    */
   function prepEmailString(string) {
     return string.split(' ').join('%20');
@@ -103,8 +89,8 @@ export default function ContactUsView() {
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
-          <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' onValueChange={handleSubjectInput}/>
-          <TextArea id='messageInput' label='Message' placeholder='Write your message here' onValueChange={handleMessageInput}/>
+          <Input id='subject' label='Subject' placeholder='Enter the subject...' onValueChange={handleInput}/>
+          <TextArea id='message' label='Message' placeholder='Write your message here' onValueChange={handleInput}/>
           <a data-testid='send' className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
             <span>Send</span>
           </a>
