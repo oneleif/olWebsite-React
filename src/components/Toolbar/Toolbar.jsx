@@ -30,6 +30,11 @@ function Toolbar() {
       })
     );
   }
+  function closeNav(){
+    if(isOpen){
+      handleToggle()
+    }
+  }
 
   /************************************
    * Render
@@ -49,17 +54,17 @@ function Toolbar() {
           {/* Main links  */}
           <span className={classes[0]}>
             <li>
-              <NavLink to='/contact-us' activeClassName='active-link' onClick={handleToggle}>
+              <NavLink to='/contact-us' activeClassName='active-link' onClick={closeNav}>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/active-projects' activeClassName='active-link' onClick={handleToggle}>
+              <NavLink to='/active-projects' activeClassName='active-link' onClick={closeNav}>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/meet-the-team' activeClassName='active-link' onClick={handleToggle}>
+              <NavLink to='/meet-the-team' activeClassName='active-link' onClick={closeNav}>
                 Meet the Team
               </NavLink>
             </li>
