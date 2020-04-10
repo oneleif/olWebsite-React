@@ -14,8 +14,7 @@ const MESSAGE_ERROR = 'Please enter a message';
 
 describe('Contact Us View Tests', () => {
   function setUp() {
-    const { queryByText, queryByLabelText } = render(<ContactUsView />);
-    return { queryByText, queryByLabelText };
+    return render(<ContactUsView />);
   }
 
   function fireChangeEvent(labelText, queryByLabelText, testInput = TEST_INPUT) {
