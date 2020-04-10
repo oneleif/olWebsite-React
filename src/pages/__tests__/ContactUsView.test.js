@@ -12,8 +12,7 @@ const SUBJECT_INPUT = 'Subject-input';
 
 describe('Contact Us View Tests', () => {
   function setUp() {
-    const { queryByText, queryByLabelText } = render(<ContactUsView />);
-    return { queryByText, queryByLabelText };
+    return render(<ContactUsView />);
   }
 
   function fireChangeEvent(labelText, queryByLabelText) {
