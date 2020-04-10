@@ -84,7 +84,7 @@ function Toolbar() {
         <ul className='nav-links'>
           <div className='icons'>
             <Link to='/'>
-              <img src={homeLogo}  alt='oneleif logo' />
+              <img src={homeLogo}  alt='oneleif logo' onClick={closeNav}/>
             </Link>
             <FaBars aria-label='hamburger' className='toggle' onClick={handleToggle} />
           </div>
