@@ -32,7 +32,7 @@ function Toolbar() {
   }
   function closeNav(){
     if(isOpen){
-      handleToggle()
+      handleToggle();
     }
   }
 
