@@ -4,7 +4,12 @@ import { FaBars } from 'react-icons/fa';
 
 import homeLogo from '../../assets/homeLogo.png';
 
+  /************************************
+   * Constants
+   ************************************/
+
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
+const MEDIUM_BREAKPOINT = 960;
 
 function Toolbar() {
   /************************************
@@ -36,7 +41,7 @@ function Toolbar() {
    */ 
   const memoNavCleanUp = useCallback(() => {
     //if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
-    return (isOpen && window.innerWidth > 960) ? handleToggle() : null;
+    return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
   }, [isOpen, handleToggle]);
 
   useEffect(() =>{

@@ -6,6 +6,7 @@ import { renderWithRouter, fireEvent, act } from 'test-utils';
 //  TODO: v-2
 // jest.mock('../../../contexts/UserContext');
 // const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
+const MEDIUM_BREAKPOINT = 960;
 
 describe('Toolbar Tests', function() {
   function setup(useUserValue = [null, null]) {
@@ -58,7 +59,7 @@ describe('Toolbar Tests', function() {
 
   test('Toolbar resized to width over medium screen breakpoint; Mobile Navigation Menu Closed', () => {
     const { queryByLabelText, getByTestId } = setup();
-    window.innerWidth = 950;
+    window.innerWidth = MEDIUM_BREAKPOINT - 10;
     window.dispatchEvent(new Event('resize'));
     queryByLabelText('hamburger')
 
@@ -67,7 +68,7 @@ describe('Toolbar Tests', function() {
     expect(getByTestId('nav').getAttribute('class').includes('open')).toBeTruthy();
 
     act(() => {
-      window.innerWidth = 1000;
+      window.innerWidth = MEDIUM_BREAKPOINT + 10;
       window.dispatchEvent(new Event('resize'));
     });
 
