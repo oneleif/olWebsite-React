@@ -28,7 +28,7 @@ function Footer() {
       <hr/> 
       <div className='bottom-navigation'>
         <div>
-          <p>&copy; Oneleif 2020, All Rights Reserved.</p>
+          <p>&copy; oneleif 2020, All Rights Reserved.</p>
         </div>
         <ul>
           <li><Link to='/privacy-policy'>Privacy Policy</Link></li>
