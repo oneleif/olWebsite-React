@@ -14,8 +14,8 @@ const MESSAGE_ERROR = 'Please enter a message';
 
 describe('Contact Us View Tests', () => {
   function setUp() {
-    const { queryByText, queryByLabelText, queryByTestId } = render(<ContactUsView />);
-    return { queryByText, queryByLabelText, queryByTestId };
+    const { queryByText, queryByLabelText } = render(<ContactUsView />);
+    return { queryByText, queryByLabelText };
   }
 
   function fireChangeEvent(labelText, queryByLabelText, testInput = TEST_INPUT) {
@@ -28,34 +28,34 @@ describe('Contact Us View Tests', () => {
   });
 
   test('Href Target should be empty by default', () => {
-    const { queryByTestId } = setUp();
+    const { queryByLabelText } = setUp();
 
-    expect(queryByTestId(SEND).getAttribute('href')).toEqual('');
+    expect(queryByLabelText(SEND).getAttribute('href')).toEqual('');
   });
 
   test('Message value set, Href should still be empty', () => {
-    const { queryByLabelText, queryByTestId } = setUp();
+    const { queryByLabelText } = setUp();
 
     fireChangeEvent(MESSAGE_TEXTAREA, queryByLabelText);
 
-    expect(queryByTestId(SEND).getAttribute('href')).toEqual('');
+    expect(queryByLabelText(SEND).getAttribute('href')).toEqual('');
   });
 
   test('Subject value set, Href should still be empty', () => {
-    const { queryByLabelText, queryByTestId } = setUp();
+    const { queryByLabelText } = setUp();
 
     fireChangeEvent(SUBJECT_INPUT, queryByLabelText);
 
-    expect(queryByTestId(SEND).getAttribute('href')).toEqual('');
+    expect(queryByLabelText(SEND).getAttribute('href')).toEqual('');
   });
 
   test('Both inputs have values, href is set with the parsed values', () => {
-    const { queryByLabelText, queryByTestId } = setUp();
+    const { queryByLabelText } = setUp();
 
     fireChangeEvent(MESSAGE_TEXTAREA, queryByLabelText);
     fireChangeEvent(SUBJECT_INPUT, queryByLabelText);
 
-    expect(queryByTestId(SEND).getAttribute('href')).toEqual(EXPECTED_OUTPUT);
+    expect(queryByLabelText(SEND).getAttribute('href')).toEqual(EXPECTED_OUTPUT);
   });
 
   test('Subject value set then erased, error message present', () => {

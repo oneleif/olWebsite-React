@@ -10,6 +10,7 @@ import TextArea from '../components/Objects/TextArea/TextArea';
    ************************************/
 
   const TARGET_EMAIL = 'mailto:oneleifdev@gmail.com';
+  const ERROR_MESSAGE = 'Please enter a';
 
 export default function ContactUsView() {
   /************************************
@@ -17,61 +18,51 @@ export default function ContactUsView() {
   ************************************/
 
   const [mailTo, setMailTo] = useState('');
-  const [message, setMessage] = useState('');
-  const [messageError, setMessageError] = useState('');
-  const [subject, setSubject] = useState('');
-  const [subjectError, setSubjectError] = useState('');
+  const [formData, setFormData] = useState({message: {value: '', error: ''}, subject: {value: '', error: ''}});
 
   /************************************
   * Private Methods
   ************************************/
 
-  /* Takes in the value change event and sets the subject;
-   * Passes the event and other input into a function to be handled
-   *
-   * @param subjectEvent - value change event from the subject input
+  /**
+   * Takes in the value change event and sets the value based on the id
+   * If value is empty then sets error message for element the event occured
+   * Passes the id and value of the input into a function to be handled
+   * @param {Event} value change event from the message textarea
    */
-  function handleSubjectInput(subjectEvent) {
-    setSubject(subjectEvent.target.value);
-    handleEnteredInput(subjectEvent, message);
-  } 
+  function handleInput(event) {
+    const { id, value } = event.target;
+    if (value.length > 0) {
+      setFormData({...formData, [id] : {value : value, error: ''}});
+    }
+    else {
+      setFormData({...formData, [id] : {value : value, error: `${ERROR_MESSAGE} ${id}`}});
+    }
+    handleEnteredInput(id, value);
+  }
 
-  /* Takes in the value change event and sets the message;
-   * Passes the event and other input into a function to be handled
-   *
-   * @param messageEvent - value change event from the message textarea
+  /**
+   * Takes in event and sets the mailto value if there is a value to be sent
+   * @param {String} id
+   * @param {String} value
    */
-  function handleMessageInput(messageEvent) {
-    setMessage(messageEvent.target.value);
-    handleEnteredInput(messageEvent, subject);
-  } 
-
-
-  /* Takes in event and sets the mailto value if there is a value to be sent
-   *
-   * @param event - value change event
-   * @param additionalInput - input not being changed (could be subject or message)
-   */
-  function handleEnteredInput(event, additionalInput) {
-    const input = event.target.value;
-    handleErrorMessage(event);
+  function handleEnteredInput(id, value) {
+    // handleErrorMessage(event);
 
     //if value was entered an cleared then reset mailto
-    if (input === '') {
+    if (value === '') {
       setMailTo('');
       return;
     }
     
-    if (additionalInput.length > 0) {
-      //if event comes from message then input will need to be in message param
-      (event.target.id === 'messageInput') ? parseAndApplyEmailInput(additionalInput, input) : parseAndApplyEmailInput(input, additionalInput);
-    }
+    //if event comes from message then input will need to be in message param
+    (id === 'message') ? parseAndApplyEmailInput(formData.subject.value, value) : parseAndApplyEmailInput(value, formData.message.value);
   }
 
-  /* Sets the subject and message into the href target (mailto)
-   *
-   * @param subjectInput
-   * @param messageInput
+  /**
+   * Sets the subject and message into the href target (mailto)
+   * @param {String} subjectInput
+   * @param {String} messageInput
    */
   function parseAndApplyEmailInput(subjectInput, messageInput) {
     if (subjectInput.length > 0 && messageInput.length > 0) {
@@ -79,33 +70,13 @@ export default function ContactUsView() {
     }
   }
 
-  /* Replaces whitespace so email body/messages appears correctly
-   *
-   * @param string
-   * @returns {@link String} - with whitspace replaced with '%20'
+  /**
+   * Replaces whitespace so email body/messages appears correctly
+   * @param {String}
+   * @returns {String} with whitspace replaced with '%20'
    */
   function prepEmailString(string) {
     return string.split(' ').join('%20');
-  }
-
-  /* Handles error message when event of input change 
-   * If value in event target is empty then sets error message for element the event occured
-   * if not then error message is cleared
-   *
-   * @param event
-   */  
-  function handleErrorMessage(event) {
-    const value = event.target.value;
-    switch(event.target.id) {
-      case 'subjectInput':
-        setSubjectError(value === '' ? 'Please enter a subject' : '');
-        break;
-      case 'messageInput':
-        setMessageError(value === '' ? 'Please enter a message' : '');
-        break;
-      default:
-        console.warn('Unsupported Event ID');
-    }
   }
 
   /************************************
@@ -126,9 +97,9 @@ export default function ContactUsView() {
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
-          <Input id='subjectInput' label='Subject' placeholder='Enter the subject...' errorMessage={subjectError} onValueChange={handleSubjectInput}/>
-          <TextArea id='messageInput' label='Message' placeholder='Write your message here' errorMessage={messageError} onValueChange={handleMessageInput}/>
-          <a data-testid='send' tabIndex={mailTo.length === 0 ? -1 : 0} className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
+          <Input id='subject' label='Subject' placeholder='Enter the subject...' errorMessage={formData.subject.error} onValueChange={handleInput}/>
+          <TextArea id='message' label='Message' placeholder='Write your message here' errorMessage={formData.message.error} onValueChange={handleInput}/>
+          <a aria-label='send' tabIndex={mailTo.length === 0 ? -1 : 0} className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
             <span>Send</span>
           </a>
         </div>
