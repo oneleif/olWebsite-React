@@ -25,20 +25,28 @@ export default function ContactUsView() {
   ************************************/
 
   /**
-   * Takes in the value change event and sets the value based on the id
-   * If value is empty then sets error message for element the event occured
-   * Passes the id and value of the input into a function to be handled
+   * Passes the id and value of the input into helper functions to be handled
    * @param {Event} value change event from the message textarea
    */
   function handleInput(event) {
     const { id, value } = event.target;
+    setData(id, value)
+    handleEnteredInput(id, value);
+  }
+
+  /**
+   * Takes in the event value and id and sets the value based on the id
+   * If value is empty then sets error message for element the event occured
+   * @param {String} id
+   * @param {String} value
+   */
+  function setData(id, value) {
     if (value.length > 0) {
       setFormData({...formData, [id] : {value : value, error: ''}});
     }
     else {
       setFormData({...formData, [id] : {value : value, error: `${ERROR_MESSAGE} ${id}`}});
     }
-    handleEnteredInput(id, value);
   }
 
   /**
