@@ -1,22 +1,22 @@
 import React from 'react';
 import Toolbar from '../Toolbar';
 import { useUser } from '../../../contexts/UserContext';
-import { renderWithRouter } from 'test-utils';
+import { renderWithRouter, fireEvent, act } from 'test-utils';
 
 //  TODO: v-2
 // jest.mock('../../../contexts/UserContext');
 // const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
 
-describe('Toolbar Component Tests', function() {
+describe('Toolbar Tests', function() {
   function setup(useUserValue = [null, null]) {
     // TODO: v-2 useUser.mockReturnValue(useUserValue);
-    const { queryAllByRole, queryByText } = renderWithRouter(
+    const { queryAllByRole, queryByText, queryByLabelText, getByTestId } = renderWithRouter(
       // TODO: v-2 <UserProvider>
       <Toolbar />
       //  </UserProvider>
     );
 
-    return { queryAllByRole, queryByText };
+    return { queryAllByRole, queryByText, queryByLabelText, getByTestId };
   }
 
   test('should show navigation links', () => {
@@ -54,5 +54,23 @@ describe('Toolbar Component Tests', function() {
     expect(queryByText('Posts')).toBeInTheDocument();
     expect(queryByText('Partners')).toBeInTheDocument();
     expect(queryByText('Sign Up')).not.toBeInTheDocument();
+  });
+
+  test('Toolbar resized to width over medium screen breakpoint; Mobile Navigation Menu Closed', () => {
+    const { queryByLabelText, getByTestId } = setup();
+    window.innerWidth = 950;
+    window.dispatchEvent(new Event('resize'));
+    queryByLabelText('hamburger')
+
+    fireEvent.click(queryByLabelText('hamburger'));
+
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeTruthy();
+
+    act(() => {
+      window.innerWidth = 1000;
+      window.dispatchEvent(new Event('resize'));
+    });
+
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
   });
 });

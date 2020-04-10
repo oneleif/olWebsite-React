@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, NavLink, withRouter } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
@@ -15,14 +15,47 @@ function Toolbar() {
   const [classes, setClasses] = useState(DEFAULT_CLASSES);
 
   /************************************
+   * Hooks
+   ************************************/
+
+  /**
+   * Handles opening/closing of mobile navigation toolbar
+   * @returns {void}
+   * @callback
+   */
+  const handleToggle = useCallback(() => {
+    //if closing (open == true) then resetting classNames
+    isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
+    setIsOpen(!isOpen);
+  }, [isOpen]);
+
+  /**
+   * Callback used by resize eventListener to close mobile nav bar in desktop view
+   * @returns {void}
+   * @callback
+   */ 
+  const memoNavCleanUp = useCallback(() => {
+    //if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
+    return (isOpen && window.innerWidth > 960) ? handleToggle() : null;
+  }, [isOpen, handleToggle]);
+
+  useEffect(() =>{
+    //adds event listener for window resizing
+    window.addEventListener('resize', memoNavCleanUp);
+    return () => {
+      //removes the event listener whenever component unmounted
+      window.removeEventListener('resize', memoNavCleanUp);
+    };
+  }, [memoNavCleanUp]);
+
+  /************************************
    * Functions
    ************************************/
 
-  function handleToggle() {
-    isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
-    setIsOpen(!isOpen);
-  }
-
+  /**
+   * Applys open rule to className to add open attributes to parts of navbar
+   * @returns {void}
+   */ 
   function generateOpenClasses() {
     setClasses(
       DEFAULT_CLASSES.map(className => {
@@ -39,15 +72,15 @@ function Toolbar() {
     <header>
       <nav className='navbar'>
         <ul className='nav-links'>
-          <span className='icons'>
+          <div className='icons'>
             <Link to='/'>
               <img src={homeLogo}  alt='oneleif logo' />
             </Link>
-            <FaBars className='toggle' onClick={handleToggle} />
-          </span>
+            <FaBars aria-label='hamburger' className='toggle' onClick={handleToggle} />
+          </div>
 
           {/* Main links  */}
-          <span className={classes[0]}>
+          <div data-testid='nav' className={classes[0]}>
             <li>
               <NavLink to='/contact-us' activeClassName='active-link'>
                 Contact Us
@@ -63,10 +96,10 @@ function Toolbar() {
                 Meet the Team
               </NavLink>
             </li>
-          </span>
+          </div>
 
           {/* TODO: v-2 User links */}
-          {/* <span className={classes[1]}>
+          {/* <div className={classes[1]}>
             <li>
               <NavLink to='/login' activeClassName='active-link'>
                 Login
@@ -77,7 +110,7 @@ function Toolbar() {
                 Signup
               </NavLink>
             </li>
-          </span> */}
+          </div> */}
         </ul>
       </nav>
     </header>
