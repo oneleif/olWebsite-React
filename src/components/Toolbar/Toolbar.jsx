@@ -31,8 +31,8 @@ function Toolbar() {
     );
   }
 
-  const closeNav = () =>{ 
-    return isOpen? handleToggle: null; 
+  function closeNav() {
+    return isOpen ? handleToggle() : null;
   }
 
   /************************************
