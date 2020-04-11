@@ -23,7 +23,7 @@ export default function OlWebsiteApp() {
           <ScrollToTop>
             <div className='app-body'>
               <Switch>
-                <Route exact path='/contact-us' component={ContactUsView} />
+                <Route exact path='/contact' component={ContactUsView} />
                 <Route exact path='/' component={LandingView} />
                 <Route component={PageNotFoundView} />
               </Switch>

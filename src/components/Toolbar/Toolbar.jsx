@@ -41,7 +41,7 @@ function Toolbar() {
         <ul className='nav-links'>
           <span className='icons'>
             <Link to='/'>
-              <img src={homeLogo}  alt='oneleif logo' />
+              <img src={homeLogo} alt='oneleif logo' />
             </Link>
             <FaBars className='toggle' onClick={handleToggle} />
           </span>
@@ -49,17 +49,17 @@ function Toolbar() {
           {/* Main links  */}
           <span className={classes[0]}>
             <li>
-              <NavLink to='/contact-us' activeClassName='active-link'>
+              <NavLink to='/contact' activeClassName='active-link'>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/active-projects' activeClassName='active-link'>
+              <NavLink to='/projects' activeClassName='active-link'>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/meet-the-team' activeClassName='active-link'>
+              <NavLink to='/team' activeClassName='active-link'>
                 Meet the Team
               </NavLink>
             </li>
