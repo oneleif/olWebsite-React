@@ -30,10 +30,9 @@ function Toolbar() {
       })
     );
   }
-  function closeNav(){
-    if(isOpen){
-      handleToggle();
-    }
+
+  const closeNav = () =>{ 
+    return isOpen? handleToggle: null; 
   }
 
   /************************************
