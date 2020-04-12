@@ -61,7 +61,6 @@ describe('Toolbar Tests', function() {
     const { queryByLabelText, getByTestId } = setup();
     window.innerWidth = MEDIUM_BREAKPOINT - 10;
     window.dispatchEvent(new Event('resize'));
-    queryByLabelText('hamburger')
 
     fireEvent.click(queryByLabelText('hamburger'));
 
@@ -71,6 +70,27 @@ describe('Toolbar Tests', function() {
       window.innerWidth = MEDIUM_BREAKPOINT + 10;
       window.dispatchEvent(new Event('resize'));
     });
+
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
+  });
+
+  test('Trying to click a link with navbar closed', () => {
+    const { getByTestId, queryByText } = setup();
+    
+    fireEvent.click(queryByText('Contact Us'));
+    fireEvent.click(queryByText('Active Projects'));
+    fireEvent.click(queryByText('Meet the Team'));
+
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
+  });
+
+  test('Opening navbar and clicking one of the links', () => {
+    const { queryByLabelText, getByTestId, queryByText } = setup();
+    
+    fireEvent.click(queryByLabelText('hamburger'));
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeTruthy();
+
+    fireEvent.click(queryByText('Contact Us'));
 
     expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
   });

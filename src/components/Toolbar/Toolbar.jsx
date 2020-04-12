@@ -44,6 +44,7 @@ function Toolbar() {
     return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
   }, [isOpen, handleToggle]);
 
+
   useEffect(() =>{
     //adds event listener for window resizing
     window.addEventListener('resize', memoNavCleanUp);
@@ -52,6 +53,7 @@ function Toolbar() {
       window.removeEventListener('resize', memoNavCleanUp);
     };
   }, [memoNavCleanUp]);
+
 
   /************************************
    * Functions
@@ -67,11 +69,15 @@ function Toolbar() {
         return `${className} open`;
       })
     );
-  }
+  };
 
+  /**
+   * Function to make sure handle toggle is called only if navbar is open when clicking a link.
+   * @returns {void}
+   */ 
   function closeNav() {
     return isOpen ? handleToggle() : null;
-  }
+  };
 
   /************************************
    * Render
