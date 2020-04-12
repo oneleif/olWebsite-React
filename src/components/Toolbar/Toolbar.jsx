@@ -79,6 +79,10 @@ function Toolbar() {
     return isOpen ? handleToggle() : null;
   };
 
+  function closeNav() {
+    return isOpen ? handleToggle() : null;
+  }
+
   /************************************
    * Render
    ************************************/
