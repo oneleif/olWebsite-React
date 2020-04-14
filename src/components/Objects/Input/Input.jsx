@@ -14,11 +14,9 @@ export default function Input({
 
   return (
     <label className={className ? `${className}-input-container` : 'input-container'}>
-        <div className='label-text-container'>
-          <h6>{label}</h6>
-          {errorMessage && <span>{errorMessage}</span>}
-        </div>
-        <input {...rest} aria-label={`${label}-input`} type={type} onChange={onValueChange}/>
+        <h6>{label}</h6>
+        <input className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-input`} type={type} onChange={onValueChange}/>
+        {errorMessage && <span>{errorMessage}</span>}
     </label>
   );
 };

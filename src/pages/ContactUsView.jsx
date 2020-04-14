@@ -10,6 +10,7 @@ import TextArea from '../components/Objects/TextArea/TextArea';
    ************************************/
 
   const TARGET_EMAIL = 'mailto:oneleifdev@gmail.com';
+  const ERROR_MESSAGE = 'Please enter a';
 
 export default function ContactUsView() {
   /************************************
@@ -17,21 +18,35 @@ export default function ContactUsView() {
   ************************************/
 
   const [mailTo, setMailTo] = useState('');
-  const [formData, setFormData] = useState({message: '', subject: ''});
+  const [formData, setFormData] = useState({message: {value: '', error: ''}, subject: {value: '', error: ''}});
 
   /************************************
   * Private Methods
   ************************************/
 
   /**
-   * Takes in the value change event and sets the value based on the id
-   * Passes the id and value of the input into a function to be handled
+   * Passes the id and value of the input into helper functions to be handled
    * @param {Event} value change event from the message textarea
    */
   function handleInput(event) {
     const { id, value } = event.target;
-    setFormData({...formData, [id] : value});
+    setData(id, value)
     handleEnteredInput(id, value);
+  }
+
+  /**
+   * Takes in the event value and id and sets the value based on the id
+   * If value is empty then sets error message for element the event occured
+   * @param {String} id
+   * @param {String} value
+   */
+  function setData(id, value) {
+    if (value.length > 0) {
+      setFormData({...formData, [id] : {value : value, error: ''}});
+    }
+    else {
+      setFormData({...formData, [id] : {value : value, error: `${ERROR_MESSAGE} ${id}`}});
+    }
   }
 
   /**
@@ -40,15 +55,16 @@ export default function ContactUsView() {
    * @param {String} value
    */
   function handleEnteredInput(id, value) {
+    // handleErrorMessage(event);
+
     //if value was entered an cleared then reset mailto
     if (value === '') {
       setMailTo('');
-      //TODO: Will need to set error message here based on input ID
       return;
     }
     
     //if event comes from message then input will need to be in message param
-    (id === 'message') ? parseAndApplyEmailInput(formData.subject, value) : parseAndApplyEmailInput(value, formData.message);
+    (id === 'message') ? parseAndApplyEmailInput(formData.subject.value, value) : parseAndApplyEmailInput(value, formData.message.value);
   }
 
   /**
@@ -89,9 +105,9 @@ export default function ContactUsView() {
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
-          <Input id='subject' label='Subject' placeholder='Enter the subject...' onValueChange={handleInput}/>
-          <TextArea id='message' label='Message' placeholder='Write your message here' onValueChange={handleInput}/>
-          <a aria-label='send' className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
+          <Input id='subject' label='Subject' placeholder='Enter the subject...' errorMessage={formData.subject.error} onValueChange={handleInput}/>
+          <TextArea id='message' label='Message' placeholder='Write your message here' errorMessage={formData.message.error} onValueChange={handleInput}/>
+          <a aria-label='send' tabIndex={mailTo.length === 0 ? -1 : 0} className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
             <span>Send</span>
           </a>
         </div>
