@@ -27,15 +27,12 @@ describe('Input Tests', () => {
         <label
           class="input-container"
         >
-          <div
-            class="label-text-container"
-          >
-            <h6>
-              ${LABEL}
-            </h6>
-          </div>
+          <h6>
+            ${LABEL}
+          </h6>
           <input
             aria-label="${LABEL}-input"
+            class=""
             type="text"
           />
         </label>
@@ -51,15 +48,12 @@ describe('Input Tests', () => {
         <label
           class="${CLASS_NAME}-input-container"
         >
-          <div
-            class="label-text-container"
-          >
-            <h6>
-              ${LABEL}
-            </h6>
-          </div>
+          <h6>
+            ${LABEL}
+          </h6>
           <input
             aria-label="${LABEL}-input"
+            class=""
             type="text"
           />
         </label>
