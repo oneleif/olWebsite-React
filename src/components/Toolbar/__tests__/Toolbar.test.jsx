@@ -61,7 +61,6 @@ describe('Toolbar Tests', function() {
     const { queryByLabelText, getByTestId } = setup();
     window.innerWidth = MEDIUM_BREAKPOINT - 10;
     window.dispatchEvent(new Event('resize'));
-    queryByLabelText('hamburger')
 
     fireEvent.click(queryByLabelText('hamburger'));
 
