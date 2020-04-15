@@ -6,10 +6,11 @@ import TextArea from '../TextArea';
 const LABEL = 'Label';
 const CLASS_NAME = 'class-name';
 const TEST_VALUE = 'test';
+const ERROR_MESSAGE = 'Error';
 
 describe('Text Area Tests', () => {
-  function setUp() {
-    const { queryByText } = render(<TextArea label={LABEL} onValueChange={() => {}} />);
+  function setUp(errorMessage) {
+    const { queryByText } = render(<TextArea label={LABEL} errorMessage={errorMessage} onValueChange={() => {}} />);
     return { queryByText };
   }
 
@@ -26,15 +27,12 @@ describe('Text Area Tests', () => {
         <label
           class="textarea-container"
         >
-          <div
-            class="label-text-container"
-          >
-            <h6>
-              ${LABEL}
-            </h6>
-          </div>
+          <h6>
+            ${LABEL}
+          </h6>
           <textarea
             aria-label="${LABEL}-textarea"
+            class=""
           />
         </label>
       </div>
@@ -49,15 +47,12 @@ describe('Text Area Tests', () => {
         <label
           class="${CLASS_NAME}-textarea-container"
         >
-          <div
-            class="label-text-container"
-          >
-            <h6>
-              ${LABEL}
-            </h6>
-          </div>
+          <h6>
+            ${LABEL}
+          </h6>
           <textarea
             aria-label="${LABEL}-textarea"
+            class=""
           />
         </label>
       </div>
@@ -72,5 +67,10 @@ describe('Text Area Tests', () => {
     fireEvent.change(input, { target: { value: TEST_VALUE } });
 
     expect(onValueChange).toBeCalledTimes(1);
+  });
+
+  test('Error message passed in, message should be displayed', () => {
+    const { queryByText } = setUp(ERROR_MESSAGE);
+    expect(queryByText(ERROR_MESSAGE)).toBeTruthy();
   });
 });
