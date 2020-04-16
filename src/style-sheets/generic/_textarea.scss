@@ -23,9 +23,11 @@
         border-radius: 5px;
         height: 189px;
         padding-left: 3.5%;
-        padding-top: 1%;
+        padding-top: 3%;
         resize: none;
         font-size: 1.2rem;
+        font-family: inherit;
+        font-style: inherit;
 
         &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
             font-size: 1.2rem;
