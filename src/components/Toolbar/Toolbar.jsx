@@ -98,17 +98,17 @@ function Toolbar() {
           {/* Main links  */}
           <div data-testid='nav' className={classes[0]}>
             <li>
-              <NavLink to='/contact-us' activeClassName='active-link' onClick={closeNav}>
+              <NavLink to='/contact' activeClassName='active-link' onClick={closeNav}>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/active-projects' activeClassName='active-link' onClick={closeNav}>
+              <NavLink to='/projects' activeClassName='active-link' onClick={closeNav}>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/meet-the-team' activeClassName='active-link' onClick={closeNav}>
+              <NavLink to='/team' activeClassName='active-link' onClick={closeNav}>
                 Meet the Team
               </NavLink>
             </li>
