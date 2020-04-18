@@ -74,16 +74,6 @@ describe('Toolbar Tests', function() {
     expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
   });
 
-  test('Trying to click a link with navbar closed', () => {
-    const { getByTestId, queryByText } = setup();
-    
-    fireEvent.click(queryByText('Contact Us'));
-    fireEvent.click(queryByText('Active Projects'));
-    fireEvent.click(queryByText('Meet the Team'));
-
-    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
-  });
-
   test('Opening navbar and clicking one of the links', () => {
     const { queryByLabelText, getByTestId, queryByText } = setup();
     
