@@ -43,7 +43,7 @@ function Toolbar() {
             <Link to='/'>
               <img src={homeLogo} alt='oneleif logo' />
             </Link>
-            <FaBars size={32} className='toggle' onClick={handleToggle} />
+            <FaBars size={24} className='toggle' onClick={handleToggle} />
           </span>
 
           {/* Main links  */}
