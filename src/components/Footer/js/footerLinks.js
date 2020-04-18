@@ -49,17 +49,17 @@ const footerLinks = [
     links: [
       {
         label: 'Team',
-        path: '/meet-the-team',
+        path: '/team',
         internal: true
       },
       {
         label: 'About',
-        path: '/about-us',
+        path: '/about',
         internal: true
       },
       {
         label: 'Contact Us',
-        path: '/contact-us',
+        path: '/contact',
         internal: true
       }
     ]
