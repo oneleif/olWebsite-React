@@ -73,7 +73,7 @@ function Toolbar() {
 
   /**
    * Function to make sure handle toggle is called only if navbar is open when clicking a link.
-   * @returns {void}
+   * @returns {(Function|null)}
    */ 
   function closeNav() {
     return isOpen ? handleToggle() : null;
