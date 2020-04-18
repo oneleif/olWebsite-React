@@ -21,8 +21,23 @@ div.social-media-icon-module {
 @include medium('down') {
     /* For mobile: */
     div.social-media-icon-module {
-        width: 244px;
+        width: 163px;
         margin-block-end: 1.5em;
-        margin-right: -16px;
+        margin-right: -25px;;
+
+        & svg {
+            margin-right: 10%;
+        }
+    }
+}
+
+@include small('down') {
+    /* For mobile: */
+    div.social-media-icon-module {
+        width: 255px;
+
+        & svg {
+            margin-right: 14%;
+        }
     }
 }
