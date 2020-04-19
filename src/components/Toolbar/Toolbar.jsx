@@ -4,9 +4,9 @@ import { FaBars } from 'react-icons/fa';
 
 import homeLogo from '../../assets/homeLogo.png';
 
-/************************************
- * Constants
- ************************************/
+  /************************************
+   * Constants
+   ************************************/
 
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
 const MEDIUM_BREAKPOINT = 960;
@@ -38,7 +38,7 @@ function Toolbar() {
    * Callback used by resize eventListener to close mobile nav bar in desktop view
    * @returns {void}
    * @callback
-   */
+   */ 
   const memoNavCleanUp = useCallback(() => {
     //if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
     return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
@@ -53,6 +53,7 @@ function Toolbar() {
     };
   }, [memoNavCleanUp]);
 
+
   /************************************
    * Functions
    ************************************/
@@ -60,7 +61,7 @@ function Toolbar() {
   /**
    * Applies open rule to className to add open attributes to parts of navbar
    * @returns {void}
-   */
+   */ 
   function generateOpenClasses() {
     setClasses(
       DEFAULT_CLASSES.map(className => {
@@ -72,10 +73,11 @@ function Toolbar() {
   /**
    * Function to make sure handle toggle is called only if navbar is open when clicking a link.
    * @returns {(Function|null)}
-   */
+   */ 
   function closeNav() {
     return isOpen ? handleToggle() : null;
   };
+
 
   /************************************
    * Render
@@ -87,7 +89,7 @@ function Toolbar() {
         <ul className='nav-links'>
           <div className='icons'>
             <Link to='/'>
-              <img src={homeLogo} alt='oneleif logo' onClick={closeNav} />
+              <img src={homeLogo}  alt='oneleif logo' onClick={closeNav}/>
             </Link>
             <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
           </div>
