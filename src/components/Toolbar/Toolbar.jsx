@@ -44,8 +44,7 @@ function Toolbar() {
     return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
   }, [isOpen, handleToggle]);
 
-
-  useEffect(() =>{
+  useEffect(() => {
     //adds event listener for window resizing
     window.addEventListener('resize', memoNavCleanUp);
     return () => {
@@ -60,7 +59,7 @@ function Toolbar() {
    ************************************/
 
   /**
-   * Applys open rule to className to add open attributes to parts of navbar
+   * Applies open rule to className to add open attributes to parts of navbar
    * @returns {void}
    */ 
   function generateOpenClasses() {
@@ -92,7 +91,7 @@ function Toolbar() {
             <Link to='/'>
               <img src={homeLogo}  alt='oneleif logo' onClick={closeNav}/>
             </Link>
-            <FaBars aria-label='hamburger' className='toggle' onClick={handleToggle} />
+            <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
           </div>
 
           {/* Main links  */}
