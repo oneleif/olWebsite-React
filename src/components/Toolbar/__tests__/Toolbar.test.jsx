@@ -73,4 +73,15 @@ describe('Toolbar Tests', function() {
 
     expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
   });
+
+  test('Opening navbar and clicking one of the links', () => {
+    const { queryByLabelText, getByTestId, queryByText } = setup();
+    
+    fireEvent.click(queryByLabelText('hamburger'));
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeTruthy();
+
+    fireEvent.click(queryByText('Contact Us'));
+
+    expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
+  });
 });

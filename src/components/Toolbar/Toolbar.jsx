@@ -53,6 +53,7 @@ function Toolbar() {
     };
   }, [memoNavCleanUp]);
 
+
   /************************************
    * Functions
    ************************************/
@@ -67,7 +68,16 @@ function Toolbar() {
         return `${className} open`;
       })
     );
-  }
+  };
+
+  /**
+   * Function to make sure handle toggle is called only if navbar is open when clicking a link.
+   * @returns {(Function|null)}
+   */ 
+  function closeNav() {
+    return isOpen ? handleToggle() : null;
+  };
+
 
   /************************************
    * Render
@@ -79,7 +89,7 @@ function Toolbar() {
         <ul className='nav-links'>
           <div className='icons'>
             <Link to='/'>
-              <img src={homeLogo} alt='oneleif logo' />
+              <img src={homeLogo}  alt='oneleif logo' onClick={closeNav}/>
             </Link>
             <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
           </div>
@@ -87,17 +97,17 @@ function Toolbar() {
           {/* Main links  */}
           <div data-testid='nav' className={classes[0]}>
             <li>
-              <NavLink to='/contact' activeClassName='active-link'>
+              <NavLink to='/contact' activeClassName='active-link' onClick={closeNav}>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/projects' activeClassName='active-link'>
+              <NavLink to='/projects' activeClassName='active-link' onClick={closeNav}>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/team' activeClassName='active-link'>
+              <NavLink to='/team' activeClassName='active-link' onClick={closeNav}>
                 Meet the Team
               </NavLink>
             </li>
