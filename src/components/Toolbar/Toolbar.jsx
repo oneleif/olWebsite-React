@@ -3,6 +3,10 @@ import { Link, NavLink, withRouter } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 
 import homeLogo from '../../assets/homeLogo.png';
+import mobileHomeLogo from "../../assets/justoneleif_transparent.png";
+import {useMediaQuery} from "react-responsive";
+
+
 
   /************************************
    * Constants
@@ -11,13 +15,16 @@ import homeLogo from '../../assets/homeLogo.png';
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
 const MEDIUM_BREAKPOINT = 960;
 
+
 function Toolbar() {
+  
   /************************************
    * State
    ************************************/
 
   const [isOpen, setIsOpen] = useState(false);
   const [classes, setClasses] = useState(DEFAULT_CLASSES);
+  const isMobile = useMediaQuery({query: '(max-width: 960px)'})
 
   /************************************
    * Hooks
@@ -89,7 +96,7 @@ function Toolbar() {
         <ul className='nav-links'>
           <div className='icons'>
             <Link to='/'>
-              <img src={homeLogo}  alt='oneleif logo' onClick={closeNav}/>
+              <img className={isMobile ? "mobilelogo" : "homelogo"} src={isMobile ? mobileHomeLogo : homeLogo}  alt='oneleif logo' onClick={closeNav}/>
             </Link>
             <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
           </div>
