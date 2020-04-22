@@ -45,9 +45,6 @@
 
       & img {
         width: 148px;
-        @include medium("down"){
-          width: 20px;
-        }
       }
 
       & .toggle {
@@ -100,9 +97,13 @@
 
       & .icons {
         width: 95%;
-        padding: 10px 5% 10px 5%;
+        padding: 10px 5%;
         align-items: center;
         justify-content: space-between;
+
+        & img {
+          width: 30px;
+        }
 
         & .toggle {
           color: $olNavLink;
