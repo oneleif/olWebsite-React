@@ -24,7 +24,7 @@ function Toolbar() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [classes, setClasses] = useState(DEFAULT_CLASSES);
-  const isMobile = useMediaQuery({query: '(max-width: 960px)'})
+  const isMobile = useMediaQuery({query: `(max-width: ${MEDIUM_BREAKPOINT}px)`})
 
   /************************************
    * Hooks
