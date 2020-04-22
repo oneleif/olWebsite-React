@@ -21,10 +21,6 @@
 
       list-style-type: none;
 
-      & li:hover {
-        text-decoration-line: underline;
-      }
-
       & a {
         color: $olNavLink;
         font-family: $olAssistantFont;

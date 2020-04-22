@@ -12,16 +12,16 @@
   background-color: $olLTAccent;
   color: $white;
   font-family: $olBaseFont;
-}
 
-.primary:hover {
-  background-color: #259333;
-}
+  &:hover {
+    background-color: $olLTPrimaryBtnHover;
+  }
 
-.primary:active {
-  background-color: #f4fbf5;
-  color: #43a84f;
-  border-radius: 4px;
+  &:active {
+    background-color: $olLTPrimaryBtnClicked;
+    color: $olLTPrimaryBtnTxtClicked;
+    border-radius: 4px;
+  }
 }
 
 .disabled {

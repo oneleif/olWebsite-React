@@ -8,10 +8,10 @@
   font-family: $olBaseFont;
   text-decoration: none;
   font-weight: bold;
-}
 
-.copy-link:hover {
-  text-decoration-line: underline;
+  &:hover {
+    text-decoration-line: underline;
+  }
 }
 
 .copy-icon {
