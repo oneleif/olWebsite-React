@@ -11,7 +11,6 @@ const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
 const MEDIUM_BREAKPOINT = 960;
 
 function Toolbar() {
-  
   /************************************
    * State
    ************************************/

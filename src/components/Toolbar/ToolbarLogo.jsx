@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link,  withRouter } from 'react-router-dom';
 
-import homeLogo from '../../assets/homeLogo.png';
-import mobileHomeLogo from "../../assets/justoneleif_transparent.png";
+import DesktopLogo from '../../assets/homeLogo.png';
+import MobileLogo from "../../assets/justoneleif_transparent.png";
 
 function ToolbarLogo({ closeNavigation }) {
   /************************************
@@ -10,9 +10,9 @@ function ToolbarLogo({ closeNavigation }) {
    ************************************/
 
   return (
-    <Link to='/'>
-        <img className='desktop-logo' src={homeLogo}  alt='oneleif logo' onClick={closeNavigation}/>
-        <img className='mobile-logo' src={mobileHomeLogo}  alt='oneleif logo' onClick={closeNavigation}/>
+    <Link to='/' onClick={closeNavigation}>
+      <img className='desktop-logo' src={DesktopLogo}  alt='oneleif logo' />
+      <img className='mobile-logo' src={MobileLogo}  alt='oneleif logo'/>
     </Link>
   );
 }
