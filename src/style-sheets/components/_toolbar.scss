@@ -43,10 +43,6 @@
       flex-direction: row;
       align-items: center;
 
-      & img {
-        width: 148px;
-      }
-
       & .toggle {
         display: none;
       }
@@ -100,10 +96,6 @@
         padding: 10px 5%;
         align-items: center;
         justify-content: space-between;
-
-        & img {
-          width: 30px;
-        }
 
         & .toggle {
           color: $olNavLink;
