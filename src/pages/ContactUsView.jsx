@@ -55,8 +55,6 @@ export default function ContactUsView() {
    * @param {String} value
    */
   function handleEnteredInput(id, value) {
-    // handleErrorMessage(event);
-
     //if value was entered an cleared then reset mailto
     if (value === '') {
       setMailTo('');
@@ -65,6 +63,30 @@ export default function ContactUsView() {
     
     //if event comes from message then input will need to be in message param
     (id === 'message') ? parseAndApplyEmailInput(formData.subject.value, value) : parseAndApplyEmailInput(value, formData.message.value);
+  }
+
+  /**
+   * If all required values aren't set then it will prevent link functionality
+   * Will set error message where required
+   * @param {Event} event
+   */
+  function handleSendClicked(event) {
+    //target for href is set so allow link functionality
+    if (mailTo) {
+      return;
+    }
+
+    //prevents event from propogating to link functionality
+    event.preventDefault();  
+    if (formData.subject.value) {
+      setFormData({...formData, message : {value : '', error: `${ERROR_MESSAGE} message`}});
+    }
+    else if (formData.message.value) {
+      setFormData({...formData, subject : {value : '', error: `${ERROR_MESSAGE} subject`}});
+    }
+    else {
+      setFormData({message : {value : '', error: `${ERROR_MESSAGE} message`}, subject : {value : '', error: `${ERROR_MESSAGE} subject`}});
+    }
   }
 
   /**
@@ -107,7 +129,7 @@ export default function ContactUsView() {
         <div className='contact-us-form-container'>
           <Input id='subject' label='Subject' placeholder='Enter the subject...' errorMessage={formData.subject.error} onValueChange={handleInput}/>
           <TextArea id='message' label='Message' placeholder='Write your message here' errorMessage={formData.message.error} onValueChange={handleInput}/>
-          <a aria-label='send' tabIndex={mailTo.length === 0 ? -1 : 0} className={`button ${mailTo.length > 0 ? 'primary' : 'disabled'}`} href={mailTo} target="_top">
+          <a aria-label='send' className='button primary' onClickCapture={handleSendClicked} href={mailTo} target="_top">
             <span>Send</span>
           </a>
         </div>

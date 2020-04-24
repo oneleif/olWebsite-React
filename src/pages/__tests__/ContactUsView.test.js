@@ -74,4 +74,31 @@ describe('Contact Us View Tests', () => {
 
     expect(queryByText(MESSAGE_ERROR)).toBeTruthy();
   });
+
+  test('No values entered with send clicked, all error messages shown', () => {
+    const { queryByText } = setUp();
+
+    fireEvent.click(queryByText(SEND));
+
+    expect(queryByText(SUBJECT_ERROR)).toBeTruthy();
+    expect(queryByText(MESSAGE_ERROR)).toBeTruthy();
+  });
+
+  test('Subject entered and send clicked, error message present', () => {
+    const { queryByLabelText, queryByText } = setUp();
+
+    fireChangeEvent(SUBJECT_INPUT, queryByLabelText);
+    fireEvent.click(queryByText(SEND));
+
+    expect(queryByText(MESSAGE_ERROR)).toBeTruthy();
+  });
+
+  test('Message entered and send clicked, error message present', () => {
+    const { queryByLabelText, queryByText } = setUp();
+
+    fireChangeEvent(MESSAGE_TEXTAREA, queryByLabelText);
+    fireEvent.click(queryByText(SEND));
+
+    expect(queryByText(SUBJECT_ERROR)).toBeTruthy();
+  });
 });
