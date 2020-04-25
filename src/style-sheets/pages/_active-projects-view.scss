@@ -84,9 +84,12 @@
             }
           }
 
-          & p {
-            font-size: 1.15rem;
+          & div {
+            p {
+              font-size: 1.15rem;
+            }
           }
+
           & button {
             align-self: center;
           }
