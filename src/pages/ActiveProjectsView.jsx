@@ -26,5 +26,5 @@ export default function ActiveProjectsView() {
           </div>
         </div>
     </div>
-  )
+  );
 }
