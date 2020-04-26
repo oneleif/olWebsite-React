@@ -3,7 +3,7 @@ import { render } from 'test-utils';
 
 import ActiveProjectsView from '../ActiveProjectsView';
 
-const PAGE_HEADER = 'Active Projects';
+const PAGE_HEADER = 'Projects';
 
 describe('Active projects view tests', () => {
   test('initial render', () => {

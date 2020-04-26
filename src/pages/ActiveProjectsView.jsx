@@ -15,16 +15,16 @@ export default function ActiveProjectsView() {
   return (
     <div className="active-projects-view-container">
       <div className="active-projects-view-body">
-          <div className="active-projects-view-copy-container">
-            <h1>Active Projects</h1>
-            <FeatureContainer image={<ActiveProjectsSVG/>}>
-              <FeatureCopy>
-                Contribute to one of our member-owned projects! Can’t find what your are looking for? Bring in a new project idea or existing project! 
-              </FeatureCopy>
-              <Button handleClick = {() => window.open(SocialMediaConstants.DISCORD_LINK,"_blank")}>Join our Discord!</Button>
-            </FeatureContainer>
-          </div>
+        <div className="active-projects-view-copy-container">
+          <h1>Projects</h1>
+          <FeatureContainer image={<ActiveProjectsSVG />}>
+            <FeatureCopy>
+              Contribute to one of our member-owned projects! Can’t find what you are looking for? Bring in a new project idea or existing project!
+            </FeatureCopy>
+            <Button handleClick={() => window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord!</Button>
+          </FeatureContainer>
         </div>
+      </div>
     </div>
   );
 }
