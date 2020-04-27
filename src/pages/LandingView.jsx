@@ -2,7 +2,6 @@ import React from "react";
 
 import FeatureContainer from "../components/FeatureContainer/FeatureContainer";
 import FeatureCopy from "../components/FeatureContainer/FeatureCopy";
-import LandingTypingEffect from '../components/LandingTypingEffect/LandingTypingEffect';
 import PlaceholderSVG from "../components/Objects/PlaceholderSVG/PlaceholderSVG";
 import Placeholder from '../assets/placeholders/placeholder-lady.png';
 
@@ -27,8 +26,7 @@ export default function LandingView() {
           <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord</Button>
         </FeatureContainer>
         <div className='call-to-action-container'>
-          <h2>oneleif is a community</h2>
-          <LandingTypingEffect />
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?</p>
         </div>
         <FeatureContainer image={<PlaceholderSVG/>}>
           <FeatureCopy header='Community Feature #1'>

@@ -7,17 +7,12 @@
         align-items: center;
 
         & .call-to-action-container {
-            background: rgba($blue100, 0.2);
-            padding: 8% 0;
-            width: 100%;
+            margin: 8% 0;
+            width: 75%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-
-            & h2 {
-                color: $olLTHeader;
-            }
 
             & p {
                 text-align: center;
@@ -25,10 +20,6 @@
                 font-weight: bold;
                 font-size: 3.4em;
                 font-family: $olBaseFont;
-            }
-
-            & .call-to-action-typer {
-                margin-top: 0;
             }
         }
 }

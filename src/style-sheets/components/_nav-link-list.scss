@@ -29,6 +29,10 @@
                 line-height: 25px;
                 text-decoration: none;
                 list-style: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
             }
         }
     }
