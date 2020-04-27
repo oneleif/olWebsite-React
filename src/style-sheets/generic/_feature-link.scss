@@ -1,16 +1,20 @@
 .copy-link {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 
-    color: $olLTAccent;
-    font-size: 1.33rem;
-    font-family: $olBaseFont;
-    text-decoration: none;
-    font-weight: bold;
+  color: $olLTAccent;
+  font-size: 1.33rem;
+  font-family: $olBaseFont;
+  text-decoration: none;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration-line: underline;
+  }
 }
 
 .copy-icon {
-    color: $olLTAccent;
-    margin-left: 5px;
+  color: $olLTAccent;
+  margin-left: 5px;
 }
