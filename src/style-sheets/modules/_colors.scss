@@ -1,11 +1,16 @@
 // Brand Colors
 $olGreen: #296c37;
 $olDarkGreen: #16341c;
-$olErrorMessage: #F83737;
+$olErrorMessage: #f83737;
 
 //Brand Themes
 $olLTPrimary: #ffffff;
 $olLTAccent: #43a850;
+
+// Button Colors
+$olLTPrimaryBtnHover: #259333;
+$olLTPrimaryBtnClicked: #f4fbf5;
+$olLTPrimaryBtnTxtClicked: #43a84f;
 
 $olLTHeader: #262626;
 $olLTCopy: #2b2d31;
@@ -15,6 +20,35 @@ $olLTDisabled: #dadada;
 $olNavLink: #232936;
 $olTLightCopy: #777777;
 $olLTSolidCopy: #2b2d31;
+
+// Palette
+// Greens
+$green100: #9DDDA5;
+$green200: #6CC577;
+$green300: #43A84F;
+$green400: #259333;
+$green500: #10731C;
+
+// Blues
+$blue100: #8CBFC4;
+$blue200: #55959A;
+$blue300: #367D84;
+$blue400: #1E6C73;
+$blue500: #0E535A;
+
+// Oranges
+$orange100: #FFD8B5;
+$orange200: #FEC18B;
+$orange300: #D99456;
+$orange400: #BD7330;
+$orange500: #945115;
+
+// Reds
+$red100: #FFB9B5;
+$red200: #FE918B;
+$red300: #D95D56;
+$red400: #BD3730;
+$red500: #941B15;
 
 // Supporting Colors
 $white: #ffffff;
