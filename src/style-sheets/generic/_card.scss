@@ -1,20 +1,9 @@
 .card-module {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    padding: 16px;
-    text-align: center;
-    background-color: #A4A4A4;
-    width: 19%;
-    margin: 0 0 10px 10px;
+  margin: 10px;
+  min-width: 235px;
+  min-height: 402px;
+
+  background-color: $olLTPrimary;
+  box-shadow: 0px 4px 4px rgba(60, 129, 137, 0.25);
+  border-radius: 4px;
 }
-
-@media screen and (max-width: 1041px) {
-    .card-module {
-      width: 35%;
-    }
-  }
-
-@media screen and (max-width: 652px) {
-    .card-module {
-      width: 70%;
-    }
-  }
