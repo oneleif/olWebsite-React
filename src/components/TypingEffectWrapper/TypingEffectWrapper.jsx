@@ -6,7 +6,13 @@ import ReactTypingEffect from 'react-typing-effect';
 *
 */
 
-export default function TypingEffectWrapper({ prefix, textEffected, speed = '100', eraseDelay = '1500', typingDelay = '500' }) {
+export default function TypingEffectWrapper({ 
+    prefix, 
+    textEffected, 
+    speed = '100', 
+    eraseDelay = '1500', 
+    typingDelay = '500' 
+}) {
   return (
     <h2 className='typing-effect-wrapper'>
       {prefix}
