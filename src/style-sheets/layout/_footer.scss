@@ -9,7 +9,7 @@ footer {
     justify-content: center;
     align-items: center;
 
-    & hr {
+    & hr, .bottom-navigation {
         display: none;
     }
 
@@ -45,10 +45,6 @@ footer {
         & .right-navigation {
             display: none;
         }
-    }
-
-    & .bottom-navigation {
-        display: none;
     }
 }
 
