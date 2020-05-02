@@ -10,21 +10,26 @@ footer {
     align-items: center;
 
     & hr {
-        width: 100%;
-        border-width: 1px;
-        color:rgba(106, 106, 106, 0.8);
+        display: none;
     }
 
     & .footer-nav-module {
-        width: 81.5%;
+        width: 75%;
         margin-bottom: 2%;
         
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
+
+        & .left-navigation {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         & .left-navigation, .right-navigation {
-            width: 50%;
-
             & h4 {
                 color: $olLTHeader;
                 line-height: 37px;
@@ -32,100 +37,102 @@ footer {
                 text-transform: uppercase;
                 font-size: 1.3rem;
                 margin-block-start: 0;
-                margin-block-end: .75em;
+                margin-block-end: 1.5em;
+                text-align: center;
             }
         }
 
         & .right-navigation {
-            min-width: 520px;
-
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
+            display: none;
         }
     }
 
     & .bottom-navigation {
-        width: 82%;
-
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-
-        & div {
-            width: 42%;
-            min-width: 193px;
-
-            & p {
-                color: $olLTHeader;
-                font-size: 0.857em;
-                font-family: $olNotoSansFont;
-                line-height: 16px;
-
-                margin-block-start: 1.5em;
-                margin-block-end: 1.5em;
-            }
-        }
-
-        & ul {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-evenly;
-
-            width: 29%;
-            min-width: 300px;
-
-            & li a {
-                color: $olLTHeader;
-                text-decoration: none;
-                font-family: $olBaseFont;
-                font-weight: 600;
-                line-height: 25px;
-            }
-        }
-    }
-}
-
-@include xlarge('down') {
-    footer .footer-nav-module {
-        width: 94%;
-    }
-}
-
-@include medium('down') {
-    footer .footer-nav-module .right-navigation {
-        min-width: 450px;
+        display: none;
     }
 }
 
 
-@include small('down') {
-    /* For mobile: */
+@include small('up') {
     footer {
-        width: 100%;
+        & hr {
+            display: block;
+
+            width: 100%;
+            border-width: 1px;
+            color:rgba(106, 106, 106, 0.8);
+        }
 
         & .footer-nav-module {
-            flex-direction: column;
-            align-items: center;
-            width: 75%;
-
-            .left-navigation {
-                width: 100%;
-
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                
+            width: 81.5%;
+            margin-bottom: 2%;
+            
+            flex-direction: row;
+    
+            & .left-navigation, .right-navigation {
+                width: 50%;
+                align-items: flex-start;
                 & h4 {
-                    text-align: center;
+                    margin-block-end: .75em;
+                    text-align: left;
+                }
+            }
+    
+            & .right-navigation {
+                min-width: 440px;
+                width: 94%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+        }
+    
+        & .bottom-navigation {
+            width: 90%;
+    
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+    
+            & div {
+                width: 42%;
+                min-width: 193px;
+    
+                & p {
+                    color: $olLTHeader;
+                    font-size: 0.857em;
+                    font-family: $olNotoSansFont;
+                    line-height: 16px;
+    
+                    margin-block-start: 1.5em;
                     margin-block-end: 1.5em;
                 }
             }
-        }
+    
+            & ul {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-evenly;
 
-        & .bottom-navigation, .footer-nav-module .right-navigation, hr  {
-            display: none;
+                min-width: 300px;
+    
+                & li a {
+                    color: $olLTHeader;
+                    text-decoration: none;
+                    font-family: $olBaseFont;
+                    font-weight: 600;
+                    line-height: 25px;
+                }
+            }
         }
     }
 }
 
+@include medium('up') {
+    footer {
+        & .footer-nav-module {
+            width: 91%;
+        }
+    }
+}
