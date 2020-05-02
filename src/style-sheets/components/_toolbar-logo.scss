@@ -1,0 +1,18 @@
+.desktop-logo {
+    width: 148px;
+    display: none;
+}
+
+.mobile-logo {
+    width: 30px;
+}
+
+@include medium('up') {
+    .desktop-logo {
+        display: block;
+    }
+
+    .mobile-logo {
+        display: none;
+    }
+}
