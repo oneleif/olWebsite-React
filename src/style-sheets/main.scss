@@ -7,8 +7,6 @@
 
 // Layout
 @import './layout/app';
-@import './layout/footer';
-@import './layout/toolbar';
 
 // Generic
 @import './generic/authentication-input';
@@ -24,11 +22,14 @@
 @import './components/feature-container';
 @import './components/feature-copy';
 @import './components/filter';
+@import './components/footer';
 @import './components/nav-link-list';
 @import './components/search-box';
 @import './components/social-media-container';
 @import './components/supporters-container';
 @import './components/testimonial-container';
+@import './components/toolbar';
+@import './components/toolbar-logo';
 
 // Pages
 @import './pages/authentication-view';

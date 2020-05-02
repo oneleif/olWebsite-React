@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { NavLink, withRouter } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
+import ToolbarLogo from './ToolbarLogo';
 
-import homeLogo from '../../assets/homeLogo.png';
+  /************************************
+   * Constants
+   ************************************/
 
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
+const MEDIUM_BREAKPOINT = 960;
 
 function Toolbar() {
   /************************************
@@ -15,21 +19,64 @@ function Toolbar() {
   const [classes, setClasses] = useState(DEFAULT_CLASSES);
 
   /************************************
+   * Hooks
+   ************************************/
+
+  /**
+   * Handles opening/closing of mobile navigation toolbar
+   * @returns {void}
+   * @callback
+   */
+  const handleToggle = useCallback(() => {
+    //if closing (open == true) then resetting classNames
+    isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
+    setIsOpen(!isOpen);
+  }, [isOpen]);
+
+  /**
+   * Callback used by resize eventListener to close mobile nav bar in desktop view
+   * @returns {void}
+   * @callback
+   */ 
+  const memoNavCleanUp = useCallback(() => {
+    //if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
+    return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
+  }, [isOpen, handleToggle]);
+
+  useEffect(() => {
+    //adds event listener for window resizing
+    window.addEventListener('resize', memoNavCleanUp);
+    return () => {
+      //removes the event listener whenever component unmounted
+      window.removeEventListener('resize', memoNavCleanUp);
+    };
+  }, [memoNavCleanUp]);
+
+
+  /************************************
    * Functions
    ************************************/
 
-  function handleToggle() {
-    isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
-    setIsOpen(!isOpen);
-  }
-
+  /**
+   * Applies open rule to className to add open attributes to parts of navbar
+   * @returns {void}
+   */ 
   function generateOpenClasses() {
     setClasses(
       DEFAULT_CLASSES.map(className => {
         return `${className} open`;
       })
     );
-  }
+  };
+
+  /**
+   * Function to make sure handle toggle is called only if navbar is open when clicking a link.
+   * @returns {(Function|null)}
+   */ 
+  function closeNav() {
+    return isOpen ? handleToggle() : null;
+  };
+
 
   /************************************
    * Render
@@ -39,34 +86,32 @@ function Toolbar() {
     <header>
       <nav className='navbar'>
         <ul className='nav-links'>
-          <span className='icons'>
-            <Link to='/'>
-              <img src={homeLogo} alt='oneleif logo' />
-            </Link>
-            <FaBars className='toggle' onClick={handleToggle} />
-          </span>
+          <div className='icons'>
+            <ToolbarLogo closeNavigation={closeNav} />
+            <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
+          </div>
 
           {/* Main links  */}
-          <span className={classes[0]}>
+          <div data-testid='nav' className={classes[0]}>
             <li>
-              <NavLink to='/contact' activeClassName='active-link'>
+              <NavLink to='/contact' activeClassName='active-link' onClick={closeNav}>
                 Contact Us
               </NavLink>
             </li>
             <li>
-              <NavLink to='/projects' activeClassName='active-link'>
+              <NavLink to='/projects' activeClassName='active-link' onClick={closeNav}>
                 Active Projects
               </NavLink>
             </li>
             <li>
-              <NavLink to='/team' activeClassName='active-link'>
+              <NavLink to='/team' activeClassName='active-link' onClick={closeNav}>
                 Meet the Team
               </NavLink>
             </li>
-          </span>
+          </div>
 
           {/* TODO: v-2 User links */}
-          {/* <span className={classes[1]}>
+          {/* <div className={classes[1]}>
             <li>
               <NavLink to='/login' activeClassName='active-link'>
                 Login
@@ -77,7 +122,7 @@ function Toolbar() {
                 Signup
               </NavLink>
             </li>
-          </span> */}
+          </div> */}
         </ul>
       </nav>
     </header>
