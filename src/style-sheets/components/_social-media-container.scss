@@ -1,5 +1,6 @@
 div.social-media-icon-module {
-    width: 202px;
+    width: 255px;
+    margin-right: -25px;
 
     display: flex;
     flex-direction: row;
@@ -9,7 +10,7 @@ div.social-media-icon-module {
 
     & svg {
         margin-bottom: 12%;
-        margin-right: 12%;
+        margin-right: 14%;
         cursor: pointer;
 
         & :hover {
@@ -18,11 +19,27 @@ div.social-media-icon-module {
     }
 }
 
-@include medium('down') {
+@include small('up') {
     /* For mobile: */
     div.social-media-icon-module {
-        width: 244px;
+        width: 163px;
         margin-block-end: 1.5em;
-        margin-right: -16px;
+
+        & svg {
+            margin-right: 10%;
+        }
+    }
+}
+
+@include medium('up') {
+    /* For mobile: */
+    div.social-media-icon-module {
+        width: 202px;
+        margin-block-end: 0;
+        margin-right: 0;
+
+        & svg {
+            margin-right: 12%;
+        }
     }
 }
