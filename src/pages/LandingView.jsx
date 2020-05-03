@@ -1,15 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import FeatureContainer from "../components/FeatureContainer/FeatureContainer";
-import FeatureCopy from "../components/FeatureContainer/FeatureCopy";
-import PlaceholderSVG from "../components/Objects/PlaceholderSVG/PlaceholderSVG";
+import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
+import FeatureCopy from '../components/FeatureContainer/FeatureCopy';
+import TypingEffectWrapper from '../components/TypingEffectWrapper/TypingEffectWrapper';
+import PlaceholderSVG from '../components/Objects/PlaceholderSVG/PlaceholderSVG';
 import Placeholder from '../assets/placeholders/placeholder-lady.png';
 
 import Button from '../components/Objects/Button/Button';
 import FeatureLink from '../components/Objects/FeatureLink/FeatureLink';
-import TestimonialContainer from "../components/TestimonialContainer/TestimonialContainer";
-import SupportersContainer from "../components/SupportersContainer/SupportersContainer";
-import SocialMediaConstants from "../constants/social-media-constants";
+import TestimonialContainer from '../components/TestimonialContainer/TestimonialContainer';
+import SupportersContainer from '../components/SupportersContainer/SupportersContainer';
+import SocialMediaConstants from '../constants/social-media-constants';
 
 export default function LandingView() {
   /************************************
@@ -17,16 +18,18 @@ export default function LandingView() {
    ************************************/
 
   return (
-      <div className="landing-view-container">
+      <div className='landing-view-container'>
         <FeatureContainer image={<PlaceholderSVG/>}>
           <FeatureCopy header='Tagline'>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
             sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </FeatureCopy>
-          <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord</Button>
+          <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, '_blank')}>Join our Discord</Button>
         </FeatureContainer>
         <div className='call-to-action-container'>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor?</p>
+          <h2>oneleif is a community</h2>
+          <TypingEffectWrapper prefix='We'
+            textEffected={[' learn together', ' work together', ' grow together', ' create together']} />
         </div>
         <FeatureContainer image={<PlaceholderSVG/>}>
           <FeatureCopy header='Community Feature #1'>
@@ -50,11 +53,11 @@ export default function LandingView() {
           <FeatureLink>Learn More</FeatureLink>
         </FeatureContainer>
         <TestimonialContainer name='NAME' location='Country' image={Placeholder}>
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
           sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
           nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
         </TestimonialContainer>
         <SupportersContainer />
       </div>

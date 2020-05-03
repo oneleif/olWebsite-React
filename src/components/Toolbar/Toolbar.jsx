@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, NavLink, withRouter } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
-
-import homeLogo from '../../assets/homeLogo.png';
+import ToolbarLogo from './ToolbarLogo';
 
   /************************************
    * Constants
@@ -88,9 +87,7 @@ function Toolbar() {
       <nav className='navbar'>
         <ul className='nav-links'>
           <div className='icons'>
-            <Link to='/'>
-              <img src={homeLogo}  alt='oneleif logo' onClick={closeNav}/>
-            </Link>
+            <ToolbarLogo closeNavigation={closeNav} />
             <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
           </div>
 
