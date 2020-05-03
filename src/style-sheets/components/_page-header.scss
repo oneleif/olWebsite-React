@@ -23,7 +23,7 @@
 
     & svg {
         max-width: 600px;
-        width: 94%;
+        width: 100%;
         height: auto;
         margin-block-end: 2em;
         align-self: center;
@@ -32,6 +32,7 @@
     & button {
         width: 161px;
         font-size: 1rem;
+        align-self: center;
     }
 }
 
@@ -44,6 +45,7 @@
         & button {
             width: 189px;
             font-size: 1.25rem;
+            align-self: left;
         }
     }
 }
