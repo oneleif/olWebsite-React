@@ -9,7 +9,7 @@ import PageNotFoundView from './pages/PageNotFoundView';
 import Toolbar from './components/Toolbar/Toolbar';
 import { UserProvider } from './contexts/UserContext';
 import './style-sheets/main.scss';
-import ActiveProjectsView from './pages/ActiveProjectsView';
+import ProjectsView from './pages/ProjectsView';
 
 export default function OlWebsiteApp() {
   /************************************
@@ -26,7 +26,7 @@ export default function OlWebsiteApp() {
               <Switch>
                 <Route exact path='/contact' component={ContactUsView} />
                 <Route exact path='/' component={LandingView} />
-                <Route exact path= '/projects' component={ActiveProjectsView}/>
+                <Route exact path= '/projects' component={ProjectsView}/>
                 <Route component={PageNotFoundView} />
               </Switch>
             </div>

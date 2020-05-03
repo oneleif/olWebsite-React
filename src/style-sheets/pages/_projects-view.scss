@@ -1,16 +1,16 @@
-.active-projects-view-container {
+.projects-view-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    & .active-projects-view-body {
+    & .projects-view-body {
         width: 81.5%;
         display: flex;
         flex-direction: row;
         font-family: $olBaseFont;
         justify-content: space-between;
 
-        & .active-projects-view-image-container {
+        & .projects-view-image-container {
             margin: 5% 0;
             padding-top: 2%;
             width: 50%;
@@ -18,7 +18,7 @@
             flex-direction: column;
         }
 
-        & .active-projects-view-copy-container {
+        & .projects-view-copy-container {
             margin: 8% 0;
             display: flex;
             flex-direction: column;
@@ -57,13 +57,13 @@
 }
 
 @include small('down') {
-    .active-projects-view-container {
-        & .active-projects-view-body {
+    .projects-view-container {
+        & .projects-view-body {
             margin: 8% 0;
             flex-direction: column;
             align-items: center;
 
-            & .active-projects-view-copy-container {
+            & .projects-view-copy-container {
                 display: flex;
                 flex-direction: column;
 

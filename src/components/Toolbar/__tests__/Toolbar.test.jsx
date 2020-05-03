@@ -23,10 +23,10 @@ describe('Toolbar Tests', function() {
   test('should show navigation links', () => {
     const { queryAllByRole, queryByText } = setup();
 
-    // 4 links (home, contact us, active projects, meet the team)
+    // 4 links (home, contact us, projects, meet the team)
     expect(queryAllByRole('link').length).toBe(4);
     expect(queryByText('Contact Us')).toBeInTheDocument();
-    expect(queryByText('Active Projects')).toBeInTheDocument();
+    expect(queryByText('Projects')).toBeInTheDocument();
     expect(queryByText('Meet the Team')).toBeInTheDocument();
   });
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ActiveProjectsSVG() {
+export default function ProjectsSVG() {
     /************************************
    * Render
    ************************************/

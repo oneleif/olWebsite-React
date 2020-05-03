@@ -1,13 +1,13 @@
 import React from 'react';
 import { render } from 'test-utils';
 
-import ActiveProjectsView from '../ActiveProjectsView';
+import ProjectsView from '../ProjectsView';
 
 const PAGE_HEADER = 'Projects';
 
-describe('Active projects view tests', () => {
+describe('Projects view tests', () => {
   test('initial render', () => {
-    const { queryByText } = render(<ActiveProjectsView />);
+    const { queryByText } = render(<ProjectsView />);
     expect(queryByText(PAGE_HEADER)).toBeTruthy();
   });
 });
