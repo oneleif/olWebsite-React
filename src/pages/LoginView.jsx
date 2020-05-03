@@ -24,8 +24,9 @@ function LoginView(props) {
    * Helper Functions
    ************************************/
 
-  /* Handler for log in button clicked, if valid inputs logs in user
-   */
+  /**
+   * Handler for log in button clicked, if valid inputs logs in user
+   */ 
   async function loginClicked() {
     if (validateInput()) {
       const response = await loginUser(email, password);
@@ -38,8 +39,9 @@ function LoginView(props) {
     }
   }
 
-  /* Validates inputs, if invalid then it will display an error message
-   */
+  /**
+  * Validates inputs, if invalid then it will display an error message
+  */ 
   function validateInput() {
     handleEmailValidationResponse(email);
     handlePasswordValidationResponse(password);
@@ -57,18 +59,18 @@ function LoginView(props) {
     handlePasswordValidationResponse(password);
   }
 
-  /* Takes in validation response of email and sets based on success or not
-   *
-   * @param response
+  /**
+   * Takes in validation response of email and sets based on success or not
+   * @param input
    */
   function handleEmailValidationResponse(input) {
     const message = input === '' ? ERROR_EMPTY_EMAIL : null;
     setEmailErrorMessage(message);
   }
 
-  /* Takes in validation response of password and sets based on success or not
-   *
-   * @param response
+  /**
+   * Takes in validation response of password and sets based on success or not
+   * @param input
    */
   function handlePasswordValidationResponse(input) {
     const message = input === '' ? ERROR_EMPTY_PASSWORD : null;
