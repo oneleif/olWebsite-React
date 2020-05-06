@@ -31,7 +31,8 @@ function RegisterView() {
    * Private Functions
    ************************************/
 
- /* Handler for sign up button clicked, if valid inputs registers user
+ /**
+  * Handler for sign up button clicked, if valid inputs registers user
   */
   async function registerClicked() {
     if (validateInput()) {
@@ -46,7 +47,8 @@ function RegisterView() {
     }
   }
 
- /* Validates inputs, if invalid then it will display an error message
+ /**
+  * Validates inputs, if invalid then it will display an error message
   */
   function validateInput() {
     const emailResponse = validateEmail(email);
@@ -78,8 +80,8 @@ function RegisterView() {
     handleReenteredPasswordValidationResponse(response);
   }
 
- /* Takes in validation response of email and sets based on success or not
-  *
+ /** 
+  * Takes in validation response of email and sets based on success or not
   * @param response
   */
   function handleEmailValidationResponse(response) {
@@ -87,8 +89,8 @@ function RegisterView() {
     setEmailErrorMessage(message);
   }
 
- /* Takes in validation response of password and sets based on success or not
-  *
+ /** 
+  * Takes in validation response of password and sets based on success or not
   * @param response
   */
   function handlePasswordValidationResponse(response) {
@@ -96,8 +98,8 @@ function RegisterView() {
     setPasswordErrorMessage(message);
   }
 
- /* Takes in validation response of reentered password and sets based on success or not
-  *
+ /** 
+  * Takes in validation response of reentered password and sets based on success or not
   * @param response
   */
   function handleReenteredPasswordValidationResponse(response) {
