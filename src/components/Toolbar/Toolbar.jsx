@@ -100,7 +100,7 @@ function Toolbar() {
             </li>
             <li>
               <NavLink to='/projects' activeClassName='active-link' onClick={closeNav}>
-                Active Projects
+                Projects
               </NavLink>
             </li>
             <li>

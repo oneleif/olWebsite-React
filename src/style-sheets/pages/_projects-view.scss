@@ -1,0 +1,112 @@
+.projects-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & .projects-view-body {
+        width: 81.5%;
+        display: flex;
+        flex-direction: row;
+        font-family: $olBaseFont;
+        justify-content: space-between;
+
+        & .projects-view-image-container {
+            margin: 5% 0;
+            padding-top: 2%;
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        & .projects-view-copy-container {
+            margin: 8% 0;
+            display: flex;
+            flex-direction: column;
+
+            & h1 {
+                color: $olLTHeader;
+                margin-block-end: -2%;
+                font-family: $olBaseFont;
+            }
+            @include large('down') {
+                h1 {
+                    margin-block-end: 0;
+                }
+            }
+
+            & .feature-container {
+                margin: 0;
+                
+                & div {
+                    width: 100%;
+
+                    & p {
+                        font-size: 1.6rem;
+                        color: $olLTCopy;
+                        margin-block-start: 0;
+                        margin-block-end: 0.5em;
+                    }
+                }
+
+                & button {
+                    margin: 5% 0;
+                }
+            }      
+        }
+    }
+}
+
+@include small('down') {
+    .projects-view-container {
+        & .projects-view-body {
+            margin: 8% 0;
+            flex-direction: column;
+            align-items: center;
+
+            & .projects-view-copy-container {
+                display: flex;
+                flex-direction: column;
+
+                & h1 {
+                    order: -1;
+                    font-size: 1.4rem;
+                }
+
+                & .feature-container {
+                display: flex;
+                flex-direction: column;
+
+                    & .feature-image-container {
+                        width: 100%;
+                        margin: 0;
+                        order: -1;
+
+                        & svg {
+                            margin: 8% 0;
+                            order: 0;
+                            align-self: center;
+                            width: 100%;
+                            height: 188px;
+
+                            rect {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    & div {
+                        & p {
+                            font-size: 1.15rem;
+                        }
+                    }
+
+                    & button {
+                        align-self: center;
+                    }
+                }
+            }
+        }
+    }
+}
