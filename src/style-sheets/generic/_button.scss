@@ -12,6 +12,15 @@
     background-color: $olLTAccent;
     color: $white;
     font-family: $olBaseFont;
+
+    &:hover {
+      background-color: $olLTPrimaryBtnHover;
+    }
+    
+    &:active {
+      background-color: $olLTPrimaryBtnClicked;
+      color: $olLTPrimaryBtnTxtClicked;
+    }
 }
 
 .disabled {
