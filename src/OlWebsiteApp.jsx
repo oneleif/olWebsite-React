@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Footer from './components/Footer/Footer';
 import LandingView from './pages/LandingView';
 import ContactUsView from './pages/ContactUsView';
+import MeetTheTeamView from './pages/MeetTheTeamView';
 import ScrollToTop from './components/ScrollToTop';
 import PageNotFoundView from './pages/PageNotFoundView';
 import Toolbar from './components/Toolbar/Toolbar';
@@ -24,7 +25,8 @@ export default function OlWebsiteApp() {
           <ScrollToTop>
             <div className='app-body'>
               <Switch>
-                <Route exact path='/contact' component={ContactUsView} />
+                <Route path='/contact' component={ContactUsView} />
+                <Route path='/team' component={MeetTheTeamView} />
                 <Route exact path='/' component={LandingView} />
                 <Route exact path= '/projects' component={ProjectsView}/>
                 <Route component={PageNotFoundView} />
