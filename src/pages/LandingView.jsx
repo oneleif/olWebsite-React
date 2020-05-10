@@ -2,7 +2,6 @@ import React from 'react';
 
 import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
 import FeatureCopy from '../components/FeatureContainer/FeatureCopy';
-import TypingEffectWrapper from '../components/TypingEffectWrapper/TypingEffectWrapper';
 import PlaceholderSVG from '../components/Objects/PlaceholderSVG/PlaceholderSVG';
 import Placeholder from '../assets/placeholders/placeholder-lady.png';
 
@@ -11,6 +10,7 @@ import FeatureLink from '../components/Objects/FeatureLink/FeatureLink';
 import TestimonialContainer from '../components/TestimonialContainer/TestimonialContainer';
 import SupportersContainer from '../components/SupportersContainer/SupportersContainer';
 import SocialMediaConstants from '../constants/social-media-constants';
+import CallToAction from '../components/CallToAction/CallToAction';
 
 export default function LandingView() {
   /************************************
@@ -26,11 +26,7 @@ export default function LandingView() {
           </FeatureCopy>
           <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, '_blank')}>Join our Discord</Button>
         </FeatureContainer>
-        <div className='call-to-action-container'>
-          <h2>oneleif is a community</h2>
-          <TypingEffectWrapper prefix='We'
-            textEffected={[' learn together', ' work together', ' grow together', ' create together']} />
-        </div>
+        <CallToAction />
         <FeatureContainer image={<PlaceholderSVG/>}>
           <FeatureCopy header='Community Feature #1'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
