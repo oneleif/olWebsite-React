@@ -26,7 +26,8 @@ export default function LandingView() {
           </FeatureCopy>
           <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, '_blank')}>Join our Discord</Button>
         </FeatureContainer>
-        <CallToAction />
+        <CallToAction title='oneleif is a community' subtitle='We'
+          textArray={[' learn together', ' work together', ' grow together', ' create together']} />
         <FeatureContainer image={<PlaceholderSVG/>}>
           <FeatureCopy header='Community Feature #1'>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, 

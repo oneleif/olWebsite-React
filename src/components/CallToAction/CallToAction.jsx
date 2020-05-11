@@ -5,7 +5,7 @@ import TypingEffectWrapper from '../../components/TypingEffectWrapper/TypingEffe
 import { ReactComponent as WaveTop } from '../../assets/Landing/ol-landing-waves-top.svg';
 import { ReactComponent as WaveBottom } from '../../assets/Landing/ol-landing-waves-bottom.svg';
 
-export default function CallToAction() {
+export default function CallToAction({ title, subtitle, textArray }) {
   /************************************
    * Render
    ************************************/
@@ -14,9 +14,9 @@ export default function CallToAction() {
     <>
       <WaveTop />
       <div className='call-to-action-container'>
-        <h2>oneleif is a community</h2>
-        <TypingEffectWrapper prefix='We'
-            textEffected={[' learn together', ' work together', ' grow together', ' create together']} />
+        <h2>{title}</h2>
+        <TypingEffectWrapper prefix={subtitle}
+            textEffected={textArray} />
       </div>
       <WaveBottom />
     </>
