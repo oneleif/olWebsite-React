@@ -19,7 +19,6 @@
         }
 
         & .projects-view-copy-container {
-            margin: 8% 0;
             display: flex;
             flex-direction: column;
 
@@ -59,7 +58,6 @@
 @include small('down') {
     .projects-view-container {
         & .projects-view-body {
-            margin: 8% 0;
             flex-direction: column;
             align-items: center;
 
