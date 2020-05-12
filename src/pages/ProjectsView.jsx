@@ -6,7 +6,6 @@ import SocialMediaConstants from '../constants/social-media-constants';
 import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
 import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
 
-
 export default function ProjectsView() {
   /************************************
    * Render
@@ -19,7 +18,8 @@ export default function ProjectsView() {
           <h1>Projects</h1>
           <FeatureContainer image={<ProjectsSVG />}>
             <FeatureCopy>
-              Contribute to one of our member-owned projects! Can’t find what you are looking for? Bring in a new project idea or existing project!
+              Contribute to one of our member-owned projects! 
+              Can’t find what you are looking for? Bring in a new project idea or existing project!
             </FeatureCopy>
             <Button handleClick={() => window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord</Button>
           </FeatureContainer>
