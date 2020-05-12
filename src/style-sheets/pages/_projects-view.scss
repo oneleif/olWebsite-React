@@ -3,14 +3,19 @@
     flex-direction: column;
     align-items: center;
 
-    & .projects-view-body {
+    .projects-view-body {
         width: 81.5%;
         display: flex;
         flex-direction: row;
         font-family: $olBaseFont;
         justify-content: space-between;
 
-        & .projects-view-image-container {
+        @include small('down') {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .projects-view-image-container {
             margin: 5% 0;
             padding-top: 2%;
             width: 50%;
@@ -18,68 +23,66 @@
             flex-direction: column;
         }
 
-        & .projects-view-copy-container {
+        .projects-view-copy-container {
             display: flex;
             flex-direction: column;
 
-            & h1 {
+            h1 {
                 color: $olLTHeader;
                 margin-block-end: -2%;
                 font-family: $olBaseFont;
-            }
-            @include large('down') {
-                h1 {
-                    margin-block-end: 0;
-                }
-            }
 
-            & .feature-container {
-                margin: 0;
-                
-                & div {
-                    width: 100%;
-
-                    & p {
-                        font-size: 1.6rem;
-                        color: $olLTCopy;
-                        margin-block-start: 0;
-                        margin-block-end: 0.5em;
-                    }
-                }
-
-                & button {
-                    margin: 5% 0;
-                }
-            }      
-        }
-    }
-}
-
-@include small('down') {
-    .projects-view-container {
-        & .projects-view-body {
-            flex-direction: column;
-            align-items: center;
-
-            & .projects-view-copy-container {
-                display: flex;
-                flex-direction: column;
-
-                & h1 {
+                @include small('down') {
                     order: -1;
                     font-size: 1.4rem;
                 }
 
-                & .feature-container {
-                display: flex;
-                flex-direction: column;
+                @include large('down') {
+                    margin-block-end: 0;
+                }
 
-                    & .feature-image-container {
+            }
+
+            .feature-container {
+                margin: 0;
+
+                @include small('down') {
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                div {
+                    width: 100%;
+
+                    p {
+                        font-size: 1.6rem;
+                        color: $olLTCopy;
+                        margin-block-start: 0;
+                        margin-block-end: 0.5em;
+
+                        @include small('down') {
+                            font-size: 1.15rem;
+                        }
+
+                    }
+                }
+
+                button {
+                    margin: 5% 0;
+
+                    @include small('down') {
+                        align-self: center;
+                    }
+
+                }
+
+                .feature-image-container{
+                    @include small('down') {
                         width: 100%;
                         margin: 0;
                         order: -1;
 
-                        & svg {
+                        svg {
                             margin: 8% 0;
                             order: 0;
                             align-self: center;
@@ -93,18 +96,9 @@
                             }
                         }
                     }
-
-                    & div {
-                        & p {
-                            font-size: 1.15rem;
-                        }
-                    }
-
-                    & button {
-                        align-self: center;
-                    }
                 }
-            }
+
+            }      
         }
     }
 }

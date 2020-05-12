@@ -1,5 +1,5 @@
 .nav-link-list-container {
-    & h5 {
+    h5 {
         color: $olLTHeader;
         line-height: 26px;
         font-weight: bold;
@@ -9,19 +9,19 @@
         margin-block-end: .75em;
     }
 
-    & ul {
+    ul {
         margin-block-start: 0;
         padding-inline-start: 0;
     
 
-        & li {
+        li {
             margin-bottom: 4.1%;
 
             &:last-child {
                 margin-bottom: 0;   
             }
 
-            & a {
+            a {
                 margin-bottom: 3%;
 
                 color: $olLTHeader;

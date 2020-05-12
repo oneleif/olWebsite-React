@@ -5,10 +5,15 @@
   overflow: hidden;
   left: 12.5%;
   width: 75%;
-  height: 45vh;
   min-height: 200px;
   margin: 3% 0;
   box-sizing: border-box;
+
+  height: 45vh;
+  
+  @include xsmall('down'){
+    height: 175px;
+  }
 
   .slide {
     height: 100%;
@@ -31,6 +36,10 @@
   transition: 0.5s;
   transform: translateY(-50%);
   cursor: pointer;
+
+  @include xsmall('down'){
+    display: none;
+  }
 
   &:hover,
   &:focus {
@@ -86,15 +95,5 @@
       border: 1px solid $white;
       box-shadow: 0 0 0 2px Highlight;
     }
-  }
-}
-
-@media (max-width: 415px) {
-  .carousel {
-    height: 175px;
-  }
-
-  .arrow {
-    display: none;
   }
 }

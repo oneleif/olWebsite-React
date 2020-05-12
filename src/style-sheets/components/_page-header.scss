@@ -5,52 +5,7 @@
     font-family: $olBaseFont;
     justify-content: space-between;
 
-    & h1 {
-        color: $olLTHeader;
-        margin-block-end: 0.8em;
-        font-family: $olBaseFont;
-        font-size: 1.35rem;
-    }
-
-    & p {
-        width: 100%;
-        font-size: 1.2rem;
-        color: $olLTCopy;
-        margin-block-start: 0;
-        margin-block-end: 1.5em;
-    }
-
-    & svg {
-        max-width: 600px;
-        width: 100%;
-        height: auto;
-        margin-block-end: 2em;
-        align-self: center;
-    }
-
-    & button {
-        width: 161px;
-        font-size: 1rem;
-        align-self: center;
-    }
-}
-
-@include small('up') {
-    .page-header-container {
-        & h1 {
-            font-size: 2rem;
-        }
-
-        & button {
-            width: 189px;
-            font-size: 1.25rem;
-            align-self: left;
-        }
-    }
-}
-    
-@include medium('up') {
-    .page-header-container {
+    @include medium('up') {
         display: grid;
         grid-template-columns: 2fr 1fr 1fr 2fr;
         grid-template-rows: auto;
@@ -58,25 +13,67 @@
         "header header img img"
         "copy copy img img"
         "button . img img";
+    }
 
-        & h1 {
+    h1 {
+        color: $olLTHeader;
+        margin-block-end: 0.8em;
+        font-family: $olBaseFont;
+        font-size: 1.35rem;
+
+        @include small('up') {
+            font-size: 2rem;
+        }
+
+        @include medium('up') {
             grid-area: header;
             font-size: 3.35rem;
             margin-block-end: 0;
         }
+    }
 
-        & p {
+    p {
+        width: 100%;
+        font-size: 1.2rem;
+        color: $olLTCopy;
+        margin-block-start: 0;
+        margin-block-end: 1.5em;
+
+        @include medium('up') {
             grid-area: copy;
             font-size: 1.86rem;
             margin-block-end: 1em;
         }
+        
+    }
 
-        & svg {
+    svg {
+        max-width: 600px;
+        width: 100%;
+        height: auto;
+        margin-block-end: 2em;
+        align-self: center;
+
+        @include medium('up') {
             grid-area: img;
         }
-        
-        & button {
+
+    }
+
+    button {
+        width: 161px;
+        font-size: 1rem;
+        align-self: center;
+
+        @include small('up') {
+            width: 189px;
+            font-size: 1.25rem;
+            align-self: left;
+        }
+
+        @include medium('up') {
             grid-area: button;
         }
+
     }
 }

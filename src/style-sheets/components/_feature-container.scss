@@ -5,11 +5,11 @@
     display: flex;
     justify-content: space-evenly;
 
-    & div.feature-image-container {
+    div.feature-image-container {
         align-items: center;
     }
 
-    & div {
+    div {
         display: flex;
         flex-direction: column;
         justify-content: center;

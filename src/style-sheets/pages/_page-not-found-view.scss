@@ -5,19 +5,57 @@
   display: flex;
   justify-content: center;
 
-  & .page-not-found-view-body {
+  .page-not-found-view-body {
     width: 85%;
 
     display: flex;
     align-items: center;
     flex-direction: column;
 
-    & svg {
-      width: 272px;
-      height: 196px;
+    @include small() {
+      width: 92%;
     }
 
-    & .page-not-found-view-text-container {
+    @include medium() {
+      width: 83%;
+    }
+
+    @include large() {
+      width: 92%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @include xlarge() {
+      width: 81%;
+    }
+
+    .page-not-found-view-image-container{
+      @include large() {
+        order: 2;
+      }
+    }
+
+    svg {
+      width: 272px;
+      height: 196px;
+
+      @include small() {
+        width: 552px;
+        height: 398px;
+      }
+
+      @include medium() {
+        width: 640px;
+      }
+
+      @include large() {
+        width: 652px;
+      }
+
+    }
+
+    .page-not-found-view-text-container {
       width: 100%;
       margin-top: 5%;
       text-align: center;
@@ -26,14 +64,25 @@
       align-items: center;
       flex-direction: column;
 
-      & p {
-        color: $olTLightCopy;
-        margin: 6px;
-        line-height: 1.3em;
-        font-family: $olBaseFont;
+      @include large() {
+        margin: 0;
+        text-align: left;
+        align-items: flex-start;
       }
 
-      & a.button {
+      p {
+        color: $olTLightCopy;
+        line-height: 1.3em;
+        font-family: $olBaseFont;
+        margin: 6px;
+
+        @include large() {
+          margin: 12px 0;
+        }
+
+      }
+
+      a.button {
         margin: 10px 0;
         font-size: 1.25rem;
         line-height: 1.56rem;
@@ -46,60 +95,6 @@
         height: 49px;
         border-radius: 50px;
       }
-    }
-  }
-
-  @include small() {
-    & .page-not-found-view-body {
-      width: 92%;
-
-      & svg {
-        width: 552px;
-        height: 398px;
-      }
-    }
-  }
-
-  @include medium() {
-    & .page-not-found-view-body {
-      width: 83%;
-
-      & svg {
-        width: 640px;
-      }
-    }
-  }
-
-  @include large() {
-    & .page-not-found-view-body {
-      width: 92%;
-
-      flex-direction: row;
-      justify-content: space-between;
-
-      & .page-not-found-view-image-container {
-        order: 2;
-
-        & svg {
-          width: 652px;
-        }
-      }
-
-      & .page-not-found-view-text-container {
-        margin: 0;
-        text-align: left;
-        align-items: flex-start;
-
-        & p {
-          margin: 12px 0;
-        }
-      }
-    }
-  }
-
-  @include xlarge() {
-    & .page-not-found-view-body {
-      width: 81%;
     }
   }
 }

@@ -9,49 +9,10 @@ footer {
     justify-content: center;
     align-items: center;
 
-    & hr, .bottom-navigation {
+    hr {
         display: none;
-    }
 
-    & .footer-nav-module {
-        width: 75%;
-        margin-bottom: 2%;
-        
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        & .left-navigation {
-            width: 100%;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        & .left-navigation, .right-navigation {
-            & h4 {
-                color: $olLTHeader;
-                line-height: 37px;
-                letter-spacing: 0.02em;
-                text-transform: uppercase;
-                font-size: 1.3rem;
-                margin-block-start: 0;
-                margin-block-end: 1.5em;
-                text-align: center;
-            }
-        }
-
-        & .right-navigation {
-            display: none;
-        }
-    }
-}
-
-
-@include small('up') {
-    footer {
-        & hr {
+        @include small('up') {
             display: block;
 
             width: 100%;
@@ -59,43 +20,23 @@ footer {
             color:rgba(106, 106, 106, 0.8);
         }
 
-        & .footer-nav-module {
-            width: 81.5%;
-            margin-bottom: 2%;
-            
-            flex-direction: row;
-    
-            & .left-navigation, .right-navigation {
-                width: 50%;
-                align-items: flex-start;
-                & h4 {
-                    margin-block-end: .75em;
-                    text-align: left;
-                }
-            }
-    
-            & .right-navigation {
-                min-width: 440px;
-                width: 94%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                flex-wrap: wrap;
-            }
-        }
-    
-        & .bottom-navigation {
+    }
+
+    .bottom-navigation {
+        display: none;
+
+        @include small('up') {
             width: 90%;
     
             display: flex;
             flex-direction: row;
             justify-content: space-between;
     
-            & div {
+            div {
                 width: 42%;
                 min-width: 193px;
     
-                & p {
+                p {
                     color: $olLTHeader;
                     font-size: 0.857em;
                     font-family: $olNotoSansFont;
@@ -106,14 +47,14 @@ footer {
                 }
             }
     
-            & ul {
+            ul {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-evenly;
 
                 min-width: 300px;
     
-                & li a {
+                li a {
                     color: $olLTHeader;
                     text-decoration: none;
                     font-family: $olBaseFont;
@@ -122,13 +63,74 @@ footer {
                 }
             }
         }
-    }
-}
 
-@include medium('up') {
-    footer {
-        & .footer-nav-module {
+    }
+
+    .footer-nav-module {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+        margin-bottom: 2%;
+        width: 75%;
+
+        @include small('up') {
+            width: 81.5%;
+            margin-bottom: 2%;
+            
+            flex-direction: row;
+        }
+
+        @include medium('up') {
             width: 91%;
+        }
+
+        .left-navigation {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .left-navigation, .right-navigation {
+
+            @include small('up') {
+                width: 50%;
+                align-items: flex-start;
+            }
+
+            h4 {
+                color: $olLTHeader;
+                line-height: 37px;
+                letter-spacing: 0.02em;
+                text-transform: uppercase;
+                font-size: 1.3rem;
+                margin-block-start: 0;
+
+                margin-block-end: 1.5em;
+                text-align: center;
+
+                @include small('up') {
+                    margin-block-end: .75em;
+                    text-align: left;
+                }
+
+            }
+        }
+
+        .right-navigation {
+            display: none;
+
+            @include small('up') {
+                min-width: 440px;
+                width: 94%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                flex-wrap: wrap;
+            }
+
         }
     }
 }

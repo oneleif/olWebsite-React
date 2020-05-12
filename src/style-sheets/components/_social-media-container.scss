@@ -1,45 +1,39 @@
 div.social-media-icon-module {
-    width: 255px;
-    margin-right: -25px;
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 
-    & svg {
-        margin-bottom: 12%;
-        margin-right: 14%;
-        cursor: pointer;
+    width: 255px;
+    margin-right: -25px;
 
-        & :hover {
-            opacity: 0.5;
-        }
-    }
-}
-
-@include small('up') {
-    /* For mobile: */
-    div.social-media-icon-module {
+    @include small('up') {
         width: 163px;
         margin-block-end: 1.5em;
+    }
 
-        & svg {
+    @include medium('up') {
+        width: 202px;
+        margin-right: 0;
+        margin-block-end: 0;
+    }
+
+    svg {
+        cursor: pointer;
+        margin-bottom: 12%;
+        margin-right: 14%;
+
+        @include small('up') {
             margin-right: 10%;
         }
-    }
-}
 
-@include medium('up') {
-    /* For mobile: */
-    div.social-media-icon-module {
-        width: 202px;
-        margin-block-end: 0;
-        margin-right: 0;
-
-        & svg {
+        @include medium('up') {
             margin-right: 12%;
+        }
+
+        &:hover {
+            opacity: 0.5;
         }
     }
 }

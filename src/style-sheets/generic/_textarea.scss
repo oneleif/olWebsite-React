@@ -8,7 +8,7 @@
     align-items: flex-start;
     font-family: $olBaseFont;
 
-    & h6 {
+    h6 {
         color: $olLTHeader;
         margin-block-start: 0;
         margin-block-end: 0.42em;
@@ -16,7 +16,7 @@
         font-size: 1.2rem;
     }
     
-    & textarea {
+    textarea {
         border: 1.5px solid rgba(206, 212, 224, 0.7);
         width: 100%;
         box-sizing: border-box;
@@ -36,11 +36,11 @@
         }
     }
 
-    & textarea.error-input {
+    textarea.error-input {
         border: 1.5px solid $olErrorMessage;
     }
 
-    & span {
+    span {
         color: $olErrorMessage;
         font-size: 0.85rem;
         margin-left: 2%;
