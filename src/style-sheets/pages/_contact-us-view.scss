@@ -1,120 +1,120 @@
 .contact-us-view-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-   .contact-us-content-container {
-        width: 81.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .contact-us-content-container {
+    width: 81.5%;
 
-        display: flex;
+    display: flex;
+    font-family: $olBaseFont;
+    justify-content: space-between;
+    flex-direction: row;
+
+    @include small('down') {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-us-copy-container {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+
+      @include small('down') {
+        margin: 0;
+        width: 100%;
+
+        * {
+          order: 1;
+        }
+      }
+      
+      h1 {
+        color: $olLTHeader;
+        margin-block-end: 0;
         font-family: $olBaseFont;
-        justify-content: space-between;
-        flex-direction: row;
 
         @include small('down') {
-            flex-direction: column;
-            align-items: center;
+          order: -1;
+          font-size: 1.4rem;
         }
 
-        .contact-us-copy-container {
-            width: 45%;
-            display: flex;
-            flex-direction: column;
+      }
+      
+      div.feature-copy-container {
+        margin-bottom: 6%;
+      }
 
-            @include small('down') {
-                margin: 0;
-                width: 100%;
+      p {
+        color: $olLTCopy;
+        margin-block-start: 0;
+        margin-block-end: .5em;
+        font-size: 1.6rem;
 
-                * {
-                    order: 1;
-                }
-            }
-            
-            h1 {
-                color: $olLTHeader;
-                margin-block-end: 0;
-                font-family: $olBaseFont;
-
-                @include small('down') {
-                    order: -1;
-                    font-size: 1.4rem;
-                }
-
-            }
-            
-            div.feature-copy-container {
-                margin-bottom: 6%;
-            }
-
-            p {
-                color: $olLTCopy;
-                margin-block-start: 0;
-                margin-block-end: .5em;
-                font-size: 1.6rem;
-
-                @include small('down') {
-                    font-size: 1.15rem;
-                }
-
-            }
-
-            a {
-                color: $olLTLink;
-            }
-
-            svg {
-                margin-top: 12%;
-                width: 400px;
-
-                @include small('down') {
-                    margin: 9.8% 0;
-                    width: 199px;
-                    order: 0;
-                    align-self: center;
-                    height: 185px;
-
-                    rect {
-                        width: 100%;
-                        height: 100%;
-                    }
-
-                }
-
-            }
+        @include small('down') {
+          font-size: 1.15rem;
         }
 
-        .contact-us-form-container {
-            padding-top: 2%;
-            display: flex;
-            flex-direction: column;
-            width: 50%;
+      }
 
-            @include small('down') {
-                width: 100%;
+      a {
+        color: $olLTLink;
+      }
 
-                * {
-                    order: 1;
-                }
+      svg {
+        margin-top: 12%;
+        width: 400px;
 
-                .input-container {
-                    margin-bottom: 5%;
-                }
+        @include small('down') {
+          margin: 9.8% 0;
+          width: 199px;
+          order: 0;
+          align-self: center;
+          height: 185px;
 
-                .textarea-container {
-                    margin-bottom: 12%;
-                }
-            }
+          rect {
+            width: 100%;
+            height: 100%;
+          }
 
-            a.button {
-                width: 131px;
-                align-self: flex-end;
-
-                @include small('down') {
-                    align-self: center;
-                    margin-bottom: 22%;
-                }
-
-            }
         }
+
+      }
     }
+
+    .contact-us-form-container {
+      padding-top: 2%;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+
+      @include small('down') {
+        width: 100%;
+
+        * {
+          order: 1;
+        }
+
+        .input-container {
+          margin-bottom: 5%;
+        }
+
+        .textarea-container {
+          margin-bottom: 12%;
+        }
+      }
+
+      a.button {
+        width: 131px;
+        align-self: flex-end;
+
+        @include small('down') {
+          align-self: center;
+          margin-bottom: 22%;
+        }
+
+      }
+    }
+  }
 }

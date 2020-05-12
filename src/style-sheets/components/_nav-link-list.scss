@@ -1,39 +1,39 @@
 .nav-link-list-container {
-    h5 {
+  h5 {
+    color: $olLTHeader;
+    line-height: 26px;
+    font-weight: bold;
+    font-size: 1.3rem;
+
+    margin-block-start: 0;
+    margin-block-end: .75em;
+  }
+
+  ul {
+    margin-block-start: 0;
+    padding-inline-start: 0;
+
+
+    li {
+      margin-bottom: 4.1%;
+
+      &:last-child {
+        margin-bottom: 0;   
+      }
+
+      a {
+        margin-bottom: 3%;
+
         color: $olLTHeader;
-        line-height: 26px;
-        font-weight: bold;
-        font-size: 1.3rem;
+        font-size: 1.1rem;
+        line-height: 25px;
+        text-decoration: none;
+        list-style: none;
 
-        margin-block-start: 0;
-        margin-block-end: .75em;
-    }
-
-    ul {
-        margin-block-start: 0;
-        padding-inline-start: 0;
-    
-
-        li {
-            margin-bottom: 4.1%;
-
-            &:last-child {
-                margin-bottom: 0;   
-            }
-
-            a {
-                margin-bottom: 3%;
-
-                color: $olLTHeader;
-                font-size: 1.1rem;
-                line-height: 25px;
-                text-decoration: none;
-                list-style: none;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
+        &:hover {
+          text-decoration: underline;
         }
+      }
     }
+  }
 }

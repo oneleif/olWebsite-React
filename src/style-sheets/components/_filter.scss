@@ -1,18 +1,17 @@
 .filter-container {
-    flex: 1;
-    border: 1px solid #A4A4A4;
-    margin-left: 5%;
-    margin-right: 1%;
-    margin-bottom: 0.67em;
+  flex: 1;
+  border: 1px solid #A4A4A4;
+  margin-left: 5%;
+  margin-right: 1%;
+  margin-bottom: 0.67em;
 
-    padding: 100px;
+  padding: 100px;
 
-    @include small('down'){
-        padding: 50px;
-    }
+  @include small('down'){
+    padding: 50px;
+  }
 
-    @include xsmall('down'){
-        padding: 35px;
-    }
-    
+  @include xsmall('down'){
+    padding: 35px;
+  }
 }
