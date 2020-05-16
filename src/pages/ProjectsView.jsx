@@ -1,11 +1,7 @@
 import React from 'react';
 
-import FeatureCopy from '../components/FeatureContainer/FeatureCopy';
-import Button from '../components/Objects/Button/Button';
-import SocialMediaConstants from '../constants/social-media-constants';
-import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
-import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
 import PageHeader from '../components/PageHeader/PageHeader';
+import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
 
 export default function ProjectsView() {
   /************************************
