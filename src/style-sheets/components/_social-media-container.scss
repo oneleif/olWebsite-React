@@ -19,7 +19,7 @@ div.social-media-icon-module {
     }
 }
 
-@include small('up') {
+@include medium('up') {
     /* For mobile: */
     div.social-media-icon-module {
         width: 163px;
@@ -31,7 +31,7 @@ div.social-media-icon-module {
     }
 }
 
-@include medium('up') {
+@include large('up') {
     /* For mobile: */
     div.social-media-icon-module {
         width: 202px;

@@ -49,7 +49,7 @@ footer {
 }
 
 
-@include small('up') {
+@include medium('up') {
     footer {
         & hr {
             display: block;
