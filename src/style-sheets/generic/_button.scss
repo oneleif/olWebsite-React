@@ -23,6 +23,10 @@
     }
 }
 
+.round {
+  border-radius: 50px;
+}
+
 .disabled {
     background-color: $olLTDisabled;
     color: $white;

@@ -1,7 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import ReactGA from 'react-ga';
 
 import Button from '../Button';
+
+/**
+ * Have to Mock React Google Analytics or  test breaks
+ */
+jest.mock('react-ga');
 
 const TEST = 'test';
 

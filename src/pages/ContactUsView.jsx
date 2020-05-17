@@ -4,6 +4,9 @@ import FeatureCopy from "../components/FeatureContainer/FeatureCopy";
 import OlContactBean from '../assets/olLilBean/OlContactBean';
 import Input from '../components/Objects/Input/Input';
 import TextArea from '../components/Objects/TextArea/TextArea';
+import ButtonLink from '../components/Objects/ButtonLink/ButtonLink';
+
+import ReactGA from 'react-ga';
 
   /************************************
    * Constants
@@ -73,6 +76,7 @@ export default function ContactUsView() {
   function handleSendClicked(event) {
     //target for href is set so allow link functionality
     if (mailTo) {
+      ReactGA.event({ category: 'Email', action: 'Sent', label: 'Succesful Email Submission' });
       return;
     }
 
@@ -109,6 +113,10 @@ export default function ContactUsView() {
     return string.split(' ').join('%20');
   }
 
+  function handleContactLinkClicked(event) {
+    ReactGA.event({ category: 'Contact Us Link', action: 'Clicked', label: event.target.href });
+  }
+
   /************************************
    * Render
    ************************************/
@@ -122,16 +130,16 @@ export default function ContactUsView() {
             Interested in learning more?  
             Looking to partner with us? We want to hear from you! 
           </FeatureCopy>
-          <p>Email us at: <a href={`${TARGET_EMAIL}?Subject=oneleif%20submission%20form`} target="_top">oneleifdev@gmail.com</a></p>
-          <p>Call us: <a href="tel:1-402-536-0377">+1 (402) 536-0377</a></p>
+          <p>Email us at: <a href={`${TARGET_EMAIL}?Subject=oneleif%20submission%20form`} target="_top" onClickCapture={handleContactLinkClicked}>oneleifdev@gmail.com</a></p>
+          <p>Call us: <a href="tel:1-402-536-0377" onClickCapture={handleContactLinkClicked}>+1 (402) 536-0377</a></p>
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
           <Input id='subject' label='Subject' placeholder='Enter the subject...' errorMessage={formData.subject.error} onValueChange={handleInput}/>
           <TextArea id='message' label='Message' placeholder='Write your message here' errorMessage={formData.message.error} onValueChange={handleInput}/>
-          <a aria-label='send' className='button primary' onClickCapture={handleSendClicked} href={mailTo} target="_top">
-            <span>Send</span>
-          </a>
+          <ButtonLink aria-label='send' handleClick={handleSendClicked} href={mailTo} target="_top" eventLabel='Email Submission Attempted'>
+            Send
+          </ButtonLink>
         </div>
       </div>
     </div>
