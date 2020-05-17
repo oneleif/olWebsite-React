@@ -114,6 +114,10 @@ export default function ContactUsView() {
     return string.split(' ').join('%20');
   }
 
+  /**
+   * Records Analytics for our links provided to reach out to oneleif, this is for the email/phone number
+   * @param event
+   */
   function handleContactLinkClicked(event) {
     ReactGA.event({ category: 'Contact Us Link', action: 'Clicked', label: event.target.href });
   }
