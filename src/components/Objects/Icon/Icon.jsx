@@ -3,7 +3,14 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 export default function Icon({ children, label, width, height, handleClick }) {
-
+ /************************************
+  * Private Methods
+  ************************************/
+ 
+ /**
+  * Called when an icon link is clicked, used to capture the event for analytics
+  * and calls parent's callback function
+  */
   function handleIconClick() {
     ReactGA.event({ category: 'Icon', action: 'Clicked', label: label });
     handleClick();

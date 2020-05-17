@@ -13,9 +13,17 @@ import { Link, withRouter } from 'react-router-dom';
 * the site or not, and handles it accordingly
 */
 function NavLinkList({ header, links }) {
-  
+ /************************************
+  * Private Methods
+  ************************************/
+
+ /**
+  * Called when an external link is clicked, used to capture the event of a Nav List
+  * Outward link being clicked
+  * @param event
+  */
   function handleLinkClicked(event) {
-    ReactGA.event({ category: 'Outward Link', action: 'Clicked', label: event.target.href });
+    ReactGA.event({ category: 'Nav List Outward Link', action: 'Clicked', label: event.target.href });
   }
 
   /************************************
@@ -28,9 +36,17 @@ function NavLinkList({ header, links }) {
       <ul>
         {links?.map((link) => (
           <li key={link.label}>
-            { link.internal ? <Link to={link.path}>{link.label}</Link> 
+            { link.internal ? 
+              <Link to={link.path}>
+                {link.label}
+              </Link> 
               : 
-              <a onClickCapture={handleLinkClicked} href={link.path} target='_blank' rel='noopener noreferrer'>{link.label}</a>
+              <a onClickCapture={handleLinkClicked} 
+                href={link.path} 
+                target='_blank' 
+                rel='noopener noreferrer'>
+                {link.label}
+              </a>
             }
           </li>
         ))}
