@@ -1,11 +1,16 @@
 import React from "react";
+import { Link, withRouter } from 'react-router-dom';
 
-export default function Tag({ text, target=' ' }) {
+function Tag({ children, target='/' }) {
   /************************************
    * Render
    ************************************/
 
   return (
-    <a className='tag-module' href={target} >{text}</a>
+    <Link className='tag-module' to={target} >
+      {children}
+    </Link>
   );
 }
+
+export default withRouter(Tag);

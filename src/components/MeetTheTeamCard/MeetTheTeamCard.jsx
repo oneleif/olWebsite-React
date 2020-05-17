@@ -22,12 +22,10 @@ export default function MeetTheTeamCard({ card }) {
       <CardFooter>
         <CardTagContainer>
           {card.tags.map((tag, index) => (
-            <Tag key={index} text={tag} />
+            <Tag key={index}>{tag}</Tag>
           ))}
         </CardTagContainer>
       </CardFooter>
     </Card>
   );
 }
-
-
