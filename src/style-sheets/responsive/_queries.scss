@@ -1,17 +1,4 @@
 // Small devices - 0px
-@mixin xxsmall($identifier: "up") {
-  @if ($identifier == "down") {
-    @media (max-width: #{$screen-xxs}) {
-      @content;
-    }
-  } @else {
-    @media (min-width: #{$screen-xxs}) {
-      @content;
-    }
-  }
-}
-
-// Small devices - 415px
 @mixin xsmall($identifier: "up") {
   @if ($identifier == "down") {
     @media (max-width: #{$screen-xs}) {

@@ -11,7 +11,7 @@
 
   height: 45vh;
   
-  @include xsmall('down'){
+  @media (min-width: 415px) {
     height: 175px;
   }
 
@@ -37,7 +37,7 @@
   transform: translateY(-50%);
   cursor: pointer;
 
-  @include xsmall('down'){
+  @media (min-width: 415px) {
     display: none;
   }
 
