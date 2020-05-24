@@ -5,8 +5,8 @@ import Button from '../components/Objects/Button/Button';
 import SocialMediaConstants from '../constants/social-media-constants';
 import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
 import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
-import CardContainer from '../components/Objects/CardContainer/CardContainer';
-import Card from '../components/Objects/Card/Card'
+import ProjectsCard from '../components/ProjectsCard/ProjectsCard'
+import Projects from './js/projects';
 
 export default function ProjectsView() {
   /************************************
@@ -24,11 +24,13 @@ export default function ProjectsView() {
             </FeatureCopy>
             <Button handleClick={() => window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord</Button>
           </FeatureContainer>
-          <CardContainer >
-            <Card></Card>
-          </CardContainer>
         </div>
       </div>
+      <div className="cards-container">
+          {Projects.map((card,index) => (
+            <ProjectsCard card= {card} key={index}/>
+          ))}
+        </div>
     </div>
   );
 }
