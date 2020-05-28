@@ -13,13 +13,13 @@
 @import './generic//button';
 @import './generic/card';
 @import './generic/card-container';
+@import './generic/card-content';
 @import './generic/feature-link';
 @import './generic/input';
 @import './generic/textarea';
 
 // Components
 @import './components/carousel';
-@import './components/card-tag-component';
 @import './components/feature-container';
 @import './components/feature-copy';
 @import './components/filter';
@@ -28,7 +28,6 @@
 @import './components/page-header';
 @import './components/search-box';
 @import './components/social-media-container';
-@import './components//tag';
 @import './components/supporters-container';
 @import './components/testimonial-container';
 @import './components/toolbar';

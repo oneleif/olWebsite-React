@@ -1,12 +1,9 @@
 import React from 'react';
 
-import FeatureCopy from '../components/FeatureContainer/FeatureCopy';
-import Button from '../components/Objects/Button/Button';
-import SocialMediaConstants from '../constants/social-media-constants';
 import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
-import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
 import ProjectsCard from '../components/ProjectsCard/ProjectsCard'
 import Projects from './js/projects';
+import PageHeader from '../components/PageHeader/PageHeader';
 
 export default function ProjectsView() {
   /************************************
@@ -15,17 +12,11 @@ export default function ProjectsView() {
 
   return (
     <div className="projects-view-container">
-      <div className="projects-view-body">
-        <div className="projects-view-copy-container">
-          <h1>Projects</h1>
-          <FeatureContainer image={<ProjectsSVG />}>
-            <FeatureCopy>
-              Contribute to one of our member-owned projects! Can’t find what you are looking for? Bring in a new project idea or existing project!
-            </FeatureCopy>
-            <Button handleClick={() => window.open(SocialMediaConstants.DISCORD_LINK, "_blank")}>Join our Discord</Button>
-          </FeatureContainer>
-        </div>
-      </div>
+          <PageHeader title='Projects' img={<ProjectsSVG />}>
+              <p>
+                Contribute to one of our member-owned projects! Can’t find what you are looking for? Bring in a new project idea or existing project!
+              </p>
+          </PageHeader>
       <div className="cards-container">
           {Projects.map((card,index) => (
             <ProjectsCard card= {card} key={index}/>
