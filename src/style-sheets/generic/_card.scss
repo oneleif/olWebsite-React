@@ -8,4 +8,13 @@
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  & .card-tag-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    a {
+      margin-right: 0.5357em;
+    }
+  }
 }
