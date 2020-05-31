@@ -1,8 +1,8 @@
-import ProjectsImg from '../../assets/ProjectsImg/ProjectsImg';
+import justonleif from '../../assets/justoneleif_transparent.png';
 
 const Projects = [
   {
-    img: ProjectsImg,
+    img: justonleif,
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
@@ -10,7 +10,7 @@ const Projects = [
   },
 
   {
-    img: ProjectsImg,
+    img: justonleif,
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
@@ -18,7 +18,35 @@ const Projects = [
   },
 
   {
-    img: ProjectsImg,
+    img: justonleif,
+    name: 'Swift UI Kit',
+    type: 'Community project',
+    details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
+    tags: ['Development', 'Website', 'Development', '+2']
+  },
+  {
+    img: justonleif,
+    name: 'Swift UI Kit',
+    type: 'Community project',
+    details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
+    tags: ['Development', 'Website', 'Development', '+2']
+  },
+  {
+    img: justonleif,
+    name: 'Swift UI Kit',
+    type: 'Community project',
+    details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
+    tags: ['Development', 'Website', 'Development', '+2']
+  },
+  {
+    img: justonleif,
+    name: 'Swift UI Kit',
+    type: 'Community project',
+    details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
+    tags: ['Development', 'Website', 'Development', '+2']
+  },
+  {
+    img: justonleif,
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',

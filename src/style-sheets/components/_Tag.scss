@@ -1,21 +1,24 @@
 .tag-module {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  
-    color: $olLTAccent;
-    border: 1px solid $olLTAccent;
-    border-radius: 18px;
-    font-weight: 600;
-    font-family: $olBaseFont;
-    font-size: 0.7rem;
-  
-    padding: 0 2%;
-    width: fit-content;
-    min-width: 32px;
-    height: 23px;
-    white-space: nowrap;
-    text-decoration: none;
-    margin-right: .5357em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: $olLTAccent;
+  border: 1px solid $olLTAccent;
+  border-radius: 18px;
+  font-weight: 600;
+  font-family: $olBaseFont;
+  font-size: 0.7rem;
+
+  padding: 0 2%;
+  width: fit-content;
+  min-width: 32px;
+  height: 23px;
+  white-space: nowrap;
+  text-decoration: none;
+  margin-right: 0.5357em;
+  @include medium('up') {
+    margin: 0px 0px 25px 17px;
+  }
 }

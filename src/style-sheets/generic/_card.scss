@@ -1,18 +1,81 @@
 .card-module {
   margin: 10px;
-  min-width: 324px;
-  min-height: 180px;
 
   background-color: $olLTPrimary;
   box-shadow: 0px 4px 4px rgba(60, 129, 137, 0.25);
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  width: 324px;
+  height: 180px;
+
+  @include medium('up') {
+    height: 365px;
+    width: 234px;
+    margin-right: 77px;
+    margin-bottom: 100px;
+  }
+  .card-content {
+    display: grid;
+    grid-template-columns: 0.5fr 0.4fr 1fr;
+    grid-template-rows: 0.8fr 0.4fr 1fr;
+    margin-left: 15px;
+    @include medium('up') {
+      margin: 2px;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  img {
+    grid-column: 1;
+    grid-row: 1/3;
+    @include medium('up') {
+      display: block;
+      width: 70px;
+      margin: 0 auto;
+    }
+  }
+  h4 {
+    font-size: 24px;
+    margin-top: 5px;
+    margin-block-end: 0px;
+    grid-row: 1;
+    grid-column: 2 / -1;
+    @include medium('up') {
+      text-align: center;
+    }
+  }
+  h3 {
+    margin: 2px;
+    font-size: 18px;
+    line-height: 135%;
+    font-weight: 600;
+    grid-column: 2 / -1;
+    grid-row: 2;
+    @include medium('up') {
+      font-weight: 600;
+      text-align: center;
+    }
+  }
+  p {
+    margin: 2px;
+    grid-row: 3;
+    grid-column: 1/-1;
+    @include medium('up') {
+      margin: 14px 25px 0px;
+    }
+  }
   & .card-tag-container {
     display: flex;
     flex-direction: row;
     width: 100%;
     justify-content: center;
+    margin: 18px 25px 28px 0px;
+    @include medium('up') {
+      display: grid;
+      grid-template-columns: 50% 50%;
+      margin: 28px 25px 28px 0px;
+    }
     a {
       margin-right: 0.5357em;
     }

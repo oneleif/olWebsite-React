@@ -1,10 +1,16 @@
-.card-container {
-    max-width: 80%;
-    margin-bottom: 0.67em;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    flex: 13;
-    overflow: scroll;
+.cards-container {
+  max-width: 90%;
+  margin-bottom: 0.67em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  flex: 13;
+  overflow: scroll;
+  @include medium('up') {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    width: 90%;
+    margin-top: 90px;
+  }
 }

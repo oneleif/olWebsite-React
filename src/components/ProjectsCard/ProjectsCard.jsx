@@ -8,8 +8,9 @@ export default function ProjectsCard({ card }) {
     return (
         <Card>
             <CardContent>
+            <img src={card.img} alt={card.name}></img>
             <h4>{card.name}</h4>
-            <p>{card.type}</p>
+            <h3>{card.type}</h3>
             <p>{card.details}</p>
             </CardContent>
             <CardFooter>
