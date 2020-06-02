@@ -3,8 +3,6 @@ import { NavLink, withRouter } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import ToolbarLogo from './ToolbarLogo';
 
-import ReactGA from 'react-ga';
-
   /************************************
    * Constants
    ************************************/
@@ -30,11 +28,6 @@ function Toolbar() {
    * @callback
    */
   const handleToggle = useCallback(() => {
-    if (!isOpen) {
-      // Record Mobile Navigation Bar being opened
-      ReactGA.event({ category: 'Hamburger Icon', action: 'Opened' });
-    }
-
     // if closing (open == true) then resetting classNames
     isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
     setIsOpen(!isOpen);

@@ -2,16 +2,11 @@ import React from 'react';
 import Toolbar from '../Toolbar';
 import { useUser } from '../../../contexts/UserContext';
 import { renderWithRouter, fireEvent, act } from 'test-utils';
-import ReactGA from 'react-ga';
 
 //  TODO: v-2
 // jest.mock('../../../contexts/UserContext');
 // const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
 
-/**
- * Have to Mock React Google Analytics or test breaks
- */
-jest.mock('react-ga');
 
 const MEDIUM_BREAKPOINT = 960;
 
@@ -26,10 +21,6 @@ describe('Toolbar Tests', function() {
 
     return { queryAllByRole, queryByText, queryByLabelText, getByTestId };
   }
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
 
   test('should show navigation links', () => {
     const { queryAllByRole, queryByText } = setup();
@@ -94,20 +85,5 @@ describe('Toolbar Tests', function() {
     fireEvent.click(queryByText('Contact Us'));
 
     expect(getByTestId('nav').getAttribute('class').includes('open')).toBeFalsy();
-  });
-
-  test('Opening mobile navbar fires ReactGA event', () => {
-    const { queryByLabelText } = setup();
-    fireEvent.click(queryByLabelText('hamburger'));
-
-    expect(ReactGA.event).toHaveBeenCalledTimes(1);
-  });
-
-  test('Closing mobile navbar does not fire ReactGA event', () => {
-    const { queryByLabelText } = setup();
-    fireEvent.click(queryByLabelText('hamburger'));
-    fireEvent.click(queryByLabelText('hamburger'));
-
-    expect(ReactGA.event).toHaveBeenCalledTimes(1);
   });
 });

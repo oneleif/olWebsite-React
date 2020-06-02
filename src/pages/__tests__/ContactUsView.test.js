@@ -2,12 +2,6 @@ import React from 'react';
 import { render, fireEvent } from 'test-utils';
 
 import ContactUsView from '../ContactUsView';
-import ReactGA from 'react-ga';
-
-/**
- * Have to Mock React Google Analytics or test breaks
- */
-jest.mock('react-ga');
 
 const PAGE_HEADER = 'Contact Us';
 const SEND = /send/i;
@@ -26,10 +20,6 @@ describe('Contact Us View Tests', () => {
   function fireChangeEvent(labelText, queryByLabelText, testInput = TEST_INPUT) {
     fireEvent.change(queryByLabelText(labelText), { target: { value: testInput } });
   }
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
 
   test('Initial render', () => {
     const { queryByText } = setUp();
@@ -110,27 +100,5 @@ describe('Contact Us View Tests', () => {
     fireEvent.click(queryByText(SEND));
 
     expect(queryByText(SUBJECT_ERROR)).toBeTruthy();
-  });
-
-  test('Send Button Clicked with invalid inputs, ReactGA event sent once', () => {
-    const { queryByText } = setUp();
-
-    fireEvent.click(queryByText(SEND));
-
-    expect(ReactGA.event).toHaveBeenCalledTimes(1);
-  });
-
-  /** TODO: Can't test this functionality until we send emails from backend, clicking the valid link
-   * throws errors involving navigation not being implemented - https://github.com/jsdom/jsdom/issues/2112
-   */
-
-  test.skip('Send Button Clicked with valid inputs, ReactGA event sent twice', () => {
-    const { queryByText, queryByLabelText } = setUp();
-
-    fireChangeEvent(MESSAGE_TEXTAREA, queryByLabelText);
-    fireChangeEvent(SUBJECT_INPUT, queryByLabelText);
-    fireEvent.click(queryByText(SEND));
-
-    expect(ReactGA.event).toHaveBeenCalledTimes(2);
   });
 });

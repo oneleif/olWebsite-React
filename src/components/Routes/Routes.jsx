@@ -16,7 +16,7 @@ export default function Routes() {
     <Switch>
       <Route path='/contact' component={ContactUsView} />
       <Route path='/team' component={MeetTheTeamView} />
-      <Route exact path= '/projects' component={ProjectsView} />
+      <Route path= '/projects' component={ProjectsView} />
       <Route exact path='/' component={LandingView} />
       <Route component={PageNotFoundView} />
     </Switch>

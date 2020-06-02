@@ -76,8 +76,6 @@ export default function ContactUsView() {
   function handleSendClicked(event) {
     //target for href is set so allow link functionality
     if (mailTo) {
-      // Successfully entered information sending event to analytics
-      ReactGA.event({ category: 'Email', action: 'Sent', label: 'Succesful Email Submission' });
       return;
     }
 
