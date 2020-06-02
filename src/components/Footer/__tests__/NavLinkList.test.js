@@ -2,6 +2,12 @@ import React from 'react';
 import { renderWithRouter, fireEvent } from 'test-utils';
 
 import NavLinkList from '../NavLinkList';
+import ReactGA from 'react-ga';
+
+/**
+ * Have to Mock React Google Analytics or test breaks
+ */
+jest.mock('react-ga');
 
 const TEST_HEADER = 'Test';
 
@@ -101,5 +107,12 @@ describe('Nav Link List Tests', () => {
     fireEvent.click(queryByText(INTERNAL_TEST_LINK[0].label));
 
     expect(history.location.pathname).toEqual(INTERNAL_TEST_LINK[0].path);
+  });
+
+  test('ReactGA event fired after external link clicked', () => {
+    const { queryByText } = renderWithRouter(<NavLinkList header={TEST_HEADER} links={EXTERNAL_TEST_LINK} />);
+    fireEvent.click(queryByText(INTERNAL_TEST_LINK[0].label));
+
+    expect(ReactGA.event).toBeCalled();
   });
 });

@@ -6,6 +6,8 @@ import { renderWithRouter, fireEvent, act } from 'test-utils';
 //  TODO: v-2
 // jest.mock('../../../contexts/UserContext');
 // const { UserProvider } = jest.requireActual('../../../contexts/UserContext');
+
+
 const MEDIUM_BREAKPOINT = 960;
 
 describe('Toolbar Tests', function() {
