@@ -8,10 +8,10 @@
       background-color: $olLTPrimary;
       display: flex;
       flex-direction: column;
-      padding-top: 100px;
-
-      @include medium('down') {
-        padding-top: 63px;
+      padding-top: 63px;
+      
+      @include medium('up') {
+        padding-top: 100px;
       }
         
     }
