@@ -3,17 +3,17 @@ a.tag-module {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  color: $olLTAccent;
-  border: 1px solid $olLTAccent;
+  
+  color: $gray600;
+  background-color: $gray100;
   border-radius: 18px;
   font-weight: 600;
   font-family: $olBaseFont;
   font-size: 0.7rem;
-
-  padding: 0 2%;
+  line-height: 18px;
+  letter-spacing: -0.08px;
+  padding: 0 5%;
   width: fit-content;
-  min-width: 32px;
   height: 23px;
   white-space: nowrap;
   text-decoration: none;

@@ -13,7 +13,7 @@ const TEST_MEMBER = {
 
 describe('Meet The Team Card Tests', () => {
   test('Initial render', () => {
-    const { queryByText } = renderWithRouter(<MeetTheTeamCard card={TEST_MEMBER} />);
+    const { queryByText } = renderWithRouter(<MeetTheTeamCard member={TEST_MEMBER} />);
     expect(queryByText(TEST_MEMBER.name)).toBeTruthy();
     expect(queryByText(TEST_MEMBER.role)).toBeTruthy();
     expect(queryByText(TEST_MEMBER.location)).toBeTruthy();

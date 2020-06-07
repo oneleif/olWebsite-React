@@ -6,7 +6,7 @@ import CardFooter from '../Objects/Card/CardFooter';
 import CardTagContainer from '../Objects/Card/CardTagContainer';
 import Tag from '../Tag/Tag';
 
-export default function MeetTheTeamCard({ card }) {
+export default function MeetTheTeamCard({ member }) {
   /************************************
    * Render
    ************************************/
@@ -14,14 +14,14 @@ export default function MeetTheTeamCard({ card }) {
   return (
     <Card className='meet-the-team-card'>
       <CardContent>
-        <img src={card.image} alt={card.name}/>
-        <h4>{card.name}</h4>
-        <p className='role-copy'>{card.role}</p>
-        <p className='location-copy'>{card.location}</p>
+        <img src={member.image} alt={member.name}/>
+        <h4>{member.name}</h4>
+        <p className='role-copy'>{member.role}</p>
+        <p className='location-copy'>{member.location}</p>
       </CardContent>
       <CardFooter>
         <CardTagContainer>
-          {card.tags.map((tag, index) => (
+          {member.tags.map((tag, index) => (
             <Tag key={index}>{tag}</Tag>
           ))}
         </CardTagContainer>

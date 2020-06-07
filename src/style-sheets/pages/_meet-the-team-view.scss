@@ -1,4 +1,4 @@
-.meet-team{
+.meet-team {
   &-view-container {
     display: flex;
     flex-direction: column;
@@ -6,19 +6,21 @@
   }
     
   &-card-container {
-    width: 81.5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 323px);
+    gap: 2em 1em;
+    justify-content: center;
+
+    width: 98%;
     margin: 10% 0;
 
-    @include small('up') {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 50%);
-
-      width: 90%;
-      margin: 8% 0;
+    @include medium('up') {
+      width: 100%;
+      gap: 2em 3em;
     }
 
     @include large('up') {
-      grid-template-columns: repeat(auto-fill, 33%);
+      grid-template-columns: repeat(auto-fill, 375px);
     }
   }
 }

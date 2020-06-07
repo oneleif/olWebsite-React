@@ -32,8 +32,8 @@ export default function MeetTheTeamView() {
         </p>
       </PageHeader>
       <div className='meet-team-card-container'>
-        {members.map((card, index) => (
-          <MeetTheTeamCard card={card} key={index} />
+        {members.map((member, index) => (
+          <MeetTheTeamCard member={member} key={index} />
         ))}
       </div>
     </div>

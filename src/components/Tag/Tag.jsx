@@ -6,6 +6,7 @@ function Tag({ children, target='/' }) {
    * Render
    ************************************/
 
+   // TODO: Implement Google Analytics once we make tags clickable
   return (
     <Link className='tag-module' to={target} >
       {children}

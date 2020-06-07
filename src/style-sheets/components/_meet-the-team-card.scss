@@ -1,101 +1,101 @@
 .meet-the-team-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    width: 100%;
-    padding: 5% 0;
-    margin-bottom: 2.5714em;
-    font-family: $olBaseFont;
-
-    @include small('up') {
-      width: 95%;
-      padding: 4% 0;
-    }
-
-    @include large('up') {
-      margin-bottom: 3.4286em;
-    }
-
-    .card {
-      &-content {
-        display: grid;
-        grid-template-columns: 1fr .4fr 4fr;
-        grid-template-rows: .2fr .2fr .2fr;
-        grid-template-areas:
-            "img . fullname"
-            "img . member-role"
-            "img . location";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
-        width: 90%;
-        margin-bottom: 1.7143em;
-  
+  width: 323px;
+  height: 200px;
+  padding: 5% 0;
+  font-family: $olBaseFont;
+
+  @include small('up') {
+    padding: 4% 0;
+  }
+
+  @include large('up') {
+    width: 366px;
+  }
+
+  .card {
+    &-content {
+      display: grid;
+      grid-template-columns: 1fr .4fr 4fr;
+      grid-template-rows: .2fr .2fr .2fr;
+      grid-template-areas:
+          "img . fullname"
+          "img . member-role"
+          "img . location";
+
+      width: 90%;
+      margin-bottom: 1.7143em;
+
+      @include query($screen-sm, $screen-md) { 
+        width: 87%;
+      }
+
+      @include medium('up') {
+        grid-template-columns: 1fr .5fr 4fr;
+        margin-bottom: 2.14285em;
+      }
+
+      img {
+        grid-area: img;
+        width: 100px;
+        height: 100px;
+      }
+
+      h4 {
+        grid-area: fullname;
+        color: $olLTHeader;
+        font-size: 1.3rem;
+        margin-block-start: 1em;
+        margin-block-end: 0;
+        line-height: 24px;
+
         @include query($screen-sm, $screen-md) { 
-          width: 87%;
-        }
-  
-        @include medium('up') {
-          grid-template-columns: 1fr .5fr 4fr;
-          margin-bottom: 2.14285em;
-        }
-  
-        img {
-          grid-area: img;
-          width: 100px;
-          height: 100px;
-        }
-  
-        h4 {
-          grid-area: fullname;
-          color: $olLTHeader;
-          font-size: 1.3rem;
-          margin-block-start: 1em;
-          margin-block-end: 0;
-          line-height: 24px;
-  
-          @include query($screen-sm, $screen-md) { 
-            font-size: 1.2rem;
-          }
-        }
-  
-        p {
-          color: $olLTCopy;
-          margin-block-start: 0;
-          margin-block-end: 0;
-          font-size: 1rem;
-  
-          line-height: 22px;
-  
-          @include large('up') {
-            font-size: .85rem;
-          }      
-        }
-  
-        .role-copy {
-          grid-area: member-role;
-        }
-  
-       .location-copy {
-          grid-area: location;
-          font-weight: 300;
+          font-size: 1.2rem;
         }
       }
 
-      &-footer {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        margin-bottom: 3%;
-  
-        @include medium('up') {
-          margin-bottom: 0;
-  
-          .card-tag-container {
-              justify-content: flex-start;
-          }
-        }
+      p {
+        color: $olLTCopy;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 1rem;
+
+        line-height: 22px;
+
+        @include large('up') {
+          font-size: .85rem;
+        }      
       }
 
+      .role-copy {
+        grid-area: member-role;
+      }
+
+      .location-copy {
+        grid-area: location;
+        font-weight: 300;
+      }
     }
+
+    &-footer {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin-bottom: 3%;
+
+      @include medium('up') {
+        margin-bottom: 0;
+
+        .card-tag-container {
+            justify-content: flex-start;
+        }
+      }
+    }
+
+  }
 }
