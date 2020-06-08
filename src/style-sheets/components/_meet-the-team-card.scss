@@ -82,7 +82,7 @@
     }
 
     &-footer {
-      width: 80%;
+      width: 98%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
@@ -90,10 +90,6 @@
 
       @include medium('up') {
         margin-bottom: 0;
-
-        .card-tag-container {
-            justify-content: flex-start;
-        }
       }
     }
 

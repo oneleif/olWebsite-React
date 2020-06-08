@@ -4,9 +4,13 @@
   justify-content: center;
   flex-wrap: wrap;
 
-  width: 100%;
-
   a {
     margin-right: .5357em;
+    margin-bottom: 3%;
+    
+    &:last-child {
+      margin-right: 0;
+    }
   }
+
 }

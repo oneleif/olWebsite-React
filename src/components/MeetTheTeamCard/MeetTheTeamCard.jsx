@@ -21,6 +21,7 @@ export default function MeetTheTeamCard({ member }) {
       </CardContent>
       <CardFooter>
         <CardTagContainer>
+          {/* // TODO: calculate tags to show based off the width of the view */}
           {member.tags.map((tag, index) => (
             <Tag key={index}>{tag}</Tag>
           ))}
