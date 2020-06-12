@@ -7,6 +7,7 @@ const LABEL = 'Label';
 const CLASS_NAME = 'class-name';
 const TEST_VALUE = 'test';
 const ERROR_MESSAGE = 'Error';
+const CAPTION = 'Caption';
 
 describe('Text Area Tests', () => {
   function setUp(errorMessage) {
@@ -20,40 +21,50 @@ describe('Text Area Tests', () => {
   });
 
   test('No className passed in, should use default className', () => {
-    const container = render(<TextArea label={LABEL} />);
+    const container = render(<TextArea label={LABEL} caption={CAPTION} />);
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
         <label
           class="textarea-container"
         >
-          <h6>
+          <p>
             ${LABEL}
-          </h6>
+          </p>
           <textarea
             aria-label="${LABEL}-textarea"
             class=""
           />
+          <span
+            style="visibility: hidden;"
+          >
+            ${CAPTION}
+          </span>
         </label>
       </div>
       `);
   });
 
   test('ClassName passed in, should use className passed in', () => {
-    const container = render(<TextArea className={CLASS_NAME} label={LABEL} />);
+    const container = render(<TextArea className={CLASS_NAME} label={LABEL} caption={CAPTION} />);
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
         <label
           class="${CLASS_NAME}-textarea-container"
         >
-          <h6>
+          <p>
             ${LABEL}
-          </h6>
+          </p>
           <textarea
             aria-label="${LABEL}-textarea"
             class=""
           />
+          <span
+            style="visibility: hidden;"
+          >
+            ${CAPTION}
+          </span>
         </label>
       </div>
       `);
