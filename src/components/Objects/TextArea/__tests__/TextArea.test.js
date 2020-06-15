@@ -25,12 +25,12 @@ describe('Text Area Tests', () => {
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
-        <label
+        <div
           class="textarea-container"
         >
-          <p>
+          <label>
             ${LABEL}
-          </p>
+          </label>
           <textarea
             aria-label="${LABEL}-textarea"
             class=""
@@ -40,7 +40,7 @@ describe('Text Area Tests', () => {
           >
             ${CAPTION}
           </span>
-        </label>
+        </div>
       </div>
       `);
   });
@@ -50,12 +50,12 @@ describe('Text Area Tests', () => {
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
-        <label
+        <div
           class="${CLASS_NAME}-textarea-container"
         >
-          <p>
+          <label>
             ${LABEL}
-          </p>
+          </label>
           <textarea
             aria-label="${LABEL}-textarea"
             class=""
@@ -65,7 +65,7 @@ describe('Text Area Tests', () => {
           >
             ${CAPTION}
           </span>
-        </label>
+        </div>
       </div>
       `);
   });

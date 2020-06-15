@@ -25,12 +25,12 @@ describe('Input Tests', () => {
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
-        <label
+        <div
           class="input-container"
         >
-          <p>
+          <label>
             ${LABEL}
-          </p>
+          </label>
           <input
             aria-label="${LABEL}-input"
             class=""
@@ -41,7 +41,7 @@ describe('Input Tests', () => {
           >
             ${CAPTION}
           </span>
-        </label>
+        </div>
       </div>
       `);
   });
@@ -51,12 +51,12 @@ describe('Input Tests', () => {
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
-        <label
+        <div
           class="${CLASS_NAME}-input-container"
         >
-          <p>
+          <label>
             ${LABEL}
-          </p>
+          </label>
           <input
             aria-label="${LABEL}-input"
             class=""
@@ -67,7 +67,7 @@ describe('Input Tests', () => {
           >
             ${CAPTION}
           </span>
-        </label>
+        </div>
       </div>
       `);
   });

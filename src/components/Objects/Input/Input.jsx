@@ -4,7 +4,8 @@ import FormLabel from "../Form/FormLabel";
 import FormCaption from "../Form/FormCaption";
 
 export default function Input({ 
-  className, 
+  className,
+  id,
   label, 
   caption = 'Caption Required',
   errorMessage,
@@ -40,10 +41,10 @@ export default function Input({
    ************************************/
 
   return (
-    <label className={className ? `${className}-input-container` : 'input-container'}  onFocus={() => setLabelState({...labelState, isFocused: true})} onBlur={() => setLabelState({...labelState, isFocused: false})}>
-      <FormLabel labelState={labelState} hasError={!!errorMessage} isDisabled={disable}>{label}</FormLabel>
-      <input className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-input`} type={type} onChange={handleValueChanged} disabled={disable}/>
+    <div className={className ? `${className}-input-container` : 'input-container'}  onFocus={() => setLabelState({...labelState, isFocused: true})} onBlur={() => setLabelState({...labelState, isFocused: false})}>
+      <FormLabel id={id} labelState={labelState} hasError={!!errorMessage} isDisabled={disable}>{label}</FormLabel>
+      <input id={id} className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-input`} type={type} onChange={handleValueChanged} disabled={disable}/>
       <FormCaption showCaption={showCaption} hasError={!!errorMessage} isDisabled={disable}>{errorMessage ? errorMessage : caption}</FormCaption>
-    </label>
+    </div>
   );
 };

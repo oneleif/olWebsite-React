@@ -4,7 +4,8 @@ import FormLabel from "../Form/FormLabel";
 import FormCaption from "../Form/FormCaption";
 
 export default function TextArea({ 
-  className, 
+  className,
+  id,
   label, 
   caption = 'Caption Required',
   errorMessage,
@@ -39,10 +40,10 @@ export default function TextArea({
    ************************************/
 
   return (
-    <label className={className ? `${className}-textarea-container` : 'textarea-container'} onFocus={() => setLabelState({...labelState, isFocused: true})} onBlur={() => setLabelState({...labelState, isFocused: false})}>
-      <FormLabel labelState={labelState} hasError={!!errorMessage} isDisabled={disable}>{label}</FormLabel>
-      <textarea className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-textarea`} onChange={handleValueChanged} disabled={disable}/>
+    <div className={className ? `${className}-textarea-container` : 'textarea-container'} onFocus={() => setLabelState({...labelState, isFocused: true})} onBlur={() => setLabelState({...labelState, isFocused: false})}>
+      <FormLabel id={id} labelState={labelState} hasError={!!errorMessage} isDisabled={disable}>{label}</FormLabel>
+      <textarea id={id} className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-textarea`} onChange={handleValueChanged} disabled={disable}/>
       <FormCaption showCaption={showCaption} hasError={!!errorMessage} isDisabled={disable}>{errorMessage ? errorMessage : caption}</FormCaption>
-    </label>
+    </div>
   );
 };

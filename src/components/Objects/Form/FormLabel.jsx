@@ -3,6 +3,7 @@ import FormConstants from '../../../constants/form-constants';
 
 export default function FormLabel({
   children,
+  id,
   labelState,
   hasError,
   isDisabled,
@@ -22,7 +23,6 @@ export default function FormLabel({
    */
   function computeFormLabelStyle(labelState, hasError, isDisabled) {
     const {isFocused, isActive} = labelState;
-    debugger;
     if (isDisabled) {
       return {color: FormConstants.DISABLED};
     }
@@ -45,6 +45,6 @@ export default function FormLabel({
    ************************************/
 
   return (
-    <p style={computeFormLabelStyle(labelState, hasError, isDisabled)}>{children}</p>
+    <label htmlFor={id} style={computeFormLabelStyle(labelState, hasError, isDisabled)}>{children}</label>
   );
 };

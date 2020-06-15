@@ -44,11 +44,11 @@ describe('Form Label Tests', () => {
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
         <div>
-          <p
+          <label
             style="color: ${hex2rgb(FormConstants.DISABLED)};"
           >
             ${LABEL}
-          </p>
+          </label>
         </div>
       </body>
       `);
@@ -61,11 +61,11 @@ describe('Form Label Tests', () => {
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
         <div>
-          <p
+          <label
             style="color: ${hex2rgb(FormConstants.ERROR)};"
           >
             ${LABEL}
-          </p>
+          </label>
         </div>
       </body>
       `);
@@ -78,11 +78,11 @@ describe('Form Label Tests', () => {
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
         <div>
-          <p
+          <label
             style="color: ${hex2rgb(FormConstants.FOCUSED_LABEL)};"
           >
             ${LABEL}
-          </p>
+          </label>
         </div>
       </body>
       `);
@@ -95,11 +95,11 @@ describe('Form Label Tests', () => {
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
         <div>
-          <p
+          <label
             style="color: ${hex2rgb(FormConstants.ACTIVE_LABEL)};"
           >
             ${LABEL}
-          </p>
+          </label>
         </div>
       </body>
       `);
