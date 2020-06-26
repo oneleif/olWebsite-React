@@ -28,7 +28,7 @@ function Toolbar() {
    * @callback
    */
   const handleToggle = useCallback(() => {
-    //if closing (open == true) then resetting classNames
+    // if closing (open == true) then resetting classNames
     isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
     setIsOpen(!isOpen);
   }, [isOpen]);
@@ -39,15 +39,15 @@ function Toolbar() {
    * @callback
    */ 
   const memoNavCleanUp = useCallback(() => {
-    //if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
+    // if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
     return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
   }, [isOpen, handleToggle]);
 
   useEffect(() => {
-    //adds event listener for window resizing
+    // adds event listener for window resizing
     window.addEventListener('resize', memoNavCleanUp);
     return () => {
-      //removes the event listener whenever component unmounted
+      // removes the event listener whenever component unmounted
       window.removeEventListener('resize', memoNavCleanUp);
     };
   }, [memoNavCleanUp]);

@@ -1,117 +1,120 @@
 .contact-us-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .contact-us-content-container {
+    width: 81.5%;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-   & .contact-us-content-container {
-        width: 81.5%;
+    font-family: $olBaseFont;
+    justify-content: space-between;
+    flex-direction: row;
 
-        display: flex;
-        flex-direction: row;
+    @include small('down') {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-us-copy-container {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+
+      @include small('down') {
+        margin: 0;
+        width: 100%;
+
+        * {
+          order: 1;
+        }
+      }
+      
+      h1 {
+        color: $olLTHeader;
+        margin-block-end: 0;
         font-family: $olBaseFont;
-        justify-content: space-between;
 
-        & .contact-us-copy-container {
-            margin: 8% 0;
-            width: 45%;
-            display: flex;
-            flex-direction: column;
-            
-            & h1 {
-                color: $olLTHeader;
-                margin-block-end: 0;
-                font-family: $olBaseFont;
-            }
-            
-            & div.feature-copy-container {
-                margin-bottom: 6%;
-            }
-
-            & p {
-                font-size: 1.6rem;
-                color: $olLTCopy;
-                margin-block-start: 0;
-                margin-block-end: .5em;
-            }
-
-            & a {
-                color: $olLTLink;
-            }
-
-            & svg {
-                margin-top: 6%;
-                width: 400px;
-            }
+        @include small('down') {
+          order: -1;
+          font-size: 1.4rem;
         }
 
-        & .contact-us-form-container {
-            margin: 8% 0;
-            padding-top: 2%;
-            width: 50%;
-            display: flex;
-            flex-direction: column;
+      }
+      
+      div.feature-copy-container {
+        margin-bottom: 6%;
+      }
 
-            & a.button {
-                width: 131px;
-                align-self: flex-end;
-            }
+      p {
+        color: $olLTCopy;
+        margin-block-start: 0;
+        margin-block-end: .5em;
+        font-size: 1.6rem;
+
+        @include small('down') {
+          font-size: 1.15rem;
         }
+
+      }
+
+      a {
+        color: $olLTLink;
+      }
+
+      svg {
+        margin-top: 6%;
+        width: 400px;
+
+        @include small('down') {
+          margin: 9.8% 0;
+          width: 199px;
+          order: 0;
+          align-self: center;
+          height: 185px;
+
+          rect {
+            width: 100%;
+            height: 100%;
+          }
+
+        }
+
+      }
     }
-}
 
-@include small('down') {
-    .contact-us-view-container {
-        & .contact-us-content-container {
-            flex-direction: column;
-            align-items: center;
+    .contact-us-form-container {
+      padding-top: 2%;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
 
-            & .contact-us-copy-container {
-                margin-top: 18%;
-            }
+      @include small('down') {
+        width: 100%;
 
-            & .contact-us-copy-container,
-            .contact-us-form-container {
-                width: 100%;
-
-                & h1 {
-                    order: -1;
-                    font-size: 1.4rem;
-                }
-
-                & p {
-                    font-size: 1.15rem;
-                }
-
-                & svg {
-                    margin: 9.8% 0;
-                    order: 0;
-                    align-self: center;
-                    width: 199px;
-                    height: 185px;
-
-                    & rect {
-                        width: 100%;
-                        height: 100%;
-                    }
-                }
-
-                & a.button {
-                    align-self: center;
-                    margin-bottom: 22%;
-                }
-
-                & * {
-                    order: 1;
-                }
-
-                & .input-container {
-                    margin-bottom: 5%;
-                }
-
-                & .textarea-container {
-                    margin-bottom: 12%;
-                }
-            }
+        * {
+          order: 1;
         }
+
+        .input-container {
+          margin-bottom: 5%;
+        }
+
+        .textarea-container {
+          margin-bottom: 12%;
+        }
+      }
+
+      a.button {
+        width: 131px;
+        align-self: flex-end;
+
+        @include small('down') {
+          align-self: center;
+          margin-bottom: 22%;
+        }
+
+      }
     }
+  }
 }

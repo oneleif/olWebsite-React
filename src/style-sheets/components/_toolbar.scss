@@ -1,31 +1,54 @@
 .navbar {
-  width: 100%;
-  padding: 0 5%;
-  background-color: $white;
-
   position: fixed;
   z-index: 1;
   top: 0;
+  
+  background-color: $white;
+  width: 100%;
+  height: 63px;
+  padding: 0;
 
-  & ul {
+  @include medium('up') {
+    
+    height: 100px;
+    padding: 0 5%;
+    
+  }
+
+  ul {
     margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
 
-    & li {
-      margin: 0 2vw;
+    @include medium('down') {
+      flex-direction: column;
+    }
+
+    li {
       font-size: $olNavLinkSize;
       text-align: center;
       line-height: 25px;
-
       list-style-type: none;
 
-      & a {
-        color: $olNavLink;
+      margin: 0 2vw;
+
+      @include medium('down') {
+        margin: 0;
+        padding: 15px 0;
+        background: $gray;
+      }
+
+      a {
         font-family: $olAssistantFont;
         text-decoration: none;
         font-weight: 600;
+        color: $olNavLink;
+
+        @include medium('down') {
+          color: $white;
+          display: block;
+        }
 
         &:hover {
           opacity: 0.7;
@@ -34,93 +57,65 @@
     }
   }
 
-  & .nav-links {
+  .nav-links {
     width: 100%;
     height: 100px;
 
-    & .icons {
+    @include medium('down') {
+      height: auto;
+    }
+
+    .icons {
       display: flex;
       flex-direction: row;
-      align-items: center;
+      align-items: center; 
 
-      & .toggle {
-        display: none;
-      }
-    }
-
-    & .main-nav {
-      @extend .desktop-only;
-
-      // TODO: v-2 flex: 2;
-      width: 60%;
-    }
-
-    & .user-actions {
-      @extend .desktop-only;
-
-      width: 20%;
-    }
-  }
-
-  .desktop-only {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-
-    margin-left: 5%;
-  }
-
-  @include medium('down') {
-    padding: 0;
-
-    & ul {
-      flex-direction: column;
-
-      & li {
-        margin: 0;
-        padding: 15px 0;
-        background: $gray;
-
-        & a {
-          display: block;
-          color: $white;
-        }
-      }
-    }
-
-    & .nav-links {
-      height: auto;
-
-      & .icons {
+      @include medium('down') {
         width: 95%;
         padding: 10px 5%;
         align-items: center;
         justify-content: space-between;
+      }
 
-        & .toggle {
-          color: $olNavLink;
+      .toggle {
+        display: none;
+
+        @include medium('down') {
           display: block;
+          color: $olNavLink;
         }
+
       }
 
-      & .main-nav,
-      .user-actions {
-        @extend .mobile-dropdown;
-      }
 
-      .main-nav.open,
-      .user-actions.open {
-        display: block;
-      }
     }
 
-    .mobile-dropdown {
-      display: none;
+    .main-nav, .user-actions{
       margin: 0;
       width: 100%;
       flex-direction: column;
+      display: none;
+
+      &.open {
+        display: block;
+      }
+
+      @include medium('up') {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: 5%;
+        // TODO: v-2 flex: 2;
+        width: 60%;
+      }
+
+    }
+
+    .user-actions {
+      width: 20%;
     }
   }
+
 }
 
 .active-link {

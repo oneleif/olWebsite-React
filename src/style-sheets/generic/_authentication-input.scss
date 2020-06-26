@@ -1,57 +1,53 @@
 .auth-input-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  
+  width: 100%;
+  margin-bottom: 3%;
+
+  h6 {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-weight: bold;
+  }
+
+  input {
+    width: 99%;
+  }
+
+  @include small('down') {
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .label-text-container {
+    justify-content: space-between;
+    align-items: baseline;
+    width: inherit;
     
-    width: 100%;
-    margin-bottom: 3%;
+    display: flex;
+    flex-direction: row;
 
-    & h6 {
-        margin-block-start: 0;
-        margin-block-end: 0;
-        font-weight: bold;
+    @include medium('down') {
+      flex-direction: column;
     }
 
-    & input {
-        width: 99%;
+    span {
+      color: $olErrorMessage;
+      font-size: 12px;
+
+      @include medium('down') {
+      font-size: 10px;
+      }
+
+      @include small('down') {
+      font-size: 9px;
+      margin-bottom: 3%;
+      }
+
     }
-
-    & .label-text-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: baseline;
-
-        width: inherit;
-
-        & span {
-            font-size: 12px;
-            color: $olErrorMessage;
-        }
-    }
-}
-
-@media only screen and (max-width: 850px) {
-    .auth-input-container .label-text-container {
-        display: flex;
-        flex-direction: column;
-
-        & span {
-            font-size: 10px;
-        }
-    }
-}
-
-@media only screen and (max-width: 635px) {
-    .auth-input-container {
-        & p {
-            font-size: 13px;
-        }
-
-        & .label-text-container span {
-            font-size: 9px;
-            margin-bottom: 3%;
-        }
-    }
+  }
 }

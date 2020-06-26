@@ -11,6 +11,16 @@ The website will serve as a central place for oneleif members and recruiters to 
 
 To get started working on this project, please see our wiki: https://github.com/oneleif/olWebsite-React/wiki
 
+### Important Links
+
+| Description   | Link         |
+| ------------- | ------------ |
+| Production Environment  | https://oneleif.com/ |
+| Development Environment | https://dev.oneleif.com/ |
+| Website Designs (Figma) | https://www.figma.com/file/zukLdUXgDYBhPAU8NZbljW/OL-Website-Workspace?node-id=418%3A6 |
+| Meeting Notes (HackMD)  | https://hackmd.io/@oneleif |
+| CI/CD (CircleCI)        | https://app.circleci.com/pipelines/github/oneleif/olWebsite-React |
+
 ### Associated Projects
 
 To see the Swift/Vapor back-end for the oneleif website, please see the following repository: https://github.com/oneleif/olWebsite
@@ -20,7 +30,7 @@ To see the oneleif iOS app please see the following repository: https://github.c
 To see the oneleif Android app please see the following repository: https://github.com/oneleif/olgo-android
 
 
-![](https://github.com/oneleif/olWebsite/blob/master/Public/images/oneleif.png)
+![](https://github.com/oneleif/olDocs/blob/master/assets/images/oneleif_logos/full_logo/oneleif_transparent.png?raw=true)
 This project is a oneleif active project, meaning it is open sourced and ran by members of oneleif, with support of other oneleif members.
 
 [![](https://img.shields.io/badge/oneleif-Twitter-blue.svg)](https://twitter.com/oneleifdev)

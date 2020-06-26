@@ -39,7 +39,7 @@ const SocialMediaIconsMap = {
     },
     GITHUB: {
         label: 'Github',
-        url: SocialMediaConstants.GITHUB,
+        url: SocialMediaConstants.GITHUB_LINK,
         width: '24',
         height: '20',
         path: (
