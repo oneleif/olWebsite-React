@@ -6,11 +6,8 @@ import FormCaption from '../FormCaption';
 
 const CAPTION = 'Caption';
 const SHOW_CAPTION = true;
-const HIDE_CAPTION = false;
 const HAS_ERROR = true;
-const NO_ERROR = false;
 const DISABLED = true;
-const NOT_DISABLED = false;
 
 // Helper Function that allows us to use constants for the hex codes
 // Found here: https://stackoverflow.com/questions/21646738/convert-hex-to-rgba
@@ -37,7 +34,7 @@ describe('Form Caption Tests', () => {
 
   test('Form is Disabled, disabled style provided', () => {
     // only styled as disabled is caption is shown and there is no error
-    const { baseElement } = setUp(SHOW_CAPTION, NO_ERROR, DISABLED);
+    const { baseElement } = setUp(SHOW_CAPTION, !HAS_ERROR, DISABLED);
 
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
@@ -54,7 +51,7 @@ describe('Form Caption Tests', () => {
 
   test('Error has occured, error style is provided', () => {
     // error takes highest precedent, shows caption even if told to hide
-    const { baseElement } = setUp(HIDE_CAPTION, HAS_ERROR, DISABLED);
+    const { baseElement } = setUp(!SHOW_CAPTION, HAS_ERROR, DISABLED);
 
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
@@ -71,7 +68,7 @@ describe('Form Caption Tests', () => {
 
   test('Error has occured, error style is provided', () => {
     // error takes highest precedent, shows caption even if told to hide
-    const { baseElement } = setUp(HIDE_CAPTION, HAS_ERROR, DISABLED);
+    const { baseElement } = setUp(!SHOW_CAPTION, HAS_ERROR, DISABLED);
 
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
@@ -87,7 +84,7 @@ describe('Form Caption Tests', () => {
   });
 
   test('Caption is not shown, style to hide is provided', () => {
-    const { baseElement } = setUp(HIDE_CAPTION, NO_ERROR, NOT_DISABLED);
+    const { baseElement } = setUp(!SHOW_CAPTION, !HAS_ERROR, !DISABLED);
 
     expect(baseElement).toMatchInlineSnapshot(`
       <body>
