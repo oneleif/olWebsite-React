@@ -66,23 +66,6 @@ describe('Form Caption Tests', () => {
       `);
   });
 
-  test('Error has occured, error style is provided', () => {
-    // error takes highest precedent, shows caption even if told to hide
-    const { baseElement } = setUp(!SHOW_CAPTION, HAS_ERROR, DISABLED);
-
-    expect(baseElement).toMatchInlineSnapshot(`
-      <body>
-        <div>
-          <span
-            style="visibility: visible; color: ${hex2rgb(FormConstants.ERROR)};"
-          >
-            ${CAPTION}
-          </span>
-        </div>
-      </body>
-      `);
-  });
-
   test('Caption is not shown, style to hide is provided', () => {
     const { baseElement } = setUp(!SHOW_CAPTION, !HAS_ERROR, !DISABLED);
 

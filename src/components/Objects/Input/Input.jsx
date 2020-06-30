@@ -32,7 +32,7 @@ export default function Input({
    */
   function handleValueChanged(event) {
     const isActive = !!event.target.value;
-    setLabelState({...labelState, isActive: isActive})
+    setLabelState({...labelState, isActive: isActive});
     onValueChange(event);
   }
   
@@ -41,10 +41,35 @@ export default function Input({
    ************************************/
 
   return (
-    <div className={className ? `${className}-input-container` : 'input-container'}  onFocus={() => setLabelState({...labelState, isFocused: true})} onBlur={() => setLabelState({...labelState, isFocused: false})}>
-      <FormLabel id={id} labelState={labelState} hasError={!!errorMessage} isDisabled={disable}>{label}</FormLabel>
-      <input id={id} className={errorMessage ? 'error-input' : ''} {...rest} aria-label={`${label}-input`} type={type} onChange={handleValueChanged} disabled={disable}/>
-      <FormCaption showCaption={showCaption} hasError={!!errorMessage} isDisabled={disable}>{errorMessage ? errorMessage : caption}</FormCaption>
+    <div 
+      className={className ? `${className}-input-container` : 'input-container'} 
+      onFocus={() => setLabelState({...labelState, isFocused: true})} 
+      onBlur={() => setLabelState({...labelState, isFocused: false})}
+      >
+      <FormLabel 
+        id={id} 
+        labelState={labelState}
+        hasError={!!errorMessage}
+        isDisabled={disable}
+        >
+          {label}
+      </FormLabel>
+      <input
+        id={id}
+        className={errorMessage ? 'error-input' : ''}
+        aria-label={`${label}-input`}
+        type={type}
+        onChange={handleValueChanged}
+        disabled={disable}
+        {...rest} 
+        />
+      <FormCaption
+        showCaption={showCaption}
+        hasError={!!errorMessage}
+        isDisabled={disable}
+        >
+          {errorMessage ? errorMessage : caption}
+      </FormCaption>
     </div>
   );
 };
