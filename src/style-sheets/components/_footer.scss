@@ -12,7 +12,7 @@ footer {
   hr {
     display: none;
 
-    @include small('up') {
+    @include medium('up') {
       display: block;
 
       width: 100%;
@@ -25,7 +25,7 @@ footer {
   .bottom-navigation {
     display: none;
 
-    @include small('up') {
+    @include medium('up') {
       width: 90%;
 
       display: flex;
@@ -74,7 +74,7 @@ footer {
     margin-bottom: 2%;
     width: 75%;
 
-    @include small('up') {
+    @include medium('up') {
       width: 81.5%;
       margin-bottom: 2%;
       
@@ -95,7 +95,7 @@ footer {
 
     .left-navigation, .right-navigation {
 
-      @include small('up') {
+      @include medium('up') {
         width: 50%;
         align-items: flex-start;
       }
@@ -111,7 +111,7 @@ footer {
         margin-block-end: 1.5em;
         text-align: center;
 
-        @include small('up') {
+        @include medium('up') {
           margin-block-end: .75em;
           text-align: left;
         }
@@ -122,7 +122,7 @@ footer {
     .right-navigation {
       display: none;
 
-      @include small('up') {
+      @include medium('up') {
         min-width: 440px;
         width: 94%;
         display: flex;
