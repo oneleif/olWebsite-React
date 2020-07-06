@@ -5,9 +5,14 @@
   font-family: $olBaseFont;
   justify-content: space-between;
 
+  @include small('up') {
+    width: 90%;
+  }
+
   @include medium('up') {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 2fr;
+    grid-template-rows: .5fr 1.5fr 1fr;
     grid-template-rows: auto;
     grid-template-areas: 
     "header header img img"

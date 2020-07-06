@@ -8,12 +8,12 @@ div.social-media-icon-module {
   width: 255px;
   margin-right: -25px;
 
-  @include small('up') {
+  @include medium('up') {
     width: 163px;
     margin-block-end: 1.5em;
   }
 
-  @include medium('up') {
+  @include large('up') {
     width: 202px;
     margin-right: 0;
     margin-block-end: 0;
@@ -24,11 +24,11 @@ div.social-media-icon-module {
     margin-bottom: 12%;
     margin-right: 14%;
 
-    @include small('up') {
+    @include medium('up') {
       margin-right: 10%;
     }
 
-    @include medium('up') {
+    @include large('up') {
       margin-right: 12%;
     }
 
