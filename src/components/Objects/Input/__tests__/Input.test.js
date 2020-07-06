@@ -7,6 +7,7 @@ const LABEL = 'Label';
 const CLASS_NAME = 'class-name';
 const TEST_VALUE = 'test';
 const ERROR_MESSAGE = 'ERROR';
+const CAPTION = 'Caption';
 
 describe('Input Tests', () => {
   function setUp(errorMessage) {
@@ -20,43 +21,53 @@ describe('Input Tests', () => {
   });
 
   test('No className passed in, should use default className', () => {
-    const container = render(<Input label={LABEL} />);
+    const container = render(<Input label={LABEL} caption={CAPTION} />);
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
-        <label
+        <div
           class="input-container"
         >
-          <h6>
+          <label>
             ${LABEL}
-          </h6>
+          </label>
           <input
             aria-label="${LABEL}-input"
             class=""
             type="text"
           />
-        </label>
+          <span
+            style="visibility: hidden;"
+          >
+            ${CAPTION}
+          </span>
+        </div>
       </div>
       `);
   });
 
   test('ClassName passed in, should use className passed in', () => {
-    const container = render(<Input className={CLASS_NAME} label={LABEL} />);
+    const container = render(<Input className={CLASS_NAME} label={LABEL} caption={CAPTION} />);
 
     expect(container.container).toMatchInlineSnapshot(`
       <div>
-        <label
+        <div
           class="${CLASS_NAME}-input-container"
         >
-          <h6>
+          <label>
             ${LABEL}
-          </h6>
+          </label>
           <input
             aria-label="${LABEL}-input"
             class=""
             type="text"
           />
-        </label>
+          <span
+            style="visibility: hidden;"
+          >
+            ${CAPTION}
+          </span>
+        </div>
       </div>
       `);
   });

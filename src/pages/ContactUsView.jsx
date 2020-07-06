@@ -138,8 +138,8 @@ export default function ContactUsView() {
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
-          <Input id='subject' label='Subject' placeholder='Enter the subject...' errorMessage={formData.subject.error} onValueChange={handleInput}/>
-          <TextArea id='message' label='Message' placeholder='Write your message here' errorMessage={formData.message.error} onValueChange={handleInput}/>
+          <Input id='subject' label='Subject' placeholder='Enter the subject...' caption='Subject Input' errorMessage={formData.subject.error} onValueChange={handleInput}/>
+          <TextArea id='message' label='Message' placeholder='Write your message here' caption='Message Input' errorMessage={formData.message.error} onValueChange={handleInput}/>
           <ButtonLink aria-label='send' handleClick={handleSendClicked} href={mailTo} target="_top" eventLabel='Email Submission Attempted'>
             Send
           </ButtonLink>
