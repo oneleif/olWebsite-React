@@ -14,12 +14,12 @@
   font-family: $olBaseFont;
 
   &:hover {
-    background-color: $olLTPrimaryBtnHover;
+    background-color: $Primary-Button-Hover;
   }
   
   &:active {
-    background-color: $olLTPrimaryBtnClicked;
-    color: $olLTPrimaryBtnTxtClicked;
+    background-color: $Primary-Button-Pressed;
+    color: $Primary-Button-Text-Pressed;
   }
 }
 
@@ -28,7 +28,7 @@
 }
 
 .disabled {
-  background-color: $olLTPrimaryBtnDisabled;
+  background-color: $Primary-Button-Disabled;
   color: $white;
   font-family: $olBaseFont;
   pointer-events: none;
