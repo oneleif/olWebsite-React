@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import ProjectsCard from '../components/ProjectsCard/ProjectsCard'
-import Projects from './js/projects';
+import projectCards from './js/projects';
 import PageHeader from '../components/PageHeader/PageHeader';
 import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
 
 export default function ProjectsView() {
+  const [projects, setProjects] = useState([]);
+
+  useEffect(() => {
+    const loadedProjects = loadProjects();
+    setProjects(loadedProjects);
+  }, []);
+
+  function loadProjects() {
+    //TODO: In V2 once the projects are dynamic, will be loading them here
+    return projectCards;
+  }
+
   /************************************
    * Render
    ************************************/
@@ -18,10 +30,10 @@ export default function ProjectsView() {
           Can’t find what you are looking for? Bring in a new project idea or existing project!
         </p>
       </PageHeader>
-      <div className="cards-container">
-          {Projects.map((card,index) => (
-            <ProjectsCard card= {card} key={index}/>
-          ))}
+      <div className="project-card-container">
+        {projects.map((project, index) => (
+          <ProjectsCard project={project} key={index}/>
+        ))}
       </div>
     </div>
   );

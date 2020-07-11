@@ -1,8 +1,6 @@
-import justonleif from '../../assets/justoneleif_transparent.png';
-
-const Projects = [
+const projectCards = [
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
@@ -10,7 +8,7 @@ const Projects = [
   },
 
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
@@ -18,35 +16,35 @@ const Projects = [
   },
 
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
-    img: justonleif,
+    img: '',
     name: 'Swift UI Kit',
     type: 'Community project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
@@ -54,4 +52,4 @@ const Projects = [
   }
 ];
 
-export default Projects;
+export default projectCards;
