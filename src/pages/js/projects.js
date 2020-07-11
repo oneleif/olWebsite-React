@@ -2,7 +2,7 @@ const projectCards = [
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
@@ -10,7 +10,7 @@ const projectCards = [
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
@@ -18,35 +18,35 @@ const projectCards = [
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   },
   {
     img: '',
     name: 'Swift UI Kit',
-    type: 'Community project',
+    type: 'Community Project',
     details: 'Lorem ipsum dolor sit amet, consectetur and more stuff here and here and here.',
     tags: ['Development', 'Website', 'Development', '+2']
   }

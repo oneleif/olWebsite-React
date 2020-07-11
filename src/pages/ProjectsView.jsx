@@ -30,7 +30,7 @@ export default function ProjectsView() {
           Can’t find what you are looking for? Bring in a new project idea or existing project!
         </p>
       </PageHeader>
-      <div className="project-card-container">
+      <div className="projects-card-container">
         {projects.map((project, index) => (
           <ProjectsCard project={project} key={index}/>
         ))}
