@@ -1,5 +1,3 @@
-import SocialMediaConstants from '../../../constants/social-media-constants';
-
 const footerLinks = [
   {
     header: 'Projects'
@@ -26,26 +24,6 @@ const footerLinks = [
   },
   {
     header: 'Community',
-    links: [
-      {
-        label: 'Discord',
-        path: SocialMediaConstants.DISCORD_LINK,
-        internal: false
-      },
-      {
-        label: 'Github',
-        path: SocialMediaConstants.GITHUB_LINK,
-        internal: false
-      },
-      {
-        label: 'Dribble',
-        path: SocialMediaConstants.DRIBBLE_LINK,
-        internal: false
-      }
-    ]
-  },
-  {
-    header: 'Organization',
     links: [
       {
         label: 'Team',

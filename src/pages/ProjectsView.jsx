@@ -13,11 +13,11 @@ export default function ProjectsView() {
   return (
     <div className="projects-view-container">
       <PageHeader title='Projects' img={<ProjectsSVG />}>
-      <p>
-        Contribute to one of our member-owned projects!
-        Can’t find what you are looking for? Bring in a new project idea or existing project!
-      </p>
-    </PageHeader>
+        <p>
+          Contribute to one of our member-owned projects!
+          Can’t find what you are looking for? Bring in a new project idea or existing project!
+        </p>
+      </PageHeader>
       <div className="cards-container">
           {Projects.map((card,index) => (
             <ProjectsCard card= {card} key={index}/>

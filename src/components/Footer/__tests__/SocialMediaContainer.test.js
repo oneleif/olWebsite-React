@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from 'test-utils';
 
 import SocialMediaContainer from '../SocialMediaContainer';
-import SocialMediaIconsMap from '../../../assets/SocialMediaIcons/SocialMediaIcons';
+import { SocialMediaIconsDesktopMap } from '../../../assets/SocialMediaIcons/SocialMediaIcons';
 
 describe('Social Media Container Tests', () => {
   test('Initial render', () => {
@@ -14,7 +14,7 @@ describe('Social Media Container Tests', () => {
     window.open = jest.fn().mockImplementation();
     const { queryByLabelText } = render(<SocialMediaContainer />);
 
-    fireEvent.click(queryByLabelText(SocialMediaIconsMap.TWITTER.label));
+    fireEvent.click(queryByLabelText(SocialMediaIconsDesktopMap.TWITTER.label));
 
     expect(window.open).toBeCalledTimes(1);
   });
