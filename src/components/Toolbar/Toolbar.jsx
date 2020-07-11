@@ -94,8 +94,8 @@ function Toolbar() {
               className='toggle'
               menuClicked={handleToggle} 
               isOpen={isOpen}
-              width={20}
-              height={17}
+              width={22}
+              height={19}
               strokeWidth={1}
               rotate={0}
               color='black'

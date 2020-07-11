@@ -32,7 +32,7 @@ function NavLinkList({ header, links }) {
 
   return (
     <div className='nav-link-list-container'>
-      <h5>{header}</h5>
+      <h4>{header}</h4>
       <ul>
         {links?.map((link) => (
           <li key={link.label}>
