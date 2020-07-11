@@ -1,78 +1,76 @@
 .authentication-view-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  min-height: 76vh;
+  margin-top: 6%;
+  
+  .error-message {
+    margin-block-start: 0;
+    margin-block-end: 0;
+    color: $olErrorMessage;
+  }
+
+  .authentication-input-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
     align-items: center;
 
-    min-height: 76vh;
-    margin-top: 6%;
-    
-    & .error-message {
-        margin-block-start: 0;
-        margin-block-end: 0;
-        color: $olErrorMessage;
+    width: 50%;
+    margin-bottom: 4%;
+
+    img {
+      width: 100%;
+      margin-bottom: 3%;
     }
 
-    & .authentication-input-container {
+    form, .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 75%;
+      margin-bottom: 2%;
+
+      input{
+        @include small('down') {
+          margin-bottom: 10%;
+        }
+      }
+
+      .authentication-actions-module {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-
-        width: 50%;
-        margin-bottom: 4%;
-
-        & img {
-            width: 100%;
-            margin-bottom: 3%;
-        }
-
-        & form, .form-container {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            width: 75%;
-            margin-bottom: 2%;
-
-            & .authentication-actions-module {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                
-                width: 100%;
-
-                & a, span {
-                    font-size: 12px;
-                    text-decoration: none;
-                    color: $white;
-                }
-
-                & button {
-                    font-size: 18px;
-                    font-weight: bold;
-                    box-sizing: border-box;
-                    border: 1px solid $black;
-                }
-            }
-        }
-    }
-}
-
-@media only screen and (max-width: 703px) {
-    .authentication-view-body .authentication-input-container .form-container {
-
-        & input { 
-            margin-bottom: 10%;
-        }
+        flex-direction: row;
+        justify-content: space-between;
         
-        & .authentication-actions-module {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
-            & a, span {
-                text-align: center;
-                margin-bottom: 10%;
-            }
+        width: 100%;
+
+        @include small('down') {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
+
+        a, span {
+          font-size: 12px;
+          text-decoration: none;
+          color: $white;
+
+          @include small('down') {
+            text-align: center;
+            margin-bottom: 10%;
+          }
+
+        }
+
+        button {
+          font-size: 18px;
+          font-weight: bold;
+          box-sizing: border-box;
+          border: 1px solid $black;
+        }
+      }
     }
+  }
 }

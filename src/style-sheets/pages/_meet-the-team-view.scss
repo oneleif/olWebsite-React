@@ -1,7 +1,26 @@
-.meet-team-view-container {
+.meet-team {
+  &-view-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 8% 0;
-}
+  }
+    
+  &-card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 323px);
+    gap: 2em 1em;
+    justify-content: center;
 
+    width: 98%;
+    margin: 10% 0;
+
+    @include medium('up') {
+      width: 100%;
+      gap: 2em 3em;
+    }
+
+    @include large('up') {
+      grid-template-columns: repeat(auto-fill, 375px);
+    }
+  }
+}

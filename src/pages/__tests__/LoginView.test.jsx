@@ -29,7 +29,8 @@ describe("Login View Component Tests", function() {
         renderedComponent = renderWithRouter(<LoginView />);
     });
 
-    test("initial render, registration inputs should be in view", () => {
+    // FIXME: Once Login is implemented for V2 we can re-implement these tests
+    test.skip("initial render, registration inputs should be in view", () => {
         const inputs = queryByLabelText(renderedComponent.container, 'Email');
         expect(inputs).toBeInTheDocument();
     });

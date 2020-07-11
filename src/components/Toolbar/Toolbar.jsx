@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
-import ToolbarLogo from './ToolbarLogo';
+import { NavLink, withRouter, Link } from 'react-router-dom';
+import HamburgerMenu from 'react-hamburger-menu';
+import Logo from '../../assets/homeLogo.png';
 
   /************************************
    * Constants
@@ -28,7 +28,7 @@ function Toolbar() {
    * @callback
    */
   const handleToggle = useCallback(() => {
-    //if closing (open == true) then resetting classNames
+    // if closing (open == true) then resetting classNames
     isOpen ? setClasses(DEFAULT_CLASSES) : generateOpenClasses();
     setIsOpen(!isOpen);
   }, [isOpen]);
@@ -39,15 +39,15 @@ function Toolbar() {
    * @callback
    */ 
   const memoNavCleanUp = useCallback(() => {
-    //if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
+    // if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
     return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
   }, [isOpen, handleToggle]);
 
   useEffect(() => {
-    //adds event listener for window resizing
+    // adds event listener for window resizing
     window.addEventListener('resize', memoNavCleanUp);
     return () => {
-      //removes the event listener whenever component unmounted
+      // removes the event listener whenever component unmounted
       window.removeEventListener('resize', memoNavCleanUp);
     };
   }, [memoNavCleanUp]);
@@ -87,8 +87,21 @@ function Toolbar() {
       <nav className='navbar'>
         <ul className='nav-links'>
           <div className='icons'>
-            <ToolbarLogo closeNavigation={closeNav} />
-            <FaBars aria-label='hamburger' size={24} className='toggle' onClick={handleToggle} />
+            <Link to='/' onClick={closeNav}>
+              <img className='toolbar-logo' src={Logo}  alt='oneleif logo' />
+            </Link>
+            <HamburgerMenu
+              className='toggle'
+              menuClicked={handleToggle} 
+              isOpen={isOpen}
+              width={20}
+              height={17}
+              strokeWidth={1}
+              rotate={0}
+              color='black'
+              borderRadius={0}
+              animationDuration={0.5}
+            />
           </div>
 
           {/* Main links  */}
@@ -106,6 +119,26 @@ function Toolbar() {
             <li>
               <NavLink to='/team' activeClassName='active-link' onClick={closeNav}>
                 Meet the Team
+              </NavLink>
+            </li>
+            <li className='mobile-link'>
+              <NavLink to='/resources' activeClassName='active-link' onClick={closeNav}>
+                Resources
+              </NavLink>
+            </li>
+            <li className='mobile-link'>
+              <NavLink to='/organization' activeClassName='active-link' onClick={closeNav}>
+                Organization
+              </NavLink>
+            </li>
+            <li className='mobile-link'>
+              <NavLink to='/community' activeClassName='active-link' onClick={closeNav}>
+                Community
+              </NavLink>
+            </li>
+            <li className='mobile-link'>
+              <NavLink to='/about' activeClassName='active-link' onClick={closeNav}>
+                About
               </NavLink>
             </li>
           </div>
