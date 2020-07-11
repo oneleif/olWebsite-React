@@ -7,14 +7,18 @@ div.social-media-icon-module {
   width: 90%;
 
   @include medium('up') {
-    margin-left: -1em;
     width: 202px;
     grid-template-rows: 60px 35px;
+    justify-content: center;
   }
 
   svg {
     cursor: pointer;
     justify-self: center;
+
+    @include medium('up') {
+      justify-self: left;
+    }
 
     &:hover {
       opacity: 0.5;
