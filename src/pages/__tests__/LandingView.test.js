@@ -4,7 +4,7 @@ import { renderWithRouter, fireEvent } from 'test-utils';
 import LandingView from '../LandingView';
 
 const DISCORD_BUTTON = 'Join our Discord';
-const PAGE_HEADER = 'Tagline';
+const PAGE_HEADER = 'oneleif';
 
 describe('Landing View Tests', () => {
   test('Initial render', () => {
