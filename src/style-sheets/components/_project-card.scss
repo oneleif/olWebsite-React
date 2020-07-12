@@ -1,0 +1,106 @@
+.project-card {
+  display: flex;
+  flex-direction: column;
+  width: 324px;
+  height: 180px;
+  justify-content: center;
+  align-items: center;
+  font-family: $olBaseFont;
+
+  @include medium('up') {
+    width: 235px;
+    height: 365px;
+    justify-content: flex-start;
+    padding-top: 1.7em;
+  }
+
+  .card {
+    &-content {
+      display: grid;
+      grid-template-columns: 84px 1fr 4fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+          "img name name"
+          "img type type"
+          "details details details";
+
+      width: 90%;
+      margin-bottom: 1em;
+
+      @include medium('up') {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      
+      img {
+        grid-area: img;
+        width: 54px;
+        height: 54px;
+        justify-self: center;
+
+        @include medium('up') {
+          width: 84px;
+          height: 84px;
+          margin-bottom: 2em;
+        }
+      }
+
+      h4 {
+        grid-area: name;
+        font-size: 1.5rem;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        line-height: 32px;
+        align-self: flex-end;
+        color: $black;
+
+        @include medium('up') {
+          align-self: center;
+          font-size:  1.875rem;
+          margin-bottom: 0.25em;
+        }
+      }
+
+      h3 {
+        grid-area: type;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        font-size: 1.125rem;
+        align-self: flex-end;
+        color: $olLTCopy;
+        line-height: 24px;
+        font-weight: 500;
+
+        @include medium('up') {
+          align-self: center;
+        }
+      }
+
+      p {
+        grid-area: details;
+        margin-block-start: 1em;
+        margin-block-end: 0;
+        margin-left: 1em;
+        color: $olLTCopy;
+        line-height: 19px;
+
+        @include medium('up') {
+          align-self: center;
+          margin-left: 0;
+          width: 185px;
+          margin-bottom: 1em;
+        }
+      }
+    }
+
+    &-footer {
+      width: 98%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
+}
