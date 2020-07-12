@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import ProjectsCard from '../components/ProjectsCard/ProjectsCard'
+import ProjectCard from '../components/ProjectsCard/ProjectCard'
 import projectCards from './js/projects';
 import PageHeader from '../components/PageHeader/PageHeader';
 import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
@@ -32,7 +32,7 @@ export default function ProjectsView() {
       </PageHeader>
       <div className="projects-card-container">
         {projects.map((project, index) => (
-          <ProjectsCard project={project} key={index}/>
+          <ProjectCard project={project} key={index}/>
         ))}
       </div>
     </div>

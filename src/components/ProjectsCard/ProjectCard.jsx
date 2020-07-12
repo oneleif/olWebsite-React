@@ -6,13 +6,13 @@ import Tag from '../Tag/Tag';
 import DefaultProjectImg from '../../assets/DefaultProjectImage/justoneleif_transparent.png';
 import CardTagContainer from '../Objects/Card/CardTagContainer';
 
-export default function ProjectsCard({ project }) {
+export default function ProjectCard({ project }) {
   /************************************
    * Render
    ************************************/
 
   return (
-    <Card className='projects-card'>
+    <Card className='project-card'>
       <CardContent>
         <img src={project?.img ? project.img : DefaultProjectImg} alt={project.name}></img>
         <h4>{project.name}</h4>
