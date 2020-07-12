@@ -9,7 +9,7 @@
   padding: 0;
 
   @include medium('up') {
-    height: 100px;
+    height: 80px;
     padding: 0 5%;
   }
 
@@ -64,7 +64,7 @@
       }
 
       a {
-        font-family: $olAssistantFont;
+        font-family: $olBaseFont;
         text-decoration: none;
         font-weight: 600;
         color: $black;
@@ -90,7 +90,7 @@
     background-color: white;
 
     @include medium('up') {
-      height: 100px;
+      height: 80px;
     }
 
     .icons {
