@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 
 import Input from '../components/Objects/Input/Input';
-import homeLogo from '../images/homeLogo.png';
 import { login } from '../services/authService';
 import { useUser } from '../contexts/UserContext';
 import { ERROR_EMPTY_EMAIL, ERROR_EMPTY_PASSWORD } from '../constants/authentication-constants';
+import homeLogo from '../assets/homeLogo.png';
 
 function LoginView(props) {
   /************************************
@@ -24,8 +24,9 @@ function LoginView(props) {
    * Helper Functions
    ************************************/
 
-  /* Handler for log in button clicked, if valid inputs logs in user
-   */
+  /**
+   * Handler for log in button clicked, if valid inputs logs in user
+   */ 
   async function loginClicked() {
     if (validateInput()) {
       try {
@@ -44,8 +45,9 @@ function LoginView(props) {
     }
   }
 
-  /* Validates inputs, if invalid then it will display an error message
-   */
+  /**
+  * Validates inputs, if invalid then it will display an error message
+  */ 
   function validateInput() {
     handleEmailValidationResponse(email);
     handlePasswordValidationResponse(password);
@@ -63,18 +65,18 @@ function LoginView(props) {
     handlePasswordValidationResponse(password);
   }
 
-  /* Takes in validation response of email and sets based on success or not
-   *
-   * @param response
+  /**
+   * Takes in validation response of email and sets based on success or not
+   * @param input
    */
   function handleEmailValidationResponse(input) {
     const message = input === '' ? ERROR_EMPTY_EMAIL : null;
     setEmailErrorMessage(message);
   }
 
-  /* Takes in validation response of password and sets based on success or not
-   *
-   * @param response
+  /**
+   * Takes in validation response of password and sets based on success or not
+   * @param input
    */
   function handlePasswordValidationResponse(input) {
     const message = input === '' ? ERROR_EMPTY_PASSWORD : null;

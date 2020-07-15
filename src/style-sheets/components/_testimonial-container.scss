@@ -1,0 +1,56 @@
+.testimonial-container {
+  margin: 8% 0;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $olBaseFont;
+
+  .testimony-module {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 75%;
+
+    p {
+      color: $gray800;
+      font-size: 2.6em;
+      font-family: $olBaseFont;
+      line-height: 47px;
+      letter-spacing: 0.25px;
+      font-weight: normal;
+    }
+  }
+
+  .featured-person-module {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 53%;
+    align-items: center;
+    align-self: flex-end;
+
+    div {
+      margin-right: 3%;
+      display: flex;
+      flex-direction: column;
+      
+      h4, p {
+        font-family: $olBaseFont;
+        color: $olLTHeader;
+      }
+
+      p {
+        font-size: 1.2em;
+        margin-block-start: 0;
+      }
+
+      h4  {
+        font-weight: 600;
+        margin-block-end: 0;
+      }
+    }
+  }
+}

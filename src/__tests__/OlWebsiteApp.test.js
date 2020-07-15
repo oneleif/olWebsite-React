@@ -1,15 +1,22 @@
-import React from "react";
+import React from 'react';
 
-// 'Extended' wrapper for react-testing-library
-import { renderWithRouter } from "test-utils";
+import { renderWithRouter } from 'test-utils';
+import ReactGA from 'react-ga';
 
-import OlWebsiteApp from "../OlWebsiteApp";
+import OlWebsiteApp from '../OlWebsiteApp';
 
-describe("OlWebsiteApp", () => {
-  // Dummy test
-  test("renders without crashing", () => {
+/**
+ * Have to Mock React Google Analytics or test breaks
+ */
+jest.mock('react-ga');
+
+describe('OlWebsiteApp', () => {
+  test('renders without crashing', () => {
     const { container } = renderWithRouter(<OlWebsiteApp />);
-
     expect(container).toBeVisible();
+  });
+
+  test('ReactGA is initialized', () => {
+    expect(ReactGA.initialize).toBeCalled();
   });
 });

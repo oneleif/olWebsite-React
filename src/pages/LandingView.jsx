@@ -1,68 +1,61 @@
-import React from "react";
+import React from 'react';
 
-import Slides from "../slides";
-import Carousel from "../components/Carousel/Carousel";
+import FeatureContainer from '../components/FeatureContainer/FeatureContainer';
+import Fabrice from '../assets/Members/Fabrice_MET.png';
+
+import Button from '../components/Objects/Button/Button';
+import FeatureLink from '../components/Objects/FeatureLink/FeatureLink';
+import TestimonialContainer from '../components/TestimonialContainer/TestimonialContainer';
+import SocialMediaConstants from '../constants/social-media-constants';
+import CallToAction from '../components/CallToAction/CallToAction';
+
+import LandingImg from '../assets/Landing/ol-landing-2_1_1.svg';
+import TeamImg from '../assets/Landing/ol-team_1_1.svg';
+import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
+import ResourcesImg from '../assets/Landing/ol-resources_1.svg';
 
 export default function LandingView() {
   /************************************
    * Render
    ************************************/
 
+  const olLandingImg = (image) => { return (<img src={image} alt="icon" />)};
+  
   return (
-    <>
-      <Carousel slides={Slides} />
-      <div className="landing-view-container">
-        <div className="about-us-container">
-          <h1 className="landing-view-header">About oneleif</h1>
-          <div className="img-place-holder"></div>
-          <p>
-            oneleif is a project based group focused on learning and mentorship.
-            Our core tenet of becoming skilled professionals is to work on open
-            source projects. Open source simply means the work you are doing is
-            available to the public. This comes with the benefit that anyone can
-            help you on your project, and allows those without experience to see
-            how something is made.
-          </p>
-          <br />
-          <p>
-            If you are looking to learn how to program, design, or even make
-            music, oneleif is a community that thrives on helping others. If are
-            already an expert, feel free to bring in a project of your own, or
-            join an already active project. Let oneleif help you find a team
-            based on your interests!
-          </p>
-        </div>
-        <div className="join-us-container">
-          <h1>Join Us Today!</h1>
-          <p>
-            Joining oneleif is available in a few forms. The main form of
-            communication for oneleif members is through the discord
-            application. You can download discord on your phone, computer, or
-            tablet to get access. The second form of communication, that is most
-            important for any open source developer is a version control system.
-            oneleif uses GitHub for working as a team, click on the link below
-            to check out our projects..
-          </p>
-          <ul>
-            <li>
-              <a href="https://discord.gg/tv9UdJK">
-                <img
-                  src="https://img.shields.io/badge/oneleif-Discord-7284be.svg"
-                  alt="Join the Discord"
-                />
-              </a>
-            </li>
-            <li>
-              <a href="https://github.com/oneleif">
-                <img
-                  src="https://img.shields.io/badge/GitHub-oneleif-255e33.svg"
-                  alt="Check out our github"
-                />
-              </a>
-            </li>
-          </ul>
-        </div>
+      <div className='landing-view-container'>
+        <FeatureContainer image={olLandingImg(LandingImg)}>
+          <div className='feature-copy-container'>
+            <h1>oneleif</h1>
+            <p className='title'>Grow and create together.</p>
+          </div>
+          <Button handleClick={()=> window.open(SocialMediaConstants.DISCORD_LINK, '_blank')}>Join our Discord</Button>
+        </FeatureContainer>
+        <CallToAction title='oneleif is a community' subtitle='We'
+          textArray={[' learn together', ' work together', ' grow together', ' create together']} />
+        <FeatureContainer image={olLandingImg(TeamImg)}>
+          <div className='feature-copy-container'>
+            <h2>Diverse Community</h2>
+            <p>Our members have broad skills sets, and we love to find innovative ways to collaborate and learn together.</p>
+          </div>
+          <FeatureLink path='/team'>Join the community</FeatureLink>
+        </FeatureContainer>
+        <FeatureContainer image={<ProjectsSVG />} invert>
+          <div className='feature-copy-container'>
+            <h2>Projects</h2>
+            <p>Our projects are as diverse as our members. From open source initiatitves to personal experiments, we’ve got it all.</p>
+          </div>
+          <FeatureLink path='/projects'>Check out our Projects</FeatureLink>
+        </FeatureContainer>
+        <FeatureContainer image={olLandingImg(ResourcesImg)}>
+          <div className='feature-copy-container'>
+            <h2>Resources</h2>
+            <p>We take pride in sharing knowledge and resources within the community. At oneleif, there are countless members to learn from and mentor.</p>
+          </div>
+          <FeatureLink>Learn More</FeatureLink>
+        </FeatureContainer>
+        <TestimonialContainer name='Fabrice' location='Port-de-Paix, HT' image={Fabrice}>
+          “I appreciate you guys looking out for each other. It's one of the qualities I respect the most about this group.”
+        </TestimonialContainer>
       </div>
-    </>
   );
 }

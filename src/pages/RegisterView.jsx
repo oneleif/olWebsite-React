@@ -6,7 +6,7 @@ import { SUCCESS } from '../constants/authentication-constants';
 import { register } from '../services/authService.js';
 
 import Input from '../components/Objects/Input/Input';
-import homeLogo from '../images/homeLogo.png';
+import homeLogo from "../assets/homeLogo.png";
 
 function RegisterView() {
   /************************************
@@ -27,8 +27,9 @@ function RegisterView() {
    * Private Functions
    ************************************/
 
-  /* Handler for sign up button clicked, if valid inputs registers user
-   */
+ /**
+  * Handler for sign up button clicked, if valid inputs registers user
+  */
   async function registerClicked() {
     if (validateInput()) {
       try {
@@ -40,8 +41,9 @@ function RegisterView() {
     }
   }
 
-  /* Validates inputs, if invalid then it will display an error message
-   */
+ /**
+  * Validates inputs, if invalid then it will display an error message
+  */
   function validateInput() {
     const emailResponse = validateEmail(email);
     const passwordResponse = validatePassword(password);
@@ -72,28 +74,28 @@ function RegisterView() {
     handleReenteredPasswordValidationResponse(response);
   }
 
-  /* Takes in validation response of email and sets based on success or not
-   *
-   * @param response
-   */
+ /** 
+  * Takes in validation response of email and sets based on success or not
+  * @param response
+  */
   function handleEmailValidationResponse(response) {
     const message = response !== SUCCESS ? response : null;
     setEmailErrorMessage(message);
   }
 
-  /* Takes in validation response of password and sets based on success or not
-   *
-   * @param response
-   */
+ /** 
+  * Takes in validation response of password and sets based on success or not
+  * @param response
+  */
   function handlePasswordValidationResponse(response) {
     const message = response !== SUCCESS ? response : null;
     setPasswordErrorMessage(message);
   }
 
-  /* Takes in validation response of reentered password and sets based on success or not
-   *
-   * @param response
-   */
+ /** 
+  * Takes in validation response of reentered password and sets based on success or not
+  * @param response
+  */
   function handleReenteredPasswordValidationResponse(response) {
     const message = response !== SUCCESS ? response : null;
     setReenteredPasswordErrorMessage(message);
