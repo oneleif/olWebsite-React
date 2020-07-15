@@ -1,0 +1,39 @@
+.nav-link-list-container {
+  h4 {
+    font-family: $olBaseFont;
+    color: $gray800;
+    line-height: 34px;
+    font-style: normal;
+    font-weight: 400;
+    margin-block-start: 0;
+    margin-block-end: .5em;
+  }
+
+  ul {
+    margin-block-start: 0;
+    padding-inline-start: 0;
+
+
+    li {
+      margin-bottom: .5em;
+
+      &:last-child {
+        margin-bottom: 0;   
+      }
+
+      a {
+        font-family: $olBaseFont;
+        color: $olLTHeader;
+        font-size: 1.1rem;
+        line-height: 22px;
+        text-decoration: none;
+        list-style: none;
+        letter-spacing: 0.5px;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

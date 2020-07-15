@@ -1,0 +1,27 @@
+div.social-media-icon-module {
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-rows: 70px 70px;
+  align-items: center;
+  max-width: 320px;
+  width: 90%;
+
+  @include medium('up') {
+    width: 202px;
+    grid-template-rows: 60px 35px;
+    justify-content: center;
+  }
+
+  svg {
+    cursor: pointer;
+    justify-self: center;
+
+    @include medium('up') {
+      justify-self: left;
+    }
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

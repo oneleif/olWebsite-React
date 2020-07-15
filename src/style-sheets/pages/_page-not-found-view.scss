@@ -1,0 +1,98 @@
+.page-not-found-view-container {
+  padding-top: 70px;
+  font-size: 24px;
+
+  display: flex;
+  justify-content: center;
+
+  .page-not-found-view-body {
+    width: 85%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    @include small() {
+      width: 92%;
+    }
+
+    @include medium() {
+      width: 83%;
+    }
+
+    @include large() {
+      width: 92%;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    @include xlarge() {
+      width: 81%;
+    }
+
+    .page-not-found-view-image-container{
+      @include large() {
+        order: 2;
+      }
+    }
+
+    svg {
+      width: 272px;
+      height: 196px;
+
+      @include small() {
+        width: 552px;
+        height: 398px;
+      }
+
+      @include medium() {
+        width: 640px;
+      }
+
+      @include large() {
+        width: 652px;
+      }
+
+    }
+
+    .page-not-found-view-text-container {
+      width: 100%;
+      margin-top: 5%;
+      text-align: center;
+
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      @include large() {
+        margin: 0;
+        text-align: left;
+        align-items: flex-start;
+      }
+
+      p {
+        color: $olTLightCopy;
+        line-height: 1.3em;
+        font-family: $olBaseFont;
+        margin: 6px;
+
+        @include large() {
+          margin: 12px 0;
+        }
+
+      }
+
+      a.button {
+        margin: 10px 0;
+        line-height: 1.56rem;
+
+        text-align: center;
+        letter-spacing: 0.01rem;
+        font-weight: 600;
+        
+        width: 174px;
+        height: 49px;
+      }
+    }
+  }
+}
