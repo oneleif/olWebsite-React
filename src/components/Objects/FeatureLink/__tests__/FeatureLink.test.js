@@ -14,26 +14,28 @@ const TEST_PATH = '/test';
 
 describe('Feature Link Tests', () => {
   function setUp() {
-    const { history, queryByText } = renderWithRouter(<FeatureLink path={TEST_PATH}>{TEST}</FeatureLink>);
-    return { history, queryByText };
+    const { history, queryAllByText } = renderWithRouter(<FeatureLink path={TEST_PATH}>{TEST}</FeatureLink>);
+    return { history, queryAllByText };
   }
 
   test('Initial render', () => {
-    const { queryByText } = setUp();
-    expect(queryByText(TEST)).toBeTruthy();
+    const { queryAllByText } = setUp();
+    expect(queryAllByText(TEST)).toBeTruthy();
   });
 
   test('Url path changes after link clicked', () => {
-    const { history, queryByText } = setUp();
-    fireEvent.click(queryByText(TEST));
+    const { history, queryAllByText } = setUp();
+    const links = queryAllByText(TEST);
+    fireEvent.click(links[0]);
 
     expect(history.location.pathname).toEqual(TEST_PATH);
   });
 
   test('ReactGA event fired after link clicked', () => {
-    const { queryByText } = setUp();
-    fireEvent.click(queryByText(TEST));
+    const { queryAllByText } = setUp();
+    const links = queryAllByText(TEST);
 
+    fireEvent.click(links[0]);
     expect(ReactGA.event).toHaveBeenCalled();
   });
 });
