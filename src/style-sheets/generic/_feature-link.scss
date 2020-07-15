@@ -3,18 +3,21 @@
   flex-direction: row;
   align-items: center;
 
-  color: $olLTAccent;
-  font-size: 1.33rem;
+  color: $green300;
+  font-size: .937rem;
   font-family: $olBaseFont;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 1.25px;
+  width: max-content;
 
   &:hover {
     text-decoration: underline;
   }
-}
 
-.copy-icon {
-  color: $olLTAccent;
-  margin-left: 5px;
+  svg {
+    color: $olLTAccent;
+    margin-left: 5px;
+  }
 }

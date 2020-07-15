@@ -10,7 +10,7 @@ import FeatureLink from '../FeatureLink';
 jest.mock('react-ga');
 
 const TEST = 'test';
-const TEST_PATH = '/test';
+const TEST_PATH = '/path';
 
 describe('Feature Link Tests', () => {
   function setUp() {
