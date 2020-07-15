@@ -10,32 +10,30 @@ import FeatureLink from '../FeatureLink';
 jest.mock('react-ga');
 
 const TEST = 'test';
-const TEST_PATH = '/test';
+const TEST_PATH = '/path';
 
 describe('Feature Link Tests', () => {
   function setUp() {
-    const { history, queryAllByText } = renderWithRouter(<FeatureLink path={TEST_PATH}>{TEST}</FeatureLink>);
-    return { history, queryAllByText };
+    const { history, queryByText } = renderWithRouter(<FeatureLink path={TEST_PATH}>{TEST}</FeatureLink>);
+    return { history, queryByText };
   }
 
   test('Initial render', () => {
-    const { queryAllByText } = setUp();
-    expect(queryAllByText(TEST)).toBeTruthy();
+    const { queryByText } = setUp();
+    expect(queryByText(TEST)).toBeTruthy();
   });
 
   test('Url path changes after link clicked', () => {
-    const { history, queryAllByText } = setUp();
-    const links = queryAllByText(TEST);
-    fireEvent.click(links[0]);
+    const { history, queryByText } = setUp();
+    fireEvent.click(queryByText(TEST));
 
     expect(history.location.pathname).toEqual(TEST_PATH);
   });
 
   test('ReactGA event fired after link clicked', () => {
-    const { queryAllByText } = setUp();
-    const links = queryAllByText(TEST);
+    const { queryByText } = setUp();
+    fireEvent.click(queryByText(TEST));
 
-    fireEvent.click(links[0]);
     expect(ReactGA.event).toHaveBeenCalled();
   });
 });
