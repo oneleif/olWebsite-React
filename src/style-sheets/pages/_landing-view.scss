@@ -1,58 +1,47 @@
 .landing-view-container{
-        width: 100%;
+  width: 100%;
 
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-        & div {
-            width: 75%;
-            border-top: 1px solid #7F8892;
-        }
+  div.feature-copy-container {
+    width: 100%;
+    font-family: $olBaseFont;
 
-        & h1, p {
-            text-align: left;
-        }
+    h1 {
+      color: $gray800;
+      margin-block-start: 0;
+      margin-block-end: 0.4rem;
+      font-size: 4.125rem;
+      line-height: 86px;
+      letter-spacing: -0.005em;
+    }
+  
+    h2 {
+      color: $gray800;
+      margin-block-start: 0;
+      margin-block-end: 0.5rem;
+      font-size: 3.25rem;
+      line-height: 68px;
+    }
 
-        & div.join-us-container {
-            width: 75%;
-            margin-bottom: 3%;
-            padding-bottom: 1%;
-            border: 1px solid #7F8892;
+    p.title {
+      font-size: 1.375rem;
+      color: $gray700;
+      margin-block-start: 0;
+      margin-block-end: 1.5rem;
+      line-height: 30px;
+    }
 
-            & h1 {
-                margin: 1.5%;
-            }
-
-            & p {
-                margin: 1.5% 1.5% 3%;
-            }
-
-            & ul {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-evenly;
-
-                padding-inline-start: 0;
-
-                & li {
-                    list-style: none;
-                    width: 34%;
-                    
-                    & a img {
-                        width: 100%;
-                    }
-                }
-            }
-        }
-}
-
-//TODO: Get rid of this place holder when mock ups are set
-.img-place-holder {
-    min-width: 100%;
-    min-height: 150px;
-    border: 1px solid #7F8892;
-    margin-bottom: 3%;
-    border-radius: 4px;
+    p {
+      font-size: 1.375rem;
+      color: $gray700;
+      margin-block-start: 0;
+      margin-block-end: 1.5rem;
+      line-height: 32px;
+      letter-spacing: 0.5px;
+    }
+  }
 }

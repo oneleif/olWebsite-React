@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-157178354-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-157178354-2');
+    </script>
+
+    <base href="/" />
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Website for the oneleif open source group"
-    />
+    <meta name="description" content="Grow and create together." />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@oneleifdev">
+    <meta name="twitter:creator" content="@oneleifdev">
+    <meta name="twitter:title" content="oneleif Website">
+    <meta name="twitter:description" content="Grow and create together.">
+    <!-- Twitter Summary card images must be at least 120x120px -->
+    <meta name="twitter:image" content="%PUBLIC_URL%/ol-socialCard_1.png">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="oneleif Website" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oneleif.com/" />
+    <meta property="og:image" content="%PUBLIC_URL%/ol-socialCard_1.png" />
+    <meta property="og:description" content="Grow and create together." />
+    <meta property="og:site_name" content="oneleif" />
+
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a

@@ -1,0 +1,129 @@
+.contact-us-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  .contact-us-content-container {
+    width: 81.5%;
+
+    display: flex;
+    font-family: $olBaseFont;
+    justify-content: space-between;
+    flex-direction: row;
+
+    @include medium('down') {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contact-us-copy-container {
+      width: 45%;
+      display: flex;
+      flex-direction: column;
+
+      @include medium('down') {
+        margin: 0;
+        width: 100%;
+
+        * {
+          order: 1;
+        }
+      }
+
+      h1 {
+        color: $olLTHeader;
+        margin-block-end: 0;
+        font-family: $olBaseFont;
+
+        @include medium('down') {
+          order: -1;
+          font-size: 1.4rem;
+        }
+
+      }
+      
+      div.feature-copy-container {
+        margin-bottom: 6%;
+      }
+
+      p {
+        color: $olLTCopy;
+        margin-block-start: 0;
+        margin-block-end: .5em;
+        font-size: 1.6rem;
+
+        @include medium('down') {
+          font-size: 1.15rem;
+        }
+
+      }
+
+      .call-to-action-text {
+        margin-block-end: 2em;
+      }
+
+      a {
+        color: $olLTLink;
+      }
+
+      svg {
+        margin-top: 6%;
+        width: 400px;
+
+        @include medium('down') {
+          margin: 9.8% 0;
+          width: 199px;
+          order: 0;
+          align-self: center;
+          height: 185px;
+
+          rect {
+            width: 100%;
+            height: 100%;
+          }
+
+        }
+
+      }
+    }
+
+    .contact-us-form-container {
+      padding-top: 2%;
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-top: 3%;
+
+      .input-container,
+      .textarea-container {
+        margin-bottom: 5%;
+      }
+
+      @include medium('down') {
+        width: 100%;
+
+        * {
+          order: 1;
+        }
+
+        .input-container {
+          margin-bottom: 5%;
+        }
+
+        .textarea-container {
+          margin-bottom: 12%;
+        }
+      }
+
+      a.button {
+        width: 131px;
+        align-self: flex-end;
+
+        @include medium('down') {
+          align-self: center;
+        }
+
+      }
+    }
+  }
+}

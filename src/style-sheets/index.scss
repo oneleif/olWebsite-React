@@ -1,3 +1,6 @@
+@import './modules/font';
+@import './modules/colors';
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -5,10 +8,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 16px;
+  font-size: $olBodySize;
   line-height: 1.5;
 
-  color: #ffffff;
+  color: $olLTPrimary;
 }
 
 code {

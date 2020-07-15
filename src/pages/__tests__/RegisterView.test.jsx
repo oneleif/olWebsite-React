@@ -32,7 +32,8 @@ describe("Register View Component Tests", function() {
         renderedComponent = renderWithRouter(<RegisterView />);
     });
 
-    test("initial render, registration inputs should be in view", () => {
+    // FIXME: Once Register is implemented for V2 we can re-implement these tests
+    test.skip("initial render, registration inputs should be in view", () => {
         const inputs = queryByLabelText(renderedComponent.container, 'Email');
         expect(inputs).toBeInTheDocument();
     });
@@ -46,7 +47,7 @@ describe("Register View Component Tests", function() {
         expect(emailErrorMessage).toBeInTheDocument();
     });
 
-    test("Valid inputs entered, fetch should be called", async () => {
+    test.skip("Valid inputs entered, fetch should be called", async () => {
         const emailInput = queryByLabelText(renderedComponent.container, 'Email-input');
         const passwordInput = queryByLabelText(renderedComponent.container, 'Password-input');
         const reenteredPasswordInput = queryByLabelText(renderedComponent.container, 'Reenter Password-input');

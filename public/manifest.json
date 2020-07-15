@@ -6,6 +6,10 @@
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },{
+      "src": "ol-socialCard_1.png",
+      "type": "image/png",
+      "sizes": "120x120 1201×631"
     }
   ],
   "start_url": ".",

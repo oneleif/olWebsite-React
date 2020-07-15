@@ -1,0 +1,45 @@
+.button {
+  width: 189px;
+  height: 49px;
+  border-radius: 4px;
+  border-width: 0;
+
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.primary {
+  background-color: $olLTAccent;
+  color: $white;
+  font-family: $olBaseFont;
+
+  &:hover {
+    background-color: $Primary-Button-Hover;
+  }
+  
+  &:active {
+    background-color: $Primary-Button-Pressed;
+    color: $Primary-Button-Text-Pressed;
+  }
+}
+
+.round {
+  border-radius: 50px;
+}
+
+.disabled {
+  background-color: $Primary-Button-Disabled;
+  color: $white;
+  font-family: $olBaseFont;
+  pointer-events: none;
+  cursor: none;
+}
+
+a.button {
+  text-decoration: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

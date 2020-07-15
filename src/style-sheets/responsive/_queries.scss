@@ -1,4 +1,17 @@
-// Small devices
+// Small devices - 0px
+@mixin xsmall($identifier: "up") {
+  @if ($identifier == "down") {
+    @media (max-width: #{$screen-xs}) {
+      @content;
+    }
+  } @else {
+    @media (min-width: #{$screen-xs}) {
+      @content;
+    }
+  }
+}
+
+// Small devices - 600px
 @mixin small($identifier: "up") {
   @if ($identifier == "down") {
     @media (max-width: #{$screen-sm}) {
@@ -11,7 +24,7 @@
   }
 }
 
-// Medium devices
+// Medium devices - 960px
 @mixin medium($identifier: "up") {
   @if ($identifier == "down") {
     @media (max-width: #{$screen-md}) {
@@ -23,7 +36,7 @@
     }
   }
 }
-// Large devices
+// Large devices - 1280px
 @mixin large($identifier: "up") {
   @if ($identifier == "down") {
     @media (max-width: #{$screen-lg}) {
@@ -36,7 +49,7 @@
   }
 }
 
-// Extra large devices
+// Extra large devices - 1920px
 @mixin xlarge($identifier: "up") {
   @if ($identifier == "down") {
     @media (max-width: #{$screen-xl}) {
@@ -44,18 +57,6 @@
     }
   } @else {
     @media (min-width: #{$screen-xl}) {
-      @content;
-    }
-  }
-}
-
-@mixin xxlarge($identifier: "up", $range: "") {
-  @if ($identifier == "down") {
-    @media (max-width: #{$screen-xxl}) {
-      @content;
-    }
-  } @else {
-    @media (min-width: #{$screen-xxl}) {
       @content;
     }
   }

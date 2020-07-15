@@ -38,7 +38,6 @@ function UserProvider ({ children }) {
 
 /**
  * Gives the current user and a function to set the user
- * 
  * @returns {Array} [user, setUser]
  */
 function useUser() {
