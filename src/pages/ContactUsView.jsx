@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import FeatureCopy from "../components/FeatureContainer/FeatureCopy";
 import OlContactBean from '../assets/olLilBean/OlContactBean';
 import Input from '../components/Objects/Input/Input';
 import TextArea from '../components/Objects/TextArea/TextArea';
@@ -129,10 +128,10 @@ export default function ContactUsView() {
       <div className='contact-us-content-container'>
         <div className='contact-us-copy-container'>
           <h1>Contact Us</h1>
-          <FeatureCopy>
+          <p className='call-to-action-text'>
             Interested in learning more?  
             Looking to partner with us? We want to hear from you! 
-          </FeatureCopy>
+          </p>
           <p>Email us at: <a href={`${TARGET_EMAIL}?Subject=oneleif%20submission%20form`} target="_top" onClickCapture={handleContactLinkClicked}>oneleifdev@gmail.com</a></p>
           <p>Call us: <a href="tel:1-402-536-0377" onClickCapture={handleContactLinkClicked}>+1 (402) 536-0377</a></p>
           <OlContactBean />

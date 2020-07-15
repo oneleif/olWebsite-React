@@ -5,4 +5,43 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  div.feature-copy-container {
+    width: 100%;
+    font-family: $olBaseFont;
+
+    h1 {
+      color: $gray800;
+      margin-block-start: 0;
+      margin-block-end: 0.4rem;
+      font-size: 4.125rem;
+      line-height: 86px;
+      letter-spacing: -0.005em;
+    }
+  
+    h2 {
+      color: $gray800;
+      margin-block-start: 0;
+      margin-block-end: 0.5rem;
+      font-size: 3.25rem;
+      line-height: 68px;
+    }
+
+    p.title {
+      font-size: 1.375rem;
+      color: $gray700;
+      margin-block-start: 0;
+      margin-block-end: 1.5rem;
+      line-height: 30px;
+    }
+
+    p {
+      font-size: 1.375rem;
+      color: $gray700;
+      margin-block-start: 0;
+      margin-block-end: 1.5rem;
+      line-height: 32px;
+      letter-spacing: 0.5px;
+    }
+  }
 }
