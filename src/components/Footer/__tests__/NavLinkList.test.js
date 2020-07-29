@@ -43,9 +43,9 @@ describe('Nav Link List Tests', () => {
           <div
             class="nav-link-list-container"
           >
-            <h5>
+            <h4>
               ${TEST_HEADER}
-            </h5>
+            </h4>
             <ul />
           </div>
         </div>
@@ -59,9 +59,9 @@ describe('Nav Link List Tests', () => {
           <div
             class="nav-link-list-container"
           >
-            <h5>
+            <h4>
               ${TEST_HEADER}
-            </h5>
+            </h4>
             <ul>
               <li>
                 <a
@@ -83,9 +83,9 @@ describe('Nav Link List Tests', () => {
           <div
             class="nav-link-list-container"
           >
-            <h5>
+            <h4>
               ${TEST_HEADER}
-            </h5>
+            </h4>
             <ul>
               <li>
                 <a

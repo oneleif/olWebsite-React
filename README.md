@@ -1,15 +1,37 @@
-# oneleif website React front-end
+# oneleif Website Front End
 
+Repository for the oneleif website's front-end, written with the JavaScript Library React. 
 
-### Project Info
+The oneleif website is aiming to serve as a central hub for oneleif members to find active projects, make posts, search for help/advice and communicate with recruiters for career advice/potential jobs.
 
-This project is repository for the oneleif website's front-end. 
+## Table of contents
+* [Contribution](#contribution)
+* [Goals & Roadmap](#goals)
+* [Associated Projects](#associated-projects)
+* [How to Join](#how-to-join-oneleif)
+* [Questions?](#questions)
 
-The website will serve as a central place for oneleif members and recruiters to interact in the future of the organization. The website will feature posts, social information (such as github and resume), and serve as a central place to share information and be recruited.
-
-### Contribution
+## Contribution
 
 To get started working on this project, please see our wiki: https://github.com/oneleif/olWebsite-React/wiki
+
+## Goals
+
+### Roadmap
+##### Version 1.0.0 - MVP
+* Landing View/Home Page
+* Contact Us Page
+* Active Projects Page
+* Detailed Project View
+* Meet the team Page
+
+##### Version 2.0.0
+* Login/Register Functionality
+* User Profile View
+  * User View (Self)
+  * External View
+* Create Posts Functionality
+* Search Functionality
 
 ### Important Links
 
@@ -48,5 +70,5 @@ When you're done with the above, shoot a message to the #start channel to let us
 
 [![](https://img.shields.io/badge/oneleif-Discord-7284be.svg)](https://discord.gg/tv9UdJK)
 
-### Questions?
-Feel free to email us at: oneleifdev@gmail.com 
+## Questions?
+Feel free to email us at: oneleifdev@gmail.com or throw a question into the #oneleif-website channel in our discord server

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Router } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
@@ -14,7 +15,6 @@ export default function OlWebsiteApp() {
   const history = createBrowserHistory();
   const TRACKING_ID = "UA-157178354-2";
   ReactGA.initialize(TRACKING_ID);
-
 
   // Initialize google analytics page view tracking
   history.listen(location => {

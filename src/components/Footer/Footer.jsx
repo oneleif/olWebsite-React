@@ -14,7 +14,7 @@ function Footer() {
     <footer>
       <div className='footer-nav-module'>
         <div className='left-navigation'>
-          <h4>oneleif</h4>
+          <h3>oneleif</h3>
           <SocialMediaContainer />
         </div>
         <div className='right-navigation'>

@@ -3,7 +3,7 @@ import React from 'react';
 import ReactGA from 'react-ga';
 
 import { Link, withRouter } from 'react-router-dom';
-import { FaArrowRight } from 'react-icons/fa';
+import ArrowRight from '../../../assets/Icons/ArrowRight';
 
 function FeatureLink({ children, path = '/' }) {
  /************************************
@@ -25,7 +25,7 @@ function FeatureLink({ children, path = '/' }) {
   return (
     <Link className='copy-link' to={path} onClickCapture={handleLinkClicked} >
         {children}
-        <FaArrowRight className='copy-icon'/>
+        <ArrowRight />
     </Link>
   );
 }

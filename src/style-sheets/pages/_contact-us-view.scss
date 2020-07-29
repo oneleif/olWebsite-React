@@ -63,6 +63,10 @@
         }
       }
 
+      .call-to-action-text {
+        margin-block-end: 2em;
+      }
+
       a {
         color: $olLTLink;
       }
@@ -121,7 +125,6 @@
       a.button {
         width: 131px;
         align-self: center;
-        margin-bottom: 22%;
 
         @include medium('up') {
           align-self: flex-end;
