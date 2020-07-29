@@ -113,7 +113,7 @@ workflows:
             branches:
               only: develop
       - deploy:
-          name: deploy_propuction
+          name: deploy_production
           bucket_url: S3_BUCKET_URL_PROD
           context: oneleif-aws
           requires:
