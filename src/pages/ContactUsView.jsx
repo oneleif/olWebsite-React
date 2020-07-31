@@ -4,27 +4,29 @@ import OlContactBean from '../assets/olLilBean/OlContactBean';
 import Input from '../components/Objects/Input/Input';
 import TextArea from '../components/Objects/TextArea/TextArea';
 import ButtonLink from '../components/Objects/ButtonLink/ButtonLink';
+import ReactHelmetWrapper from '../components/ReactHelmetWrapper/ReactHelmetWrapper';
+import LinkPreviewImage from '../assets/LinkPreview/ol-socialCard_1.png';
 
 import ReactGA from 'react-ga';
 
-  /************************************
-   * Constants
-   ************************************/
+/************************************
+ * Constants
+ ************************************/
 
-  const TARGET_EMAIL = 'mailto:oneleifdev@gmail.com';
-  const ERROR_MESSAGE = 'Please enter a';
+const TARGET_EMAIL = 'mailto:oneleifdev@gmail.com';
+const ERROR_MESSAGE = 'Please enter a';
 
 export default function ContactUsView() {
   /************************************
-  * State
-  ************************************/
+   * State
+   ************************************/
 
   const [mailTo, setMailTo] = useState('');
-  const [formData, setFormData] = useState({message: {value: '', error: ''}, subject: {value: '', error: ''}});
+  const [formData, setFormData] = useState({ message: { value: '', error: '' }, subject: { value: '', error: '' } });
 
   /************************************
-  * Private Methods
-  ************************************/
+   * Private Methods
+   ************************************/
 
   /**
    * Passes the id and value of the input into helper functions to be handled
@@ -32,7 +34,7 @@ export default function ContactUsView() {
    */
   function handleInput(event) {
     const { id, value } = event.target;
-    setData(id, value)
+    setData(id, value);
     handleEnteredInput(id, value);
   }
 
@@ -44,10 +46,9 @@ export default function ContactUsView() {
    */
   function setData(id, value) {
     if (value.length > 0) {
-      setFormData({...formData, [id] : {value : value, error: ''}});
-    }
-    else {
-      setFormData({...formData, [id] : {value : value, error: `${ERROR_MESSAGE} ${id}`}});
+      setFormData({ ...formData, [id]: { value: value, error: '' } });
+    } else {
+      setFormData({ ...formData, [id]: { value: value, error: `${ERROR_MESSAGE} ${id}` } });
     }
   }
 
@@ -62,9 +63,11 @@ export default function ContactUsView() {
       setMailTo('');
       return;
     }
-    
+
     //if event comes from message then input will need to be in message param
-    (id === 'message') ? parseAndApplyEmailInput(formData.subject.value, value) : parseAndApplyEmailInput(value, formData.message.value);
+    id === 'message'
+      ? parseAndApplyEmailInput(formData.subject.value, value)
+      : parseAndApplyEmailInput(value, formData.message.value);
   }
 
   /**
@@ -79,15 +82,16 @@ export default function ContactUsView() {
     }
 
     //prevents event from propogating to link functionality
-    event.preventDefault();  
+    event.preventDefault();
     if (formData.subject.value) {
-      setFormData({...formData, message : {value : '', error: `${ERROR_MESSAGE} message`}});
-    }
-    else if (formData.message.value) {
-      setFormData({...formData, subject : {value : '', error: `${ERROR_MESSAGE} subject`}});
-    }
-    else {
-      setFormData({message : {value : '', error: `${ERROR_MESSAGE} message`}, subject : {value : '', error: `${ERROR_MESSAGE} subject`}});
+      setFormData({ ...formData, message: { value: '', error: `${ERROR_MESSAGE} message` } });
+    } else if (formData.message.value) {
+      setFormData({ ...formData, subject: { value: '', error: `${ERROR_MESSAGE} subject` } });
+    } else {
+      setFormData({
+        message: { value: '', error: `${ERROR_MESSAGE} message` },
+        subject: { value: '', error: `${ERROR_MESSAGE} subject` }
+      });
     }
   }
 
@@ -124,22 +128,60 @@ export default function ContactUsView() {
    ************************************/
 
   return (
-    <div className="contact-us-view-container">
+    <div className='contact-us-view-container'>
+      <ReactHelmetWrapper
+        title='Contact Us'
+        description='Have any questions? Or even a project proposal?'
+        image={LinkPreviewImage}
+      />
       <div className='contact-us-content-container'>
         <div className='contact-us-copy-container'>
           <h1>Contact Us</h1>
           <p className='call-to-action-text'>
-            Interested in learning more?  
-            Looking to partner with us? We want to hear from you! 
+            Interested in learning more? Looking to partner with us? We want to hear from you!
           </p>
-          <p>Email us at: <a href={`${TARGET_EMAIL}?Subject=oneleif%20submission%20form`} target="_top" onClickCapture={handleContactLinkClicked}>oneleifdev@gmail.com</a></p>
-          <p>Call us: <a href="tel:1-402-536-0377" onClickCapture={handleContactLinkClicked}>+1 (402) 536-0377</a></p>
+          <p>
+            Email us at:{' '}
+            <a
+              href={`${TARGET_EMAIL}?Subject=oneleif%20submission%20form`}
+              target='_top'
+              onClickCapture={handleContactLinkClicked}
+            >
+              oneleifdev@gmail.com
+            </a>
+          </p>
+          <p>
+            Call us:{' '}
+            <a href='tel:1-402-536-0377' onClickCapture={handleContactLinkClicked}>
+              +1 (402) 536-0377
+            </a>
+          </p>
           <OlContactBean />
         </div>
         <div className='contact-us-form-container'>
-          <Input id='subject' label='Subject' placeholder='Enter the subject...' caption='Subject Input' errorMessage={formData.subject.error} onValueChange={handleInput}/>
-          <TextArea id='message' label='Message' placeholder='Write your message here' caption='Message Input' errorMessage={formData.message.error} onValueChange={handleInput}/>
-          <ButtonLink aria-label='send' handleClick={handleSendClicked} href={mailTo} target="_top" eventLabel='Email Submission Attempted'>
+          <Input
+            id='subject'
+            label='Subject'
+            placeholder='Enter the subject...'
+            caption='Subject Input'
+            errorMessage={formData.subject.error}
+            onValueChange={handleInput}
+          />
+          <TextArea
+            id='message'
+            label='Message'
+            placeholder='Write your message here'
+            caption='Message Input'
+            errorMessage={formData.message.error}
+            onValueChange={handleInput}
+          />
+          <ButtonLink
+            aria-label='send'
+            handleClick={handleSendClicked}
+            href={mailTo}
+            target='_top'
+            eventLabel='Email Submission Attempted'
+          >
             Send
           </ButtonLink>
         </div>

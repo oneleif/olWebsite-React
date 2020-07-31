@@ -5,6 +5,8 @@ import PageHeader from '../components/PageHeader/PageHeader';
 
 import teamMembers from './js/teamMembers';
 import MeetTheTeamCard from '../components/MeetTheTeamCard/MeetTheTeamCard';
+import ReactHelmetWrapper from '../components/ReactHelmetWrapper/ReactHelmetWrapper';
+import LinkPreviewImage from '../assets/LinkPreview/ol-socialCard_1.png';
 
 export default function MeetTheTeamView() {
   const [members, setMembers] = useState([]);
@@ -25,10 +27,15 @@ export default function MeetTheTeamView() {
 
   return (
     <div className='meet-team-view-container'>
+      <ReactHelmetWrapper
+        title='Meet the Team'
+        description='Meet the members of the team that helped buld this website.'
+        image={LinkPreviewImage}
+      />
       <PageHeader title='Meet the Team' img={<TeamMap />}>
         <p>
-          oneleif has an exceptional team with diverse skill-sets and unique backgrounds. 
-          Our members are constantly learning and collaborating.
+          oneleif has an exceptional team with diverse skill-sets and unique backgrounds. Our members are constantly learning and
+          collaborating.
         </p>
       </PageHeader>
       <div className='meet-team-card-container'>
