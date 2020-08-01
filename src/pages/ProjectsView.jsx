@@ -4,7 +4,7 @@ import ProjectCard from '../components/ProjectsCard/ProjectCard';
 import projectCards from './js/projects';
 import PageHeader from '../components/PageHeader/PageHeader';
 import ProjectsSVG from '../assets/ProjectsSVG/ProjectsSVG';
-import ReactHelmetWrapper from '../components/ReactHelmetWrapper/ReactHelmetWrapper';
+import ReactHelmetWrapper from '../components/ReactHelmetWrapper';
 import LinkPreviewImage from '../assets/LinkPreview/ol-socialCard_1.png';
 
 export default function ProjectsView() {
@@ -30,6 +30,7 @@ export default function ProjectsView() {
         title='Projects'
         description='Check out our organization and community projects.'
         image={LinkPreviewImage}
+        path='/projects'
       />
       <PageHeader title='Projects' img={<ProjectsSVG />}>
         <p>

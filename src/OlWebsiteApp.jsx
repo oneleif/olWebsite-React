@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Toolbar from './components/Toolbar/Toolbar';
 import { UserProvider } from './contexts/UserContext';
 import './style-sheets/main.scss';
-import ReactHelmetWrapper from './components/ReactHelmetWrapper/ReactHelmetWrapper';
+import ReactHelmetWrapper from './components/ReactHelmetWrapper';
 
 import LinkPreviewImage from './assets/LinkPreview/ol-socialCard_1.png';
 

@@ -5,7 +5,7 @@ import PageHeader from '../components/PageHeader/PageHeader';
 
 import teamMembers from './js/teamMembers';
 import MeetTheTeamCard from '../components/MeetTheTeamCard/MeetTheTeamCard';
-import ReactHelmetWrapper from '../components/ReactHelmetWrapper/ReactHelmetWrapper';
+import ReactHelmetWrapper from '../components/ReactHelmetWrapper';
 import LinkPreviewImage from '../assets/LinkPreview/ol-socialCard_1.png';
 
 export default function MeetTheTeamView() {
@@ -31,6 +31,7 @@ export default function MeetTheTeamView() {
         title='Meet the Team'
         description='Meet the members of the team that helped buld this website.'
         image={LinkPreviewImage}
+        path='/team'
       />
       <PageHeader title='Meet the Team' img={<TeamMap />}>
         <p>

@@ -4,7 +4,7 @@ import OlContactBean from '../assets/olLilBean/OlContactBean';
 import Input from '../components/Objects/Input/Input';
 import TextArea from '../components/Objects/TextArea/TextArea';
 import ButtonLink from '../components/Objects/ButtonLink/ButtonLink';
-import ReactHelmetWrapper from '../components/ReactHelmetWrapper/ReactHelmetWrapper';
+import ReactHelmetWrapper from '../components/ReactHelmetWrapper';
 import LinkPreviewImage from '../assets/LinkPreview/ol-socialCard_1.png';
 
 import ReactGA from 'react-ga';
@@ -133,6 +133,7 @@ export default function ContactUsView() {
         title='Contact Us'
         description='Have any questions? Or even a project proposal?'
         image={LinkPreviewImage}
+        path='/contact'
       />
       <div className='contact-us-content-container'>
         <div className='contact-us-copy-container'>

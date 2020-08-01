@@ -1,3 +1,3 @@
 import ReactHelmetWrapper from './ReactHelmetWrapper';
 
-export default { ReactHelmetWrapper };
+export default ReactHelmetWrapper;
