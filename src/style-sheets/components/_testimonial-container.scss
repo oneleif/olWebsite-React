@@ -1,56 +1,69 @@
 .testimonial-container {
-  margin: 8% 0;
-  width: 100%;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 5% 0;
+  width: 85%;
   font-family: $olBaseFont;
+  display: grid;
+  grid-template-columns: 3fr 0.5fr 100px 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  grid-template-areas:
+      "copy copy copy copy"
+      ". . info img";
 
-  .testimony-module {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 75%;
+    @include medium('up') {
+      width: 75%;
+      grid-template-columns: 3fr 0.5fr 140px 1fr;
+    }
 
     p {
+      grid-area: copy;
       color: $gray800;
-      font-size: 2.6em;
+      font-size: 1.4285em;
       font-family: $olBaseFont;
       line-height: 47px;
       letter-spacing: 0.25px;
       font-weight: normal;
-    }
-  }
 
-  .featured-person-module {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 53%;
-    align-items: center;
-    align-self: flex-end;
+      @include medium('up') {
+        font-size: 2.6em;
+      }
+    }
 
     div {
-      margin-right: 3%;
-      display: flex;
-      flex-direction: column;
-      
+      grid-area: info;
+
       h4, p {
         font-family: $olBaseFont;
         color: $olLTHeader;
       }
 
       p {
-        font-size: 1.2em;
+        font-size: 1em;
         margin-block-start: 0;
+
+        @include medium('up') {
+          font-size: 1.2em;
+        }
       }
 
       h4  {
         font-weight: 600;
         margin-block-end: 0;
+        font-size: 1.125rem;
+
+        @include medium('up') {
+          font-size: 1.625rem;
+        }
       }
+  }
+
+  img {
+    grid-area: img;
+    height: 95px;
+    width: 95px;
+
+    @include medium('up') {
+      height: 160px;
+      width: 160px;
     }
   }
 }
