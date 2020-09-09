@@ -23,8 +23,8 @@ export default function LandingView() {
   
   return (
       <div className='landing-view-container'>
-        <FeatureContainer image={olLandingImg(LandingImg)}>
-          <div className='feature-copy-container'>
+        <FeatureContainer className='title' image={olLandingImg(LandingImg)}>
+          <div className='feature-copy-container title'>
             <h1>oneleif</h1>
             <p className='title'>Grow and create together.</p>
           </div>
