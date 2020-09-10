@@ -29,7 +29,9 @@ describe('Feature Container Tests', () => {
           <div
             class="feature-container normal"
           >
-            <div>
+            <div
+              class=""
+            >
               <p>
                 ${TEST}
               </p>
@@ -54,7 +56,9 @@ describe('Feature Container Tests', () => {
           <div
             class="feature-container inverted"
           >
-            <div>
+            <div
+              class=""
+            >
               <p>
                 ${TEST}
               </p>

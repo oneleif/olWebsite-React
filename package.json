@@ -10,6 +10,7 @@
     "react-dom": "^16.10.2",
     "react-ga": "^2.7.0",
     "react-hamburger-menu": "^1.2.1",
+    "react-helmet": "^6.1.0",
     "react-icons": "^3.8.0",
     "react-responsive": "^8.1.0",
     "react-router-dom": "^5.1.2",

@@ -6,14 +6,14 @@ import React from "react";
 * Invert being false has the text on the left, true it is positioned on the
 * 
 */
-export default function FeatureContainer({ children, image, invert }) {
+export default function FeatureContainer({ children, image, invert, className = '' }) {
   /************************************
    * Render
    ************************************/
 
   return (
-      <div className={'feature-container ' + (invert ? 'inverted' : 'normal')}>
-        <div>
+      <div className={`feature-container ${invert ? 'inverted' : 'normal'}`}>
+        <div className={className}>
             {children}
         </div>
         <div className="feature-image-container">

@@ -2,46 +2,52 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   .contact-us-content-container {
     width: 81.5%;
 
     display: flex;
+    flex-direction: column;
+    align-items: center;
     font-family: $olBaseFont;
     justify-content: space-between;
-    flex-direction: row;
 
-    @include medium('down') {
-      flex-direction: column;
-      align-items: center;
+    @include medium('up') {
+      flex-direction: row;
+      align-items: flex-start;
     }
 
     .contact-us-copy-container {
-      width: 45%;
+      margin: 0;
+      width: 100%;
+
       display: flex;
       flex-direction: column;
 
-      @include medium('down') {
-        margin: 0;
-        width: 100%;
+      * {
+        order: 1;
+      }
+
+      @include medium('up') {
+        width: 45%;
 
         * {
-          order: 1;
+          order: 0;
         }
       }
 
       h1 {
+        order: -1;
+        font-size: 1.4rem;
         color: $olLTHeader;
         margin-block-end: 0;
         font-family: $olBaseFont;
 
-        @include medium('down') {
-          order: -1;
-          font-size: 1.4rem;
+        @include medium('up') {
+          font-size: 3.875em;
         }
-
       }
-      
+
       div.feature-copy-container {
         margin-bottom: 6%;
       }
@@ -50,12 +56,11 @@
         color: $olLTCopy;
         margin-block-start: 0;
         margin-block-end: .5em;
-        font-size: 1.6rem;
+        font-size: 1.15rem;
 
-        @include medium('down') {
-          font-size: 1.15rem;
+        @include medium('up') {
+          font-size: 1.6rem;
         }
-
       }
 
       .call-to-action-text {
@@ -67,23 +72,23 @@
       }
 
       svg {
-        margin-top: 6%;
-        width: 400px;
+        margin: 9.8% 0;
+        width: 199px;
+        order: 0;
+        align-self: center;
+        height: 185px;
 
-        @include medium('down') {
-          margin: 9.8% 0;
-          width: 199px;
-          order: 0;
-          align-self: center;
-          height: 185px;
-
-          rect {
-            width: 100%;
-            height: 100%;
-          }
-
+        rect {
+          width: 100%;
+          height: 100%;
         }
 
+        @include medium('up') {
+          margin-top: 12%;
+          width: 400px;
+          height: 361px;
+          align-self: flex-start;
+        }
       }
     }
 
@@ -91,38 +96,40 @@
       padding-top: 2%;
       display: flex;
       flex-direction: column;
-      width: 50%;
-      margin-top: 3%;
+      width: 100%;
 
-      .input-container,
-      .textarea-container {
-        margin-bottom: 5%;
+      @include medium('up') {
+        width: 50%;
       }
 
-      @include medium('down') {
-        width: 100%;
+      * {
+        order: 1;
+      }
 
-        * {
-          order: 1;
+      .input-container {
+        margin-bottom: 5%;
+
+        @include medium('up') {
+          margin-bottom: 0;
         }
+      }
 
-        .input-container {
+      .textarea-container {
+        margin-bottom: 12%;
+
+        @include medium('up') {
           margin-bottom: 5%;
-        }
-
-        .textarea-container {
-          margin-bottom: 12%;
         }
       }
 
       a.button {
         width: 131px;
-        align-self: flex-end;
+        align-self: center;
 
-        @include medium('down') {
-          align-self: center;
+        @include medium('up') {
+          align-self: flex-end;
+          margin-bottom: 0;
         }
-
       }
     }
   }
