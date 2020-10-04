@@ -24,7 +24,7 @@ jobs:
           at: ~/repo
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -33,17 +33,16 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
 
   test:
     <<: *defaults
-    resource_class: large
     steps:
       - attach_workspace:
           at: ~/repo
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
@@ -52,13 +51,12 @@ jobs:
 
   build:
     <<: *defaults
-    resource_class: large
     steps:
       - attach_workspace:
           at: ~/repo
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
