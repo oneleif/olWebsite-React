@@ -101,17 +101,17 @@ workflows:
           filters:
             branches:
               only:
-                - develop-v1
+                - develop
                 - master
       - deploy:
-          name: deploy_develop_v1
+          name: deploy_develop
           bucket_url: S3_BUCKET_URL_DEV
           context: oneleif-aws
           requires:
             - build
           filters:
             branches:
-              only: develop-v1
+              only: develop
       - deploy:
           name: deploy_propuction
           bucket_url: S3_BUCKET_URL_PROD
