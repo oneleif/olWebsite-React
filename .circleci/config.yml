@@ -6,7 +6,7 @@ orbs:
 defaults: &defaults
   working_directory: ~/repo
   docker:
-    - image: circleci/node:12.9.1-browsers
+    - image: circleci/node:14.9.0-browsers
 
 jobs:
   checkout_code:
@@ -24,7 +24,7 @@ jobs:
           at: ~/repo
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
@@ -33,7 +33,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
 
   test:
     <<: *defaults
@@ -42,7 +42,7 @@ jobs:
           at: ~/repo
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
@@ -56,7 +56,7 @@ jobs:
           at: ~/repo
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-{{ checksum "package-lock.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
@@ -101,17 +101,17 @@ workflows:
           filters:
             branches:
               only:
-                - develop-v1
+                - develop
                 - master
       - deploy:
-          name: deploy_develop_v1
+          name: deploy_develop
           bucket_url: S3_BUCKET_URL_DEV
           context: oneleif-aws
           requires:
             - build
           filters:
             branches:
-              only: develop-v1
+              only: develop
       - deploy:
           name: deploy_propuction
           bucket_url: S3_BUCKET_URL_PROD
