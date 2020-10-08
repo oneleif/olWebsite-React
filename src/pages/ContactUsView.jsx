@@ -64,12 +64,12 @@ export default function ContactUsView() {
    * @param {Event} event
    */
   function handleSendClicked(event) {
-    //target for href is set so allow link functionality
+    //target for href is set so allow button functionality
     if (nameInput.value && emailInput.value && !emailInput.error && messageInput.value) {
       return;
     }
 
-    //prevents event from propogating to link functionality
+    //prevents event from propogating to button functionality
     event.preventDefault();
     if (!nameInput.value) {
       setNameInput({ value: '', error: `${ERROR_MESSAGE} name` });
