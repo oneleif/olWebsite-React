@@ -50,7 +50,7 @@ jobs:
           command: npm rebuild node-sass
       - run:
           name: Run tests
-          command: npm run test
+          command: npm run test:ci
 
   build:
     <<: *defaults
