@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Helmet } from 'react-helmet';
 
-export default function ReactHelmetWrapper({ title, description, image, path }) {
+export default function ReactHelmetWrapper({ title, description, image, path = '/' }) {
   /************************************
    * Render
    ************************************/

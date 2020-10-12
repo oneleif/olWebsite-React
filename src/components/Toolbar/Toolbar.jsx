@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { NavLink, withRouter, Link } from 'react-router-dom';
 import HamburgerMenu from 'react-hamburger-menu';
-import Logo from '../../assets/homeLogo.png';
+import Logo from '../../assets/Logo.png';
+import NavArrow from '../../assets/Icons/NavArrow';
+import { mobileLinks, navLinks } from './js/toolbar-nav-links';
 
-  /************************************
-   * Constants
-   ************************************/
+/************************************
+ * Constants
+ ************************************/
 
 const DEFAULT_CLASSES = ['main-nav', 'user-actions'];
 const MEDIUM_BREAKPOINT = 960;
@@ -37,10 +39,10 @@ function Toolbar() {
    * Callback used by resize eventListener to close mobile nav bar in desktop view
    * @returns {void}
    * @callback
-   */ 
+   */
   const memoNavCleanUp = useCallback(() => {
     // if mobile bar is open and screen width is greater than medium breakpoint (see _screens.scss)
-    return (isOpen && window.innerWidth > MEDIUM_BREAKPOINT) ? handleToggle() : null;
+    return isOpen && window.innerWidth > MEDIUM_BREAKPOINT ? handleToggle() : null;
   }, [isOpen, handleToggle]);
 
   useEffect(() => {
@@ -52,7 +54,6 @@ function Toolbar() {
     };
   }, [memoNavCleanUp]);
 
-
   /************************************
    * Functions
    ************************************/
@@ -60,7 +61,7 @@ function Toolbar() {
   /**
    * Applies open rule to className to add open attributes to parts of navbar
    * @returns {void}
-   */ 
+   */
   function generateOpenClasses() {
     setClasses(
       DEFAULT_CLASSES.map(className => {
@@ -72,11 +73,10 @@ function Toolbar() {
   /**
    * Function to make sure handle toggle is called only if navbar is open when clicking a link.
    * @returns {(Function|null)}
-   */ 
+   */
   function closeNav() {
     return isOpen ? handleToggle() : null;
   };
-
 
   /************************************
    * Render
@@ -88,11 +88,11 @@ function Toolbar() {
         <ul className='nav-links'>
           <div className='icons'>
             <Link to='/' onClick={closeNav}>
-              <img className='toolbar-logo' src={Logo}  alt='oneleif logo' />
+              <img className='toolbar-logo' src={Logo} alt='oneleif logo' />
             </Link>
             <HamburgerMenu
               className='toggle'
-              menuClicked={handleToggle} 
+              menuClicked={handleToggle}
               isOpen={isOpen}
               width={22}
               height={19}
@@ -106,41 +106,20 @@ function Toolbar() {
 
           {/* Main links  */}
           <div data-testid='nav' className={classes[0]}>
-            <li>
-              <NavLink to='/contact' activeClassName='active-link' onClick={closeNav}>
-                Contact Us
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/projects' activeClassName='active-link' onClick={closeNav}>
-                Projects
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/team' activeClassName='active-link' onClick={closeNav}>
-                Meet the Team
-              </NavLink>
-            </li>
-            <li className='mobile-link'>
-              <NavLink to='/resources' activeClassName='active-link' onClick={closeNav}>
-                Resources
-              </NavLink>
-            </li>
-            <li className='mobile-link'>
-              <NavLink to='/organization' activeClassName='active-link' onClick={closeNav}>
-                Organization
-              </NavLink>
-            </li>
-            <li className='mobile-link'>
-              <NavLink to='/community' activeClassName='active-link' onClick={closeNav}>
-                Community
-              </NavLink>
-            </li>
-            <li className='mobile-link'>
-              <NavLink to='/about' activeClassName='active-link' onClick={closeNav}>
-                About
-              </NavLink>
-            </li>
+            {navLinks.map((link, index) => (
+              <li key={index}>
+                <NavLink to={link.path} activeClassName='active-link' onClick={closeNav}>
+                  {link.copy} <NavArrow />
+                </NavLink>
+              </li>
+            ))}
+            {mobileLinks.map((link, index) => (
+              <li className='mobile-link' key={index}>
+                <NavLink to={link.path} activeClassName='active-link' onClick={closeNav}>
+                  {link.copy}
+                </NavLink>
+              </li>
+            ))}
           </div>
 
           {/* TODO: v-2 User links */}
