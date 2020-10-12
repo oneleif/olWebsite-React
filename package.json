@@ -22,6 +22,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom-fourteen",
+    "test:ci": "npm run test -- --runInBand --forceExit --detectOpenHandles --watchAll=false",
     "eject": "react-scripts eject",
     "sitemap": "babel-node ./src/sitemap/sitemapBuilder.js"
   },
