@@ -122,8 +122,8 @@ export default function ContactUsView() {
           </p>
           <p>
             Call us:{' '}
-            <a href='tel:1-402-536-0377' onClickCapture={handleContactLinkClicked}>
-              +1 (402) 536-0377
+            <a href='tel:1-531-207-7377' onClickCapture={handleContactLinkClicked}>
+              +1 (531) 207-7377
             </a>
           </p>
           <OlContactBean />
