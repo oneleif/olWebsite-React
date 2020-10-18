@@ -63,6 +63,9 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
+          name: Rebuild node-sass
+          command: npm rebuild node-sass        
+      - run:
           name: Build website
           command: npm run build
       - store_artifacts:
