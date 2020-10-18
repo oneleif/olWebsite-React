@@ -2,7 +2,7 @@ import React from 'react';
 
 import ReactGA from 'react-ga';
 
-export default function Button({ children, theme = 'primary', handleClick, eventLabel }) {
+export default function Button({ children, theme = 'primary', handleClick, eventLabel, ...rest }) {
  /************************************
   * Private Methods
   ************************************/
@@ -21,7 +21,7 @@ export default function Button({ children, theme = 'primary', handleClick, event
    ************************************/
 
   return (
-    <button className={'button ' + theme} onClick={handleButtonClick}>
+    <button className={'button ' + theme} onClick={handleButtonClick} {...rest}>
       {children}
     </button>
   );

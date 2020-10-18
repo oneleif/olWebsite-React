@@ -106,11 +106,16 @@
         order: 1;
       }
 
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+
       .input-container {
         margin-bottom: 5%;
 
         @include medium('up') {
-          margin-bottom: 0;
+          margin-bottom: 3%;
         }
       }
 
@@ -122,7 +127,7 @@
         }
       }
 
-      a.button {
+      form button.button.primary {
         width: 131px;
         align-self: center;
 
