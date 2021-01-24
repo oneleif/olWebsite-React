@@ -1,6 +1,23 @@
+import projectCards from '../../../pages/js/projects.js';
+
+// TODO: load links from API
+
+const parseLinks = projectCards.map(project => {
+  return {
+    label: project.name,
+    path: '/projects',
+    internal: true
+  };
+});
+
+/************************************
+ *
+ ************************************/
+
 const footerLinks = [
   {
-    header: 'Projects'
+    header: 'Projects',
+    links: parseLinks
   },
   {
     header: 'Resources',
