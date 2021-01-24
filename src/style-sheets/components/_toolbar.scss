@@ -1,159 +1,170 @@
-.navbar {
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  
-  background-color: $white;
-  width: 100%;
-  height: 63px;
-  padding: 0;
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
-  @include medium('up') {
-    height: 80px;
-    padding: 0 5%;
-  }
+  .navbar {
+    position: fixed;
+    z-index: 1;
+    top: 0;
 
-  ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-
-    @include medium('up') {
-      flex-direction: row;
-    }
-
-    li {
-      font-size: 2.176em;
-      text-align: left;
-      line-height: 36px;
-      list-style-type: none;
-
-      margin: 0;
-      padding: 15px 0 15px 1.5rem;
-
-      &:first-child {
-        margin-top: 1em;
-      }
-
-      @include medium('up') {
-        font-size: $olNavLinkSize;
-        margin: 0 2vw;
-        padding: 0;
-        background: $white;
-        text-align: center;
-        line-height: 25px;
-
-        &.mobile-link {
-          display: none;
-        }
-
-        &:first-child {
-          margin-top: 0;
-        }
-      }
-
-      .active-link {
-        color: $green300;
-
-        @include medium('up') {
-          color: $gray900;
-          text-decoration-line: underline;
-        }
-      }
-
-      a {
-        font-family: $olBaseFont;
-        text-decoration: none;
-        font-weight: 600;
-        color: $black;
-        display: block;
-
-       
-        @include medium('up') {
-          color: $gray700;
-          display: initial;
-        }
-
-        &:hover {
-          color: $gray900;
-          text-decoration-line: underline;
-        }
-      }
-    }
-  }
-
-  .nav-links {
+    background-color: $white;
     width: 100%;
-    height: auto;
-    background-color: white;
+    height: 60px;
+    padding: 0;
 
     @include medium('up') {
       height: 80px;
+      padding: 0 5%;
+      max-width: 1440px;
     }
 
-    .icons {
+    ul {
+      margin: 0;
+      padding: 0;
       display: flex;
-      flex-direction: row;
-      align-items: center; 
-      width: 95%;
-      padding: 10px 5%;
-      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
 
       @include medium('up') {
-        width: fit-content;
-        padding: 0;
+        flex-direction: row;
       }
 
-      .toolbar-logo {
-        width: 128px;
-  
-        @include medium('up') {
-          width: 148px;
+      li {
+        font-size: 2.176em;
+        text-align: left;
+        line-height: 36px;
+        list-style-type: none;
+
+        margin: 0;
+        padding: 15px 0 15px 1.5rem;
+
+        &:first-child {
+          margin-top: 1em;
         }
-      }
 
-      .toggle {
-        display: block;
-        color: $olNavLink;
-        margin-right: 3%;
-
-        @include medium('up') {
+        svg {
           display: none;
+
+          @include medium('up') {
+            display: initial;
+          }
         }
 
+        @include medium('up') {
+          font-size: $olNavLinkSize;
+          margin: 0 20px;
+          padding: 0;
+          background: $white;
+          text-align: center;
+          line-height: 25px;
+
+          &.mobile-link {
+            display: none;
+          }
+
+          &:first-child {
+            margin-top: 0;
+          }
+        }
+
+        .active-link {
+          color: $green300;
+
+          @include medium('up') {
+            color: $gray900;
+            text-decoration-line: underline;
+          }
+        }
+
+        a {
+          font-family: $olBaseFont;
+          text-decoration: none;
+          font-weight: 600;
+          color: $black;
+          display: block;
+
+          @include medium('up') {
+            color: $gray700;
+            display: initial;
+            line-height: 400%;
+          }
+
+          &:hover {
+            color: $gray900;
+            text-decoration-line: underline;
+          }
+        }
       }
     }
 
-    .main-nav, .user-actions{
-      position: fixed;
-      margin-top: 63px;
+    .nav-links {
       width: 100%;
-      flex-direction: column;
-      display: none;
-      background-color: $olLTPrimary;
-      height: 100%;
-      &.open {
-        display: block;
-      }
+      height: auto;
+      background-color: white;
 
-      @include medium('up') {
-        position: relative;
+      .icons {
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        margin-top: 0;
-        margin-left: 5%;
-        // TODO: v-2 flex: 2;
-        width: 60%;
-        height: initial;
+        align-items: center;
+        width: 100%;
+        padding-top: 12px;
+        justify-content: space-between;
+
+        @include medium('up') {
+          width: fit-content;
+          padding: 0;
+        }
+
+        .toolbar-logo {
+          width: 120px;
+          height: 33px;
+          margin-left: 32px;
+
+          @include medium('up') {
+            margin-left: 4em;
+          }
+        }
+
+        .toggle {
+          display: block;
+          color: $olNavLink;
+          margin-right: 32px;
+
+          @include medium('up') {
+            display: none;
+          }
+        }
+      }
+
+      .main-nav,
+      .user-actions {
+        position: fixed;
+        margin-top: 60px;
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        background-color: $olLTPrimary;
+        height: 100%;
+        &.open {
+          display: block;
+        }
+
+        @include medium('up') {
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          margin-top: 0;
+          margin-left: 5%;
+          // TODO: v-2 flex: 2;
+          height: initial;
+        }
+      }
+
+      .user-actions {
+        width: 20%;
       }
     }
-
-    .user-actions {
-      width: 20%;
-    }
   }
-
 }
