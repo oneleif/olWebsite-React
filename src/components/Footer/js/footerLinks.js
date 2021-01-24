@@ -1,45 +1,6 @@
 import projectCards from '../../../pages/js/projects.js';
 
-//  static data can be generated from the projects.js file
-// [
-//   {
-//     label: 'Oneleif',
-//     path: '/projects',
-//     internal: true
-//   },
-//   {
-//     label: 'Bread for the Journey',
-//     path: '/projects',
-//     internal: true
-//   },
-//   {
-//     label: 'Swift UI Kit',
-//     path: '/projects',
-//     internal: true
-//   },
-//   {
-//     label: 'Leifdown',
-//     path: '/projects',
-//     internal: true
-//   },
-//   {
-//     label: 'Filodex',
-//     path: '/projects',
-//     internal: true
-//   },
-//   {
-//     label: 'Onefit',
-//     path: '/projects',
-//     internal: true
-//   }
-// ]
-
-/************************************
- * Proposal
- ************************************/
-// the data can be generated creating the array of objects
-// pros: less code
-// cons: logic implementation if path and internal differ between objects
+// TODO: load links from API
 
 const parseLinks = projectCards.map(project => {
   return {

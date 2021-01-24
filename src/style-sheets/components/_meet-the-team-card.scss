@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  
+
   width: 323px;
   height: 200px;
   padding: 5% 0;
@@ -20,22 +20,22 @@
   .card {
     &-content {
       display: grid;
-      grid-template-columns: 1fr .4fr 4fr;
-      grid-template-rows: .2fr .2fr .2fr;
+      grid-template-columns: 1fr 0.4fr 4fr;
+      grid-template-rows: 0.2fr 0.2fr 0.2fr;
       grid-template-areas:
-          "img . fullname"
-          "img . member-role"
-          "img . location";
+        'img . fullname'
+        'img . member-role'
+        'img . location';
 
       width: 90%;
       margin-bottom: 1.7143em;
 
-      @include query($screen-sm, $screen-md) { 
+      @include query($screen-sm, $screen-md) {
         width: 87%;
       }
 
       @include medium('up') {
-        grid-template-columns: 1fr .5fr 4fr;
+        grid-template-columns: 1fr 0.5fr 4fr;
         margin-bottom: 2.14285em;
       }
 
@@ -52,8 +52,9 @@
         margin-block-start: 1em;
         margin-block-end: 0;
         line-height: 24px;
+        text-align: center;
 
-        @include query($screen-sm, $screen-md) { 
+        @include query($screen-sm, $screen-md) {
           font-size: 1.2rem;
         }
       }
@@ -67,8 +68,8 @@
         line-height: 22px;
 
         @include large('up') {
-          font-size: .85rem;
-        }      
+          font-size: 0.85rem;
+        }
       }
 
       .role-copy {
@@ -92,6 +93,5 @@
         margin-bottom: 0;
       }
     }
-
   }
 }

@@ -20,9 +20,9 @@
       grid-template-columns: 84px 1fr 4fr;
       grid-template-rows: auto;
       grid-template-areas:
-          "img name name"
-          "img type type"
-          "details details details";
+        'img name name'
+        'img type type'
+        'details details details';
 
       width: 90%;
       margin-bottom: 1em;
@@ -34,7 +34,6 @@
         align-items: center;
       }
 
-      
       img {
         grid-area: img;
         width: 54px;
@@ -56,10 +55,11 @@
         line-height: 32px;
         align-self: flex-end;
         color: $black;
+        text-align: center;
 
         @include medium('up') {
           align-self: center;
-          font-size:  1.875rem;
+          font-size: 1.875rem;
           margin-bottom: 0.25em;
         }
       }
