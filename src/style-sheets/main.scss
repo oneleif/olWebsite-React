@@ -23,6 +23,8 @@
 @import './components/feature-container';
 @import './components/filter';
 @import './components/footer';
+@import './components/github-button';
+@import './components/google-button';
 @import './components/meet-the-team-card';
 @import './components/nav-link-list';
 @import './components/page-header';
@@ -35,7 +37,7 @@
 @import './components/toolbar';
 
 // Pages
-@import './pages/authentication-view';
+@import './pages/login-view';
 @import './pages/contact-us-view';
 @import './pages/projects-view';
 @import './pages/landing-view';

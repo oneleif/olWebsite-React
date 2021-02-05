@@ -42,7 +42,7 @@ export default function Input({
 
   return (
     <div 
-      className={className ? `${className}-input-container` : 'input-container'} 
+      className={`${className} input-container`} 
       onFocus={() => setLabelState({...labelState, isFocused: true})} 
       onBlur={() => setLabelState({...labelState, isFocused: false})}
       >
