@@ -57,7 +57,7 @@ export default function LoginView() {
               <input type='checkbox' />
               <span>Remember Me</span>
             </div>
-            <a className='forgot-password-link'>Forgot Password?</a>
+            <a className='forgot-password-link' href="https://www.oneleif.com">Forgot Password?</a>
           </div>
         </form>
       </div>
