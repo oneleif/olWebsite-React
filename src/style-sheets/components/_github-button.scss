@@ -1,0 +1,30 @@
+.github-button {
+  width: 100%;
+  height: 30.33px;
+  display: flex;
+  flex-direction: row;
+  background: rgba(0, 0, 0, 0.89);
+  justify-content: flex-start;
+  padding: 0 1em;
+  background: rgba(0, 0, 0, 0.89);
+
+    span {
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      line-height: 25px;
+      font-size: 0.9375rem;
+    }
+  
+    img {
+      position: relative;
+      top: 6px;
+      margin-right: 1em;
+
+
+      @include xlarge('up') {
+        margin-right: 2.5em;
+      }
+    }
+}

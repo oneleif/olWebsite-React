@@ -11,7 +11,7 @@ const CAPTION = 'Caption';
 
 describe('Input Tests', () => {
   function setUp(errorMessage) {
-    const { queryByText } = render(<Input label={LABEL} errorMessage={errorMessage} />);
+    const { queryByText } = render(<Input label={LABEL} errorMessage={errorMessage} className='test' />);
     return { queryByText };
   }
 
@@ -26,7 +26,7 @@ describe('Input Tests', () => {
     expect(container.container).toMatchInlineSnapshot(`
       <div>
         <div
-          class="input-container"
+          class="undefined input-container"
         >
           <label>
             ${LABEL}
@@ -52,7 +52,7 @@ describe('Input Tests', () => {
     expect(container.container).toMatchInlineSnapshot(`
       <div>
         <div
-          class="${CLASS_NAME}-input-container"
+          class="${CLASS_NAME} input-container"
         >
           <label>
             ${LABEL}
