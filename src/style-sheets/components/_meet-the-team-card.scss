@@ -52,7 +52,6 @@
         margin-block-start: 1em;
         margin-block-end: 0;
         line-height: 24px;
-        text-align: center;
 
         @include query($screen-sm, $screen-md) {
           font-size: 1.2rem;
