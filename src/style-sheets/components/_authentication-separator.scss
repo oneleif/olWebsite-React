@@ -1,0 +1,22 @@
+.auth-separator {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 213px;
+  margin-bottom: 1em;
+
+  hr {
+    width: 81.65px;
+    border: 1px solid #8b8b8d;
+    background-color: #8b8b8d;
+  }
+
+  span {
+    font-size: 16px;
+    line-height: 25px;
+    color: #262626;
+    font-weight: 600;
+    margin: 0 25px;
+  }
+}

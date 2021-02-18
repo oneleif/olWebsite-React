@@ -17,7 +17,9 @@
 @import './generic/textarea';
 
 // Components
-@import './components//call-to-action';
+@import './components/authentication-card';
+@import './components/authentication-separator';
+@import './components/call-to-action';
 @import './components/card-tag-container';
 @import './components/carousel';
 @import './components/feature-container';
@@ -37,10 +39,11 @@
 @import './components/toolbar';
 
 // Pages
-@import './pages/login-view';
 @import './pages/contact-us-view';
-@import './pages/projects-view';
 @import './pages/landing-view';
+@import './pages/login-view';
 @import './pages/meet-the-team-view';
 @import './pages/page-not-found-view';
 @import './pages/posts-view';
+@import './pages/projects-view';
+@import './pages//sign-up-view';

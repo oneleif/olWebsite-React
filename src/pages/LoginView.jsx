@@ -1,5 +1,7 @@
 import React from 'react';
 import LoginSVG from '../assets/LoginSVG/LoginSVG';
+import AuthenticationCard from '../components/AuthenticationCard/AuthenticationCard';
+import AuthenticationSeparator from '../components/AuthenticationSeparator/AuthenticationSeparator';
 import GitHubButton from '../components/GithubButton/GithubButton';
 import GoogleButton from '../components/GoogleButton/GoogleButton';
 import Button from '../components/Objects/Button/Button';
@@ -13,17 +15,13 @@ export default function LoginView() {
   return (
     <div className='login-view-container'>
       <LoginSVG />
-      <div className='login-card-container'>
+      <AuthenticationCard>
         <h1>Log In</h1>
         <div className='button-container'>
-          <GoogleButton />
-          <GitHubButton />
+          <GoogleButton>Log In with Google</GoogleButton>
+          <GitHubButton>Log In with GitHub</GitHubButton>
         </div>
-        <div className='auth-separator'>
-          <hr />
-          <span>OR</span>
-          <hr />
-        </div>
+        <AuthenticationSeparator />
         <form className='login-email-input'>
           <Input
             id='loginEmail'
@@ -60,7 +58,7 @@ export default function LoginView() {
             <a className='forgot-password-link' href="https://www.oneleif.com">Forgot Password?</a>
           </div>
         </form>
-      </div>
+      </AuthenticationCard>
     </div>
   );
-}
+};
