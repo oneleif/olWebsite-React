@@ -2,7 +2,7 @@ import React from 'react';
 import GoogleIcon from '../../assets/Icons/GoogleIcon/GoogleIcon';
 import Button from '../Objects/Button/Button';
 
-export default function GoogleButton() {
+export default function GoogleButton({ children }) {
   /************************************
    * Render
    ************************************/
@@ -10,7 +10,7 @@ export default function GoogleButton() {
   return (
     <Button theme='google-button' handleClick={() => {/* Nothing to be done yet*/}} eventLabel='google-login'>
       <GoogleIcon />
-      <span>Log In with Google</span>
+      <span>{children}</span>
     </Button>
   );
 }

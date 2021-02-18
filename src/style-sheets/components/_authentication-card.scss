@@ -1,0 +1,18 @@
+.authentication-card-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 414px;
+  box-shadow: 0px 4px 4px rgba(60, 129, 137, 0.25);
+  border-radius: 4px;
+
+  @include small('up') {
+    margin: 4em 0;
+  }
+
+  @include medium('up') {
+    margin: 4em 0 6em;
+  }
+}
