@@ -1,0 +1,188 @@
+.project-details {
+  &-container {
+    color: $olLTHeader;
+    padding: 3rem;
+
+    h6 {
+      margin-block-start: 1rem;
+      margin-block-end: 1rem;
+    }
+  }
+
+  //BREADCRUMB
+  &-breadcrumb {
+    &-item {
+      position: relative;
+      margin-inline-end: 0.7rem;
+      display: inline-block;
+      font-weight: 300;
+
+      &:not(:first-of-type) {
+        &::before {
+          content: '/';
+          position: absolute;
+          left: -0.5rem;
+        }
+      }
+
+      &.active {
+        font-weight: 500;
+      }
+    }
+  }
+
+  //METADATA
+  &-meta {
+    margin-block-start: 3.5rem;
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-block-start: 0.3rem;
+      margin-block-end: 0.3rem;
+    }
+
+    .type {
+      font-size: 1.1rem;
+      margin-block-start: -0.3rem;
+      margin-block-end: 0.3rem;
+    }
+
+    .image-container {
+      text-align: center;
+      height: 300px;
+
+      img {
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    @include small('up') {
+      .image-container {
+        img {
+          width: unset;
+        }
+      }
+    }
+
+    @include medium('up') {
+      text-align: center;
+
+      .name {
+        font-size: 2.5rem;
+      }
+      .type {
+        font-size: 1.5rem;
+      }
+      .image-container {
+        order: -1;
+      }
+    }
+  }
+
+  //TABS
+  &-tabs {
+    display: flex;
+    justify-content: space-evenly;
+    padding-block-start: 3rem;
+    padding-block-end: 3rem;
+
+    .tab-item {
+      font-weight: 400;
+      font-size: 1.1rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &.active {
+        font-weight: 700;
+      }
+    }
+  }
+
+  //DESCRIPTION TAB
+  &-description {
+    @include medium('up') {
+      max-width: 90%;
+
+      p {
+        font-size: 1.2rem;
+        margin-block-start: 0.5rem;
+        margin-block-end: 0.5rem;
+      }
+    }
+  }
+
+  //TAGS TAB
+  &-tags {
+    .tag-item {
+      display: inline-block;
+      margin-inline-end: 1.5rem;
+      margin-block-end: 1rem;
+      background-color: $gray100;
+      border-radius: 25px;
+      padding: 0.3rem 1.5rem;
+    }
+  }
+
+  //LINKS TAB
+  &-links {
+    display: flex;
+    flex-wrap: wrap;
+
+    h6 {
+      flex-basis: 100%;
+    }
+
+    .link-item {
+      &-container {
+        margin-inline-end: 1.5rem;
+
+        svg {
+          fill: $green300;
+          transform: rotate(90deg);
+          margin-inline-end: 0.4rem;
+        }
+      }
+
+      text-decoration: none;
+      color: $green300;
+      font-size: 1.1rem;
+    }
+  }
+
+  //MEMBERS TAB
+  &-members {
+    .member-item {
+      display: flex;
+      align-items: center;
+      margin-block-end: 1.2rem;
+
+      &-image {
+        width: 50px;
+        height: 50px;
+        margin-inline-end: 1.5rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      &-info {
+        span {
+          display: block;
+
+          &.name {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}

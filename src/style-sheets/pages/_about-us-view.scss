@@ -1,0 +1,164 @@
+.about-us {
+  &-view-container {
+    display: flex;
+    flex-direction: column;
+    color: $olLTHeader;
+  }
+
+  //PAGE HEADER
+  &-page-header {
+    // background-color: $gray50;
+    text-align: center;
+    padding: 1rem;
+
+    .image-container {
+      img {
+        width: 100%;
+      }
+    }
+
+    .info-container {
+      h1 {
+        font-size: 2.3rem;
+      }
+
+      p {
+        margin-block-start: -1.5rem;
+        font-weight: 400;
+        font-size: 1.2rem;
+      }
+    }
+
+    @include small('up') {
+      padding: 3.5rem;
+    }
+
+    @include medium('up') {
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+
+      .image-container {
+        order: 2;
+      }
+
+      .info-container {
+        order: 1;
+
+        p {
+          max-width: 60%;
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
+
+  //SHOWCASE
+  &-showcase {
+    padding: 1rem 4rem;
+
+    > h2 {
+      text-align: center;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .card {
+        background-color: #f4f9fa;
+        border-radius: 0.5rem;
+        padding: 1rem 1.5rem;
+        margin-block-end: 1.2rem;
+
+        &-title {
+          margin-block-start: 0.5rem;
+          margin-block-end: 0.5rem;
+          font-weight: 400;
+          font-size: 1.7rem;
+        }
+
+        &-content {
+          margin-block-start: 0.5rem;
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    @include medium('up') {
+      .cards-container {
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        .card {
+          width: 240px;
+          height: 260px;
+        }
+      }
+    }
+  }
+
+  //HISTORY
+  &-history {
+    padding: 2.5rem;
+
+    .heading {
+      display: block;
+      color: #43a850;
+      text-transform: uppercase;
+    }
+
+    .history-item {
+      margin-block-end: 1.2rem;
+
+      h4 {
+        margin-block-start: 0.2rem;
+        margin-block-end: 0.5rem;
+      }
+    }
+
+    @include medium('up') {
+      .history-item {
+        display: flex;
+        justify-content: space-between;
+
+        h4 {
+          width: 300px;
+          font-size: 2.5rem;
+        }
+
+        p {
+          width: 500px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  //FUTURE
+  &-future {
+    padding: 3rem;
+    text-align: center;
+
+    h5 {
+      margin-block-start: 0.5rem;
+      margin-block-end: 0.5rem;
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    @include medium('up') {
+      h5 {
+        font-size: 2.5rem;
+      }
+
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

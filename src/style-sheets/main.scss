@@ -10,7 +10,7 @@
 
 // Generic
 @import './generic/authentication-input';
-@import './generic//button';
+@import './generic/button';
 @import './generic/card';
 @import './generic/feature-link';
 @import './generic/input';
@@ -46,4 +46,6 @@
 @import './pages/page-not-found-view';
 @import './pages/posts-view';
 @import './pages/projects-view';
-@import './pages//sign-up-view';
+@import './pages/sign-up-view';
+@import './pages/about-us-view';
+@import './pages/project-details-view';
