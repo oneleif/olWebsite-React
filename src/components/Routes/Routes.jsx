@@ -9,6 +9,7 @@ import PageNotFoundView from '../../pages/PageNotFoundView';
 import ProjectsView from '../../pages/ProjectsView';
 import SignUpView from '../../pages/SignUpView';
 import AboutUsView from '../../pages/AboutUsView';
+import ProjectDetailsView from '../../pages/ProjectDetailsView';
 
 export default function Routes() {
   /************************************
@@ -19,10 +20,11 @@ export default function Routes() {
     <Switch>
       <Route path='/contact' component={ContactUsView} />
       <Route path='/login' component={LoginView} />
-      <Route path= '/projects' component={ProjectsView} />
+      <Route path='/projects' component={ProjectsView} />
       <Route path='/sign-up' component={SignUpView} />
       <Route path='/team' component={MeetTheTeamView} />
       <Route path='/about' component={AboutUsView} />
+      <Route exact path='/details/:projectId' component={ProjectDetailsView} />
       <Route exact path='/' component={LandingView} />
       <Route component={PageNotFoundView} />
     </Switch>
